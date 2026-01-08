@@ -78,6 +78,10 @@ function handleDrawEvent(){
 }
 
 function handleDrawOperationEvent(){
+
+
+  console.log("op is:", op);
+
   //clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
