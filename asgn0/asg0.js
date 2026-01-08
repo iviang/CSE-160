@@ -18,7 +18,7 @@ function main() {
   ctx.fillRect(120, 10, 150, 150);        // Fill a rectangle with the color
 
   //call drawVector
-  drawVector(v1, "red")
+  drawVector(v1, "red");
 }
 
 //create function drawVector
