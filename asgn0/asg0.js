@@ -29,7 +29,7 @@ function drawVector(v,color) {
   //scale v1 by 20 when drawing
   const scale = 20;
   
-  //center of canvas
+  //find center of canvas
   const originX = canvas.width/2;
   const originY = canvas.height/2;
 
