@@ -18,7 +18,7 @@ function main() {
 
   // Draw a blue rectangle
   ctx.fillStyle = "black"; // Set color to black canvas
-  ctx.fillRect(120, 10, 150, 150);        // Fill a rectangle with the color
+  ctx.fillRect(0, 0, canvas.width, canvas.height);        // Fill a rectangle with the color
 
   //call drawVector
   drawVector(v1, "red");
