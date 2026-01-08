@@ -44,10 +44,12 @@ class Vector3 {
       * @return this
       */
     add(other) {
-        // Insert your code here.
-        // This function should change this vector (this.elements) and not create a new vector.
+        const a = this.elements;
+        const b = other.elements;
 
-        // Don't delete the return statement.
+        a[0] += b[0];
+        a[1] += b[1];
+        a[2] += b[2];
         return this;
     };
 
@@ -56,10 +58,12 @@ class Vector3 {
       * @return this
       */
     sub(other) {
-        // Insert your code here.
-        // This function should change this vector (this.elements) and not create a new vector.
+        const a = this.elements;
+        const b = other.elements;
 
-        // Don't delete the return statement.
+        a[0] -= b[0];
+        a[1] -= b[1];
+        a[2] -= b[2];
         return this;
     };
 
@@ -68,10 +72,10 @@ class Vector3 {
       * @return this
       */
     div(scalar) {
-        // Insert your code here.
-        // This function should change this vector (this.elements) and not create a new vector.
-
-        // Don't delete the return statement.
+        const a = this.elements;
+        a[0] /= scalar;
+        a[1] /= scalar;
+        a[2] /= scalar;
         return this;
     };
 
@@ -80,10 +84,10 @@ class Vector3 {
       * @return this
       */
     mul(scalar) {
-        // Insert your code here.
-        // This function should change this vector (this.elements) and not create a new vector.
-
-        // Don't delete the return statement.
+        const a = this.elements;
+        a[0] *= scalar;
+        a[1] *= scalar;
+        a[2] *= scalar;
         return this;
     };
 
