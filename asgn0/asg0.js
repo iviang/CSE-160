@@ -150,7 +150,7 @@ function angleBetween(v1, v2) {
     return 0;
   }
 
-  const cosAlpha = dot / (mag1 * mag2);
+  const cosAlpha = dot/(mag1 * mag2);
   const angleRad = Math.acos(Math.min(Math.max(cosAlpha, -1), 1));
 
   //conv rad to degrees
