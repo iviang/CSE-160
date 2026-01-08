@@ -1,9 +1,10 @@
 // DrawTriangle.js (c) 2012 matsuda
+let canvas;
 let ctx;
 
 function main() {  
   // Retrieve <canvas> element
-  var canvas = document.getElementById('example');  
+  canvas = document.getElementById('example');  
   if (!canvas) { 
     console.log('Failed to retrieve the <canvas> element');
     return false; 
