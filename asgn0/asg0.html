@@ -20,6 +20,21 @@
     <br>
     <input type="button" value="Draw" onclick="handleDrawEvent()">
 
+    <br><br>
+
+    <select id="op">
+      <option value="add">add</option>
+      <option value="sub">sub</option>
+      <option value="mul">mul</option>
+      <option value="div">div</option>
+    </select>
+
+    <input type="number" id="scalar" placeholder="scalar" style="width: 80px;">
+
+    <input type="button" value="Draw Operation" onclick="handleDrawOperationEvent()">
+
+
+    
     <script src="lib/cuon-matrix-cse160.js"></script>
     <script src="asg0.js"></script>
   </body>
