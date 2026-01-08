@@ -1,4 +1,12 @@
 // DrawTriangle.js (c) 2012 matsuda
+
+//Student Name: Vivian Nguyen
+//UCSC Email: vnguy180@ucsc.edu
+
+//Notes to Grader:
+//All problems solved.
+//Github pages link submitted in comments
+
 let canvas;
 let ctx;
 
