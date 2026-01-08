@@ -130,9 +130,9 @@ function handleDrawOperationEvent(){
     console.log("Magnitude v1:", v1.magnitude());
     console.log("Magnitude v2:", v2.magnitude());
   } else if (op === "normalize") {
-  const n1 = new Vector3([v1.elements[0], v1.elements[1], v1.elements[2]]).normalize();
-  const n2 = new Vector3([v2.elements[0], v2.elements[1], v2.elements[2]]).normalize();
-  drawVector(n1, "green");
-  drawVector(n2, "green");
+    const n1 = new Vector3([v1.elements[0], v1.elements[1], v1.elements[2]]).normalize();
+    const n2 = new Vector3([v2.elements[0], v2.elements[1], v2.elements[2]]).normalize();
+    drawVector(n1, "green");
+    drawVector(n2, "green");
   }
 }
