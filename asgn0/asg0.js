@@ -79,9 +79,6 @@ function handleDrawEvent(){
 
 function handleDrawOperationEvent(){
 
-
-  console.log("op is:", op);
-
   //clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -140,7 +137,7 @@ function handleDrawOperationEvent(){
     drawVector(n2, "green");
   } else if (op === "angle") {
     const angle = angleBetween(v1, v2);
-    console.log("Angle between v1 and v2:", angle, "degrees"); //console log
+    console.log("Angle:", angle, "degrees"); //console log
   }
 }
 
