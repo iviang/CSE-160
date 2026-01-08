@@ -55,6 +55,9 @@ function handleDrawEvent(){
   //clear
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   //Read the values of the text boxes to create v1.
   const x = parseFloat(document.getElementById("v1x").value);
   const y = parseFloat(document.getElementById("v1y").value);
