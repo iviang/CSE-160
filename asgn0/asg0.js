@@ -1,14 +1,17 @@
 // DrawTriangle.js (c) 2012 matsuda
+let canvas;
+let ctx;
+
 function main() {  
   // Retrieve <canvas> element
-  var canvas = document.getElementById('example');  
+  canvas = document.getElementById('example');  
   if (!canvas) { 
     console.log('Failed to retrieve the <canvas> element');
     return false; 
   } 
 
   // Get the rendering context for 2DCG
-  var ctx = canvas.getContext('2d');
+  ctx = canvas.getContext('2d');
 
   //instantiate v1 using Vector3 from cuon-matrix.js
   const v1 = new Vector3([2.25, 2.25, 0]);
