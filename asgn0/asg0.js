@@ -50,3 +50,17 @@ function drawVector(v,color) {
   ctx.lineTo(endX, endY);
   ctx.stroke();
 }
+
+function handleDrawEvent(){
+  //clear
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  //Read the values of the text boxes to create v1.
+  const x = parseFloat(document.getElementById("v1x").value);
+  const y = parseFloat(document.getElementById("v1y").value);
+
+  const v1 = new Vector3([x, y, 0]);
+
+  //Call drawVector(v1, "red") .  
+  drawVector(v1, "red");
+}
