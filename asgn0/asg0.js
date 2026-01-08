@@ -76,3 +76,56 @@ function handleDrawEvent(){
   drawVector(v2, "blue");
 
 }
+
+function handleDrawOperationEvent(){
+  //clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  //Read the values to create v1.
+  const v1x = parseFloat(document.getElementById("v1x").value);
+  const v1y = parseFloat(document.getElementById("v1y").value);
+
+  //Read the values to create v2.
+  const v2x = parseFloat(document.getElementById("v2x").value);
+  const v2y = parseFloat(document.getElementById("v2y").value);
+
+  // Read scalar
+  const s = parseFloat(document.getElementById("scalar").value);
+
+  const v1 = new Vector3([v1x, v1y, 0]);
+  const v2 = new Vector3([v2x, v2y, 0]);
+
+  //Call
+  drawVector(v1, "red");
+  drawVector(v2, "blue");
+
+  //operation
+  const op = document.getElementById("op").value;
+
+  if (op === "add") {
+    const v3 = new Vector3([v1.elements[0], v1.elements[1], v1.elements[2]]);
+    v3.add(v2);
+    drawVector(v3, "green");
+  } else if (op === "sub") {
+    const v3 = new Vector3([v1.elements[0], v1.elements[1], v1.elements[2]]);
+    v3.sub(v2);
+    drawVector(v3, "green");
+  } else if (op === "div") {
+    if (Number.isNaN(s)) { alert("Enter a scalar for mul/div."); return; }
+    if (s === 0) { alert("Cannot divide by 0."); return; }
+    const v3 = new Vector3([v1.elements[0], v1.elements[1], v1.elements[2]]).div(s);
+    const v4 = new Vector3([v2.elements[0], v2.elements[1], v2.elements[2]]).div(s);
+    drawVector(v3, "green");
+    drawVector(v4, "green");
+  } else if (op === "mul") {
+    if (Number.isNaN(s)) { alert("Enter a scalar for mul/div."); return; }
+    const v3 = new Vector3([v1.elements[0], v1.elements[1], v1.elements[2]]).mul(s);
+    const v4 = new Vector3([v2.elements[0], v2.elements[1], v2.elements[2]]).mul(s);
+    drawVector(v3, "green");
+    drawVector(v4, "green");
+  }
+
+}
