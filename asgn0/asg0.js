@@ -14,14 +14,14 @@ function main() {
   ctx = canvas.getContext('2d');
 
   //instantiate v1 using Vector3 from cuon-matrix.js
-  const v1 = new Vector3([2.25, 2.25, 0]);
+ // const v1 = new Vector3([2.25, 2.25, 0]);
 
   // Draw a blue rectangle
   ctx.fillStyle = "black"; // Set color to black canvas
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   //call drawVector
-  drawVector(v1, "red");
+ // drawVector(v1, "red");
 }
 
 //create function drawVector
