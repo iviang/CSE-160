@@ -42,7 +42,7 @@ function drawVector(v,color) {
 
   ctx.beginPath();
   ctx.strokeStyle = color;
-  ctx.lineWidth = 6;
+  ctx.lineWidth = 3;
 
   //draw v1
   ctx.moveTo(originX, originY);
