@@ -18,7 +18,7 @@ function main() {
 
   // Draw a blue rectangle
   ctx.fillStyle = "black"; // Set color to black canvas
-  ctx.fillRect(0, 0, canvas.width, canvas.height);        // Fill a rectangle with the color
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   //call drawVector
   drawVector(v1, "red");
@@ -28,6 +28,7 @@ function main() {
 function drawVector(v,color) {
   //scale v1 by 20 when drawing
   const scale = 20;
+  
   //center of canvas
   const originX = canvas.width/2;
   const originY = canvas.height/2;
@@ -42,7 +43,7 @@ function drawVector(v,color) {
 
   ctx.beginPath();
   ctx.strokeStyle = color;
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 6;
 
   //draw v1
   ctx.moveTo(originX, originY);
