@@ -79,7 +79,7 @@ function handleDrawEvent(){
 
 function handleDrawOperationEvent(){
 
-  console.log("operation button clicked");
+  //console.log("operation button clicked");
 
   //clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -130,12 +130,32 @@ function handleDrawOperationEvent(){
     drawVector(v3, "green");
     drawVector(v4, "green");
   } else if (op === "magnitude") {
-    console.log("Magnitude v1:", v1.magnitude());
-    console.log("Magnitude v2:", v2.magnitude());
+    console.log("Magnitude v1:", v1.magnitude()); //console log
+    console.log("Magnitude v2:", v2.magnitude()); //console log
   } else if (op === "normalize") {
     const n1 = new Vector3([v1.elements[0], v1.elements[1], v1.elements[2]]).normalize();
     const n2 = new Vector3([v2.elements[0], v2.elements[1], v2.elements[2]]).normalize();
     drawVector(n1, "green");
     drawVector(n2, "green");
+  } else if (op === "angle") {
+    const angle = angleBetween(v1, v2);
+    console.log("Angle between v1 and v2:", angle, "degrees"); //console log
   }
+}
+
+function angleBetween(v1, v2) {
+  const dot = Vector3.dot(v1, v2); //uses dot
+  const mag1 = v1.magnitude();
+  const mag2 = v2.magnitude();
+
+  if (mag1 === 0 || mag2 === 0) {
+    return 0;
+  }
+
+  const cosAlpha = dot / (mag1 * mag2);
+  const angleRad = Math.acos(Math.min(Math.max(cosAlpha, -1), 1));
+
+  //conv rad to degrees
+  const angleDeg = angleRad * 180 / Math.PI;
+  return angleDeg;
 }

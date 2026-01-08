@@ -98,8 +98,10 @@ class Vector3 {
     static dot(other1, other2) {
         // Insert your code here.
         let d = 0; // Modify this line to calculate this vector's magnitude.
+        const a = other1.elements;
+        const b = other2.elements;
 
-        // Don't delete the return statement.
+        d = a[0]*b[0] + a[1]*b[1] + a[2]*b[2];
         return d;
     }
 
