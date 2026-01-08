@@ -1,0 +1,1 @@
+This directory features all of assignment 0 codes developed along with the vectorTests showing all passes.
