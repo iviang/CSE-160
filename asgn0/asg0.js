@@ -58,12 +58,21 @@ function handleDrawEvent(){
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  //Read the values of the text boxes to create v1.
-  const x = parseFloat(document.getElementById("v1x").value);
-  const y = parseFloat(document.getElementById("v1y").value);
+  //Read the values to create v1.
+  const v1x = parseFloat(document.getElementById("v1x").value);
+  const v1y = parseFloat(document.getElementById("v1y").value);
 
-  const v1 = new Vector3([x, y, 0]);
+  //Read the values to create v2.
+  const v2x = parseFloat(document.getElementById("v2x").value);
+  const v2y = parseFloat(document.getElementById("v2y").value);
 
-  //Call drawVector(v1, "red") .  
+
+
+  const v1 = new Vector3([v1x, v1y, 0]);
+  const v2 = new Vector3([v2x, v2y, 0]);
+
+  //Call
   drawVector(v1, "red");
+  drawVector(v2, "blue");
+
 }
