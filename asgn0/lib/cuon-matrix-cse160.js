@@ -112,7 +112,13 @@ class Vector3 {
     static cross(other1, other2) {
         // Insert your code here.
         // This function should create and return a new vector.
-        let v3 = new Vector3(); // Modify this line to calculate cross product between other1 and other2.
+        let v3 = new Vector3();
+        const a = other1.elements;
+        const b = other2.elements;
+
+        v3.elements[0] = a[1] * b[2] - a[2] * b[1];
+        v3.elements[1] = a[2] * b[0] - a[0] * b[2];
+        v3.elements[2] = a[0] * b[1] - a[1] * b[0];
 
         // Don't delete the return statement.
         return v3;
