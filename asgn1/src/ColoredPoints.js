@@ -205,10 +205,10 @@ function sendTextToHTML(text, htmlID) {
 //function to make the graphic of my reference
 function recreatePic() {
   g_shapesList = []; //clear the page
-  insertTri([-0.6, 0.6,  -0.4, 0.8,  -0.5, 0.9], BLACK);
-  insertTri([-0.5, 0.9,  -0.4, 0.8,  -0.3, 0.9], BLACK);
-  insertTri([-0.4, 0.8,  -0.3, 0.9,  -0.2, 0.8], BLACK);
-  insertTri([-0.3, 0.9,  -0.2, 0.8,  -0.1, 0.85], BLACK);
+  insertTri([-0.6, 0.6,  -0.4, 0.8,  -0.5, 0.9], BROWN);
+  insertTri([-0.5, 0.9,  -0.4, 0.8,  -0.3, 0.9], BROWN);
+  insertTri([-0.4, 0.8,  -0.3, 0.9,  -0.2, 0.8], BROWN);
+  insertTri([-0.3, 0.9,  -0.2, 0.8,  -0.1, 0.85], BROWN);
 
   renderAllShapes();
 
