@@ -80,12 +80,30 @@ let g_selectedSize=5;
 let g_selectedType=POINT;
 let g_selectedSeg=10;
 
+function updatePreview(){
+  const r = g_selectedColor[0];
+  const g = g_selectedColor[1];
+  const b = g_selectedColor[2];
+  const a = g_selectedColor[3];
+
+  const R = Math.round(r * 255);
+  const G = Math.round(g * 255);
+  const B = Math.round(b * 255);
+
+  const preview = document.getElementById('colorPreview');
+  if (preview) preview.style.backgroundColor = `rgba(${R}, ${G}, ${B}, ${a})`;
+
+  const text = document.getElementById('colorText');
+  if (text) text.innerHTML = `rgba(${R}, ${G}, ${B}, ${a.toFixed(2)})`;
+}
+
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
   
   //Button Events
-  document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,1.0]; };
-  document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,0.0,0.0,1.0]; };
+  document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,1.0]; updatePreview(); };
+
+  document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,0.0,0.0,1.0]; updatePreview(); };
 
   document.getElementById('clearButton').onclick = function(){ g_shapesList = []; renderAllShapes();};
 
@@ -96,9 +114,9 @@ function addActionsForHtmlUI(){
   document.getElementById('recreateButton').onclick = function(){ recreatePic();};
 
   //slider events
-  document.getElementById('redSlide').addEventListener('mouseup', function() { g_selectedColor[0] = this.value/100; });
-  document.getElementById('greenSlide').addEventListener('mouseup', function() { g_selectedColor[1] = this.value/100; });
-  document.getElementById('blueSlide').addEventListener('mouseup', function() { g_selectedColor[2] = this.value/100; });
+  document.getElementById('redSlide').addEventListener('mouseup', function() { g_selectedColor[0] = this.value/100;  updatePreview(); });
+  document.getElementById('greenSlide').addEventListener('mouseup', function() { g_selectedColor[1] = this.value/100;  updatePreview(); });
+  document.getElementById('blueSlide').addEventListener('mouseup', function() { g_selectedColor[2] = this.value/100;  updatePreview(); });
 
   //size slider events
   document.getElementById('sizeSlide').addEventListener('mouseup', function() { g_selectedSize = this.value; });
@@ -115,6 +133,9 @@ function main() {
 
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
+
+  //update the preview window
+  updatePreview();
 
   // Register function (event handler) to be called on a mouse press
   canvas.onmousedown = click;
