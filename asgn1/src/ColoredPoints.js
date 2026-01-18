@@ -28,7 +28,10 @@ function setupWebGL(){
   canvas = document.getElementById('webgl');
 
   // Get the rendering context for WebGL
-  gl = getWebGLContext(canvas);
+ // gl = getWebGLContext(canvas);
+
+  gl = canvas.getContext("webgl", { preserveDrawingBuffer: true});
+
   if (!gl) {
     console.log('Failed to get the rendering context for WebGL');
     return;
