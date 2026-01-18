@@ -202,11 +202,17 @@ function sendTextToHTML(text, htmlID) {
   htmlElm.innerHTML = text;
 }
 
+//color creation
+const BLACK = [0.0, 0.0, 0.0, 1.0];
+const BROWN = [0.55, 0.27, 0.07, 1.0];
+const TAN   = [0.85, 0.70, 0.50, 1.0];
+const PINK  = [1.0, 0.6, 0.6, 1.0];
+
 //function to make the graphic of my reference
 function recreatePic() {
   g_shapesList = []; //clear the page
   gl.clear(gl.COLOR_BUFFER_BIT);
-  
+
   insertTri([-0.6, 0.6,  -0.4, 0.8,  -0.5, 0.9], BROWN);
   insertTri([-0.5, 0.9,  -0.4, 0.8,  -0.3, 0.9], BROWN);
   insertTri([-0.4, 0.8,  -0.3, 0.9,  -0.2, 0.8], BROWN);
