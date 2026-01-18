@@ -158,16 +158,25 @@ function convertCoordinatesEventToGL(ev){
 }
 
 //draw every shape that is supposed to be in the canvas
-function renderAllShapes(){
-  // Clear <canvas>
+
+function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  // var len = g_points.length;
-  var len = g_shapesList.length;
-  
-  for(var i = 0; i < len; i++) {
-
-    g_shapesList.render();
+  for (var i = 0; i < g_shapesList.length; i++) {
+    g_shapesList[i].render();
   }
+}
+
+// function renderAllShapes(){
+//   // Clear <canvas>
+//   gl.clear(gl.COLOR_BUFFER_BIT);
+
+//   // var len = g_points.length;
+//   var len = g_shapesList.length;
   
+//   for(var i = 0; i < len; i++) {
+
+//     g_shapesList.render();
+//   }
+
 }
