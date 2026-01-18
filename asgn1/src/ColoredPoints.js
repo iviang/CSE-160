@@ -77,7 +77,7 @@ var g_colors = [];  // The array to store the color of a point
 function click(ev) { //transforms the coords from browser to canvas
   
   //extract the event click and return in WebGL Coordinates
-  [x,y] = convertCoordinatesEventToGL(ev);
+  let [x,y] = convertCoordinatesEventToGL(ev);
 
   // Store the coordinates to g_points array
   g_points.push([x, y]);
@@ -92,7 +92,6 @@ function click(ev) { //transforms the coords from browser to canvas
 
   //draw every shape that is supposed to be in the canvas
   renderAllShapes();
- 
 }
 
 //extract the event click and return in WebGL Coordinates
