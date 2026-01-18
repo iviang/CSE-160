@@ -221,17 +221,29 @@ function recreatePic() {
   //left vert, right vert, top vert
 
   //left eye
-  insertTri([-0.3, 0.0,   -0.2, 0.0,  -0.25, 0.05], RED);
+  insertTri([-0.3, 0.0,   -0.2, 0.0,  -0.25, 0.05], RED); //top
   insertTri([-0.3, 0.0,   -0.2, 0.0,  -0.25, -0.05], RED);
 
   //right eye
-  insertTri([0.1, 0.0,  0.2, 0.0,  0.15, 0.05], RED);
+  insertTri([0.1, 0.0,  0.2, 0.0,  0.15, 0.05], RED); //top
   insertTri([0.1, 0.0,  0.2, 0.0,  0.15, -0.05], RED);
 
   //head
   insertTri([-0.2, 0.0,   0.1, 0.0,  0.1, 0.3], BROWN); //1
   insertTri([-0.2, 0.0,   0.1, 0.3,  -0.2, 0.3], BROWN); //2
 
+  insertTri([0.1, 0.0,    0.15, 0.05,   0.1, 0.3], BROWN); //3
+  insertTri([0.15, 0.05,    0.2, 0.0,   0.1, 0.3], BROWN); //4
+
+  insertTri([0.2, 0.0,    0.3, 0.2,   0.1, 0.3], BROWN); //5
+  insertTri([0.2, 0.0,    0.35, 0.1,   0.3, 0.2], BROWN); //6
+
+  insertTri([0.2, 0.0,    0.35, -0.1,   0.35, 0.1], BROWN); //7
+
+  insertTri([0.25, -0.2,  0.2, 0.0,  0.35, -0.1], BROWN); //8
+
+
+  insertTri([0.25, -0.2,  0.2, 0.0,  0.15, -0.05], BROWN); //9
 
 
   //nose
