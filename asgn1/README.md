@@ -12,3 +12,4 @@ WebGL textbook and Guide
     fig 2.1 http://caimansys.com/painter/
 
 Used GPT to assist with debugging issues
+Used GPT to help find the color codes
