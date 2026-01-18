@@ -56,10 +56,24 @@ function connectVariablesToGLSL(){
   }
 }
 
+let g_selectedColor=[1.0,1.0,1.0,1.0];
+
+//set up actions for the HTML UI elements
+function addActionsForHtmlUI(){
+  
+  //Button Events (shape type)
+  document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,0.0]; };
+  document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,1.0,0.0,0.0]; };
+
+}
+
 function main() {
 
   setupWebGL(); //set up canvas and gl variables
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
+
+  //set up actions for the HTML UI elements
+  addActionsForHtmlUI();
 
   // Register function (event handler) to be called on a mouse press
   canvas.onmousedown = click;
