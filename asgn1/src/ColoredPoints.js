@@ -21,7 +21,7 @@ let gl;
 let a_Position;
 let u_FragColor;
  
-function main() {
+function setupWebGL(){
   // Retrieve <canvas> element
   var canvas = document.getElementById('webgl');
 
@@ -31,6 +31,12 @@ function main() {
     console.log('Failed to get the rendering context for WebGL');
     return;
   }
+
+}
+
+function main() {
+
+  setupWebGL();
 
   // Initialize shaders
   if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
