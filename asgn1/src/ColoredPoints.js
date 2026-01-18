@@ -114,6 +114,8 @@ function addActionsForHtmlUI(){
     if (g_redoList.length > 0) { const shape = g_redoList.pop(); g_shapesList.push(shape); renderAllShapes(); }
   };
 
+  document.getElementById('downloadButton').onclick = function () { downloadCanvas();};
+
   document.getElementById('pointButton').onclick = function(){ g_selectedType=POINT;};
   document.getElementById('triButton').onclick = function(){ g_selectedType=TRIANGLE;};
   document.getElementById('circleButton').onclick = function(){ g_selectedType=CIRCLE;};
@@ -369,4 +371,17 @@ function insertTri(vertices, color) {
   t.vertices = vertices;
   t.color = color;
   g_shapesList.push(t);
+}
+
+function downloadCanvas() {
+  const c = document.getElementById('webgl');
+  if (!c) return;
+  const dataURL = c.toDataURL("image/png");
+
+  const link = document.createElement('a');
+  link.href = dataURL;
+  link.download = "asgn1_canvas.png";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
