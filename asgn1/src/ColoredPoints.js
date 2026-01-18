@@ -85,7 +85,6 @@ function updatePreview(){
   const g = g_selectedColor[1];
   const b = g_selectedColor[2];
   const a = g_selectedColor[3];
-
   const R = Math.round(r * 255);
   const G = Math.round(g * 255);
   const B = Math.round(b * 255);
