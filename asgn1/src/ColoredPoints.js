@@ -105,21 +105,39 @@ function main() {
   gl.clear(gl.COLOR_BUFFER_BIT);
 }
 
-var g_points = [];  // The array for the position of a mouse press
-var g_colors = [];  // The array to store the color of a point
-var g_sizes = []; //gvar for size 
+class Point{
+  constructor(){
+    this.type='point';
+    this.position = [0.0, 0.0, 0.0];
+    this.color = [1.0, 1.0, 1.0, 1.0];
+    this.size = 5.0;
+  }
+}
+
+var g_shapesList = [];
+
+// var g_points = [];  // The array for the position of a mouse press
+// var g_colors = [];  // The array to store the color of a point
+// var g_sizes = []; // the array to store the size of a point
 
 function click(ev) { //transforms the coords from browser to canvas
   
   //extract the event click and return in WebGL Coordinates
   let [x,y] = convertCoordinatesEventToGL(ev);
 
-  // Store the coordinates to g_points array
-  g_points.push([x, y]);
-  // Store the coordinates to g_points array
-  g_colors.push(g_selectedColor.slice());
-  // store the size to the g_sizes array
-  g_sizes.push(g_selectedSize);
+  //create and store the new point
+  let point = new Point();
+  point.position=[x,y];
+  point.color=g_selectedColor.slice();
+  point.size=g_selectedSize;
+  g_shapesList.push(point);
+
+  // // Store the coordinates to g_points array
+  // g_points.push([x, y]);
+  // // Store the coordinates to g_points array
+  // g_colors.push(g_selectedColor.slice());
+  // // store the size to the g_sizes array
+  // g_sizes.push(g_selectedSize);
 
 // if (x >= 0.0 && y >= 0.0) {      // First quadrant
 //   g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
