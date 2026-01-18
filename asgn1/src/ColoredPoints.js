@@ -252,13 +252,19 @@ function recreatePic() {
   insertTri([0.25, -0.2,  0.2, 0.0,  0.15, -0.05], BROWN); //9
   insertTri([0.25, -0.2,  0.2, 0.0,  0.25, -0.25], BROWN); //10
   
-  //ears
-  insertTri([0.1, 0.3,    0.3, 0.2,   0.4, 0.2], TAN); //q
+  //ears ----
+
+  //right ear
+  insertTri([0.2, 0.25,    0.3, 0.2,   0.4, 0.2], TAN); //a
   insertTri([0.3, 0.2,   0.4, 0.2,   0.35, 0.1], TAN); //b
   insertTri([0.35, 0.1,   0.4, 0.2,   0.5, 0.1], TAN); //c
   insertTri([0.35, 0.1,   0.45, 0.0,   0.5, 0.1], TAN); //d
 
-
+  //left ear
+  insertTri([0.3, 0.25,    0.4, 0.2,   0.5, 0.2], TAN); //a
+  insertTri([0.4, 0.2,   0.5, 0.2,   0.45, 0.1], TAN); //b
+  insertTri([0.45, 0.1,   0.5, 0.2,   0.6, 0.1], TAN); //c
+  insertTri([0.45, 0.1,   0.55, 0.0,   0.6, 0.1], TAN); //d
 
   //nose ---
   insertTri([0.0, 0.0,  0.1, 0.0,  0.0, -0.2], TAN); //1
