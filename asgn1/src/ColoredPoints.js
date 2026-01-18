@@ -225,7 +225,7 @@ function recreatePic() {
 
 }
 
-function insertTri(x, y, size, color) {
+function insertTri(vertices, color) {
   let t = new Triangle();
   t.vertices = vertices;
   // t.position = [x, y];
