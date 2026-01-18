@@ -93,6 +93,8 @@ function addActionsForHtmlUI(){
   document.getElementById('triButton').onclick = function(){ g_selectedType=TRIANGLE;};
   document.getElementById('circleButton').onclick = function(){ g_selectedType=CIRCLE;};
 
+  document.getElementById('recreateButton').onclick = function(){ recreatePic();};
+
   //slider events
   document.getElementById('redSlide').addEventListener('mouseup', function() { g_selectedColor[0] = this.value/100; });
   document.getElementById('greenSlide').addEventListener('mouseup', function() { g_selectedColor[1] = this.value/100; });
@@ -198,4 +200,26 @@ function sendTextToHTML(text, htmlID) {
     return;
   }
   htmlElm.innerHTML = text;
+}
+
+//function to make the graphic of my reference
+function recreatePic() {
+  g_shapesList = []; //clear the page
+  insertTri([-0.6, 0.6,  -0.4, 0.8,  -0.5, 0.9], BLACK);
+  insertTri([-0.5, 0.9,  -0.4, 0.8,  -0.3, 0.9], BLACK);
+  insertTri([-0.4, 0.8,  -0.3, 0.9,  -0.2, 0.8], BLACK);
+  insertTri([-0.3, 0.9,  -0.2, 0.8,  -0.1, 0.85], BLACK);
+
+  renderAllShapes();
+
+
+}
+
+function insertTri(x, y, size, color) {
+  let t = new Triangle();
+  t.vertices = vertices;
+  // t.position = [x, y];
+  // t.size = size;
+  t.color = color;
+  g_shapesList.push(t);
 }

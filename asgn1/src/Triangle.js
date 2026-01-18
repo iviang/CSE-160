@@ -4,6 +4,8 @@ class Triangle{
     this.position = [0.0, 0.0, 0.0];
     this.color = [1.0, 1.0, 1.0, 1.0];
     this.size = 5.0;
+
+    this.vertices = null; //
   }
   render() {
     var xy = this.position;
@@ -15,6 +17,11 @@ class Triangle{
 
     // Pass the size of a point to u_Size variable
     gl.uniform1f(u_Size, size);
+
+    if (this.vertices) {
+      drawTriangle(this.vertices);
+      return;
+    }
 
     // Draw the point
     var d = this.size/200.0; //delta
