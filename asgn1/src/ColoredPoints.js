@@ -389,7 +389,7 @@ function downloadCanvas() {
   const link = document.createElement('a');
   const ts = new Date().toISOString().replace(/[:.]/g, '-');
 
-  link.download = "asgn1_canvas${ts}.png";
+  link.download = `asgn1_canvas${ts}.png`;
 
   link.href = url;
   document.body.appendChild(link);
