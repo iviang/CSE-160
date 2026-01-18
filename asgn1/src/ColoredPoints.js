@@ -228,25 +228,32 @@ function recreatePic() {
   insertTri([0.1, 0.0,  0.2, 0.0,  0.15, 0.05], RED); //top
   insertTri([0.1, 0.0,  0.2, 0.0,  0.15, -0.05], RED);
 
-  //head
+  //head ---
   insertTri([-0.2, 0.0,   0.1, 0.0,  0.1, 0.3], BROWN); //1
   insertTri([-0.2, 0.0,   0.1, 0.3,  -0.2, 0.3], BROWN); //2
 
+  //right side of head
   insertTri([0.1, 0.0,    0.15, 0.05,   0.1, 0.3], BROWN); //3
   insertTri([0.15, 0.05,    0.2, 0.0,   0.1, 0.3], BROWN); //4
-
   insertTri([0.2, 0.0,    0.3, 0.2,   0.1, 0.3], BROWN); //5
   insertTri([0.2, 0.0,    0.35, 0.1,   0.3, 0.2], BROWN); //6
-
   insertTri([0.2, 0.0,    0.35, -0.1,   0.35, 0.1], BROWN); //7
-
   insertTri([0.25, -0.2,  0.2, 0.0,  0.35, -0.1], BROWN); //8
-
-
   insertTri([0.25, -0.2,  0.2, 0.0,  0.15, -0.05], BROWN); //9
+  insertTri([0.25, -0.2,  0.2, 0.0,  0.25, -0.25], BROWN); //10
 
 
-  //nose
+  //left side of head
+  insertTri([-0.2, 0.0,    -0.25, 0.05,   -0.2, 0.3], BROWN); //3
+  insertTri([-0.25, 0.05,    -0.3, 0.0,   -0.2, 0.3], BROWN); //4
+  insertTri([-0.3, 0.0,    -0.4, 0.2,   -0.2, 0.3], BROWN); //5
+  insertTri([-0.3, 0.0,    -0.45, 0.1,   -0.4, 0.2], BROWN); //6
+  insertTri([-0.3, 0.0,    -0.45, -0.1,   -0.45, 0.1], BROWN); //7
+  insertTri([-0.35, -0.2,  -0.3, 0.0,  -0.45, -0.1], BROWN); //8
+  insertTri([-0.35, -0.2,  -0.3, 0.0,  -0.25, -0.05], BROWN); //9
+  insertTri([-0.35, -0.2,  -0.3, 0.0,  -0.35, -0.25], BROWN); //10
+
+  //nose ---
   insertTri([0.0, 0.0,  0.1, 0.0,  0.0, -0.2], TAN); //1
   insertTri([-0.1, -0.2,  0.0, -0.2,  0.0, 0.0], TAN); //2
   insertTri([-0.2, 0.0,   0.0, 0.0,   -0.1, -0.2], TAN); //3
