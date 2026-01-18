@@ -316,8 +316,11 @@ function recreatePic() {
 
   insertTri([0.1, 0.3,    0.185, 0.35,   0.15, 0.35], RED); //gap fill
 
-  insertTri([0.185, 0.35,  0.2, 0.3,  0.175, 0.4], RED);
-  insertTri([0.15, 0.315,  0.15, 0.35,  0.185, 0.35], RED);
+  // insertTri([0.185, 0.35,  0.2, 0.3,  0.175, 0.4], RED);
+  // insertTri([0.15, 0.315,  0.15, 0.35,  0.185, 0.35], RED);
+
+  insertTri([0.15, 0.315,   0.185, 0.35,   0.15, 0.35], RED);
+  insertTri([0.1, 0.3,   0.15, 0.315,   0.15, 0.35], RED);
 
 
   //nose ---
@@ -345,15 +348,6 @@ function recreatePic() {
   insertTri([0.0, -0.5,  0.1, -0.5,  0.0, -0.3], TAN); //16
   insertTri([-0.1, -0.3,  0.0, -0.3,  0.0, -0.5], TAN); //17
   insertTri([-0.2, -0.5,   0.0, -0.5,   -0.1, -0.3], TAN); //18
-
-  //initials
-
-  insertTri([-0.6, 0.6,  -0.4, 0.8,  -0.5, 0.9], BROWN);
-  insertTri([-0.5, 0.9,  -0.4, 0.8,  -0.3, 0.9], TAN);
-  insertTri([-0.4, 0.8,  -0.3, 0.9,  -0.2, 0.8], PINK);
-  insertTri([-0.3, 0.9,  -0.2, 0.8,  -0.1, 0.85], BROWN);
-
-  insertTri 
   
 
   renderAllShapes();
