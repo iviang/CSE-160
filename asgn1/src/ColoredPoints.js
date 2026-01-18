@@ -161,25 +161,31 @@ function convertCoordinatesEventToGL(ev){
 //draw every shape that is supposed to be in the canvas
 
 function renderAllShapes() {
+  //check the time at the start of this function
+  var startTime = performance.now();
+  
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
+  //draw each shape in the list
   var len = g_shapesList.length;
 
-  for (var i = 0; i < g_shapesList.length; i++) {
+  for (var i = 0; i < len; i++) {
     g_shapesList[i].render();
   }
+
+  //check the time at the end of the funciton, and show on web pg
+  var duration = performance.now() - startTime;
+  sendTextToHTML("numdot: " + len + " ms: " + Math.floor(duration) + " fps: " + Math.floor(10000/duration)/10, "numdot");
+
 }
 
-// function renderAllShapes(){
-//   // Clear <canvas>
-//   gl.clear(gl.COLOR_BUFFER_BIT);
-
-//   // var len = g_points.length;
-//   var len = g_shapesList.length;
-  
-//   for(var i = 0; i < len; i++) {
-
-//     g_shapesList.render();
-//   }
-// }
+//set the text of a HTML element
+function sendTextToHTML(text, htmlID) {
+  var htmlElm = document.getElementById(htmlID);
+  if (!htmlElm) {
+    console.log("Failed to get " + htmlID + " from HTML");
+    return;
+  }
+  htmlElm.innerHTML = text;
+}
