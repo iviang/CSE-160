@@ -24,9 +24,6 @@ class Triangle{
 
 
 function drawTriangle(vertices) {
-  // var vertices = new Float32Array([
-  //   0, 0.5,   -0.5, -0.5,   0.5, -0.5
-  // ]);
   var n = 3; // The number of vertices
 
   // Create a buffer object
@@ -49,5 +46,4 @@ function drawTriangle(vertices) {
   gl.enableVertexAttribArray(a_Position);
 
   gl.drawArrays(gl.TRIANGLES, 0, n);
-  // return n;
 }
