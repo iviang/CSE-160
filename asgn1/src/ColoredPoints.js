@@ -290,9 +290,12 @@ function recreatePic() {
   //intial 
   insertTri([0.1, 0.3,    0.185, 0.35,   0.175, 0.4], RED); //N1
 
-  insertTri([0.15, 0.315,    0.2, 0.25,   0.185, 0.35], RED); //N2
+  insertTri([0.15, 0.35,    0.2, 0.25,   0.185, 0.35], RED); //N2
 
   insertTri([0.2, 0.25,    0.2, 0.3,   0.25, 0.4], RED); //N3
+
+  insertTri([0.2, 0.25,    0.2, 0.3,   0.175, 0.4], RED); //gap fill
+
 
 
 
