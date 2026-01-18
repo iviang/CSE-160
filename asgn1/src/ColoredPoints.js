@@ -144,11 +144,13 @@ function click(ev) { //transforms the coords from browser to canvas
     point = new Triangle();
   } else {
     point = new Circle();
+    point.segments = g_selectedSeg;
   }
   point.position=[x,y];
   point.color=g_selectedColor.slice();
   point.size=g_selectedSize;
   g_shapesList.push(point);
+
 
   //draw every shape that is supposed to be in the canvas
   renderAllShapes();
