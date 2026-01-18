@@ -230,7 +230,9 @@ function recreatePic() {
 
   //nose
   insertTri([0.0, 0.0, 0.1, 0.0,  0.0, -0.2], TAN);
-  insertTri([0.0, 0.0, 0.1, 0.0,  0.0, -0.2], TAN);
+  insertTri([-0.1, -0.2, 0.0, -0.2,  0.0, 0.0], TAN);
+  insertTri([-0.1, -0.2, 0.0, -0.2,  0.0, 0.0], TAN);
+  insertTri([-0.2, 0.0, 0.0, 0.0, -0.1, -0.2], TAN);
 
 
 
