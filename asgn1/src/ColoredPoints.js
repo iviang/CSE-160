@@ -208,6 +208,8 @@ const BROWN = [0.55, 0.27, 0.07, 1.0];
 const TAN   = [0.85, 0.70, 0.50, 1.0];
 const PINK  = [1.0, 0.6, 0.6, 1.0];
 
+const RED = [1.0, 0.0, 0.0, 1.0];
+
 //function to make the graphic of my reference
 function recreatePic() {
   g_shapesList = []; //clear the page
@@ -215,12 +217,36 @@ function recreatePic() {
 
   // insertTri([-0.2, 0.0,  0.2, 0.0,  0.0, 0.3], [1, 0, 0, 1]); //TEST
 
+  //left vert, right vert, top vert
+
+  //left eye
+  insertTri([-0.3, 0.0, -0.2, 0.0,  -.25, 0.05], RED);
+  insertTri([-0.3, 0.0, -0.2, 0.0,  -.25, -0.05], RED);
+
+  //right eye
+  insertTri([0.1, 0.0, 0.2, 0.0,  0.15, 0.05], BLACK);
+  insertTri([0.1, 0.0, 0.2, 0.0,  0.15, -0.05], BLACK);
+
+  //nose
+  insertTri([0.0, 0.0, 0.1, 0.0,  0.0, -0.2], TAN);
+
+
+  //left ear
+
+  //right ear
+
+  //left antler
+
+  //right angler
+
+  //initials
 
   insertTri([-0.6, 0.6,  -0.4, 0.8,  -0.5, 0.9], BROWN);
   insertTri([-0.5, 0.9,  -0.4, 0.8,  -0.3, 0.9], TAN);
   insertTri([-0.4, 0.8,  -0.3, 0.9,  -0.2, 0.8], PINK);
   insertTri([-0.3, 0.9,  -0.2, 0.8,  -0.1, 0.85], BROWN);
 
+  insertTri 
   
 
   renderAllShapes();
