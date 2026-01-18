@@ -160,7 +160,10 @@ function convertCoordinatesEventToGL(ev){
 //draw every shape that is supposed to be in the canvas
 
 function renderAllShapes() {
+  //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
+
+  var len = g_shapesList.length;
 
   for (var i = 0; i < g_shapesList.length; i++) {
     g_shapesList[i].render();
@@ -178,5 +181,4 @@ function renderAllShapes() {
 
 //     g_shapesList.render();
 //   }
-
-}
+// }
