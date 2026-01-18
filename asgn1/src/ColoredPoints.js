@@ -273,7 +273,8 @@ function recreatePic() {
   insertTri([0.1, 0.3,    0.2, 0.25,   0.15, 0.315], DARK_BROWN); //b
 
   //intiial 
-  insertTri([0.1, 0.3,    0.26, 0.4,   0.315, 0.15], BLACK); //N1
+  insertTri([0.1, 0.3,    0.26, 0.4,   0.275, 0.35], RED); //N1
+  insertTri([0.15, 0.315,    0.26, 0.4,   0.2, 0.25], RED); //N2
 
 
 
