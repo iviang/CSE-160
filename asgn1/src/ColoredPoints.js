@@ -69,9 +69,14 @@ function connectVariablesToGLSL(){
 
 }
 
+//constants
+const POINT = 0;
+const TRIANGLE = 1;
+
 //global variables related to UI
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
+let g_selectedType=POINT;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -81,6 +86,9 @@ function addActionsForHtmlUI(){
   document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,0.0,0.0,1.0]; };
 
   document.getElementById('clearButton').onclick = function(){ g_shapesList = []; renderAllShapes();};
+
+  document.getElementById('pointButton').onclick = function(){ g_selectedType=POINT;};
+  document.getElementById('triButton').onclick = function(){ g_selectedType=TRIANGLE;};
 
 
   //slider events
@@ -124,26 +132,16 @@ function click(ev) { //transforms the coords from browser to canvas
   let [x,y] = convertCoordinatesEventToGL(ev);
 
   //create and store the new point
-  let point = new Triangle();
+  let point;
+  if (g_selectedType==POINT) {
+    point = new Point();
+  } else {
+    point = new Triangle();
+  }
   point.position=[x,y];
   point.color=g_selectedColor.slice();
   point.size=g_selectedSize;
   g_shapesList.push(point);
-
-  // // Store the coordinates to g_points array
-  // g_points.push([x, y]);
-  // // Store the coordinates to g_points array
-  // g_colors.push(g_selectedColor.slice());
-  // // store the size to the g_sizes array
-  // g_sizes.push(g_selectedSize);
-
-// if (x >= 0.0 && y >= 0.0) {      // First quadrant
-//   g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
-// } else if (x < 0.0 && y < 0.0) { // Third quadrant
-//   g_colors.push([0.0, 1.0, 0.0, 1.0]);  // Green
-// } else {                         // Others
-//   g_colors.push([1.0, 1.0, 1.0, 1.0]);  // White
-// }
 
   //draw every shape that is supposed to be in the canvas
   renderAllShapes();
