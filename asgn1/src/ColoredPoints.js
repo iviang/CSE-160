@@ -387,7 +387,9 @@ function downloadCanvas() {
   // const dataURL = c.toDataURL("image/png");
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
-  link.download = "asgn1_canvas.png";
+  const ts = new Date().toISOString().replace(/[:.]/g, '-');
+
+  link.download = "asgn1_canvas${ts}.png";
 
   link.href = url;
   document.body.appendChild(link);
