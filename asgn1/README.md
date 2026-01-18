@@ -7,7 +7,7 @@ Awesome attempt:
 Making a more functional program by:
 color previewer window
 undo/redo button
-making an Export button to save the canvas
+making an Export button to save the canvas - if you have a virus scanner, it may block the download sometimes but not always
 
 site:
 https://iviang.github.io/CSE-160/asgn1/src/asg1.html

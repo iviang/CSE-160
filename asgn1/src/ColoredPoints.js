@@ -376,12 +376,24 @@ function insertTri(vertices, color) {
 function downloadCanvas() {
   const c = document.getElementById('webgl');
   if (!c) return;
-  const dataURL = c.toDataURL("image/png");
 
+  //blob implementation to do normal download
+  c.toBlob(function(blob) {
+    if (!blob) {
+      console.log("Canvas toBlob failed.");
+      return;
+    }
+
+  // const dataURL = c.toDataURL("image/png");
+  const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
-  link.href = dataURL;
   link.download = "asgn1_canvas.png";
+
+  link.href = url;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+  }, "image/png");
 }
