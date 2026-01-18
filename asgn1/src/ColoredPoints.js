@@ -154,6 +154,7 @@ function renderAllShapes(){
   for(var i = 0; i < len; i++) {
     var xy = g_points[i];
     var rgba = g_colors[i];
+    var size = g_sizes[i];
 
     // Pass the position of a point to a_Position variable
     gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
