@@ -206,7 +206,7 @@ function sendTextToHTML(text, htmlID) {
 const BLACK = [0.0, 0.0, 0.0, 1.0];
 const DARK_BROWN = [0.35, 0.20, 0.10, 1.0];
 const BROWN = [0.55, 0.27, 0.07, 1.0];
-const TAN   = [0.68, 0.58, 0.42, 1.0];
+const TAN   = [0.68, 0.55, 0.35, 1.0];
 const PINK  = [1.0, 0.6, 0.6, 1.0];
 
 const RED = [1.0, 0.0, 0.0, 1.0];
@@ -221,19 +221,23 @@ function recreatePic() {
   //left vert, right vert, top vert
 
   //left eye
-  insertTri([-0.3, 0.0, -0.2, 0.0,  -.25, 0.05], RED);
-  insertTri([-0.3, 0.0, -0.2, 0.0,  -.25, -0.05], RED);
+  insertTri([-0.3, 0.0,   -0.2, 0.0,  -0.25, 0.05], RED);
+  insertTri([-0.3, 0.0,   -0.2, 0.0,  -0.25, -0.05], RED);
 
   //right eye
-  insertTri([0.1, 0.0, 0.2, 0.0,  0.15, 0.05], RED);
-  insertTri([0.1, 0.0, 0.2, 0.0,  0.15, -0.05], RED);
+  insertTri([0.1, 0.0,  0.2, 0.0,  0.15, 0.05], RED);
+  insertTri([0.1, 0.0,  0.2, 0.0,  0.15, -0.05], RED);
 
   //nose
-  insertTri([0.0, 0.0, 0.1, 0.0,  0.0, -0.2], TAN); //1
-  insertTri([-0.1, -0.2, 0.0, -0.2,  0.0, 0.0], TAN); //2
-  insertTri([-0.2, 0.0, 0.0, 0.0, -0.1, -0.2], TAN); //3
-  insertTri([-0.35, -0.2, -0.1, -0.2, -0.2, 0.0], TAN); //4
-  insertTri([0.0, -0.2, 0.1, 0.0, 0.25, -0.2], TAN); //5
+  insertTri([0.0, 0.0,  0.1, 0.0,  0.0, -0.2], TAN); //1
+  insertTri([-0.1, -0.2,  0.0, -0.2,  0.0, 0.0], TAN); //2
+  insertTri([-0.2, 0.0,   0.0, 0.0,   -0.1, -0.2], TAN); //3
+  insertTri([-0.35, -0.2,   -0.1, -0.2,   -0.2, 0.0], TAN); //4
+  insertTri([-0.35, -0.2,   -0.2, 0.0,  -0.25, -0.05], TAN); //gap
+
+  insertTri([0.0, -0.2,   0.1, 0.0,   0.25, -0.2], TAN); //5
+  insertTri([0.1, 0.0,  0.15, -0.05,  0.25, -0.2], TAN); //gap
+
 
 
 
