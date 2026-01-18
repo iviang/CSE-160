@@ -9,13 +9,6 @@ class Triangle{
     var xy = this.position;
     var rgba = this.color;
     var size = this.size;
-    
-    // var xy = g_shapesList[i].position;
-    // var rgba = g_shapesList[i].color;
-    // var size = g_shapesList[i].size;
-
-    // Pass the position of a point to a_Position variable
-    // gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
 
     // Pass the color of a point to u_FragColor variable
     gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
@@ -24,8 +17,8 @@ class Triangle{
     gl.uniform1f(u_Size, size);
 
     // Draw the point
-    //gl.drawArrays(gl.POINTS, 0, 1);
-    drawTriangle([xy[0], xy[1], xy[0]+.1, xy[1], xy[0], xy[1]+.1] );
+    var d = this.size/200.0; //delta
+    drawTriangle( [xy[0], xy[1], xy[0]+d, xy[1], xy[0], xy[1]+d] );
   }
 }
 
