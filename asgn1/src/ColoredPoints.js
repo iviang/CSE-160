@@ -238,7 +238,8 @@ function recreatePic() {
   insertTri([0.0, -0.2,   0.1, 0.0,   0.25, -0.2], TAN); //5
   insertTri([0.1, 0.0,  0.15, -0.05,  0.25, -0.2], TAN); //gap
 
-
+  insertTri([-0.1, -0.3,   -0.1, -0.2,   -0.15, -0.25], PINK); //L nostril
+  insertTri([0.0, -0.3,   0.0, -0.2,   0.05, -0.25], PINK); //R nostril
 
 
   //left ear
