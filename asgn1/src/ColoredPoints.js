@@ -228,6 +228,12 @@ function recreatePic() {
   insertTri([0.1, 0.0,  0.2, 0.0,  0.15, 0.05], RED);
   insertTri([0.1, 0.0,  0.2, 0.0,  0.15, -0.05], RED);
 
+  //head
+  insertTri([-0.2, 0.0,   0.1, 0.0,  0.1, 0.3], BROWN); //1
+  insertTri([-0.2, 0.0,   0.1, 0.3,  -0.2, 0.3], BROWN); //2
+
+
+
   //nose
   insertTri([0.0, 0.0,  0.1, 0.0,  0.0, -0.2], TAN); //1
   insertTri([-0.1, -0.2,  0.0, -0.2,  0.0, 0.0], TAN); //2
