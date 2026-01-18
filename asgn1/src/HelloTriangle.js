@@ -47,7 +47,7 @@ function main() {
   // gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 
-function drawTriange(vertices) {
+function drawTriangle(vertices) {
   // var vertices = new Float32Array([
   //   0, 0.5,   -0.5, -0.5,   0.5, -0.5
   // ]);

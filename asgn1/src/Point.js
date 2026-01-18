@@ -18,10 +18,6 @@ class Point{
     // var rgba = g_shapesList[i].color;
     // var size = g_shapesList[i].size;
 
-    // var xy = g_points[i];
-    // var rgba = g_colors[i];
-    // var size = g_sizes[i];
-
     // Pass the position of a point to a_Position variable
     gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
     // Pass the color of a point to u_FragColor variable
@@ -32,5 +28,6 @@ class Point{
 
     // Draw the point
     gl.drawArrays(gl.POINTS, 0, 1);
+    drawTriangle([xy[0], xy[1], xy[0]+.1, xy[1], xy[0], xy[1]+.1] );
   }
 }
