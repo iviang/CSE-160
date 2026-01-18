@@ -7,7 +7,9 @@ Awesome attempt:
 Making a more functional program by:
 color previewer window
 undo/redo button
-making an Export button to save the canvas - if you have a virus scanner, it may block the download initally but works the second time (Chrome)
+making an Export button to save the canvas 
+- if you have a virus scanner, it may block the download initally but works the second time (Chrome) 
+- gets fully blocked on explorer
 
 site:
 https://iviang.github.io/CSE-160/asgn1/src/asg1.html
@@ -24,3 +26,5 @@ https://stackoverflow.com/questions/54416318/how-to-make-a-undo-redo-function
 https://en.wikipedia.org/wiki/Memento_pattern
 https://en.wikipedia.org/wiki/Command_pattern
 https://stackoverflow.com/questions/11620698/how-to-trigger-a-file-download-when-clicking-an-html-button-or-javascript 
+https://developer.mozilla.org/en-US/docs/Web/API/Blob
+
