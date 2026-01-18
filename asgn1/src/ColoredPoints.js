@@ -172,9 +172,9 @@ function renderAllShapes(){
   var len = g_shapesList.length;
   
   for(var i = 0; i < len; i++) {
-    var xy = g_points[i].position;
-    var rgba = g_colors[i].color;
-    var size = g_sizes[i].size;
+    var xy = g_shapesList[i].position;
+    var rgba = g_shapesList[i].color;
+    var size = g_shapesList[i].size;
 
     // var xy = g_points[i];
     // var rgba = g_colors[i];
