@@ -303,25 +303,21 @@ function recreatePic() {
 
   insertTri([-0.5, 0.6,    -0.6, 0.6,   -0.6, 0.4], DARK_BROWN); //i
 
-  //intial 
+  //intials : VN 
 
-  insertTri([-0.3, 0.3,    -0.35, 0.4,   -0.25, 0.4], RED); //V
+  insertTri([-0.3, 0.3,    -0.35, 0.4,   -0.25, 0.4], TAN); //V
 
   insertTri([-0.3, 0.375,    -0.35, 0.4,   -0.25, 0.4], DARK_BROWN); //V
 
 
-  insertTri([0.1, 0.3,    0.185, 0.35,   0.175, 0.4], RED); //N1
+  insertTri([0.1, 0.3,    0.185, 0.35,   0.175, 0.4], TAN); //N1
+  insertTri([0.15, 0.35,    0.2, 0.25,   0.185, 0.35], TAN); //N2
+  insertTri([0.2, 0.25,    0.2, 0.3,   0.25, 0.4], TAN); //N3
 
-  insertTri([0.15, 0.35,    0.2, 0.25,   0.185, 0.35], RED); //N2
-
-  insertTri([0.2, 0.25,    0.2, 0.3,   0.25, 0.4], RED); //N3
-
-  insertTri([0.2, 0.25,    0.2, 0.3,   0.175, 0.4], RED); //gap fill
-
-  insertTri([0.1, 0.3,    0.185, 0.35,   0.15, 0.35], RED); //gap fill
-
-  insertTri([0.1, 0.3,   0.15, 0.315,   0.15, 0.35], RED); //gap fill
-  insertTri([0.15, 0.315,   0.15, 0.35,   0.2, 0.25], RED); //gap fill
+  insertTri([0.2, 0.25,    0.2, 0.3,   0.175, 0.4], TAN); //gap fill
+  insertTri([0.1, 0.3,    0.185, 0.35,   0.15, 0.35], TAN); //gap fill
+  insertTri([0.1, 0.3,   0.15, 0.315,   0.15, 0.35], BROWN); //gap fill
+  insertTri([0.15, 0.315,   0.15, 0.35,   0.2, 0.25], BROWN); //gap fill
 
 
 
