@@ -204,8 +204,9 @@ function sendTextToHTML(text, htmlID) {
 
 //color creation
 const BLACK = [0.0, 0.0, 0.0, 1.0];
+const DARK_BROWN = [0.35, 0.20, 0.10, 1.0];
 const BROWN = [0.55, 0.27, 0.07, 1.0];
-const TAN   = [0.85, 0.70, 0.50, 1.0];
+const TAN   = [0.75, 0.60, 0.40, 1.0];
 const PINK  = [1.0, 0.6, 0.6, 1.0];
 
 const RED = [1.0, 0.0, 0.0, 1.0];
@@ -224,11 +225,13 @@ function recreatePic() {
   insertTri([-0.3, 0.0, -0.2, 0.0,  -.25, -0.05], RED);
 
   //right eye
-  insertTri([0.1, 0.0, 0.2, 0.0,  0.15, 0.05], BLACK);
-  insertTri([0.1, 0.0, 0.2, 0.0,  0.15, -0.05], BLACK);
+  insertTri([0.1, 0.0, 0.2, 0.0,  0.15, 0.05], RED);
+  insertTri([0.1, 0.0, 0.2, 0.0,  0.15, -0.05], RED);
 
   //nose
   insertTri([0.0, 0.0, 0.1, 0.0,  0.0, -0.2], TAN);
+  insertTri([0.0, 0.0, 0.1, 0.0,  0.0, -0.2], TAN);
+
 
 
   //left ear
