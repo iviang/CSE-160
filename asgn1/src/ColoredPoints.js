@@ -101,7 +101,7 @@ function click(ev) { //transforms the coords from browser to canvas
   // Store the coordinates to g_points array
   g_points.push([x, y]);
   // Store the coordinates to g_points array
-  g_colors.push(g_selectedColor);
+  g_colors.push(g_selectedColor.slice());
 
   // if (x >= 0.0 && y >= 0.0) {      // First quadrant
   //   g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
