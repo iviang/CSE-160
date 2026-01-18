@@ -10,9 +10,9 @@ var VSHADER_SOURCE =
 var FSHADER_SOURCE = `
   void main() {
     gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-  }`
+  }` //set the point color
 
-function main() {
+function main() { //runs on cpu
   // Retrieve <canvas> element
   var canvas = document.getElementById('webgl');
 
