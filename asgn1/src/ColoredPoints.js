@@ -72,7 +72,7 @@ function connectVariablesToGLSL(){
 //constants
 const POINT = 0;
 const TRIANGLE = 1;
-
+const CIRCLE = 2;
 
 //global variables related to UI
 let g_selectedColor=[1.0,1.0,1.0,1.0];
