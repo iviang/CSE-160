@@ -58,11 +58,11 @@ function connectVariablesToGLSL(){
 
 function main() {
 
-  setupWebGL();
-  connectVariablesToGLSL();
+  setupWebGL(); //set up canvas and gl variables
+  connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
 
   // Register function (event handler) to be called on a mouse press
-  canvas.onmousedown = function(ev){ click(ev, gl, canvas, a_Position, u_FragColor) };
+  canvas.onmousedown = click;
 
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
