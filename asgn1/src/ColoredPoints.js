@@ -206,7 +206,7 @@ function sendTextToHTML(text, htmlID) {
 const BLACK = [0.0, 0.0, 0.0, 1.0];
 const DARK_BROWN = [0.35, 0.20, 0.10, 1.0];
 const BROWN = [0.55, 0.27, 0.07, 1.0];
-const TAN   = [0.68, 0.55, 0.35, 1.0];
+const TAN   = [0.65, 0.30, 0.20, 1.0]; //redish brown
 const PINK  = [1.0, 0.6, 0.6, 1.0];
 
 const RED = [1.0, 0.0, 0.0, 1.0];
