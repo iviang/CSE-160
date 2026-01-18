@@ -124,7 +124,7 @@ function click(ev) { //transforms the coords from browser to canvas
   let [x,y] = convertCoordinatesEventToGL(ev);
 
   //create and store the new point
-  let point = new Point();
+  let point = new Triangle();
   point.position=[x,y];
   point.color=g_selectedColor.slice();
   point.size=g_selectedSize;
