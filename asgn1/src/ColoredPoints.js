@@ -63,7 +63,7 @@ function addActionsForHtmlUI(){
   
   //Button Events (shape type)
   document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,1.0]; };
-  document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,1.0,0.0,1.0]; };
+  document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,0.0,0.0,1.0]; };
 
 }
 
@@ -97,7 +97,7 @@ function click(ev) { //transforms the coords from browser to canvas
   g_points.push([x, y]);
   // Store the coordinates to g_points array
   g_colors.push(g_selectedColor);
-  
+
   // if (x >= 0.0 && y >= 0.0) {      // First quadrant
   //   g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
   // } else if (x < 0.0 && y < 0.0) { // Third quadrant
