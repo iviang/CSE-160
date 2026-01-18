@@ -168,11 +168,17 @@ function renderAllShapes(){
   // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  var len = g_points.length;
+  // var len = g_points.length;
+  var len = g_shapesList.length;
+  
   for(var i = 0; i < len; i++) {
-    var xy = g_points[i];
-    var rgba = g_colors[i];
-    var size = g_sizes[i];
+    var xy = g_points[i].position;
+    var rgba = g_colors[i].color;
+    var size = g_sizes[i].size;
+
+    // var xy = g_points[i];
+    // var rgba = g_colors[i];
+    // var size = g_sizes[i];
 
     // Pass the position of a point to a_Position variable
     gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
