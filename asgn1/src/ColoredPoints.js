@@ -281,7 +281,6 @@ function recreatePic() {
 
   //left antler
 
-
   insertTri([-0.4, 0.3,    -0.2, 0.3,   -0.3, 0.25], DARK_BROWN); //c
   insertTri([-0.4, 0.3,    -0.3, 0.5,   -0.2, 0.3], DARK_BROWN); //d
   insertTri([-0.3, 0.5,    -0.4, 0.5,   -0.4, 0.3], DARK_BROWN); //e
@@ -304,8 +303,6 @@ function recreatePic() {
   insertTri([0.1, 0.3,    0.185, 0.35,   0.15, 0.35], TAN); //gap fill
   insertTri([0.1, 0.3,   0.15, 0.315,   0.15, 0.35], TAN); //gap fill
   insertTri([0.15, 0.315,   0.15, 0.35,   0.2, 0.25], TAN); //gap fill
-
-
 
   //nose ---
   insertTri([0.0, 0.0,  0.1, 0.0,  0.0, -0.2], TAN); //1
@@ -340,8 +337,6 @@ function recreatePic() {
 function insertTri(vertices, color) {
   let t = new Triangle();
   t.vertices = vertices;
-  // t.position = [x, y];
-  // t.size = size;
   t.color = color;
   g_shapesList.push(t);
 }
