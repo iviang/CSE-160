@@ -77,7 +77,7 @@ function addActionsForHtmlUI(){
   document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,1.0]; };
   document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,0.0,0.0,1.0]; };
 
-  document.getElementById('clearButton').onclick = function(){ g_selectedColor = []; };
+  document.getElementById('clearButton').onclick = function(){ g_shapesList = []; };
 
 
   //slider events
