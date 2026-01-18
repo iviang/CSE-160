@@ -164,7 +164,7 @@ function renderAllShapes(){
   
   for(var i = 0; i < len; i++) {
 
-    g_shapesList.rendering();
+    g_shapesList.render();
 
   }
 }
