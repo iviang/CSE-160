@@ -105,7 +105,15 @@ function addActionsForHtmlUI(){
 
   document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,0.0,0.0,1.0]; updatePreview(); };
 
-  document.getElementById('clearButton').onclick = function(){ g_shapesList = []; renderAllShapes();};
+  document.getElementById('clearButton').onclick = function(){ g_shapesList = []; g_redoList = []; renderAllShapes();};
+
+  document.getElementById('undoButton').onclick = function () {
+    if (g_shapesList.length > 0) {const last = g_shapesList.pop(); g_redoList.push(last); renderAllShapes(); } 
+  };
+
+  document.getElementById('redoButton').onclick = function () {
+    if (g_redoList.length > 0) { const shape = g_redoList.pop(); g_shapesList.push(shape); renderAllShapes(); }
+  };
 
   document.getElementById('pointButton').onclick = function(){ g_selectedType=POINT;};
   document.getElementById('triButton').onclick = function(){ g_selectedType=TRIANGLE;};
@@ -149,6 +157,7 @@ function main() {
 }
 
 var g_shapesList = [];
+var g_redoList = []; 
 
 // var g_points = [];  // The array for the position of a mouse press
 // var g_colors = [];  // The array to store the color of a point
@@ -172,6 +181,7 @@ function click(ev) { //transforms the coords from browser to canvas
   point.position=[x,y];
   point.color=g_selectedColor.slice();
   point.size=g_selectedSize;
+  g_redoList = [];
   g_shapesList.push(point);
 
 
