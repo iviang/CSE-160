@@ -62,8 +62,8 @@ let g_selectedColor=[1.0,1.0,1.0,1.0];
 function addActionsForHtmlUI(){
   
   //Button Events (shape type)
-  document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,0.0]; };
-  document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,1.0,0.0,0.0]; };
+  document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,1.0]; };
+  document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,1.0,0.0,1.0]; };
 
 }
 
