@@ -266,6 +266,17 @@ function recreatePic() {
   insertTri([-0.45, 0.1,   -0.5, 0.2,   -0.6, 0.1], TAN); //c
   insertTri([-0.45, 0.1,   -0.55, 0.0,   -0.6, 0.1], TAN); //d
 
+  //antler ---
+
+  //right angler
+  insertTri([0.2, 0.25,    0.3, 0.3,   0.25, 0.4], DARK_BROWN); //a
+  insertTri([0.1, 0.3,    0.2, 0.25,   0.15, 0.315], DARK_BROWN); //b
+
+  //intiial 
+  insertTri([0.1, 0.3,    0.26, 0.4,   0.315, 0.15], BLACK); //N1
+
+
+
   //nose ---
   insertTri([0.0, 0.0,  0.1, 0.0,  0.0, -0.2], TAN); //1
   insertTri([-0.1, -0.2,  0.0, -0.2,  0.0, 0.0], TAN); //2
@@ -291,14 +302,6 @@ function recreatePic() {
   insertTri([0.0, -0.5,  0.1, -0.5,  0.0, -0.3], TAN); //16
   insertTri([-0.1, -0.3,  0.0, -0.3,  0.0, -0.5], TAN); //17
   insertTri([-0.2, -0.5,   0.0, -0.5,   -0.1, -0.3], TAN); //18
-
-  //left ear
-
-  //right ear
-
-  //left antler
-
-  //right angler
 
   //initials
 
