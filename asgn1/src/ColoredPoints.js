@@ -298,6 +298,8 @@ function recreatePic() {
 
   insertTri([0.1, 0.3,    0.185, 0.35,   0.15, 0.35], RED); //gap fill
 
+  insertTri([0.185, 0.35,  0.2, 0.3,  0.175, 0.4], RED);
+  insertTri([0.15, 0.315,  0.15, 0.35,  0.185, 0.35], RED);
 
 
   //nose ---
