@@ -36,5 +36,24 @@ class Cube{
 
         //other sides of cube top, bot, left, right, back
         //fill in yourself:
+        //top
+        drawTriangle3D([0.0,1.0,0.0,  1.0,1.0,1.0,  1.0,1.0,0.0]);
+        drawTriangle3D([0.0,1.0,0.0,  0.0,1.0,1.0,  1.0,1.0,1.0]);
+
+        //bot
+        drawTriangle3D([0.0,0.0,0.0,  1.0,0.0,0.0,  1.0,0.0,1.0]);
+        drawTriangle3D([0.0,0.0,0.0,  1.0,0.0,1.0,  0.0,0.0,1.0]);
+
+        //left
+        drawTriangle3D([0.0,0.0,0.0,  0.0,1.0,1.0,  0.0,1.0,0.0]);
+        drawTriangle3D([0.0,0.0,0.0,  0.0,0.0,1.0,  0.0,1.0,1.0]);
+
+        //right
+        drawTriangle3D([1.0,0.0,0.0,  1.0,1.0,0.0,  1.0,1.0,1.0]);
+        drawTriangle3D([1.0,0.0,0.0,  1.0,1.0,1.0,  1.0,0.0,1.0]);
+
+        //back
+        drawTriangle3D([0.0,0.0,1.0,  1.0,0.0,1.0,  1.0,1.0,1.0]);
+        drawTriangle3D([0.0,0.0,1.0,  1.0,1.0,1.0,  0.0,1.0,1.0]);
     }
 }
