@@ -106,21 +106,21 @@ function addActionsForHtmlUI(){
 
   document.getElementById('clearButton').onclick = function(){ g_shapesList = []; g_redoList = []; renderAllShapes();};
 
-  document.getElementById('undoButton').onclick = function () {
-    if (g_shapesList.length > 0) {const last = g_shapesList.pop(); g_redoList.push(last); renderAllShapes(); } 
-  };
+//   document.getElementById('undoButton').onclick = function () {
+//     if (g_shapesList.length > 0) {const last = g_shapesList.pop(); g_redoList.push(last); renderAllShapes(); } 
+//   };
 
-  document.getElementById('redoButton').onclick = function () {
-    if (g_redoList.length > 0) { const shape = g_redoList.pop(); g_shapesList.push(shape); renderAllShapes(); }
-  };
+//   document.getElementById('redoButton').onclick = function () {
+//     if (g_redoList.length > 0) { const shape = g_redoList.pop(); g_shapesList.push(shape); renderAllShapes(); }
+//   };
 
-  document.getElementById('downloadButton').onclick = function () { downloadCanvas();};
+//   document.getElementById('downloadButton').onclick = function () { downloadCanvas();};
 
   document.getElementById('pointButton').onclick = function(){ g_selectedType=POINT;};
   document.getElementById('triButton').onclick = function(){ g_selectedType=TRIANGLE;};
   document.getElementById('circleButton').onclick = function(){ g_selectedType=CIRCLE;};
 
-  document.getElementById('recreateButton').onclick = function(){ recreatePic();};
+//   document.getElementById('recreateButton').onclick = function(){ recreatePic();};
 
   //slider events
   document.getElementById('redSlide').addEventListener('mouseup', function() { g_selectedColor[0] = this.value/100;  updatePreview(); });
@@ -130,8 +130,8 @@ function addActionsForHtmlUI(){
   //size slider events
   document.getElementById('sizeSlide').addEventListener('mouseup', function() { g_selectedSize = this.value; });
 
-  //segment slider events
-  document.getElementById('segSlide').addEventListener('mouseup', function() { g_selectedSeg = this.value; });
+//   //segment slider events
+//   document.getElementById('segSlide').addEventListener('mouseup', function() { g_selectedSeg = this.value; });
 
 }
 
@@ -143,18 +143,17 @@ function main() {
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
 
-  //update the preview window
-  updatePreview();
-
   // Register function (event handler) to be called on a mouse press
   canvas.onmousedown = click;
   //canvas.onmousemove = click;
+  
   canvas.onmousemove = function(ev) { if(ev.buttons == 1) { click(ev) } };
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
   // Clear <canvas>
-  gl.clear(gl.COLOR_BUFFER_BIT);
+//   gl.clear(gl.COLOR_BUFFER_BIT);
+  renderAllShapes();
 }
 
 var g_shapesList = [];
