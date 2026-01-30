@@ -1,0 +1,95 @@
+<!--
+Student Name: Vivian Nguyen
+UCSC Email: vnguy180@ucsc.edu
+
+Notes to Grader:
+https://iviang.github.io/CSE-160/asgn1/src/asg1.html
+All problems solved.
+Github pages link submitted in comments
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ASGN1</title>
+    <style> #colorPreview {
+      width: 100px;
+      height: 30px;
+      border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <p>
+    Vivian Nguyen<br>
+    vnguy180@ucsc.edu<br>
+    Awesome attempt: <br>
+    Making a more friendly program by adding:<br>
+    a color previewer window, <br>
+    undo/redo buttons, <br>
+    making an Export button to save the canvas.
+    </p>
+
+    <canvas id="webgl" width="400" height="400">
+      Please use a browser that supports "canvas"
+    </canvas>
+    <p>
+    
+    <p id="numdot"> XXX </p>
+
+
+    <button type="button" id="green">Green</button>
+    <button type="button" id="red">Red</button>
+
+    <button type="button" id="clearButton">Clear</button>
+    <button type="button" id="undoButton">Undo</button>
+    <button type="button" id="redoButton">Redo</button>
+    <button type="button" id="downloadButton">Export</button>
+
+    <p>
+
+    <button type="button" id="pointButton">Point</button>
+    <button type="button" id="triButton">Triangle</button>
+    <button type="button" id="circleButton">Circle</button>
+
+    <p>
+    Color Preview
+    <p>
+    <div id="colorPreview"></div>
+
+    <p>
+    Red <input type="range" min="0" max="100" value="100" class="slider" id="redSlide">
+    <p>
+    Green <input type="range" min="0" max="100" value="0" class="slider" id="greenSlide">   
+    <p>
+    Blue <input type="range" min="0" max="100" value="0" class="slider" id="blueSlide">
+
+    <p>
+    Size <input type="range" min="5" max="40" value="0" class="slider" id="sizeSlide">
+    <p>
+
+    <p>
+    Circle Segments <input type="range" min="3" max="60" value="10" class="slider" id="segSlide">
+    <p>
+
+    <p>
+    Reference drawing:
+    <p>
+    <button type="button" id="recreateButton">Recreate Drawing</button>
+    <p>
+    <img src="asgn1_Drawing.jpg" width="250" alt="drawing of a Moose">
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="HelloPoint1.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Point.js"></script>
+    <script src="ColoredPoints.js"></script>
+
+  </body>
+</html>
