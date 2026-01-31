@@ -97,6 +97,8 @@ let g_globalAngle=0;
 let g_yellowAngle=0;
 let g_magentaAngle=0;
 let g_yellowAnimation=false;
+let g_magentaAnimation=false;
+
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -104,6 +106,9 @@ function addActionsForHtmlUI(){
   //Button Events
   document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
   document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
+
+  document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
+  document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
   //color slider events
   document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
@@ -161,6 +166,9 @@ function updateAnimationAngles(){
   if (g_yellowAnimation) {
     g_yellowAngle = (45*Math.sin(g_seconds));
   }
+  if (g_magentaAnimation) {
+    g_magentaAngle = (45*Math.sin(3*g_seconds));
+  }
 }
 
 function renderAllShapes() {
@@ -188,15 +196,7 @@ function renderAllShapes() {
   yellow.color = [1,1,0,1];
   yellow.matrix.setTranslate(0, -.5, 0.0);
   yellow.matrix.rotate(-5,1,0,0);
-
-  yellow.matrix.rotate(-g_yellowAngle, 0,0,1);
-
-  // if (g_yellowAnimation) {
-  //   yellow.matrix.rotate(45*Math.sin(g_seconds), 0,0,1);
-  // } else {
-  //   yellow.matrix.rotate(-g_yellowAngle, 0,0,1);
-  // }  
-  
+  yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
   var yellowCoordinatesMat=new Matrix4(yellow.matrix);
   yellow.matrix.scale(0.25, .7, .5);
   yellow.matrix.translate(-.5,0,0);
@@ -210,9 +210,6 @@ function renderAllShapes() {
   magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
   magenta.matrix.scale(.3,.3,.3);
   magenta.matrix.translate(-.5, 0, -0.001);
-  // box.matrix.translate(-.1,.1, 0.0);
-  // box.matrix.rotate(-30,1,0,0);
-  // box.matrix.scale(.2,.4,.2);
   magenta.render();
 
   //check the time at the end of the funciton, and show on web pg
