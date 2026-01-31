@@ -200,7 +200,7 @@ function renderAllShapes() {
   // upper front left leg
   var upperFL = new Cube();
   upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
-  upperFL.matrix.set(bodyCoord); //connects to body
+  upperFL.matrix.set(bodyCoordinates); //connects to body
   upperFL.matrix.setTranslate(0.75, -.1, 0.1); 
   upperFL.matrix.rotate(g_upperFL, 0,0,1); 
   upperFL.render(); 
