@@ -98,8 +98,8 @@ let g_AnimalGlobalRotation=0;
 // let g_magentaAngle=0;
 // let g_yellowAnimation=false;
 // let g_magentaAnimation=false;
-let g_legFL = 0;
-let g_kneeFL = 0;
+let g_upperFL = 0;
+let g_lowerFL = 0;
 
 
 //set up actions for the HTML UI elements
@@ -201,7 +201,7 @@ function renderAllShapes() {
   var upperFL = new Cube();
   upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
   upperFL.matrix.setTranslate(0.75, -.1, 0.1); 
-  upperFL.matrix.rotate(-g_legFL, 0,0,1); 
+  upperFL.matrix.rotate(-g_upperFL, 0,0,1); 
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
   // lower front left
@@ -209,7 +209,7 @@ function renderAllShapes() {
   lowerFL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
   lowerFL.matrix = upperFLCoordinates; //CONNECTS TO UPPER LEG
   lowerFL.matrix.translate(0, -.1, 0);
-  lowerFL.matrix.rotate(-g_kneeFL, 0,0,1); //set up for knee
+  lowerFL.matrix.rotate(-g_lowerFL, 0,0,1); //set up for knee
   lowerFL.matrix.scale(0.9, 1, .9);
   lowerFL.render();
 
