@@ -91,6 +91,7 @@ const CIRCLE = 2;
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
 let g_selectedType=POINT;
+let g_globalAngle=0;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
