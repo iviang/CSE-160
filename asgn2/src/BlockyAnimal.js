@@ -69,6 +69,13 @@ function connectVariablesToGLSL(){
     return;
   }
 
+  //get the storage location of u_GlobalRotateMatrix
+  u_GlobalRotateMatrix = gl.getUniformLocation(gl.program, 'u_GlobalRotateMatrix');
+  if (!u_GlobalRotateMatrix) {
+    console.log('Failed to get the storage lcoation of u_GlobalRotateMatrix');
+    return;
+  }
+
   //set an initial value for this matrix to identity
   var identityM = new Matrix4();
   gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
