@@ -163,9 +163,14 @@ function renderAllShapes() {
   leftArm.matrix.scale(0.25, .7, .5);
   leftArm.render();
 
+  //Test box
+  var box = new Cube();
+  box.color = [1,0,1,1];
+  box.matrix.translate(0,0, -.50,0);
+  box.matrix.rotate(-30,1,0,0);
+  box.matrix.scale(.5,.5,.5);
+  box.render();
 
-
-  
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
   sendTextToHTML("numdot: " + len + " ms: " + Math.floor(duration) + " fps: " + Math.floor(10000/duration)/10, "numdot");
