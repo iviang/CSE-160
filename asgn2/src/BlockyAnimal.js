@@ -139,7 +139,9 @@ function main() {
 
   // Clear <canvas>
 //   gl.clear(gl.COLOR_BUFFER_BIT);
-  renderAllShapes();
+  // renderAllShapes();
+  requestAnimationFrame(tick);
+
 }
 
 // Called by browser repeatedly whenever its time
