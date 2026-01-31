@@ -95,6 +95,7 @@ let g_selectedSize=5;
 let g_selectedType=POINT;
 let g_globalAngle=0;
 let g_yellowAngle=0;
+let g_magentaAngle=0;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -113,6 +114,7 @@ function addActionsForHtmlUI(){
   // document.getElementById('greenSlide').addEventListener('mouseup', function() { g_selectedColor[1] = this.value/100; });
   // document.getElementById('blueSlide').addEventListener('mouseup', function() { g_selectedColor[2] = this.value/100; });
   document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
+  document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
   //size slider events
   // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_globalAngle = this.value; renderAllShapes(); });
@@ -176,7 +178,8 @@ function renderAllShapes() {
   box.color = [1,0,1,1];
   box.matrix = yellowCoordinatesMat;
   box.matrix.translate(0, 0.65, 0);
-  box.matrix.rotate(0,1,0,0);
+  box.matrix.rotate(-g_magentaAngle, 0,0,1);
+  box.matrix.rotate(45,0,0,0);
   box.matrix.scale(.3,.3,.3);
   box.matrix.translate(-.5, 0, -0.001);
   // box.matrix.translate(-.1,.1, 0.0);
