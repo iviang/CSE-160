@@ -29,20 +29,31 @@ class Cube{
         drawTriangle3D([0,1,0,  0,1,1,  1,1,1]);
         drawTriangle3D([0,1,0,  1,1,1,  1,1,0]);
 
-        // //bot
-        // drawTriangle3D([0,0,0,  1,0,0,  1,0,1]);
-        // drawTriangle3D([0,0,0,  1,0,1,  0,0,1]);
+        //pass the color of a poiunt to u_FragColor uniform variable
+        gl.uniform4f(u_FragColor, rgba[0]*.8, rgba[1]*.8, rgba[2]*.8, rgba[3]);
 
-        // //left
-        // drawTriangle3D([0,0,0,  0,1,1,  0,1,0]);
-        // drawTriangle3D([0,0,0,  0,0,1,  0,1,1]);
+        //bot
+        drawTriangle3D([0,0,0,  1,0,0,  1,0,1]);
+        drawTriangle3D([0,0,0,  1,0,1,  0,0,1]);
 
-        // //right
-        // drawTriangle3D([1,0,0,  1,1,0,  1,1,1]);
-        // drawTriangle3D([1,0,0,  1,1,1,  1,0,1]);
+        //pass the color of a poiunt to u_FragColor uniform variable
+        gl.uniform4f(u_FragColor, rgba[0]*.7, rgba[1]*.7, rgba[2]*.7, rgba[3]);
 
-        // //back
-        // drawTriangle3D([0,0,1,  1,0,1,  1,1,1]);
-        // drawTriangle3D([0,0,1,  1,1,1,  0,1,1]);
+        //left
+        drawTriangle3D([0,0,0,  0,1,1,  0,1,0]);
+        drawTriangle3D([0,0,0,  0,0,1,  0,1,1]);
+
+        //pass the color of a poiunt to u_FragColor uniform variable
+        gl.uniform4f(u_FragColor, rgba[0]*.6, rgba[1]*.6, rgba[2]*.6, rgba[3]);
+
+        //right
+        drawTriangle3D([1,0,0,  1,1,0,  1,1,1]);
+        drawTriangle3D([1,0,0,  1,1,1,  1,0,1]);
+
+        //pass the color of a poiunt to u_FragColor uniform variable
+        gl.uniform4f(u_FragColor, rgba[0]*.5, rgba[1]*.5, rgba[2]*.5, rgba[3]);
+        //back
+        drawTriangle3D([0,0,1,  1,0,1,  1,1,1]);
+        drawTriangle3D([0,0,1,  1,1,1,  0,1,1]);
     }
 }
