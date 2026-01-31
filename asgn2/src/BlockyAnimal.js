@@ -212,6 +212,16 @@ function renderAllShapes() {
   magenta.matrix.translate(-.5, 0, -0.001);
   magenta.render();
 
+  //a bunch of cubes rotating
+  var K=10.0;
+  for (var i=1; i<K; i++) {
+    var c = new Cube;
+    c.matrix.translate(-.8,1.9*i/K-1.0,0);
+    c.matrix.rotate(g_seconds*100,1,1,1);
+    c.matrix.scale(.1, 0.5/K, 1.0/K);
+    c.render();
+  }
+
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
   sendTextToHTML(" ms: " + Math.floor(duration) + " fps: " + Math.floor(10000/duration)/10, "numdot");
