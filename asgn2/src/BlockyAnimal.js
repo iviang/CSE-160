@@ -93,7 +93,7 @@ const CIRCLE = 2;
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
 let g_selectedType=POINT;
-let g_globalAngle=0;
+let g_AnimalGlobalRotation=0;
 let g_yellowAngle=0;
 let g_magentaAngle=0;
 let g_yellowAnimation=false;
@@ -115,8 +115,8 @@ function addActionsForHtmlUI(){
   document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
   //size slider events
-  // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_globalAngle = this.value; renderAllShapes(); });
-  document.getElementById('angleSlide').addEventListener('mousemove', function() { g_globalAngle = this.value; renderAllShapes(); });
+  // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_AnimalGlobalRotation = this.value; renderAllShapes(); });
+  document.getElementById('angleSlide').addEventListener('mousemove', function() { g_AnimalGlobalRotation = this.value; renderAllShapes(); });
 }
 
 function main() {
@@ -176,7 +176,7 @@ function renderAllShapes() {
   var startTime = performance.now();
   
   //Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat=new Matrix4().rotate(g_globalAngle,0,1,0);
+  var globalRotMat=new Matrix4().rotate(g_AnimalGlobalRotation,0,1,0);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   //Clear <canvas>
