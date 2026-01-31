@@ -148,7 +148,7 @@ function tick() {
   console.log(performance.now());
 
   // Draw everything
-  renderAl1Shapes();
+  renderAllShapes();
 
   // Tell the browser to update again when it has time
   requestAnimationFrame(tick);
