@@ -71,13 +71,6 @@ function connectVariablesToGLSL(){
   var identityM = new Matrix4();
   gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
 
-  // // Get the storage location of u_Size
-  // u_Size = gl.getUniformLocation(gl.program, 'u_Size');
-  // if (!u_Size) {
-  //   console.log('Failed to get the storage location of u_Size');
-  //   return;
-  // }
-
 }
 
 //constants
@@ -132,6 +125,47 @@ function main() {
   renderAllShapes();
 }
 
+function renderAllShapes() {
+  //check the time at the start of this function
+  var startTime = performance.now();
+  
+  //Clear <canvas>
+  gl.clear(gl.COLOR_BUFFER_BIT);
+
+  //draw a test triangle
+  drawTriangle3D( [-1.0, 0.0, 0.0, -0.5,-1.0,0.0, 0.0,0.0,0.0]); 
+
+  //draw a cube
+  var body = new Cube();
+  body.color = [1.0,0.0,0.0,1.0];
+  body.matrix.translate(-.25, -.5, 0.0);
+  body.matrix.scale(0.5, 1, .5);
+  body.render();
+
+  //draw a left arm
+  var leftArm = new Cube();
+  leftArm.color = [1,1,0,1];
+  leftArm.matrix.translate(.7, 0, 0.0);
+  leftArm.matrix.rotate(45, 0,0,1);
+  leftArm.matrix.scale(0.25, .7, .5);
+  leftArm.render();
+
+  //check the time at the end of the funciton, and show on web pg
+  var duration = performance.now() - startTime;
+  sendTextToHTML("numdot: " + len + " ms: " + Math.floor(duration) + " fps: " + Math.floor(10000/duration)/10, "numdot");
+
+}
+
+//set the text of a HTML element
+function sendTextToHTML(text, htmlID) {
+  var htmlElm = document.getElementById(htmlID);
+  if (!htmlElm) {
+    console.log("Failed to get " + htmlID + " from HTML");
+    return;
+  }
+  htmlElm.innerHTML = text;
+}
+
 var g_shapesList = [];
 var g_redoList = []; 
 
@@ -178,47 +212,6 @@ function convertCoordinatesEventToGL(ev){
 }
 
 //draw every shape that is supposed to be in the canvas
-
-function renderAllShapes() {
-  //check the time at the start of this function
-  var startTime = performance.now();
-  
-  //Clear <canvas>
-  gl.clear(gl.COLOR_BUFFER_BIT);
-
-  //draw a test triangle
-  drawTriangle3D( [-1.0, 0.0, 0.0, -0.5,-1.0,0.0, 0.0,0.0,0.0]); 
-
-  //draw a cube
-  var body = new Cube();
-  body.color = [1.0,0.0,0.0,1.0];
-  body.matrix.translate(-.25, -.5, 0.0);
-  body.matrix.scale(0.5, 1, .5);
-  body.render();
-
-  //draw a left arm
-  var leftArm = new Cube();
-  leftArm.color = [1,1,0,1];
-  leftArm.matrix.translate(.7, 0, 0.0);
-  leftArm.matrix.rotate(45, 0,0,1);
-  leftArm.matrix.scale(0.25, .7, .5);
-  leftArm.render();
-
-  //check the time at the end of the funciton, and show on web pg
-  var duration = performance.now() - startTime;
-  sendTextToHTML("numdot: " + len + " ms: " + Math.floor(duration) + " fps: " + Math.floor(10000/duration)/10, "numdot");
-
-}
-
-//set the text of a HTML element
-function sendTextToHTML(text, htmlID) {
-  var htmlElm = document.getElementById(htmlID);
-  if (!htmlElm) {
-    console.log("Failed to get " + htmlID + " from HTML");
-    return;
-  }
-  htmlElm.innerHTML = text;
-}
 
 // //color creation
 // const BLACK = [0.0, 0.0, 0.0, 1.0];
