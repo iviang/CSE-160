@@ -147,29 +147,33 @@ function renderAllShapes() {
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   //Clear <canvas>
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  //draw a cube
+  //draw the body cube
   var body = new Cube();
   body.color = [1.0,0.0,0.0,1.0];
-  body.matrix.translate(-.25, -.5, 0.0);
-  body.matrix.scale(0.5, 1, .5);
+  body.matrix.translate(-.25, -.75, 0.0);
+  body.matrix.rotate(-5,1,0.0);
+  body.matrix.scale(0.5, .3, .5);
   body.render();
 
   //draw a left arm
   var leftArm = new Cube();
   leftArm.color = [1,1,0,1];
-  leftArm.matrix.translate(.7, 0, 0.0);
-  leftArm.matrix.rotate(45, 0,0,1);
+  leftArm.matrix.setTranslate(0, -.5, 0.0);
+  leftArm.matrix.rotate(-5,1,0,0);
+  leftArm.matrix.rotate(0,0,0,1);
   leftArm.matrix.scale(0.25, .7, .5);
+  leftArm.matrix.translate(-.5,0,0);
   leftArm.render();
 
   //Test box
   var box = new Cube();
   box.color = [1,0,1,1];
-  box.matrix.translate(0,0, -.50,0);
+  box.matrix.translate(-.1,.1,.0,0);
   box.matrix.rotate(-30,1,0,0);
-  box.matrix.scale(.5,.5,.5);
+  box.matrix.scale(.2,.4,.2);
   box.render();
 
   //check the time at the end of the funciton, and show on web pg
