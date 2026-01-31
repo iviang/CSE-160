@@ -94,10 +94,12 @@ let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
 let g_selectedType=POINT;
 let g_AnimalGlobalRotation=0;
-let g_yellowAngle=0;
-let g_magentaAngle=0;
-let g_yellowAnimation=false;
-let g_magentaAnimation=false;
+// let g_yellowAngle=0;
+// let g_magentaAngle=0;
+// let g_yellowAnimation=false;
+// let g_magentaAnimation=false;
+let g_legFL = 0;
+let g_kneeFL = 0;
 
 
 //set up actions for the HTML UI elements
@@ -185,32 +187,51 @@ function renderAllShapes() {
 
   //draw the body cube
   var body = new Cube();
-  body.color = [0.6, 0.6, 0.6, 1.0]; 
+  body.color = [0.6, 0.6, 0.6, 1.0]; //GREY COLORED 
   body.matrix.translate(-.3, -.2, -0.15);
   body.matrix.rotate(-5,1,0,0);
   body.matrix.scale(0.6, .3, .3);
   body.render();
 
+  var bodyCoordinates= new Matrix4(body.matrix);
+
+  //LEGS (4 upper + 4 lower + 4 paws)
+
+  // upper front left leg
+  var upperFL = new Cube();
+  upperFL.color = [1,1,0,1];
+  upperFL.matrix.setTranslate(0, -.5, 0.0);
+  upperFL.matrix.rotate(-5,1,0,0);
+  upperFL.matrix.rotate(-g_yellowAngle, 0,0,1); 
+  var upperFLCoordinates=new Matrix4(upperFL.matrix);
+  upperFL.matrix.scale(0.25, .7, .5);
+  upperFL.matrix.translate(-.5,0,0);
+  upperFL.render();
+
+  
+
+
   //draw a left arm
-  var yellow = new Cube();
-  yellow.color = [1,1,0,1];
-  yellow.matrix.setTranslate(0, -.5, 0.0);
-  yellow.matrix.rotate(-5,1,0,0);
-  yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
-  var yellowCoordinatesMat=new Matrix4(yellow.matrix);
-  yellow.matrix.scale(0.25, .7, .5);
-  yellow.matrix.translate(-.5,0,0);
-  yellow.render();
+  // var yellow = new Cube();
+  // yellow.color = [1,1,0,1];
+  // yellow.matrix.setTranslate(0, -.5, 0.0);
+  // yellow.matrix.rotate(-5,1,0,0);
+  // yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
+  // var yellowCoordinatesMat=new Matrix4(yellow.matrix);
+  // yellow.matrix.scale(0.25, .7, .5);
+  // yellow.matrix.translate(-.5,0,0);
+  // yellow.render();
+
 
   //Test box
-  var magenta = new Cube();
-  magenta.color = [1,0,1,1];
-  magenta.matrix = yellowCoordinatesMat;
-  magenta.matrix.translate(0, 0.65, 0);
-  magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
-  magenta.matrix.scale(.3,.3,.3);
-  magenta.matrix.translate(-.5, 0, -0.001);
-  magenta.render();
+  // var magenta = new Cube();
+  // magenta.color = [1,0,1,1];
+  // magenta.matrix = yellowCoordinatesMat;
+  // magenta.matrix.translate(0, 0.65, 0);
+  // magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
+  // magenta.matrix.scale(.3,.3,.3);
+  // magenta.matrix.translate(-.5, 0, -0.001);
+  // magenta.render();
 
   //a bunch of cubes rotating
   // var K=10.0;
