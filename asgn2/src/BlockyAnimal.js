@@ -146,6 +146,9 @@ function tick() {
   g_seconds=performance.now()/1000.0-g_startTime;
   console.log(g_seconds);
 
+  //update animation angles
+  updateAnimationAngles();
+
   // Draw everything
   renderAllShapes();
 
