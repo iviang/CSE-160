@@ -200,17 +200,20 @@ function renderAllShapes() {
   // upper front left leg
   var upperFL = new Cube();
   upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
+
   upperFL.matrix.set(bodyCoordinates); //connects to body
-  upperFL.matrix.setTranslate(0.75, -.1, 0.1); 
-  upperFL.matrix.rotate(g_upperFL, 0,0,1); 
+  upperFL.matrix.translate(0.75, -.1, 0.1); 
+  upperFL.matrix.rotate(g_upperFL, 0,0,1);
+  upperFL.matrix.scale(0.12, 0.28, 0.12);
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
 
   // lower front left
   var lowerFL = new Cube();
   lowerFL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
+
   lowerFL.matrix = upperFLCoordinates; //CONNECTS TO UPPER LEG
-  lowerFL.matrix.translate(0, -.1, 0);
+  lowerFL.matrix.translate(0, -1, 0);
   lowerFL.matrix.rotate(g_lowerFL, 0,0,1); //set up for knee
   lowerFL.matrix.scale(0.9, 1, .9);
   lowerFL.render();
