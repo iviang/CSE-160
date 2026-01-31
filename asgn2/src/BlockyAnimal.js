@@ -166,7 +166,7 @@ function renderAllShapes() {
   leftArm.matrix.setTranslate(0, -.5, 0.0);
   leftArm.matrix.rotate(-5,1,0,0);
   leftArm.matrix.rotate(-g_yellowAngle, 0,0,1);
-  var yellowCoordinates=leftArtm.matrix;
+  var yellowCoordinates=leftArm.matrix;
   leftArm.matrix.scale(0.25, .7, .5);
   leftArm.matrix.translate(-.5,0,0);
   leftArm.render();
