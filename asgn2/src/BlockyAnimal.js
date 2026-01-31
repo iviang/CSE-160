@@ -3,8 +3,9 @@
 var VSHADER_SOURCE = `
   attribute vec4 a_Position;
   uniform mat4 u_ModelMatrix;
+  uniform mat4 u_GlobalRotateMatrix;
   void main() {
-    gl_Position = u_ModelMatrix * a_Position;
+    gl_Position = u_GlobalRotateMatrix * u_ModelMatrix * a_Position;
   }`
 
 // Fragment shader program
@@ -22,6 +23,7 @@ let a_Position;
 let u_FragColor;
 let u_Size;
 let u_ModelMatrix;
+let u_GlobalRotateMatrix;
  
 function setupWebGL(){
   // Retrieve <canvas> element
