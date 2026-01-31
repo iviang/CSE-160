@@ -110,7 +110,7 @@ function addActionsForHtmlUI(){
   document.getElementById('blueSlide').addEventListener('mouseup', function() { g_selectedColor[2] = this.value/100;  updatePreview(); });
 
   //size slider events
-  document.getElementById('sizeSlide').addEventListener('mouseup', function() { g_selectedSize = this.value; });
+  document.getElementById('angleSlide').addEventListener('mouseup', function() { g_globalAngle = this.value; renderAllShapes(); });
 }
 
 function main() {
@@ -138,6 +138,10 @@ function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
   
+  //Pass the matrix to u_ModelMatrix attribute
+  var globalRotMat=new Matrix4().rotate(g_globalAngle,0,1,0);
+  gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
+
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -159,6 +163,9 @@ function renderAllShapes() {
   leftArm.matrix.scale(0.25, .7, .5);
   leftArm.render();
 
+
+
+  
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
   sendTextToHTML("numdot: " + len + " ms: " + Math.floor(duration) + " fps: " + Math.floor(10000/duration)/10, "numdot");
