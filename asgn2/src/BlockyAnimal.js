@@ -186,9 +186,9 @@ function renderAllShapes() {
   //draw the body cube
   var body = new Cube();
   body.color = [0.6, 0.6, 0.6, 1.0]; 
-  body.matrix.translate(-.25, -.75, 0.0);
+  body.matrix.translate(-.3, -.2, -0.15);
   body.matrix.rotate(-5,1,0,0);
-  body.matrix.scale(0.5, .3, .5);
+  body.matrix.scale(0.6, .3, .3);
   body.render();
 
   //draw a left arm
