@@ -40,7 +40,7 @@ function setupWebGL(){
 }
 
 function connectVariablesToGLSL(){
-    // Initialize shaders
+  // Initialize shaders
   if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
     console.log('Failed to intialize shaders.');
     return;
@@ -60,12 +60,23 @@ function connectVariablesToGLSL(){
     return;
   }
 
-  // Get the storage location of u_Size
-  u_Size = gl.getUniformLocation(gl.program, 'u_Size');
-  if (!u_Size) {
-    console.log('Failed to get the storage location of u_Size');
+  //get the storage location of u_ModelMatrix
+  u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
+  if (!u_ModelMatrix) {
+    console.log('Failed to get the storage lcoation of u_ModelMatrix');
     return;
   }
+
+  //set an initial value for this matrix to identity
+  var identityM = new Matrix4();
+  gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
+
+  // // Get the storage location of u_Size
+  // u_Size = gl.getUniformLocation(gl.program, 'u_Size');
+  // if (!u_Size) {
+  //   console.log('Failed to get the storage location of u_Size');
+  //   return;
+  // }
 
 }
 
@@ -78,49 +89,18 @@ const CIRCLE = 2;
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
 let g_selectedType=POINT;
-let g_selectedSeg=10;
-
-function updatePreview(){
-  const r = g_selectedColor[0];
-  const g = g_selectedColor[1];
-  const b = g_selectedColor[2];
-  const a = g_selectedColor[3];
-  const R = Math.round(r * 255);
-  const G = Math.round(g * 255);
-  const B = Math.round(b * 255);
-
-  const preview = document.getElementById('colorPreview');
-  if (preview) preview.style.backgroundColor = `rgba(${R}, ${G}, ${B}, ${a})`;
-
-  const text = document.getElementById('colorText');
-  if (text) text.innerHTML = `rgba(${R}, ${G}, ${B}, ${a.toFixed(2)})`;
-}
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
   
   //Button Events
   document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,1.0]; updatePreview(); };
-
   document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,0.0,0.0,1.0]; updatePreview(); };
-
   document.getElementById('clearButton').onclick = function(){ g_shapesList = []; g_redoList = []; renderAllShapes();};
-
-//   document.getElementById('undoButton').onclick = function () {
-//     if (g_shapesList.length > 0) {const last = g_shapesList.pop(); g_redoList.push(last); renderAllShapes(); } 
-//   };
-
-//   document.getElementById('redoButton').onclick = function () {
-//     if (g_redoList.length > 0) { const shape = g_redoList.pop(); g_shapesList.push(shape); renderAllShapes(); }
-//   };
-
-//   document.getElementById('downloadButton').onclick = function () { downloadCanvas();};
 
   document.getElementById('pointButton').onclick = function(){ g_selectedType=POINT;};
   document.getElementById('triButton').onclick = function(){ g_selectedType=TRIANGLE;};
   document.getElementById('circleButton').onclick = function(){ g_selectedType=CIRCLE;};
-
-//   document.getElementById('recreateButton').onclick = function(){ recreatePic();};
 
   //slider events
   document.getElementById('redSlide').addEventListener('mouseup', function() { g_selectedColor[0] = this.value/100;  updatePreview(); });
@@ -129,10 +109,6 @@ function addActionsForHtmlUI(){
 
   //size slider events
   document.getElementById('sizeSlide').addEventListener('mouseup', function() { g_selectedSize = this.value; });
-
-//   //segment slider events
-//   document.getElementById('segSlide').addEventListener('mouseup', function() { g_selectedSeg = this.value; });
-
 }
 
 function main() {
@@ -210,21 +186,23 @@ function renderAllShapes() {
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  //draw each shape in the list
-    //   var len = g_shapesList.length;
-
-    //   for (var i = 0; i < len; i++) {
-    //     g_shapesList[i].render();
-    //   }
-
   //draw a test triangle
   drawTriangle3D( [-1.0, 0.0, 0.0, -0.5,-1.0,0.0, 0.0,0.0,0.0]); 
 
   //draw a cube
   var body = new Cube();
   body.color = [1.0,0.0,0.0,1.0];
+  body.matrix.translate(-.25, -.5, 0.0);
+  body.matrix.scale(0.5, 1, .5);
   body.render();
 
+  //draw a left arm
+  var leftArm = new Cube();
+  leftArm.color = [1,1,0,1];
+  leftArm.matrix.translate(.7, 0, 0.0);
+  leftArm.matrix.rotate(45, 0,0,1);
+  leftArm.matrix.scale(0.25, .7, .5);
+  leftArm.render();
 
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
