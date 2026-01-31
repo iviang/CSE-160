@@ -144,10 +144,14 @@ function main() {
 
 }
 
+var g_startTime=performance.now()/1000.0;
+var g_seconds=performance.now()/1000.0-g_startTime;
+
 // Called by browser repeatedly whenever its time
 function tick() {
   // Print some debug information so we know we are running
-  console.log(performance.now());
+  g_seconds=performance.now()/1000.0-g_startTime;
+  console.log(g_seconds);
 
   // Draw everything
   renderAllShapes();
