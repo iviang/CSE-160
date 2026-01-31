@@ -153,6 +153,13 @@ function tick() {
   requestAnimationFrame(tick);
 }
 
+//update the anggles of everything if currently animated
+function updateAnimationAngles(){
+  if (g_yellowAnimation) {
+    g_yellowAngle = (45*Math.sin(g_seconds));
+  }
+}
+
 function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
@@ -179,12 +186,13 @@ function renderAllShapes() {
   yellow.matrix.setTranslate(0, -.5, 0.0);
   yellow.matrix.rotate(-5,1,0,0);
 
-  if (g_yellowAnimation) {
-    yellow.matrix.rotate(45*Math.sin(g_seconds), 0,0,1);
-  } else {
-    yellow.matrix.rotate(-g_yellowAngle, 0,0,1);
+  yellow.matrix.rotate(-g_yellowAngle, 0,0,1);
 
-  }  
+  // if (g_yellowAnimation) {
+  //   yellow.matrix.rotate(45*Math.sin(g_seconds), 0,0,1);
+  // } else {
+  //   yellow.matrix.rotate(-g_yellowAngle, 0,0,1);
+  // }  
   
   var yellowCoordinatesMat=new Matrix4(yellow.matrix);
   yellow.matrix.scale(0.25, .7, .5);
