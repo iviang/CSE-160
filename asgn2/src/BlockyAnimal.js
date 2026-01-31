@@ -147,9 +147,6 @@ function renderAllShapes() {
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  //draw a test triangle
-  drawTriangle3D( [-1.0, 0.0, 0.0, -0.5,-1.0,0.0, 0.0,0.0,0.0]); 
-
   //draw a cube
   var body = new Cube();
   body.color = [1.0,0.0,0.0,1.0];
