@@ -149,7 +149,7 @@ var g_seconds=performance.now()/1000.0-g_startTime;
 
 // Called by browser repeatedly whenever its time
 function tick() {
-  // Print some debug information so we know we are running
+  // save current time
   g_seconds=performance.now()/1000.0-g_startTime;
   console.log(g_seconds);
 
@@ -181,28 +181,29 @@ function renderAllShapes() {
   body.render();
 
   //draw a left arm
-  var leftArm = new Cube();
-  leftArm.color = [1,1,0,1];
-  leftArm.matrix.setTranslate(0, -.5, 0.0);
-  leftArm.matrix.rotate(-5,1,0,0);
-  leftArm.matrix.rotate(-g_yellowAngle, 0,0,1);
-  var yellowCoordinatesMat=new Matrix4(leftArm.matrix);
-  leftArm.matrix.scale(0.25, .7, .5);
-  leftArm.matrix.translate(-.5,0,0);
-  leftArm.render();
+  var yellow = new Cube();
+  yellow.color = [1,1,0,1];
+  yellow.matrix.setTranslate(0, -.5, 0.0);
+  yellow.matrix.rotate(-5,1,0,0);
+  // yellow.matrix.rotate(-g_yellowAngle, 0,0,1);
+  yellow.matrix.rotate(45*Math.sin(g_seconds), 0,0,1);
+  var yellowCoordinatesMat=new Matrix4(yellow.matrix);
+  yellow.matrix.scale(0.25, .7, .5);
+  yellow.matrix.translate(-.5,0,0);
+  yellow.render();
 
   //Test box
-  var box = new Cube();
-  box.color = [1,0,1,1];
-  box.matrix = yellowCoordinatesMat;
-  box.matrix.translate(0, 0.65, 0);
-  box.matrix.rotate(-g_magentaAngle, 0,0,1);
-  box.matrix.scale(.3,.3,.3);
-  box.matrix.translate(-.5, 0, -0.001);
+  var magenta = new Cube();
+  magenta.color = [1,0,1,1];
+  magenta.matrix = yellowCoordinatesMat;
+  magenta.matrix.translate(0, 0.65, 0);
+  magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
+  magenta.matrix.scale(.3,.3,.3);
+  magenta.matrix.translate(-.5, 0, -0.001);
   // box.matrix.translate(-.1,.1, 0.0);
   // box.matrix.rotate(-30,1,0,0);
   // box.matrix.scale(.2,.4,.2);
-  box.render();
+  magenta.render();
 
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
