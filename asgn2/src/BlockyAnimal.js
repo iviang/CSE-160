@@ -166,7 +166,7 @@ function renderAllShapes() {
   leftArm.matrix.setTranslate(0, -.5, 0.0);
   leftArm.matrix.rotate(-5,1,0,0);
   leftArm.matrix.rotate(-g_yellowAngle, 0,0,1);
-  var yellowCoordinates=leftArm.matrix;
+  var yellowCoordinatesMat=new Matrix4(leftArm.matrix);
   leftArm.matrix.scale(0.25, .7, .5);
   leftArm.matrix.translate(-.5,0,0);
   leftArm.render();
@@ -174,7 +174,7 @@ function renderAllShapes() {
   //Test box
   var box = new Cube();
   box.color = [1,0,1,1];
-  box.matrix = yellowCoordinates;
+  box.matrix = yellowCoordinatesMat;
   box.matrix.translate(0,0.7, 0);
   // box.matrix.translate(-.1,.1, 0.0);
   // box.matrix.rotate(-30,1,0,0);
