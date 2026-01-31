@@ -204,7 +204,7 @@ function renderAllShapes() {
   upperFL.matrix.set(bodyCoordinates); //connects to body
   upperFL.matrix.translate(0.75, -.1, 0.1); 
   upperFL.matrix.rotate(g_upperFL, 0,0,1);
-  upperFL.matrix.scale(0.12, 0.28, 0.12);
+  upperFL.matrix.scale(0.15, 0.3, 0.15);
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
 
@@ -214,8 +214,8 @@ function renderAllShapes() {
 
   lowerFL.matrix = upperFLCoordinates; //CONNECTS TO UPPER LEG
   lowerFL.matrix.translate(0, -1, 0);
-  lowerFL.matrix.rotate(g_lowerFL, 0,0,1); //set up for knee
-  lowerFL.matrix.scale(0.9, 1, .9);
+  lowerFL.matrix.rotate(g_lowerFL, 0,0,1); //set up for joint
+  lowerFL.matrix.scale(0.1, .25, .1);
   lowerFL.render();
 
 
