@@ -29,20 +29,20 @@ class Cube{
         drawTriangle3D([0,1,0,  0,1,1,  1,1,1]);
         drawTriangle3D([0,1,0,  1,1,1,  1,1,0]);
 
-        //bot
-        drawTriangle3D([0,0,0,  1,0,0,  1,0,1]);
-        drawTriangle3D([0,0,0,  1,0,1,  0,0,1]);
+        // //bot
+        // drawTriangle3D([0,0,0,  1,0,0,  1,0,1]);
+        // drawTriangle3D([0,0,0,  1,0,1,  0,0,1]);
 
-        //left
-        drawTriangle3D([0,0,0,  0,1,1,  0,1,0]);
-        drawTriangle3D([0,0,0,  0,0,1,  0,1,1]);
+        // //left
+        // drawTriangle3D([0,0,0,  0,1,1,  0,1,0]);
+        // drawTriangle3D([0,0,0,  0,0,1,  0,1,1]);
 
-        //right
-        drawTriangle3D([1,0,0,  1,1,0,  1,1,1]);
-        drawTriangle3D([1,0,0,  1,1,1,  1,0,1]);
+        // //right
+        // drawTriangle3D([1,0,0,  1,1,0,  1,1,1]);
+        // drawTriangle3D([1,0,0,  1,1,1,  1,0,1]);
 
-        //back
-        drawTriangle3D([0,0,1,  1,0,1,  1,1,1]);
-        drawTriangle3D([0,0,1,  1,1,1,  0,1,1]);
+        // //back
+        // drawTriangle3D([0,0,1,  1,0,1,  1,1,1]);
+        // drawTriangle3D([0,0,1,  1,1,1,  0,1,1]);
     }
 }
