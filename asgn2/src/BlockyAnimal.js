@@ -148,7 +148,7 @@ function renderAllShapes() {
 
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.clear(gl.COLOR_BUFFER_BIT );
 
   //draw the body cube
   var body = new Cube();
