@@ -175,7 +175,10 @@ function renderAllShapes() {
   var box = new Cube();
   box.color = [1,0,1,1];
   box.matrix = yellowCoordinatesMat;
-  box.matrix.translate(0,0.7, 0);
+  box.matrix.translate(0, 0.65, 0);
+  box.matrix.rotate(0,1,0,0);
+  box.matrix.scale(.3,.3,.3);
+  box.matrix.translate(-.5, 0, 0);
   // box.matrix.translate(-.1,.1, 0.0);
   // box.matrix.rotate(-30,1,0,0);
   // box.matrix.scale(.2,.4,.2);
