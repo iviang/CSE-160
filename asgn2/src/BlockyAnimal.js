@@ -164,14 +164,14 @@ function tick() {
 }
 
 //update the anggles of everything if currently animated
-function updateAnimationAngles(){
-  if (g_yellowAnimation) {
-    g_yellowAngle = (45*Math.sin(g_seconds));
-  }
-  if (g_magentaAnimation) {
-    g_magentaAngle = (45*Math.sin(3*g_seconds));
-  }
-}
+// function updateAnimationAngles(){
+//   if (g_yellowAnimation) {
+//     g_yellowAngle = (45*Math.sin(g_seconds));
+//   }
+//   if (g_magentaAnimation) {
+//     g_magentaAngle = (45*Math.sin(3*g_seconds));
+//   }
+// }
 
 function renderAllShapes() {
   //check the time at the start of this function
@@ -205,9 +205,13 @@ function renderAllShapes() {
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
   // lower front left
-  upperFL.matrix.scale(0.25, .7, .5);
-  upperFL.matrix.translate(-.5,0,0);
-  upperFL.render();
+  var lowerFL = new Cube();
+  lowerFL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  lowerFL.matrix = upperFLCoordinates; //CONNECTS TO UPPER LEG
+  lowerFL.matrix.translate(0, -.1, 0);
+  lowerFL.matrix.rotate(-g_kneeFL, 0,0,1); //set up for knee
+  lowerFL.matrix.scale(0.9, 1, .9);
+  lowerFL.render();
 
 
 
