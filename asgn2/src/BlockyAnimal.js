@@ -173,6 +173,7 @@ function renderAllShapes() {
   //Test box
   var box = new Cube();
   box.color = [1,0,1,1];
+  box.matrix = leftArm.matrix;
   box.matrix.translate(-.1,.1, 0.0);
   box.matrix.rotate(-30,1,0,0);
   box.matrix.scale(.2,.4,.2);
