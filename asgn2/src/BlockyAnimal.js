@@ -153,8 +153,8 @@ function renderAllShapes() {
   //draw the body cube
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
-  body.matrix.translate(-.25, -.25, 0.0);
-  body.matrix.rotate(-5,1,0.0);
+  body.matrix.translate(-.25, -.75, 0.0);
+  body.matrix.rotate(-5,1,0,0);
   body.matrix.scale(0.5, .3, .5);
   body.render();
 
