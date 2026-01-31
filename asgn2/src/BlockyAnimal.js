@@ -154,7 +154,7 @@ function tick() {
   console.log(g_seconds);
 
   //update animation angles
-  updateAnimationAngles();
+  // updateAnimationAngles();
 
   // Draw everything
   renderAllShapes();
@@ -205,7 +205,7 @@ function renderAllShapes() {
   upperFL.matrix.rotate(g_upperFL, 0,0,1); 
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
-  
+
   // lower front left
   var lowerFL = new Cube();
   lowerFL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
