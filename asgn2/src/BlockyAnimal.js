@@ -96,23 +96,16 @@ let g_selectedType=POINT;
 let g_globalAngle=0;
 let g_yellowAngle=0;
 let g_magentaAngle=0;
+let g_yellowAnimation=false;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
   
-  // //Button Events
-  // document.getElementById('green').onclick = function(){ g_selectedColor = [0.0,1.0,0.0,1.0]; };
-  // document.getElementById('red').onclick = function(){ g_selectedColor = [1.0,0.0,0.0,1.0]; };
-  // document.getElementById('clearButton').onclick = function(){ g_shapesList = []; renderAllShapes();};
+  //Button Events
+  document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
+  document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
 
-  // document.getElementById('pointButton').onclick = function(){ g_selectedType=POINT;};
-  // document.getElementById('triButton').onclick = function(){ g_selectedType=TRIANGLE;};
-  // document.getElementById('circleButton').onclick = function(){ g_selectedType=CIRCLE;};
-
-  // //slider events
-  // document.getElementById('redSlide').addEventListener('mouseup', function() { g_selectedColor[0] = this.value/100; });
-  // document.getElementById('greenSlide').addEventListener('mouseup', function() { g_selectedColor[1] = this.value/100; });
-  // document.getElementById('blueSlide').addEventListener('mouseup', function() { g_selectedColor[2] = this.value/100; });
+  //color slider events
   document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
   document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
@@ -185,8 +178,14 @@ function renderAllShapes() {
   yellow.color = [1,1,0,1];
   yellow.matrix.setTranslate(0, -.5, 0.0);
   yellow.matrix.rotate(-5,1,0,0);
-  // yellow.matrix.rotate(-g_yellowAngle, 0,0,1);
-  yellow.matrix.rotate(45*Math.sin(g_seconds), 0,0,1);
+
+  if (g_yellowAnimation) {
+    yellow.matrix.rotate(45*Math.sin(g_seconds), 0,0,1);
+  } else {
+    yellow.matrix.rotate(-g_yellowAngle, 0,0,1);
+
+  }  
+  
   var yellowCoordinatesMat=new Matrix4(yellow.matrix);
   yellow.matrix.scale(0.25, .7, .5);
   yellow.matrix.translate(-.5,0,0);
