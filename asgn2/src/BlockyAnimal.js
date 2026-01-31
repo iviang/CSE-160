@@ -199,16 +199,17 @@ function renderAllShapes() {
 
   // upper front left leg
   var upperFL = new Cube();
-  upperFL.color = [1,1,0,1];
-  upperFL.matrix.setTranslate(0, -.5, 0.0);
-  upperFL.matrix.rotate(-5,1,0,0);
-  upperFL.matrix.rotate(-g_yellowAngle, 0,0,1); 
+  upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  upperFL.matrix.setTranslate(0.75, -.1, 0.1); 
+  upperFL.matrix.rotate(-g_legFL, 0,0,1); 
+  upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
+  // lower front left
   upperFL.matrix.scale(0.25, .7, .5);
   upperFL.matrix.translate(-.5,0,0);
   upperFL.render();
 
-  
+
 
 
   //draw a left arm
