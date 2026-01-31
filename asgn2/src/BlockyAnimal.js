@@ -142,6 +142,18 @@ function main() {
   renderAllShapes();
 }
 
+// Called by browser repeatedly whenever its time
+function tick() {
+  // Print some debug information so we know we are running
+  console.log(performance.now());
+
+  // Draw everything
+  renderAl1Shapes();
+
+  // Tell the browser to update again when it has time
+  requestAnimationFrame(tick);
+}
+
 function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
