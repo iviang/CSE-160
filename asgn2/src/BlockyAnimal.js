@@ -98,9 +98,17 @@ let g_AnimalGlobalRotation=0;
 // let g_magentaAngle=0;
 // let g_yellowAnimation=false;
 // let g_magentaAnimation=false;
-let g_upperFL= 0;
-let g_lowerFL= 0;
-let g_pawFL=0;
+// let g_upperFL= 0;
+// let g_lowerFL= 0;
+// let g_pawFL=0;
+
+let g_upperFR= 0;
+let g_lowerFR= 0;
+let g_pawFR=0;
+
+let g_upperBR= 0;
+let g_lowerBR= 0;
+let g_pawBR=0;
 
 
 //set up actions for the HTML UI elements
@@ -191,45 +199,80 @@ function renderAllShapes() {
   body.color = [0.6, 0.6, 0.6, 1.0]; //GREY COLORED 
   body.matrix.translate(-.3, -.2, -0.15);
   body.matrix.rotate(-5,1,0,0);
-  body.matrix.scale(0.6, .3, .3);
+  body.matrix.scale(.8, .3, .3);
   body.render();
 
   var bodyCoordinates= new Matrix4(body.matrix);
 
   //LEGS (4 upper + 4 lower + 4 paws)
 
-  // upper front left leg
-  var upperFL = new Cube();
-  upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  //R SIDE:
 
-  upperFL.matrix.set(bodyCoordinates); //connects to body
-  upperFL.matrix.translate(0.75, -.1, -0.01);
-  upperFL.matrix.rotate(g_upperFL, 0,0,1);
-  upperFL.matrix.scale(0.2, 0.55, 0.3);
-  upperFL.render(); 
-  var upperFLCoordinates=new Matrix4(upperFL.matrix);
+  // upper FRONT RIGHT leg
+  var upperFR = new Cube();
+  upperFR.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
-  // lower front left
-  var lowerFL = new Cube();
-  lowerFL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  upperFR.matrix.set(bodyCoordinates); //connects to body
+  upperFR.matrix.translate(0.75, -.1, -0.01);
+  upperFR.matrix.rotate(g_upperFR, 0,0,1);
+  upperFR.matrix.scale(0.15, 0.55, 0.3);
+  upperFR.render(); 
+  var upperFRCoordinates=new Matrix4(upperFR.matrix);
 
-  lowerFL.matrix = upperFLCoordinates; //CONNECTS TO UPPER LEG
-  lowerFL.matrix.translate(.2, -1, 0.1);
-  lowerFL.matrix.rotate(g_lowerFL, 0,0,1); //set up for joint
-  lowerFL.matrix.scale(0.8, 1, 0.9);
-  lowerFL.render();
-  var lowerFLCoordinates=new Matrix4(lowerFL.matrix);
+  // lower FRONT RIGHT left
+  var lowerFR = new Cube();
+  lowerFR.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
-  // front left paw
-  var pawFL = new Cube();
-  pawFL.color = [1,0,0,0]; // [0.6, 0.6, 0.6, 1.0];
+  lowerFR.matrix = upperFRCoordinates; //CONNECTS TO UPPER LEG
+  lowerFR.matrix.translate(.2, -1, 0.1);
+  lowerFR.matrix.rotate(g_lowerFR, 0,0,1); //set up for joint
+  lowerFR.matrix.scale(0.8, 1, 0.9);
+  lowerFR.render();
+  var lowerFRCoordinates=new Matrix4(lowerFR.matrix);
 
-  pawFL.matrix = lowerFLCoordinates; //CONNECTS TO UPPER LEG
-  pawFL.matrix.translate(.5, -.1, 0.1);
-  pawFL.matrix.rotate(g_pawFL, 0,0,1); //set up for joint
-  pawFL.matrix.scale(0.8, .1, 0.9);
-  pawFL.render();
+  // Front RIGHT paw
+  var pawFR = new Cube();
+  pawFR.color = [1,0,0,0]; // [0.6, 0.6, 0.6, 1.0];
 
+  pawFR.matrix = lowerFRCoordinates; //CONNECTS TO UPPER LEG
+  pawFR.matrix.translate(.5, -.1, 0.1);
+  pawFR.matrix.rotate(g_pawFR, 0,0,1); //set up for joint
+  pawFR.matrix.scale(0.8, .1, 0.9);
+  pawFR.render();
+
+
+
+  // upper BACK RIGHT leg
+  var upperBR = new Cube();
+  upperBR.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
+
+  upperBR.matrix.set(bodyCoordinates); //connects to body
+  upperBR.matrix.translate(0.01, -.1, -0.01);
+  upperBR.matrix.rotate(g_upperBR, 0,0,1);
+  upperBR.matrix.scale(0.15, 0.55, 0.3);
+  upperBR.render(); 
+  var upperBRCoordinates=new Matrix4(upperBR.matrix);
+
+  // lower BACK RIGHT leg
+  var lowerBR = new Cube();
+  lowerBR.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
+
+  lowerBR.matrix = upperBRCoordinates; //CONNECTS TO UPPER LEG
+  lowerBR.matrix.translate(.2, -1, 0.1);
+  lowerBR.matrix.rotate(g_lowerBR, 0,0,1); //set up for joint
+  lowerBR.matrix.scale(0.8, 1, 0.9);
+  lowerBR.render();
+  var lowerBRCoordinates=new Matrix4(lowerBR.matrix);
+
+  // BACK RIGHT paw
+  var pawBR = new Cube();
+  pawBR.color = [1,0,0,0]; // [0.6, 0.6, 0.6, 1.0];
+
+  pawBR.matrix = lowerBRCoordinates; //CONNECTS TO UPPER LEG
+  pawBR.matrix.translate(.5, -.1, 0.1);
+  pawBR.matrix.rotate(g_pawBR, 0,0,1); //set up for joint
+  pawBR.matrix.scale(0.8, .1, 0.9);
+  pawBR.render();
 
   //draw a left arm
   // var yellow = new Cube();
