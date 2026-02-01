@@ -98,8 +98,9 @@ let g_AnimalGlobalRotation=0;
 // let g_magentaAngle=0;
 // let g_yellowAnimation=false;
 // let g_magentaAnimation=false;
-let g_upperFL = 0;
-let g_lowerFL = 0;
+let g_upperFL= 0;
+let g_lowerFL= 0;
+let g_pawFL=0;
 
 
 //set up actions for the HTML UI elements
@@ -202,9 +203,9 @@ function renderAllShapes() {
   upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   upperFL.matrix.set(bodyCoordinates); //connects to body
-  upperFL.matrix.translate(0.75, -.1, -0.01); 
+  upperFL.matrix.translate(0.75, -.1, -0.01);
   upperFL.matrix.rotate(g_upperFL, 0,0,1);
-  upperFL.matrix.scale(0.4, 0.4, 0.3);
+  upperFL.matrix.scale(0.2, 0.55, 0.3);
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
 
@@ -213,12 +214,21 @@ function renderAllShapes() {
   lowerFL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   lowerFL.matrix = upperFLCoordinates; //CONNECTS TO UPPER LEG
-  lowerFL.matrix.translate(0, -1, 0);
+  lowerFL.matrix.translate(.2, -1, 0.1);
   lowerFL.matrix.rotate(g_lowerFL, 0,0,1); //set up for joint
-  lowerFL.matrix.scale(0.1, .25, .1);
+  lowerFL.matrix.scale(0.8, 1, 0.9);
   lowerFL.render();
+  var lowerFLCoordinates=new Matrix4(lowerFL.matrix);
 
+  // front left paw
+  var pawFL = new Cube();
+  pawFL.color = [1,0,0,0]; // [0.6, 0.6, 0.6, 1.0];
 
+  pawFL.matrix = lowerFLCoordinates; //CONNECTS TO UPPER LEG
+  pawFL.matrix.translate(.5, -.1, 0.1);
+  pawFL.matrix.rotate(g_pawFL, 0,0,1); //set up for joint
+  pawFL.matrix.scale(0.8, .1, 0.9);
+  pawFL.render();
 
 
   //draw a left arm
