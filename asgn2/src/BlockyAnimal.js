@@ -346,6 +346,22 @@ function renderAllShapes() {
   inearR.matrix.scale(0.2, 0.1, 0.4);
   inearR.render();
 
+  var earL = new Cone();
+  earL.color = GREY;
+  earL.matrix.set(headCoordinates);
+  earL.matrix.translate(0, .6, 1.15);
+  earL.matrix.rotate(-90, 1, 0, 0);
+  earL.matrix.scale(0.4, 0.2, 0.6);
+  earL.render();
+
+  var inearL = new Cone();
+  inearL.color = PINK;
+  inearL.matrix.set(headCoordinates);
+  inearL.matrix.translate(0.12, .7, 1.13);
+  inearL.matrix.rotate(-90, 1, 0, 0);
+  inearL.matrix.scale(0.2, 0.1, 0.4);
+  inearL.render();
+
 
   //snout
   var snout = new Cube();
