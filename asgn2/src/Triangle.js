@@ -1,3 +1,5 @@
+let g_vertexBuffer3D = null;
+
 class Triangle{
   constructor(){
     this.type='triangle';
@@ -57,15 +59,22 @@ function drawTriangle(vertices) {
 function drawTriangle3D(vertices) {
   var n = 3; // The number of vertices
 
-  // Create a buffer object
-  var vertexBuffer = gl.createBuffer();
-  if (!vertexBuffer) {
-    console.log('Failed to create the buffer object');
+  if (g_vertexBuffer3D === null) {
+    g_vertexBuffer3D = gl.createBuffer();
+    if (!g_vertexBuffer3D)
+      console.log('Failed to create the buffer object');
     return -1;
   }
 
+  // // Create a buffer object
+  // var vertexBuffer = gl.createBuffer();
+  // if (!vertexBuffer) {
+  //   console.log('Failed to create the buffer object');
+  //   return -1;
+  // }
+
   // Bind the buffer object to target
-  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+  gl.bindBuffer(gl.ARRAY_BUFFER, g_vertexBuffer3D);
   // Write date into the buffer object
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.DYNAMIC_DRAW);
 

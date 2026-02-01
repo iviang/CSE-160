@@ -24,6 +24,7 @@ let u_FragColor;
 let u_Size;
 let u_ModelMatrix;
 let u_GlobalRotateMatrix;
+
 let g_mouseRotX = 0;
 let g_mouseRotY = 0;
  
@@ -141,6 +142,11 @@ let g_lowerBLAnimation=false;
 let g_Animation=false;
 let g_WalkAnimation=false;
 
+let g_pokeAnimation=false;
+let g_pokeTime=0;
+let g_pDuration = 0.5;
+let g_pRoll= 0;
+let g_pHop= 0; 
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -228,15 +234,56 @@ function main() {
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
 
-  // Register function (event handler) to be called on a mouse press
-  // canvas.onmousedown = click;
+  // Mouse detection
+  mouseDetect(); 
+  //poke animation trigger
+  shiftClick();
 
-  // canvas.onmousemove = function(ev) { if(ev.buttons == 1) { click(ev) } };
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
   requestAnimationFrame(tick);
 
+}
+
+function mouseDetect() {
+  let drag = false;
+  let prevX = 0;
+  let prevY = 0;
+
+  canvas.onmousedown=function(ev) {
+    drag=true;
+    prevX=ev.clientX;
+    prevY=ev.clientY;
+  };
+
+  canvas.onmouseup=function(ev){
+    drag=false;
+  };
+
+  canvas.onmouseleave=function(ev){
+    drag=false;
+  };
+
+  canvas.onmousemove = function(ev) {
+
+    if (!drag) return;
+
+    const dx = ev.clientX - prevX;
+    const dy = ev.clientY - prevY;
+
+    const sensitivity = 0.5;
+
+    g_mouseRotY += dx * sensitivity;
+    g_mouseRotX += dy * sensitivity;
+
+    g_mouseRotX = Math.max(-90, Math.min(90, g_mouseRotX));
+
+    prevX = ev.clientX;
+    prevY = ev.clientY;
+
+    renderAllShapes();
+  };
 }
 
 var g_startTime=performance.now()/1000.0;
@@ -246,10 +293,16 @@ var g_seconds=performance.now()/1000.0-g_startTime;
 function tick() {
   // save current time
   g_seconds=performance.now()/1000.0-g_startTime;
-  console.log(g_seconds);
+  // console.log(g_seconds); //removed to improve performance
 
   //update animation angles
   updateAnimationAngles();
+
+  if(g_pokeAnimation && (g_seconds - g_pokeTime) > g_pDuration) {
+    g_pokeAnimation=false;
+    g_pRoll=0;
+    g_pHop=0;
+  }
 
   // Draw everything
   renderAllShapes();
@@ -306,8 +359,34 @@ function walkRestrictions(min, max, t){
   return midpoint + amplitude * Math.sin(t);
 }
 
+function shiftClick(){ //triggered by shift click button on keyb
+  canvas.addEventListener("click", function(ev) {if (!ev.shiftKey) return; startPoke(); });  
+}
+
+//poke animation part:
+
+function startPoke(){
+  g_pokeAnimation=true;
+  g_pokeTime = g_seconds;
+}
+
+function pokeAnimation() {
+  //rolling
+  let t = (g_seconds - g_pokeTime) / g_pDuration;
+  t = Math.max(0, Math.min(1, t));
+  const ease = t * t * (3 - 2 * t); 
+  g_pRoll = 360 * ease;
+  g_pHop = 0.10 * Math.sin(Math.PI*t);  
+}
+
 //update the angles of everything if currently animated
 function updateAnimationAngles(){
+
+  if (g_pokeAnimation) {
+    pokeAnimation();
+    return;
+  }
+
   if (g_Animation){ //this function specifically shows the full animation of my rat
     headAnimation();
     tailAnimation();
@@ -419,16 +498,20 @@ function renderAllShapes() {
   var startTime = performance.now();
   
   //Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat=new Matrix4().rotate(g_mouseRotX, 1,0,0).rotate(g_mouseRotY + g_AnimalGlobalRotation,0,1,0);
+  var globalRotMat=new Matrix4().rotate(g_mouseRotX, 1,0,0).rotate(g_mouseRotY,0,1,0).rotate(g_AnimalGlobalRotation,0,1,0);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  gl.clear(gl.COLOR_BUFFER_BIT );
+  // gl.clear(gl.COLOR_BUFFER_BIT );
 
   //base
   var base = new Matrix4();
-  base.translate(-0.30, -0.20, -0.15); //attaches to the body and butt cubes
+  base.translate(-0.30, -0.20 + g_pHop, -0.15); //attaches to the body and butt cubes
+
+  base.translate(0.25, 0.15, 0.25);        // pivot tweak (adjust if roll looks off-center)
+  base.rotate(g_pRoll, 1, 0, 0);        // roll around Z axis (screen-facing roll)
+  base.translate(-0.25, -0.15, -0.25);
 
   //draw the body cube
   var body = new Cube();
@@ -448,7 +531,7 @@ function renderAllShapes() {
   butt.matrix.set(base);
   butt.matrix.translate(-0.20, -0.05, -0.025);
   butt.matrix.rotate(g_buttAngle, 0,1,0);
-  butt.matrix.scale(0.3, 0.35, 0.55);
+  butt.matrix.scale(0.3, 0.36, 0.55);
   butt.render();
   
   var buttCoordinates = new Matrix4(butt.matrix);
