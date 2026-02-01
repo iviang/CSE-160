@@ -24,6 +24,8 @@ let u_FragColor;
 let u_Size;
 let u_ModelMatrix;
 let u_GlobalRotateMatrix;
+let g_mouseRotX = 0;
+let g_mouseRotY = 0;
  
 function setupWebGL(){
   // Retrieve <canvas> element
@@ -227,9 +229,9 @@ function main() {
   addActionsForHtmlUI();
 
   // Register function (event handler) to be called on a mouse press
-  canvas.onmousedown = click;
+  // canvas.onmousedown = click;
 
-  canvas.onmousemove = function(ev) { if(ev.buttons == 1) { click(ev) } };
+  // canvas.onmousemove = function(ev) { if(ev.buttons == 1) { click(ev) } };
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -417,7 +419,7 @@ function renderAllShapes() {
   var startTime = performance.now();
   
   //Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat=new Matrix4().rotate(g_AnimalGlobalRotation,0,1,0);
+  var globalRotMat=new Matrix4().rotate(g_mouseRotX, 1,0,0).rotate(g_mouseRotY + g_AnimalGlobalRotation,0,1,0);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   //Clear <canvas>
