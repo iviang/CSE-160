@@ -29,23 +29,12 @@ Github pages link submitted in comments
     
     <p id="numdot"> XXX </p>
 
-
-    <button type="button" id="green">X</button>
-    <button type="button" id="red">X</button>
-
-    <button type="button" id="clearButton">X</button>
+    <button type="button" id="WALK">Full Animation</button>
     <p>
 
-    <button type="button" id="pointButton">X</button>
-    <button type="button" id="triButton">X</button>
-    <button type="button" id="circleButton">X</button>
+    Camera Angle <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlide">
+    <p>
 
-    <p>
-    X <input type="range" min="0" max="100" value="100" class="slider" id="redSlide">
-    <p>
-    X <input type="range" min="0" max="100" value="0" class="slider" id="greenSlide">   
-    <p>
-    X <input type="range" min="0" max="100" value="0" class="slider" id="blueSlide">
     <p>
     Head Turn  <input type="range" min="-45" max="45" value="0" class="slider" id="headSlide">
     
@@ -54,12 +43,30 @@ Github pages link submitted in comments
     <button type="button" id="animationHeadOffButton">OFF</button>
 
     <p>
+    Wiggle <input type="range" min="-5" max="0" value="0" class="slider" id="buttSlide">
+    
+    Animation:
+    <button type="button" id="animationWiggleOnButton">ON</button>
+    <button type="button" id="animationWiggleOffButton">OFF</button>
+    
+    <p>
+    Wag Tail <input type="range" min="-5" max="0" value="0" class="slider" id="tailSlide">
+    
+    Animation:
+    <button type="button" id="animationTailOnButton">ON</button>
+    <button type="button" id="animationTailOffButton">OFF</button>
+
+    <p>
+    Front Legs:
+
+    <p>
     Front Right Leg <input type="range" min="-10" max="35" value="0" class="slider" id="upperFRSlide">
     
     Animation:
     <button type="button" id="animationFrontRightLegOnButton">ON</button>
     <button type="button" id="animationFrontRightLegOffButton">OFF</button>
 
+  
     <p>
     Lower Front Right Leg <input type="range" min="-35" max="5" value="0" class="slider" id="lowerFRSlide">
     
@@ -68,8 +75,49 @@ Github pages link submitted in comments
     <button type="button" id="animationLowerFrontRightLegOffButton">OFF</button>
 
     <p>
-    Camera Angle <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlide">
+    Front Left Leg <input type="range" min="-10" max="35" value="0" class="slider" id="upperFLSlide">
+    
+    Animation:
+    <button type="button" id="animationFrontLeftLegOnButton">ON</button>
+    <button type="button" id="animationFrontLeftLegOffButton">OFF</button>
+
     <p>
+    Lower Front Left Leg <input type="range" min="-35" max="5" value="0" class="slider" id="lowerFLSlide">
+    
+    Animation:
+    <button type="button" id="animationLowerFrontLeftLegOnButton">ON</button>
+    <button type="button" id="animationLowerFrontLeftLegOffButton">OFF</button>
+
+    <p>
+    Back Legs:
+    <p>
+    Back Right Leg <input type="range" min="-10" max="35" value="0" class="slider" id="upperBRSlide">
+    
+    Animation:
+    <button type="button" id="animationBackRightLegOnButton">ON</button>
+    <button type="button" id="animationBackRightLegOffButton">OFF</button>
+
+    <p>
+    Lower Back Right Leg <input type="range" min="-35" max="5" value="0" class="slider" id="lowerBRSlide">
+    
+    Animation:
+    <button type="button" id="animationLowerBackRightLegOnButton">ON</button>
+    <button type="button" id="animationLowerBackRightLegOffButton">OFF</button>
+
+    <p>
+    Back Left Leg <input type="range" min="-10" max="35" value="0" class="slider" id="upperBLSlide">
+    
+    Animation:
+    <button type="button" id="animationBackLeftLegOnButton">ON</button>
+    <button type="button" id="animationBackLeftLegOffButton">OFF</button>
+
+    <p>
+    Lower Back Left Leg <input type="range" min="-35" max="5" value="0" class="slider" id="lowerBLSlide">
+    
+    Animation:
+    <button type="button" id="animationLowerBackLeftLegOnButton">ON</button>
+    <button type="button" id="animationLowerBackLeftLegOffButton">OFF</button>
+
 
     <script src="../lib/webgl-utils.js"></script>
     <script src="../lib/webgl-debug.js"></script>

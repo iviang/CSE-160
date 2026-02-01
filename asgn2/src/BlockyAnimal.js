@@ -119,37 +119,88 @@ let g_pawBL=0;
 let g_headAnimation=false;
 let g_headAngle=0;
 
+let g_buttAnimation=false;
+let g_buttAngle=0;
+
+let g_tailAnimation=false;
+
 let g_upperFRAnimation=false;
 let g_lowerFRAnimation=false;
+
+let g_upperFLAnimation=false;
+let g_lowerFLAnimation=false;
+
+let g_upperBRAnimation=false;
+let g_lowerBRAnimation=false;
+
+let g_upperBLAnimation=false;
+let g_lowerBLAnimation=false;
+
 
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
   
-  //Button Events
+  //Button Events ===================
   document.getElementById('animationHeadOffButton').onclick = function() {g_headAnimation=false;};
   document.getElementById('animationHeadOnButton').onclick = function() {g_headAnimation=true;};
 
+  //move butt
+  document.getElementById('animationWiggleOffButton').onclick = function() {g_buttAnimation=false;};
+  document.getElementById('animationWiggleOnButton').onclick = function() {g_buttAnimation=true;};
+
+  //move tail built whole tail at once not just sections
+  document.getElementById('animationTailOffButton').onclick = function() {g_tailAnimation=false;};
+  document.getElementById('animationTailOnButton').onclick = function() {g_tailAnimation=true;};
+
+  //FRONT LEGS
   document.getElementById('animationFrontRightLegOffButton').onclick = function() {g_upperFRAnimation=false;};
   document.getElementById('animationFrontRightLegOnButton').onclick = function() {g_upperFRAnimation=true;};
 
   document.getElementById('animationLowerFrontRightLegOffButton').onclick = function() {g_lowerFRAnimation=false;};
   document.getElementById('animationLowerFrontRightLegOnButton').onclick = function() {g_lowerFRAnimation=true;};
 
-  // document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
-  // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
+  document.getElementById('animationFrontLeftLegOffButton').onclick = function() {g_upperFLAnimation=false;};
+  document.getElementById('animationFrontLeftLegOnButton').onclick = function() {g_upperFLAnimation=true;};
 
-  // slider events
-  document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); });
+  document.getElementById('animationLowerFrontLeftLegOffButton').onclick = function() {g_lowerFLAnimation=false;};
+  document.getElementById('animationLowerFrontLeftLegOnButton').onclick = function() {g_lowerFLAnimation=true;};
 
+  //BACK LEGS
+
+  document.getElementById('animationBackRightLegOffButton').onclick = function() {g_upperBRAnimation=false;};
+  document.getElementById('animationBackRightLegOnButton').onclick = function() {g_upperBRAnimation=true;};
+
+  document.getElementById('animationLowerBackRightLegOffButton').onclick = function() {g_lowerBRAnimation=false;};
+  document.getElementById('animationLowerBackRightLegOnButton').onclick = function() {g_lowerBRAnimation=true;};
+
+  document.getElementById('animationBackLeftLegOffButton').onclick = function() {g_upperBLAnimation=false;};
+  document.getElementById('animationBackLeftLegOnButton').onclick = function() {g_upperBLAnimation=true;};
+
+  document.getElementById('animationLowerBackLeftLegOffButton').onclick = function() {g_lowerBLAnimation=false;};
+  document.getElementById('animationLowerBackLeftLegOnButton').onclick = function() {g_lowerBLAnimation=true;};
+
+  // slider events =====================
+  document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
+
+  document.getElementById('buttSlide').addEventListener('mousemove', function() { g_buttAngle = this.value; renderAllShapes(); }); //wiggle slider
+
+
+  //front legs slider
   document.getElementById('upperFRSlide').addEventListener('mousemove', function() { g_upperFR = this.value; renderAllShapes(); });
   document.getElementById('lowerFRSlide').addEventListener('mousemove', function() { g_lowerFR = this.value; renderAllShapes(); });
 
+  document.getElementById('upperFLSlide').addEventListener('mousemove', function() { g_upperFL = this.value; renderAllShapes(); });
+  document.getElementById('lowerFLSlide').addEventListener('mousemove', function() { g_lowerFL = this.value; renderAllShapes(); });
 
-  // document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
+  //back legs slider
+  document.getElementById('upperBRSlide').addEventListener('mousemove', function() { g_upperBR = this.value; renderAllShapes(); });
+  document.getElementById('lowerBRSlide').addEventListener('mousemove', function() { g_lowerBR = this.value; renderAllShapes(); });
+
+  document.getElementById('upperBLSlide').addEventListener('mousemove', function() { g_upperBL = this.value; renderAllShapes(); });
+  document.getElementById('lowerBLSlide').addEventListener('mousemove', function() { g_lowerBL = this.value; renderAllShapes(); });
 
   //size slider events
-  // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_AnimalGlobalRotation = this.value; renderAllShapes(); });
   document.getElementById('angleSlide').addEventListener('mousemove', function() { g_AnimalGlobalRotation = this.value; renderAllShapes(); });
 }
 
@@ -199,6 +250,13 @@ function tick() {
 function updateAnimationAngles(){
   if (g_headAnimation) {
     g_headAngle = (45*Math.sin(g_seconds));
+  }
+  if (g_buttAnimation) {
+      const min = -5;
+    const max = 5;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    g_buttAngle = midpoint + amplitude * Math.sin(g_seconds);
   }
   if (g_upperFRAnimation) {
     const min = -10;
@@ -264,6 +322,7 @@ function renderAllShapes() {
   butt.color = GREY;
   butt.matrix.set(base);
   butt.matrix.translate(-0.20, -0.05, -0.025);
+  butt.matrix.rotate(g_buttAngle, 0,1,0);
   butt.matrix.scale(0.3, 0.35, 0.55);
   butt.render();
   
