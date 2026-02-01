@@ -120,6 +120,7 @@ let g_headAnimation=false;
 let g_headAngle=0;
 
 let g_upperFRAnimation=false;
+let g_lowerFRAnimation=false;
 
 
 //set up actions for the HTML UI elements
@@ -132,12 +133,18 @@ function addActionsForHtmlUI(){
   document.getElementById('animationFrontRightLegOffButton').onclick = function() {g_upperFRAnimation=false;};
   document.getElementById('animationFrontRightLegOnButton').onclick = function() {g_upperFRAnimation=true;};
 
+  document.getElementById('animationLowerFrontRightLegOffButton').onclick = function() {g_lowerFRAnimation=false;};
+  document.getElementById('animationLowerFrontRightLegOnButton').onclick = function() {g_lowerFRAnimation=true;};
+
   // document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
   // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
   // slider events
   document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); });
+
   document.getElementById('upperFRSlide').addEventListener('mousemove', function() { g_upperFR = this.value; renderAllShapes(); });
+  document.getElementById('lowerFRSlide').addEventListener('mousemove', function() { g_lowerFR = this.value; renderAllShapes(); });
+
 
   // document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
@@ -199,7 +206,15 @@ function updateAnimationAngles(){
     const midpoint = (min + max) / 2;
     const amplitude = (max - min) / 2;
     
-    g_upperFR = midpoint + amplitude * Math.sin(4*g_seconds); //restricted the movement into a natural looking range 
+    g_upperFR = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
+  }
+  if (g_lowerFRAnimation) {
+    const min = -35;
+    const max = 5;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    
+    g_lowerFR = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
   }
 
 }
@@ -222,7 +237,7 @@ function renderAllShapes() {
 
   //draw the body cube
   var body = new Cube();
-  body.color = [0.6, 0.6, 0.6, 1.0]; //GREY COLORED
+  body.color = [0.7, 0.7, 0.7, 1.0]; //light GREY COLORED
   body.matrix.set(base); 
   // body.matrix.translate(-.3, -.2, -0.15);
   // body.matrix.rotate(-5,1,0,0);
@@ -234,7 +249,7 @@ function renderAllShapes() {
   //butt
 
   var butt = new Cube();
-  butt.color = [1,0,0,1];
+  butt.color = [0.6, 0.6, 0.6, 1.0]; //darker grey
   butt.matrix.set(base);
   butt.matrix.translate(-0.20, -0.05, -0.025);
   butt.matrix.scale(0.3, 0.35, 0.55);
@@ -338,9 +353,13 @@ function renderAllShapes() {
   lowerFR.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   lowerFR.matrix.set(upperFRCoordinates); //CONNECTS TO UPPER LEG
-  lowerFR.matrix.translate(.2, -.7, 0.1);
+  // lowerFR.matrix.translate(0, -1, 0);
+
+  lowerFR.matrix.translate(1, 0, 0.5);
   lowerFR.matrix.rotate(g_lowerFR, 0,0,1); //set up for joint
   lowerFR.matrix.scale(0.8, .7, 0.9);
+  lowerFR.matrix.translate(-1.0, -1.0, -0.5);
+
   lowerFR.render();
   var lowerFRCoordinates=new Matrix4(lowerFR.matrix);
 
