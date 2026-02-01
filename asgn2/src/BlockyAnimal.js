@@ -307,12 +307,14 @@ function renderAllShapes() {
   var m2tailCoordinates = new Matrix4(m2tail.matrix);
 
   // tail tip
-  var tiptail = new Cube();
+  var tiptail = new Cone();
   tiptail.color = PINK;
   tiptail.matrix.set(m2tailCoordinates); //connect to base of tail
   tiptail.matrix.translate(-1,.1,.2);
   tiptail.matrix.rotate(g_tiptail, 0,0,1);
   tiptail.matrix.scale(1, .65, .6);
+  tiptail.matrix.translate(1, 0.1, 0.0); 
+  tiptail.matrix.rotate(90, 0, 0, 1); //rotates the point of the cone
   tiptail.render();
 
   //HEAD ==================================================================================
@@ -326,6 +328,24 @@ function renderAllShapes() {
   head.render();
 
   var headCoordinates = new Matrix4(head.matrix);
+
+  //ears
+  var earR = new Cone();
+  earR.color = GREY;
+  earR.matrix.set(headCoordinates);
+  earR.matrix.translate(0, 1.25, -0.13);
+  earR.matrix.rotate(90, 1, 0, 0);
+  earR.matrix.scale(0.4, 0.2, 0.6);
+  earR.render();
+
+  var inearR = new Cone();
+  inearR.color = PINK;
+  inearR.matrix.set(headCoordinates);
+  inearR.matrix.translate(0.1, 1.15, -0.1);
+  inearR.matrix.rotate(90, 1, 0, 0);
+  inearR.matrix.scale(0.2, 0.1, 0.4);
+  inearR.render();
+
 
   //snout
   var snout = new Cube();
