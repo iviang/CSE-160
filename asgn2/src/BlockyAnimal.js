@@ -102,6 +102,12 @@ let g_AnimalGlobalRotation=0;
 // let g_lowerFL= 0;
 // let g_pawFL=0;
 
+let g_btail=0;
+let g_m1tail=0;
+let g_m2tail=0;
+let g_tiptail=0;
+
+
 let g_upperFR= 0;
 let g_lowerFR= 0;
 let g_pawFR=0;
@@ -230,16 +236,78 @@ function renderAllShapes() {
 
   // TAIL =======================================================
   // connect to butt
-  
+
+  //base of tail
+  var btail = new Cube();
+  btail.color = [1,0,0,0];
+  btail.matrix.set(buttCoordinates); //connects to butt
+  btail.matrix.translate(-.3,.15,.4);
+  btail.matrix.rotate(g_btail, 0,0,1);
+  btail.matrix.scale(.3, .3, .2);
+  btail.render();
+
+  var btailCoordinates = new Matrix4(btail.matrix);
+
+  // mid tail 1
+
+  var m1tail = new Cube();
+  m1tail.color = [1,0,0,1];
+  m1tail.matrix.set(btailCoordinates); //connect to base of tail
+  m1tail.matrix.translate(-1,.1,.2);
+  m1tail.matrix.rotate(g_m1tail, 0,0,1);
+  m1tail.matrix.scale(1, .8, .6);
+  m1tail.render();
+
+  var m1tailCoordinates = new Matrix4(m1tail.matrix);
+
+  // mid tail 2
+  var m2tail = new Cube();
+  m2tail.color = [1,0,0,0];
+  m2tail.matrix.set(m1tailCoordinates); //connect to base of tail
+  m2tail.matrix.translate(-1,.1,.2);
+  m2tail.matrix.rotate(g_m2tail, 0,0,1);
+  m2tail.matrix.scale(1, .65, .6);
+  m2tail.render();
+
+  var m2tailCoordinates = new Matrix4(m2tail.matrix);
+
+  // tail tip
+  var tiptail = new Cube();
+  tiptail.color = [1,0,0,1];
+  tiptail.matrix.set(m2tailCoordinates); //connect to base of tail
+  tiptail.matrix.translate(-1,.1,.2);
+  tiptail.matrix.rotate(g_tiptail, 0,0,1);
+  tiptail.matrix.scale(1, .65, .6);
+  tiptail.render();
 
   //HEAD ==================================================================================
   
   var head = new Cube();
   head.color = [1,0,0,1];
   head.matrix.set(bodyCoordinates); //connects to body
-  head.matrix.translate(1,0,0.05);
-  head.matrix.scale(.5, .9, .9);
+  head.matrix.translate(1,0,0.07);
+  head.matrix.scale(.5, .9, .85);
   head.render();
+
+  var headCoordinates = new Matrix4(head.matrix);
+
+  //snout
+  var snout = new Cube();
+  snout.color = [1,0,0,0];
+  snout.matrix.set(headCoordinates); //connects to head
+  snout.matrix.translate(1,0.05,0.16);
+  snout.matrix.scale(.6, .8, .7);
+  snout.render();
+
+  var snoutCoordinates = new Matrix4(snout.matrix);
+
+  //nose
+  var nose = new Cube();
+  nose.color = [1,0,0,1];
+  nose.matrix.set(snoutCoordinates); //connects to head
+  nose.matrix.translate(1,0.05,0.4);
+  nose.matrix.scale(.4, .3, .2);
+  nose.render();
 
   //LEGS (4 upper + 4 lower + 4 paws) =======================================================
 
