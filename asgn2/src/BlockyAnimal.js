@@ -202,15 +202,31 @@ function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.clear(gl.COLOR_BUFFER_BIT );
 
+  //base
+  var base = new Matrix4();
+  base.translate(-0.30, -0.20, -0.15); //attaches to the body and butt cubes
+
   //draw the body cube
   var body = new Cube();
-  body.color = [0.6, 0.6, 0.6, 1.0]; //GREY COLORED 
-  body.matrix.translate(-.3, -.2, -0.15);
+  body.color = [0.6, 0.6, 0.6, 1.0]; //GREY COLORED
+  body.matrix.set(base); 
+  // body.matrix.translate(-.3, -.2, -0.15);
   // body.matrix.rotate(-5,1,0,0);
-  body.matrix.scale(.8, .4, .5);
+  body.matrix.scale(.5, .3, .5);
   body.render();
 
   var bodyCoordinates= new Matrix4(body.matrix);
+
+  //butt
+
+  var butt = new Cube();
+  butt.color = [1,0,0,1];
+  butt.matrix.set(base);
+  butt.matrix.translate(-0.20, -0.05, -0.025);
+  butt.matrix.scale(0.3, 0.35, 0.55);
+  butt.render();
+  
+  var buttCoordinates = new Matrix4(butt.matrix);
 
   //LEGS (4 upper + 4 lower + 4 paws) =======================================================
 
@@ -223,7 +239,7 @@ function renderAllShapes() {
   upperFR.matrix.set(bodyCoordinates); //connects to body
   upperFR.matrix.translate(0.75, -.3, -0.01);
   upperFR.matrix.rotate(g_upperFR, 0,0,1);
-  upperFR.matrix.scale(0.15, 0.6, 0.3);
+  upperFR.matrix.scale(0.15, 0.6, 0.25);
   upperFR.render(); 
   var upperFRCoordinates=new Matrix4(upperFR.matrix);
 
@@ -248,14 +264,16 @@ function renderAllShapes() {
   pawFR.matrix.scale(0.8, .1, 0.9);
   pawFR.render();
 
+
+  
   // upper BACK RIGHT leg
   var upperBR = new Cube();
   upperBR.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
-  upperBR.matrix.set(bodyCoordinates); //connects to body
-  upperBR.matrix.translate(0.01, -.3, -0.01);
+  upperBR.matrix.set(buttCoordinates); //connects to body
+  upperBR.matrix.translate(0.5, -.05, -0.01);
   upperBR.matrix.rotate(g_upperBR, 0,0,1);
-  upperBR.matrix.scale(0.15, 0.6, 0.3);
+  upperBR.matrix.scale(0.4, 0.6, 0.2);
   upperBR.render(); 
   var upperBRCoordinates=new Matrix4(upperBR.matrix);
 
@@ -289,7 +307,7 @@ function renderAllShapes() {
   upperFL.matrix.set(bodyCoordinates); //connects to body
   upperFL.matrix.translate(0.75, -.3, .72);
   upperFL.matrix.rotate(g_upperFL, 0,0,1);
-  upperFL.matrix.scale(0.15, 0.6, 0.3);
+  upperFL.matrix.scale(0.15, 0.6, 0.25);
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
 
@@ -320,10 +338,10 @@ function renderAllShapes() {
   var upperBL = new Cube();
   upperBL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
-  upperBL.matrix.set(bodyCoordinates); //connects to body
-  upperBL.matrix.translate(0.01, -.3, .72);
+  upperBL.matrix.set(buttCoordinates); //connects to body
+  upperBL.matrix.translate(0.5, -.05, .81);
   upperBL.matrix.rotate(g_upperBL, 0,0,1);
-  upperBL.matrix.scale(0.15, 0.6, 0.3);
+  upperBL.matrix.scale(0.4, 0.6, 0.2);
   upperBL.render(); 
   var upperBLCoordinates=new Matrix4(upperBL.matrix);
 
@@ -348,7 +366,8 @@ function renderAllShapes() {
   pawBL.matrix.scale(0.8, .1, 0.9);
   pawBL.render();
 
-  //BUTT
+  // ==========================================
+
 
   //draw a left arm
   // var yellow = new Cube();
