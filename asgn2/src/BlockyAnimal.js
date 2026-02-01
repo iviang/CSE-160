@@ -142,6 +142,9 @@ let g_lowerBLAnimation=false;
 function addActionsForHtmlUI(){
   
   //Button Events ===================
+
+  
+
   document.getElementById('animationHeadOffButton').onclick = function() {g_headAnimation=false;};
   document.getElementById('animationHeadOnButton').onclick = function() {g_headAnimation=true;};
 
@@ -185,6 +188,7 @@ function addActionsForHtmlUI(){
 
   document.getElementById('buttSlide').addEventListener('mousemove', function() { g_buttAngle = this.value; renderAllShapes(); }); //wiggle slider
 
+  document.getElementById('tailSlide').addEventListener('mousemove', function() { g_btail = this.value; renderAllShapes(); }); //wag tail slider
 
   //front legs slider
   document.getElementById('upperFRSlide').addEventListener('mousemove', function() { g_upperFR = this.value; renderAllShapes(); });
@@ -214,15 +218,11 @@ function main() {
 
   // Register function (event handler) to be called on a mouse press
   canvas.onmousedown = click;
-  //canvas.onmousemove = click;
 
   canvas.onmousemove = function(ev) { if(ev.buttons == 1) { click(ev) } };
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-  // Clear <canvas>
-//   gl.clear(gl.COLOR_BUFFER_BIT);
-  // renderAllShapes();
   requestAnimationFrame(tick);
 
 }
@@ -258,6 +258,14 @@ function updateAnimationAngles(){
     const amplitude = (max - min) / 2;
     g_buttAngle = midpoint + amplitude * Math.sin(g_seconds);
   }
+  
+  if (g_tailAnimation){
+    g_btail = (10*Math.sin(g_seconds));
+    g_m1tail = (20*Math.sin(g_seconds));
+    g_m2tail = (25*Math.sin(g_seconds));
+    g_tiptail = (30*Math.sin(g_seconds));
+  }
+
   if (g_upperFRAnimation) {
     const min = -10;
     const max = 35;
@@ -273,6 +281,57 @@ function updateAnimationAngles(){
     const amplitude = (max - min) / 2;
     
     g_lowerFR = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
+  }
+
+  if (g_upperFLAnimation) {
+    const min = -10;
+    const max = 35;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    
+    g_upperFL = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
+  }
+  if (g_lowerFLAnimation) {
+    const min = -35;
+    const max = 5;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    
+    g_lowerFL = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
+  }
+
+    if (g_upperBRAnimation) {
+    const min = -10;
+    const max = 35;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    
+    g_upperBR = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
+  }
+  if (g_lowerBRAnimation) {
+    const min = -35;
+    const max = 5;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    
+    g_lowerBR = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
+  }
+
+  if (g_upperBLAnimation) {
+    const min = -10;
+    const max = 35;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    
+    g_upperBL = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
+  }
+  if (g_lowerBLAnimation) {
+    const min = -35;
+    const max = 5;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    
+    g_lowerBL = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
   }
 
 }
@@ -299,7 +358,7 @@ function renderAllShapes() {
 
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  // gl.clear(gl.COLOR_BUFFER_BIT );
+  gl.clear(gl.COLOR_BUFFER_BIT );
 
   //base
   var base = new Matrix4();
@@ -316,7 +375,7 @@ function renderAllShapes() {
 
   var bodyCoordinates= new Matrix4(body.matrix);
 
-  //butt
+  //butt =======================================================
 
   var butt = new Cube();
   butt.color = GREY;
@@ -335,8 +394,8 @@ function renderAllShapes() {
   var btail = new Cube();
   btail.color = DPINK;
   btail.matrix.set(buttCoordinates); //connects to butt
-  btail.matrix.translate(-.3,.15,.4);
-  btail.matrix.rotate(g_btail, 0,0,1);
+  btail.matrix.translate(-.25,.15,.4);
+  btail.matrix.rotate(g_btail, 0,1,0);
   btail.matrix.scale(.3, .3, .2);
   btail.render();
 
@@ -347,8 +406,8 @@ function renderAllShapes() {
   var m1tail = new Cube();
   m1tail.color = PINK;
   m1tail.matrix.set(btailCoordinates); //connect to base of tail
-  m1tail.matrix.translate(-1,.1,.2);
-  m1tail.matrix.rotate(g_m1tail, 0,0,1);
+  m1tail.matrix.translate(-.9,.1,.2);
+  m1tail.matrix.rotate(g_m1tail, 0,1,0);
   m1tail.matrix.scale(1, .8, .6);
   m1tail.render();
 
@@ -358,8 +417,8 @@ function renderAllShapes() {
   var m2tail = new Cube();
   m2tail.color = PINK;
   m2tail.matrix.set(m1tailCoordinates); //connect to base of tail
-  m2tail.matrix.translate(-1,.1,.2);
-  m2tail.matrix.rotate(g_m2tail, 0,0,1);
+  m2tail.matrix.translate(-.9,.1,.2);
+  m2tail.matrix.rotate(g_m2tail, 0,1,0);
   m2tail.matrix.scale(1, .65, .6);
   m2tail.render();
 
@@ -369,8 +428,8 @@ function renderAllShapes() {
   var tiptail = new Cone();
   tiptail.color = PINK;
   tiptail.matrix.set(m2tailCoordinates); //connect to base of tail
-  tiptail.matrix.translate(-1,.1,.2);
-  tiptail.matrix.rotate(g_tiptail, 0,0,1);
+  tiptail.matrix.translate(-.9,.1,.2);
+  tiptail.matrix.rotate(g_tiptail, 0,1,0);
   tiptail.matrix.scale(1, .65, .6);
   tiptail.matrix.translate(1, 0.1, 0.0); 
   tiptail.matrix.rotate(90, 0, 0, 1); //rotates the point of the cone
@@ -388,7 +447,7 @@ function renderAllShapes() {
 
   var headCoordinates = new Matrix4(head.matrix);
 
-  //ears
+  //ears ===============================================
   var earR = new Cone();
   earR.color = GREY;
   earR.matrix.set(headCoordinates);
@@ -422,7 +481,7 @@ function renderAllShapes() {
   inearL.render();
 
 
-  //snout
+  //snout ========================================================
   var snout = new Cube();
   snout.color = LLGREY;
   snout.matrix.set(headCoordinates); //connects to head
@@ -442,7 +501,7 @@ function renderAllShapes() {
 
   var snout2Coordinates = new Matrix4(snout2.matrix);
 
-  //nose
+  //nose ================================================================
   var nose = new Sphere();
   nose.color = PINK; 
   nose.matrix.set(snout2Coordinates); //connects to head
@@ -450,7 +509,7 @@ function renderAllShapes() {
   nose.matrix.scale(.5, .3, .2);
   nose.render();
 
-  //EYES
+  //EYES ==============================================================
   var eyeR = new Sphere();
   eyeR.color = BLACK;
   eyeR.matrix.set(snoutCoordinates);
@@ -512,7 +571,7 @@ function renderAllShapes() {
   upperBR.color = DGREY;
 
   upperBR.matrix.set(buttCoordinates); //connects to body
-  upperBR.matrix.translate(0.5, -.05, -0.01);
+  upperBR.matrix.translate(0.5, -.1, -0.01);
   upperBR.matrix.rotate(g_upperBR, 0,0,1);
   upperBR.matrix.scale(0.4, 0.6, 0.2);
   upperBR.render(); 
@@ -524,8 +583,11 @@ function renderAllShapes() {
 
   lowerBR.matrix.set(upperBRCoordinates); //CONNECTS TO UPPER LEG
   lowerBR.matrix.translate(.2, -.7, 0.1);
+  lowerBR.matrix.translate(1.0, 0.05, 0.5);
   lowerBR.matrix.rotate(g_lowerBR, 0,0,1); //set up for joint
+  lowerBR.matrix.translate(-1.0, 0.0, -0.5);
   lowerBR.matrix.scale(0.8, .7, 0.9);
+  lowerBR.matrix.translate(-0.4, 0, 0.0);
   lowerBR.render();
   var lowerBRCoordinates=new Matrix4(lowerBR.matrix);
 
@@ -557,9 +619,11 @@ function renderAllShapes() {
   lowerFL.color = GREY; 
 
   lowerFL.matrix.set(upperFLCoordinates); //CONNECTS TO UPPER LEG
+  lowerFL.matrix.translate(.8, 0.7, 0.5);
   lowerFL.matrix.translate(.2, -.7, 0.01);
   lowerFL.matrix.rotate(g_lowerFL, 0,0,1); //set up for joint
   lowerFL.matrix.scale(0.8, .7, 0.9);
+  lowerFL.matrix.translate(-1.0, -1.0, -0.5);
   lowerFL.render();
   var lowerFLCoordinates=new Matrix4(lowerFL.matrix);
 
@@ -579,7 +643,7 @@ function renderAllShapes() {
   upperBL.color = DGREY; 
 
   upperBL.matrix.set(buttCoordinates); //connects to body
-  upperBL.matrix.translate(0.5, -.05, .81);
+  upperBL.matrix.translate(0.5, -.1, .81);
   upperBL.matrix.rotate(g_upperBL, 0,0,1);
   upperBL.matrix.scale(0.4, 0.6, 0.2);
   upperBL.render(); 
@@ -591,10 +655,14 @@ function renderAllShapes() {
 
   lowerBL.matrix.set(upperBLCoordinates); //CONNECTS TO UPPER LEG
   lowerBL.matrix.translate(.2, -.7, -.01);
+  lowerBL.matrix.translate(1.0, 0.05, 0.5);
   lowerBL.matrix.rotate(g_lowerBL, 0,0,1); //set up for joint
-  lowerBL.matrix.scale(0.8, .7, 0.9);
+  lowerBL.matrix.translate(-1.0, 0.0, -0.5);
+  lowerBL.matrix.scale(0.6, .7, 0.9);
+  lowerBR.matrix.translate(-0.4, 0, 0.0);
   lowerBL.render();
   var lowerBLCoordinates=new Matrix4(lowerBL.matrix);
+
 
   // BACK LEFT paw
   var pawBL = new Cube();
@@ -656,9 +724,6 @@ function sendTextToHTML(text, htmlID) {
   }
   htmlElm.innerHTML = text;
 }
-
-var g_shapesList = [];
-var g_redoList = []; 
 
 function click(ev) { //transforms the coords from browser to canvas
   
