@@ -204,7 +204,7 @@ function renderAllShapes() {
   upperFL.matrix.set(bodyCoordinates); //connects to body
   upperFL.matrix.translate(0.75, -.1, 0.1); 
   upperFL.matrix.rotate(g_upperFL, 0,0,1);
-  upperFL.matrix.scale(0.15, 0.3, 0.15);
+  upperFL.matrix.scale(0.2, 0.4, 0.18);
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
 
