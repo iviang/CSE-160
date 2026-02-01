@@ -5,8 +5,13 @@ CSE 160
 
 Blocky 3D Animal - Rat
 
-Non-cube primitive: Sphere, Cone
-Poke Animation: barrel roll
+Non-cube primitive: Sphere.js, Cone.js
+Poke Animation (Shift-Click): barrel roll
+
+notes:
+I included a start/stop button for a full body animation. If during that process, any of the individual animations are turned on, they will keep running after the full body animation is stopped. However, the when the full body animation is running, the individual parts can't be stopped by the individual "Off" buttons, only its own "Stop" button.
+"Wiggle": Subtly moves the lower half (the butt) of the rat.
+"Wag Tail": The slider moves the whole tail with just the base section. The animation is different, I made it so that it moves all joints of the tail in a more fluid motion. 
 
 References:
 refrenced asgn1
