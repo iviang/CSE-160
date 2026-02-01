@@ -202,7 +202,7 @@ function renderAllShapes() {
   upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   upperFL.matrix.set(bodyCoordinates); //connects to body
-  upperFL.matrix.translate(0.75, -.1, 0.1); 
+  upperFL.matrix.translate(0.75, -.1, -0.01); 
   upperFL.matrix.rotate(g_upperFL, 0,0,1);
   upperFL.matrix.scale(0.4, 0.4, 0.3);
   upperFL.render(); 
