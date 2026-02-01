@@ -119,6 +119,7 @@ let g_pawBL=0;
 let g_headAnimation=false;
 let g_headAngle=0;
 
+let g_upperFRAnimation=false;
 
 
 //set up actions for the HTML UI elements
@@ -128,11 +129,16 @@ function addActionsForHtmlUI(){
   document.getElementById('animationHeadOffButton').onclick = function() {g_headAnimation=false;};
   document.getElementById('animationHeadOnButton').onclick = function() {g_headAnimation=true;};
 
+  document.getElementById('animationFrontRightLegOffButton').onclick = function() {g_upperFRAnimation=false;};
+  document.getElementById('animationFrontRightLegOnButton').onclick = function() {g_upperFRAnimation=true;};
+
   // document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
   // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
   // slider events
   document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); });
+  document.getElementById('upperFRSlide').addEventListener('mousemove', function() { g_upperFR = this.value; renderAllShapes(); });
+
   // document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
   //size slider events
@@ -187,9 +193,15 @@ function updateAnimationAngles(){
   if (g_headAnimation) {
     g_headAngle = (45*Math.sin(g_seconds));
   }
-  // if (g_magentaAnimation) {
-  //   g_magentaAngle = (45*Math.sin(3*g_seconds));
-  // }
+  if (g_upperFRAnimation) {
+    const min = -10;
+    const max = 35;
+    const midpoint = (min + max) / 2;
+    const amplitude = (max - min) / 2;
+    
+    g_upperFR = midpoint + amplitude * Math.sin(4*g_seconds); //restricted the movement into a natural looking range 
+  }
+
 }
 
 function renderAllShapes() {
@@ -282,7 +294,7 @@ function renderAllShapes() {
   head.color = [1,0,0,1];
   head.matrix.set(bodyCoordinates); //connects to body
   head.matrix.translate(1,0,0.07);
-  head.matrix.rotate(-g_headAngle, 0,1,0);
+  head.matrix.rotate(-g_headAngle, 0,1,0); //move head
   head.matrix.scale(.5, .9, .85);
   head.render();
 
@@ -316,7 +328,7 @@ function renderAllShapes() {
 
   upperFR.matrix.set(bodyCoordinates); //connects to body
   upperFR.matrix.translate(0.75, -.3, -0.01);
-  upperFR.matrix.rotate(g_upperFR, 0,0,1);
+  upperFR.matrix.rotate(g_upperFR, 0,0,1); //move the leg
   upperFR.matrix.scale(0.15, 0.6, 0.25);
   upperFR.render(); 
   var upperFRCoordinates=new Matrix4(upperFR.matrix);
