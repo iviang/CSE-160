@@ -219,6 +219,18 @@ function updateAnimationAngles(){
 
 }
 
+//color creation
+const BLACK = [0.0, 0.0, 0.0, 1.0];
+const PINK  = [1.0, 0.6, 0.7, 1.0];
+const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
+const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
+const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
+const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
+const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
+const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
+const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey
+
+
 function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
@@ -237,7 +249,7 @@ function renderAllShapes() {
 
   //draw the body cube
   var body = new Cube();
-  body.color = [0.7, 0.7, 0.7, 1.0]; //light GREY COLORED
+  body.color = MGREY;
   body.matrix.set(base); 
   // body.matrix.translate(-.3, -.2, -0.15);
   // body.matrix.rotate(-5,1,0,0);
@@ -249,7 +261,7 @@ function renderAllShapes() {
   //butt
 
   var butt = new Cube();
-  butt.color = [0.6, 0.6, 0.6, 1.0]; //darker grey
+  butt.color = GREY;
   butt.matrix.set(base);
   butt.matrix.translate(-0.20, -0.05, -0.025);
   butt.matrix.scale(0.3, 0.35, 0.55);
@@ -262,7 +274,7 @@ function renderAllShapes() {
 
   //base of tail
   var btail = new Cube();
-  btail.color = [1,0,0,0];
+  btail.color = DPINK;
   btail.matrix.set(buttCoordinates); //connects to butt
   btail.matrix.translate(-.3,.15,.4);
   btail.matrix.rotate(g_btail, 0,0,1);
@@ -274,7 +286,7 @@ function renderAllShapes() {
   // mid tail 1
 
   var m1tail = new Cube();
-  m1tail.color = [1,0,0,1];
+  m1tail.color = PINK;
   m1tail.matrix.set(btailCoordinates); //connect to base of tail
   m1tail.matrix.translate(-1,.1,.2);
   m1tail.matrix.rotate(g_m1tail, 0,0,1);
@@ -285,7 +297,7 @@ function renderAllShapes() {
 
   // mid tail 2
   var m2tail = new Cube();
-  m2tail.color = [1,0,0,0];
+  m2tail.color = PINK;
   m2tail.matrix.set(m1tailCoordinates); //connect to base of tail
   m2tail.matrix.translate(-1,.1,.2);
   m2tail.matrix.rotate(g_m2tail, 0,0,1);
@@ -296,7 +308,7 @@ function renderAllShapes() {
 
   // tail tip
   var tiptail = new Cube();
-  tiptail.color = [1,0,0,1];
+  tiptail.color = PINK;
   tiptail.matrix.set(m2tailCoordinates); //connect to base of tail
   tiptail.matrix.translate(-1,.1,.2);
   tiptail.matrix.rotate(g_tiptail, 0,0,1);
@@ -306,7 +318,7 @@ function renderAllShapes() {
   //HEAD ==================================================================================
   
   var head = new Cube();
-  head.color = [1,0,0,1];
+  head.color = LLGREY;
   head.matrix.set(bodyCoordinates); //connects to body
   head.matrix.translate(1,0,0.07);
   head.matrix.rotate(-g_headAngle, 0,1,0); //move head
@@ -317,21 +329,48 @@ function renderAllShapes() {
 
   //snout
   var snout = new Cube();
-  snout.color = [1,0,0,0];
+  snout.color = LLGREY;
   snout.matrix.set(headCoordinates); //connects to head
   snout.matrix.translate(1,0.05,0.16);
-  snout.matrix.scale(.6, .8, .7);
+  snout.matrix.scale(.4, .8, .7);
   snout.render();
 
   var snoutCoordinates = new Matrix4(snout.matrix);
 
+  //snout2
+  var snout2 = new Sphere();
+  snout2.color = LLGREY;
+  snout2.matrix.set(snoutCoordinates); //connects to head
+  snout2.matrix.translate(0.6,0,0.16);
+  snout2.matrix.scale(1, 0.8, .8);
+  snout2.render();
+
+  var snout2Coordinates = new Matrix4(snout2.matrix);
+
   //nose
-  var nose = new Cube();
-  nose.color = [1,0,0,1];
-  nose.matrix.set(snoutCoordinates); //connects to head
-  nose.matrix.translate(1,0.05,0.4);
-  nose.matrix.scale(.4, .3, .2);
+  var nose = new Sphere();
+  nose.color = PINK; 
+  nose.matrix.set(snout2Coordinates); //connects to head
+  nose.matrix.translate(.8,0.05,0.4);
+  nose.matrix.scale(.5, .3, .2);
   nose.render();
+
+  //EYES
+  var eyeR = new Sphere();
+  eyeR.color = BLACK;
+  eyeR.matrix.set(snoutCoordinates);
+  eyeR.matrix.translate(0, 0.5, -.2);
+  eyeR.matrix.scale(0.5, 0.3, 0.3);
+  eyeR.render();
+
+  var eyeL = new Sphere();
+  eyeL.color = BLACK;
+  eyeL.matrix.set(snoutCoordinates);
+  eyeL.matrix.translate(0, 0.5, .9);
+  eyeL.matrix.scale(0.5, 0.3, 0.3);
+  eyeL.render();
+
+
 
   //LEGS (4 upper + 4 lower + 4 paws) =======================================================
 
@@ -339,7 +378,7 @@ function renderAllShapes() {
 
   // upper FRONT RIGHT leg
   var upperFR = new Cube();
-  upperFR.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  upperFR.color = LGREY;
 
   upperFR.matrix.set(bodyCoordinates); //connects to body
   upperFR.matrix.translate(0.75, -.3, -0.01);
@@ -350,11 +389,9 @@ function renderAllShapes() {
 
   // lower FRONT RIGHT leg
   var lowerFR = new Cube();
-  lowerFR.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  lowerFR.color = GREY; 
 
   lowerFR.matrix.set(upperFRCoordinates); //CONNECTS TO UPPER LEG
-  // lowerFR.matrix.translate(0, -1, 0);
-
   lowerFR.matrix.translate(1, 0, 0.5);
   lowerFR.matrix.rotate(g_lowerFR, 0,0,1); //set up for joint
   lowerFR.matrix.scale(0.8, .7, 0.9);
@@ -365,7 +402,7 @@ function renderAllShapes() {
 
   // Front RIGHT paw
   var pawFR = new Cube();
-  pawFR.color = [1,0,0,0]; // [0.6, 0.6, 0.6, 1.0];
+  pawFR.color = PINK;
 
   pawFR.matrix.set(lowerFRCoordinates); //CONNECTS TO UPPER LEG
   pawFR.matrix.translate(.5, -.1, 0.1);
@@ -377,7 +414,7 @@ function renderAllShapes() {
   
   // upper BACK RIGHT leg
   var upperBR = new Cube();
-  upperBR.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  upperBR.color = DGREY;
 
   upperBR.matrix.set(buttCoordinates); //connects to body
   upperBR.matrix.translate(0.5, -.05, -0.01);
@@ -388,7 +425,7 @@ function renderAllShapes() {
 
   // lower BACK RIGHT leg
   var lowerBR = new Cube();
-  lowerBR.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  lowerBR.color = GREY; 
 
   lowerBR.matrix.set(upperBRCoordinates); //CONNECTS TO UPPER LEG
   lowerBR.matrix.translate(.2, -.7, 0.1);
@@ -399,7 +436,7 @@ function renderAllShapes() {
 
   // BACK RIGHT paw
   var pawBR = new Cube();
-  pawBR.color = [1,0,0,0]; // [0.6, 0.6, 0.6, 1.0];
+  pawBR.color = [1.0, 0.6, 0.7, 1.0]; // [0.6, 0.6, 0.6, 1.0];
 
   pawBR.matrix.set(lowerBRCoordinates); //CONNECTS TO UPPER LEG
   pawBR.matrix.translate(.5, -.1, 0.1);
@@ -411,7 +448,7 @@ function renderAllShapes() {
 
   // upper FRONT LEFT leg
   var upperFL = new Cube();
-  upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  upperFL.color = LGREY;  
 
   upperFL.matrix.set(bodyCoordinates); //connects to body
   upperFL.matrix.translate(0.75, -.3, .72);
@@ -422,7 +459,7 @@ function renderAllShapes() {
 
   // lower FRONT LEFT leg
   var lowerFL = new Cube();
-  lowerFL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  lowerFL.color = GREY; 
 
   lowerFL.matrix.set(upperFLCoordinates); //CONNECTS TO UPPER LEG
   lowerFL.matrix.translate(.2, -.7, 0.01);
@@ -433,7 +470,7 @@ function renderAllShapes() {
 
   // Front LEFT paw
   var pawFL = new Cube();
-  pawFL.color = [1,0,0,0]; // [0.6, 0.6, 0.6, 1.0];
+  pawFL.color = [1.0, 0.6, 0.7, 1.0];  
 
   pawFL.matrix.set(lowerFLCoordinates); //CONNECTS TO UPPER LEG
   pawFL.matrix.translate(.5, -.1, 0.1);
@@ -444,7 +481,7 @@ function renderAllShapes() {
 
   // upper BACK LEFT leg
   var upperBL = new Cube();
-  upperBL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  upperBL.color = DGREY; 
 
   upperBL.matrix.set(buttCoordinates); //connects to body
   upperBL.matrix.translate(0.5, -.05, .81);
@@ -455,7 +492,7 @@ function renderAllShapes() {
 
   // lower BACK LEFT leg
   var lowerBL = new Cube();
-  lowerBL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
+  lowerBL.color = GREY;  
 
   lowerBL.matrix.set(upperBLCoordinates); //CONNECTS TO UPPER LEG
   lowerBL.matrix.translate(.2, -.7, -.01);
@@ -466,7 +503,7 @@ function renderAllShapes() {
 
   // BACK LEFT paw
   var pawBL = new Cube();
-  pawBL.color = [1,0,0,0]; // [0.6, 0.6, 0.6, 1.0];
+  pawBL.color = [1.0, 0.6, 0.7, 1.0]; // [0.6, 0.6, 0.6, 1.0];
 
   pawBL.matrix.set(lowerBLCoordinates); //CONNECTS TO UPPER LEG
   pawBL.matrix.translate(.5, -.1, 0.1);

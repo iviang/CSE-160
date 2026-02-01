@@ -9,4 +9,7 @@ used youtube playlist for guidance
 used the WebGL textbook for guidance
 used gpt for debug support
 live preview extension vs code to see live changes
-implemented a sphere class to make eyes https://stackoverflow.com/questions/43325301/java-beginner-sphere-class 
+implemented a sphere class to make eyes
+https://stackoverflow.com/questions/43325301/java-beginner-sphere-class 
+http://blog.andreaskahler.com/2009/06/creating-icosphere-mesh-in-code.html
+https://en.wikipedia.org/wiki/Equirectangular_projection
