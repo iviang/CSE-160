@@ -206,24 +206,24 @@ function renderAllShapes() {
   var body = new Cube();
   body.color = [0.6, 0.6, 0.6, 1.0]; //GREY COLORED 
   body.matrix.translate(-.3, -.2, -0.15);
-  body.matrix.rotate(-5,1,0,0);
-  body.matrix.scale(.8, .3, .3);
+  // body.matrix.rotate(-5,1,0,0);
+  body.matrix.scale(.8, .4, .5);
   body.render();
 
   var bodyCoordinates= new Matrix4(body.matrix);
 
-  //LEGS (4 upper + 4 lower + 4 paws)
+  //LEGS (4 upper + 4 lower + 4 paws) =======================================================
 
-  //R SIDE:
+  //R SIDE:==============================================
 
   // upper FRONT RIGHT leg
   var upperFR = new Cube();
   upperFR.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   upperFR.matrix.set(bodyCoordinates); //connects to body
-  upperFR.matrix.translate(0.75, -.1, -0.01);
+  upperFR.matrix.translate(0.75, -.3, -0.01);
   upperFR.matrix.rotate(g_upperFR, 0,0,1);
-  upperFR.matrix.scale(0.15, 0.55, 0.3);
+  upperFR.matrix.scale(0.15, 0.6, 0.3);
   upperFR.render(); 
   var upperFRCoordinates=new Matrix4(upperFR.matrix);
 
@@ -232,9 +232,9 @@ function renderAllShapes() {
   lowerFR.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   lowerFR.matrix = upperFRCoordinates; //CONNECTS TO UPPER LEG
-  lowerFR.matrix.translate(.2, -1, 0.1);
+  lowerFR.matrix.translate(.2, -.7, 0.1);
   lowerFR.matrix.rotate(g_lowerFR, 0,0,1); //set up for joint
-  lowerFR.matrix.scale(0.8, 1, 0.9);
+  lowerFR.matrix.scale(0.8, .7, 0.9);
   lowerFR.render();
   var lowerFRCoordinates=new Matrix4(lowerFR.matrix);
 
@@ -248,16 +248,14 @@ function renderAllShapes() {
   pawFR.matrix.scale(0.8, .1, 0.9);
   pawFR.render();
 
-
-
   // upper BACK RIGHT leg
   var upperBR = new Cube();
   upperBR.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   upperBR.matrix.set(bodyCoordinates); //connects to body
-  upperBR.matrix.translate(0.01, -.1, -0.01);
+  upperBR.matrix.translate(0.01, -.3, -0.01);
   upperBR.matrix.rotate(g_upperBR, 0,0,1);
-  upperBR.matrix.scale(0.15, 0.55, 0.3);
+  upperBR.matrix.scale(0.15, 0.6, 0.3);
   upperBR.render(); 
   var upperBRCoordinates=new Matrix4(upperBR.matrix);
 
@@ -266,9 +264,9 @@ function renderAllShapes() {
   lowerBR.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   lowerBR.matrix = upperBRCoordinates; //CONNECTS TO UPPER LEG
-  lowerBR.matrix.translate(.2, -1, 0.1);
+  lowerBR.matrix.translate(.2, -.7, 0.1);
   lowerBR.matrix.rotate(g_lowerBR, 0,0,1); //set up for joint
-  lowerBR.matrix.scale(0.8, 1, 0.9);
+  lowerBR.matrix.scale(0.8, .7, 0.9);
   lowerBR.render();
   var lowerBRCoordinates=new Matrix4(lowerBR.matrix);
 
@@ -282,16 +280,16 @@ function renderAllShapes() {
   pawBR.matrix.scale(0.8, .1, 0.9);
   pawBR.render();
 
-  //L SIDE:
+  //L SIDE: =================================================
 
   // upper FRONT LEFT leg
   var upperFL = new Cube();
   upperFL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   upperFL.matrix.set(bodyCoordinates); //connects to body
-  upperFL.matrix.translate(0.75, -.1, -0.01);
+  upperFL.matrix.translate(0.75, -.3, .72);
   upperFL.matrix.rotate(g_upperFL, 0,0,1);
-  upperFL.matrix.scale(0.15, 0.55, 0.3);
+  upperFL.matrix.scale(0.15, 0.6, 0.3);
   upperFL.render(); 
   var upperFLCoordinates=new Matrix4(upperFL.matrix);
 
@@ -300,9 +298,9 @@ function renderAllShapes() {
   lowerFL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   lowerFL.matrix = upperFLCoordinates; //CONNECTS TO UPPER LEG
-  lowerFL.matrix.translate(.2, -1, 0.1);
+  lowerFL.matrix.translate(.2, -.7, 0.01);
   lowerFL.matrix.rotate(g_lowerFL, 0,0,1); //set up for joint
-  lowerFL.matrix.scale(0.8, 1, 0.9);
+  lowerFL.matrix.scale(0.8, .7, 0.9);
   lowerFL.render();
   var lowerFLCoordinates=new Matrix4(lowerFL.matrix);
 
@@ -323,9 +321,9 @@ function renderAllShapes() {
   upperBL.color = [1,1,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   upperBL.matrix.set(bodyCoordinates); //connects to body
-  upperBL.matrix.translate(0.01, -.1, -0.01);
+  upperBL.matrix.translate(0.01, -.3, .72);
   upperBL.matrix.rotate(g_upperBL, 0,0,1);
-  upperBL.matrix.scale(0.15, 0.55, 0.3);
+  upperBL.matrix.scale(0.15, 0.6, 0.3);
   upperBL.render(); 
   var upperBLCoordinates=new Matrix4(upperBL.matrix);
 
@@ -334,9 +332,9 @@ function renderAllShapes() {
   lowerBL.color = [1,0,0,1]; // [0.6, 0.6, 0.6, 1.0];
 
   lowerBL.matrix = upperBLCoordinates; //CONNECTS TO UPPER LEG
-  lowerBL.matrix.translate(.2, -1, 0.1);
+  lowerBL.matrix.translate(.2, -.7, -.01);
   lowerBL.matrix.rotate(g_lowerBL, 0,0,1); //set up for joint
-  lowerBL.matrix.scale(0.8, 1, 0.9);
+  lowerBL.matrix.scale(0.8, .7, 0.9);
   lowerBL.render();
   var lowerBLCoordinates=new Matrix4(lowerBL.matrix);
 
@@ -350,8 +348,7 @@ function renderAllShapes() {
   pawBL.matrix.scale(0.8, .1, 0.9);
   pawBL.render();
 
-
-
+  //BUTT
 
   //draw a left arm
   // var yellow = new Cube();
