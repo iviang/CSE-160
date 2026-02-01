@@ -100,7 +100,6 @@ let g_m1tail=0;
 let g_m2tail=0;
 let g_tiptail=0;
 
-
 let g_upperFR= 0;
 let g_lowerFR= 0;
 let g_pawFR=0;
@@ -117,20 +116,24 @@ let g_upperBL= 0;
 let g_lowerBL= 0;
 let g_pawBL=0;
 
+let g_headAnimation=false;
+let g_headAngle=0;
+
+
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
   
   //Button Events
-  document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
-  document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
+  document.getElementById('animationHeadOffButton').onclick = function() {g_headAnimation=false;};
+  document.getElementById('animationHeadOnButton').onclick = function() {g_headAnimation=true;};
 
-  document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
-  document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
+  // document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
+  // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
-  //color slider events
-  document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
-  document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
+  // slider events
+  document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); });
+  // document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
   //size slider events
   // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_AnimalGlobalRotation = this.value; renderAllShapes(); });
@@ -181,12 +184,12 @@ function tick() {
 
 //update the anggles of everything if currently animated
 function updateAnimationAngles(){
-  if (g_yellowAnimation) {
-    g_yellowAngle = (45*Math.sin(g_seconds));
+  if (g_headAnimation) {
+    g_headAngle = (45*Math.sin(g_seconds));
   }
-  if (g_magentaAnimation) {
-    g_magentaAngle = (45*Math.sin(3*g_seconds));
-  }
+  // if (g_magentaAnimation) {
+  //   g_magentaAngle = (45*Math.sin(3*g_seconds));
+  // }
 }
 
 function renderAllShapes() {
@@ -279,6 +282,7 @@ function renderAllShapes() {
   head.color = [1,0,0,1];
   head.matrix.set(bodyCoordinates); //connects to body
   head.matrix.translate(1,0,0.07);
+  head.matrix.rotate(-g_headAngle, 0,1,0);
   head.matrix.scale(.5, .9, .85);
   head.render();
 
@@ -405,7 +409,6 @@ function renderAllShapes() {
   pawFL.matrix.rotate(g_pawFL, 0,0,1); //set up for joint
   pawFL.matrix.scale(0.8, .1, 0.9);
   pawFL.render();
-
 
 
   // upper BACK LEFT leg
