@@ -94,13 +94,6 @@ let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
 let g_selectedType=POINT;
 let g_AnimalGlobalRotation=0;
-// let g_yellowAngle=0;
-// let g_magentaAngle=0;
-// let g_yellowAnimation=false;
-// let g_magentaAnimation=false;
-// let g_upperFL= 0;
-// let g_lowerFL= 0;
-// let g_pawFL=0;
 
 let g_btail=0;
 let g_m1tail=0;
@@ -177,7 +170,7 @@ function tick() {
   console.log(g_seconds);
 
   //update animation angles
-  // updateAnimationAngles();
+  updateAnimationAngles();
 
   // Draw everything
   renderAllShapes();
@@ -187,14 +180,14 @@ function tick() {
 }
 
 //update the anggles of everything if currently animated
-// function updateAnimationAngles(){
-//   if (g_yellowAnimation) {
-//     g_yellowAngle = (45*Math.sin(g_seconds));
-//   }
-//   if (g_magentaAnimation) {
-//     g_magentaAngle = (45*Math.sin(3*g_seconds));
-//   }
-// }
+function updateAnimationAngles(){
+  if (g_yellowAnimation) {
+    g_yellowAngle = (45*Math.sin(g_seconds));
+  }
+  if (g_magentaAnimation) {
+    g_magentaAngle = (45*Math.sin(3*g_seconds));
+  }
+}
 
 function renderAllShapes() {
   //check the time at the start of this function
@@ -206,7 +199,7 @@ function renderAllShapes() {
 
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  gl.clear(gl.COLOR_BUFFER_BIT );
+  // gl.clear(gl.COLOR_BUFFER_BIT );
 
   //base
   var base = new Matrix4();
