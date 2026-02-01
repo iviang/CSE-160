@@ -3,6 +3,9 @@ Author: Vivian Nguyen
 Davis - Winter 2026 
 CSE 160
 
+site:
+https://iviang.github.io/CSE-160/asgn2/src/BlockyAnimal.html
+
 Blocky 3D Animal - Rat
 
 Non-cube primitive: Sphere.js, Cone.js
