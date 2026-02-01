@@ -228,6 +228,19 @@ function renderAllShapes() {
   
   var buttCoordinates = new Matrix4(butt.matrix);
 
+  // TAIL =======================================================
+  // connect to butt
+  
+
+  //HEAD ==================================================================================
+  
+  var head = new Cube();
+  head.color = [1,0,0,1];
+  head.matrix.set(bodyCoordinates); //connects to body
+  head.matrix.translate(1,0,0.05);
+  head.matrix.scale(.5, .9, .9);
+  head.render();
+
   //LEGS (4 upper + 4 lower + 4 paws) =======================================================
 
   //R SIDE:==============================================
