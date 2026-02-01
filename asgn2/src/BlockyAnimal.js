@@ -278,20 +278,42 @@ function buttAnimation() {
 }
 
 function walkAnimation() {
-  
+  const t = 3 * g_seconds;
+  //walking should be diagonal to look natural
+  const group_A = t; //Front Right sync with Back Left
+  const group_B = t + Math.PI; //Front Right sync with Back Left
+  const delay = Math.PI / 2; // attempt to delay the lower legs
+
+  g_upperFR = walkRestrictions(-10, 35,group_A);
+  g_upperBL = walkRestrictions(-10, 35, group_A);
+
+  g_upperFL = walkRestrictions(-10, 35, group_B);
+  g_upperBR = walkRestrictions(-10, 35, group_B);
+
+  g_lowerFR = walkRestrictions(-35, 5, group_A + delay);
+  g_lowerBL = walkRestrictions(-15, 5, group_A + delay);
+
+  g_lowerFL = walkRestrictions(-35, 5, group_B + delay);
+  g_lowerBR = walkRestrictions(-15, 5, group_B + delay);
+
 }
 
+function walkRestrictions(min, max, t){
+  const midpoint = (min+max) / 2;
+  const amplitude = (max-min) / 2;
+  return midpoint + amplitude * Math.sin(t);
+}
 
-
-//update the anggles of everything if currently animated
+//update the angles of everything if currently animated
 function updateAnimationAngles(){
   if (g_Animation){ //this function specifically shows the full animation of my rat
     headAnimation();
     tailAnimation();
     buttAnimation();
-
+    walkAnimation();
     return;
   }
+
   if (g_headAnimation) {
     headAnimation();
   }
@@ -303,6 +325,11 @@ function updateAnimationAngles(){
     tailAnimation();
   }
 
+  if (g_WalkAnimation) { //all legs moving at once
+    walkAnimation();
+  }
+
+  //below are the movement of the individual leg pieces
   if (g_upperFRAnimation) {
     const min = -10;
     const max = 35;
@@ -337,7 +364,7 @@ function updateAnimationAngles(){
     g_lowerFL = midpoint + amplitude * Math.sin(3*g_seconds); //restricted the movement into a natural looking range 
   }
 
-    if (g_upperBRAnimation) {
+  if (g_upperBRAnimation) {
     const min = -10;
     const max = 35;
     const midpoint = (min + max) / 2;
