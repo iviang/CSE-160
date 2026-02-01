@@ -136,6 +136,8 @@ let g_lowerBRAnimation=false;
 let g_upperBLAnimation=false;
 let g_lowerBLAnimation=false;
 
+let g_Animation=false;
+let g_WalkAnimation=false;
 
 
 //set up actions for the HTML UI elements
@@ -143,8 +145,11 @@ function addActionsForHtmlUI(){
   
   //Button Events ===================
 
-  
+  //full animation
+  document.getElementById('animationOffButton').onclick = function() {g_Animation=false;};
+  document.getElementById('animationOnButton').onclick = function() {g_Animation=true;};
 
+  //head turning animation
   document.getElementById('animationHeadOffButton').onclick = function() {g_headAnimation=false;};
   document.getElementById('animationHeadOnButton').onclick = function() {g_headAnimation=true;};
 
@@ -156,6 +161,11 @@ function addActionsForHtmlUI(){
   document.getElementById('animationTailOffButton').onclick = function() {g_tailAnimation=false;};
   document.getElementById('animationTailOnButton').onclick = function() {g_tailAnimation=true;};
 
+  //walking animation
+  document.getElementById('animationWalkOffButton').onclick = function() {g_WalkAnimation=false;};
+  document.getElementById('animationWalkOnButton').onclick = function() {g_WalkAnimation=true;};
+
+  //Individual Leg events:
   //FRONT LEGS
   document.getElementById('animationFrontRightLegOffButton').onclick = function() {g_upperFRAnimation=false;};
   document.getElementById('animationFrontRightLegOnButton').onclick = function() {g_upperFRAnimation=true;};
@@ -246,24 +256,51 @@ function tick() {
   requestAnimationFrame(tick);
 }
 
+//individual animation functions so that the overall animation button can call upon them
+
+function headAnimation() {
+  g_headAngle = (45*Math.sin(g_seconds));
+}
+
+function tailAnimation() {
+  g_btail = (10*Math.sin(g_seconds));
+  g_m1tail = (20*Math.sin(g_seconds));
+  g_m2tail = (25*Math.sin(g_seconds));
+  g_tiptail = (30*Math.sin(g_seconds));
+}
+
+function buttAnimation() {
+  const min = -5;
+  const max = 5;
+  const midpoint = (min + max) / 2;
+  const amplitude = (max - min) / 2;
+  g_buttAngle = midpoint + amplitude * Math.sin(g_seconds);
+}
+
+function walkAnimation() {
+  
+}
+
+
+
 //update the anggles of everything if currently animated
 function updateAnimationAngles(){
+  if (g_Animation){ //this function specifically shows the full animation of my rat
+    headAnimation();
+    tailAnimation();
+    buttAnimation();
+
+    return;
+  }
   if (g_headAnimation) {
-    g_headAngle = (45*Math.sin(g_seconds));
+    headAnimation();
   }
   if (g_buttAnimation) {
-      const min = -5;
-    const max = 5;
-    const midpoint = (min + max) / 2;
-    const amplitude = (max - min) / 2;
-    g_buttAngle = midpoint + amplitude * Math.sin(g_seconds);
+    buttAnimation();
   }
   
   if (g_tailAnimation){
-    g_btail = (10*Math.sin(g_seconds));
-    g_m1tail = (20*Math.sin(g_seconds));
-    g_m2tail = (25*Math.sin(g_seconds));
-    g_tiptail = (30*Math.sin(g_seconds));
+    tailAnimation();
   }
 
   if (g_upperFRAnimation) {
