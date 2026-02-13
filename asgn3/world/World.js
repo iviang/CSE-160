@@ -187,6 +187,8 @@ function addActionsForHtmlUI(){
   document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
   document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
+  // canvas.onmousemove = function(ev) { if (ev.buttons == 1) { click(ev) } };
+
   //size slider events
   // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_globalAngle = this.value; renderAllShapes(); });
   //size slider events
@@ -394,6 +396,7 @@ function renderAllShapes() {
 
   //pass view matrix
   var viewMat=new Matrix4();
+  viewMat.setLookAt(0,0,-1, 0,0,0, 0,1,0); //(eye, at, up)
   gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
 
   //Pass the matrix to u_ModelMatrix attribute
