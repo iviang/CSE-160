@@ -143,6 +143,13 @@ function connectVariablesToGLSL(){
     return;
   }
 
+  //get the storage location of u_Sampler1
+  u_Sampler1 = gl.getUniformLocation(gl.program, 'u_Sampler1');
+  if (!u_Sampler1) {
+    console.log('Failed to get the storage location of u_Sampler1');
+    return;
+  }
+
   u_whichTexture = gl.getUniformLocation(gl.program, 'u_whichTexture');
   if (!u_whichTexture) {
     console.log('Failed to get the storage location of u_whichTexture');
