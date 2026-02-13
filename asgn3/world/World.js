@@ -305,8 +305,8 @@ function buildWall(){
         walls.push(w);
       }
     }
+  }
 }
-
 
 function main() {
 
