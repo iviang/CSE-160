@@ -64,8 +64,8 @@ class Camera{
         b.normalize();
         b.mul(speed);
 
-        this.eye.sub(b);
-        this.at.sub(b);
+        this.eye.add(b);
+        this.at.add(b);
 
     }
 
@@ -84,8 +84,8 @@ class Camera{
 
     moveRight(speed) {
         let f = new Vector3();
-        f.set(this.eye);
-        f.sub(this.at);
+        f.set(this.at);
+        f.sub(this.eye);
         f.normalize();
 
         let s = Vector3.cross(f, this.up); // s = f x up
