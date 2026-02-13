@@ -430,12 +430,20 @@ function renderAllShapes() {
   // Test box
   var magenta = new Cube();
   magenta.color = [1,0,1,1];
+  magenta.textureNum=0;
   magenta.matrix = yellowCoordinatesMat;
   magenta.matrix.translate(0, 0.65, 0);
   magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
   magenta.matrix.scale(.3,.3,.3);
   magenta.matrix.translate(-.5, 0, -0.001);
   magenta.render();
+
+
+  //ground plane
+  var ground = new Cube();
+  ground.matrix.translate(0, 0, -1);
+  ground.matrix.scale(2, .1, 2);
+  ground.render();
 
   // a bunch of cubes rotating
   // var K=10.0;
