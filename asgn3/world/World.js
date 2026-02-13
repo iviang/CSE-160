@@ -27,22 +27,15 @@ var FSHADER_SOURCE = `
 
     } else if (u_whichTexture == -1) {                  //use UV debug color
       gl_FragColor = vec4(v_UV, 1.0, 1.0);
-      
+
     } else if (u_whichTexture == 0) {                   //use texture0
       gl_FragColor = texture2D(u_Sampler0, v_UV);       
     } else {                                            //error push Redish
       gl_FragColor = vec4(1,.2,.2,1);
     }
   
-  }'
-
-
-
-
-    gl_FragColor = u_FragColor;
-    gl_FragColor = vec4(v_UV, 1.0, 1.0);
-    gl_FragColor = texture2D(u_Sampler0, v_UV);
   }`
+
 
 // Global Variables
 let canvas;
