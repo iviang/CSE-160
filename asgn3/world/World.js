@@ -3,7 +3,7 @@
 var VSHADER_SOURCE = `
   precision mediump float;
   attribute vec4 a_Position;
-  attribute vec2 v_UV;
+  attribute vec2 a_UV;
   varying vec2 v_UV;
   uniform mat4 u_ModelMatrix;
   uniform mat4 u_GlobalRotateMatrix;
