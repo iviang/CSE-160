@@ -394,9 +394,9 @@ function keydown(ev) { //modify for the wasd keys
 // const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
 // const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey
 
-var g_eye=[0,0,3];
-var g_at=[0,0,-100];
-var g_up=[0,1,0];
+// var g_eye=[0,0,3];
+// var g_at=[0,0,-100];
+// var g_up=[0,1,0];
 
 function renderAllShapes() {
   //check the time at the start of this function
@@ -409,8 +409,13 @@ function renderAllShapes() {
 
   //pass view matrix 3.6a video
   var viewMat=new Matrix4();
-  viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
+  // viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
   // viewMat.setLookAt(0,0,3, 0,0,-100, 0,1,0); //(eye: xyz more z = farther away, at, up) 
+  viewMat.setLookAt(
+    g_camera.eye.x, g_camera.eye.y, g_camera.eye.z,
+    g_camera.at.x, g_camera.at.y, g_camera.at.z,
+    g_camera.up.x, g_camera.up.y, g_camera.up.z 
+  )
   gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
 
   //Pass the matrix to u_ModelMatrix attribute
@@ -420,6 +425,15 @@ function renderAllShapes() {
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
+
+  //draw the floor
+  var body = new Cube();
+  body.color = [1.0, 0.0, 0.0, 1.0];
+  body.textureNum=0;
+  body.matrix.translate(0, -.75, 0.0);
+  body.matrix.scale(10,0,10);
+  body.matrix.translate(-.5, 0, -0.5);
+  body.render();
 
 
   var body = new Cube();
