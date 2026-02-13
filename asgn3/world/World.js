@@ -39,6 +39,7 @@ var FSHADER_SOURCE = `
 
 // Global Variables
 let canvas;
+let camera; //
 let gl;
 let a_Position;
 let a_UV; // 
@@ -243,6 +244,7 @@ function main() {
 
   setupWebGL(); //set up canvas and gl variables
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
+  camera = new Camera(canvas); // set up camera
 
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
@@ -374,23 +376,21 @@ function updateAnimationAngles(){
 }
 
 function keydown(ev) { //modify for the wasd keys
-//   if (ev.keyCode==39) { //right arrow
-//     g_eye[0] += 0.2;
-//   } else if (ev.keyCode==37) { //left arrow
-//     g_eye[0] -= 0.2;
-//   }
-//   renderAllShapes();
-//   console.log(ev.keyCode);
-// }
+  const speed = 0.1; //speed
+  const alpha = 0.05; //rotation speed
 
   if (ev.keyCode == 87) {        // W
-    g_camera.forward();
+    g_camera.moveForward(speed);
   } else if (ev.keyCode == 83) { // S
-    g_camera.back();
+    g_camera.moveBackwards(speed);
   } else if (ev.keyCode == 65) { // A
-    g_camera.left();
+    g_camera.moveLeft(speed);
   } else if (ev.keyCode == 68) { // D
-    g_camera.right();
+    g_camera.moveRight(speed);
+  } else if (ev.keyCode == 81) { // Q
+    g_camera.panLeft(alpha);
+  } else if (ev.keyCode == 69) { // E
+    g_camera.panRight(alpha);
   }
 
   renderAllShapes();

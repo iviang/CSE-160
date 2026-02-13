@@ -1,11 +1,19 @@
 class Camera{
     constructor(){
-        this.eye=new Vector3([0,0,3]);
-        this.at=new Vector3([0,0,-100]);
-        this.up=new Vector3([0,1,0]);
+        this.fov=60; //fov       
+        this.eye=new Vector3([0,0,0]); //eye
+        this.at=new Vector3([0,0,-1]); //at
+        this.up=new Vector3([0,1,0]); //up
 
-        this.speed=0.2;
-        // this.rot = 5; //rotation degrees placeholder
+        this.viewMatrix = new Matrix4();
+        this.viewMatrix.setLookAt(
+            this.eye.elements[0], this.eye.elements[1], this.eye.elements[2],
+            this.at.elements[0], this.at.elements[1], this.at.elements[2],
+            this.up.elements[0], this.up.elements[1], this.up.elements[2]
+        );
+
+        this.projectionMatrix = new Matrix4();
+        this.projectionMatrix.setPerspective(this.fov, canvas.width/canvas.height, 0.1, 1000);
     }
 
     sub(a, b){
@@ -38,65 +46,79 @@ class Camera{
         ];
     }
     
-    forward() {
-        let eye = this.eye.elements;
-        let at = this.at.elements;
+    moveForward(){
+        let f = new Vector3();
+        f.set(this.at);
+        f.sub(this.eye);
+        f.normalize();
+        f.mul(speed);
 
-        let dir = this.sub(at, eye); // d= at - eye
-        dir = this.normalize(dir); //normalize d
-        dir = this.mul(dir, this.speed); //scale by speed
+        this.eye.add(f);
+        this.at.add(f);
+    }
 
-        this.eye = new Vector3(this.add(eye, dir)); //eye = eye + d
-        this.at = new Vector3(this.add(at, dir)); //at = at + d
+    moveBackwards()  {
+        let b = new Vector3();
+        b.set(this.eye);
+        b.sub(this.at);
+        b.normalize();
+        b.mul(speed);
+
+        this.eye.sub(b);
+        this.at.sub(b);
 
     }
 
+    moveLeft() {
+        let f = new Vector3();
+        f.set(this.at);
+        f.sub(this.eye);
+        f.normalize();
 
-    back()  {
-        let eye = this.eye.elements;
-        let at = this.at.elements;
-
-        let dir = this.sub(eye, at); // d = eye - at
-        dir = this.normalize(dir); //normalize d
-        dir = this.mul(dir, this.speed); //scale by speed
-
-        this.eye = new Vector3(this.add(eye, dir)); //eye = eye + d
-        this.at = new Vector3(this.add(at, dir)); //at = at + d could also do at = at - d  if d = at - eye first
-
+        let s = Vector3.cross(this.up, f); // s = up x f
+        s.normalize();
+        s.mul(speed);
+        this.eye.add(s);
+        this.at.add(s);
     }
 
+    moveRight() {
+        let f = new Vector3();
+        f.set(this.eye);
+        f.sub(this.at);
+        f.normalize();
 
-
-    left() {
-        let eye = this.eye.elements;
-        let at = this.at.elements;
-        let up = this.up.elements;
-
-        let dir = this.sub(at, eye); // d = at - eye
-        dir = this.normalize(dir);
-
-        let left = this.cross(dir, up); // left = d x up
-        left = this.normalize(left);
-        left = this.mul(left, this.speed); // scale by speed
-
-        this.eye = new Vector3(this.add(eye, left)); //eye = eye + left
-        this.at = new Vector3(this.add(at, left)); //at = at + left
-
+        let s = Vector3.cross(f, this.up); // s = f x up
+        s.normalize();
+        s.mul(speed);
+        this.eye.add(s);
+        this.at.add(s);
     }
 
-    right() {
-        let eye = this.eye.elements;
-        let at = this.at.elements;
-        let up = this.up.elements;
+    panLeft() {
+        let f = new Vector3();
+        f.set(this.at);
+        f.sub(this.eye);
+        
+        let rotationMatrix = new Matrix4();
+        rotationMatrix.setRotate(alpha, this.up.x, this.up.y, this.up.z);
 
-        let dir = this.sub(at, eye); // d = at - eye
-        dir = this.normalize(dir);
-
-        let right = this.cross(dir, up); // right = d x up
-        right = this.normalize(right);
-        right = this.mul(right, -this.speed); // scale by speed
-
-        this.eye = new Vector3(this.add(eye, right)); //eye = eye + right
-        this.at = new Vector3(this.add(at, right)); //at = at + right
+        let f_prime = rotationMatrix.multiplyVector3(f);
+        this.at.set(this.eye);
+        this.at.add(f_prime);
     }
+
+    panRight() {
+        let f = new Vector3();
+        f.set(this.at);
+        f.sub(this.eye);
+
+        let rotationMatrix = new Matrix4();
+        rotationMatrix.setRotate(-alpha, this.up.x, this.up.y, this.up.z);
+
+        let f_prime = rotationMatrix.multiplyVector3(f);
+        this.at.set(this.eye);
+        this.at.add(f_prime);
+    }
+
 }
