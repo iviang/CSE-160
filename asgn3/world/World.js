@@ -397,6 +397,7 @@ function keydown(ev) { //modify for the wasd keys
 // var g_eye=[0,0,3];
 // var g_at=[0,0,-100];
 // var g_up=[0,1,0];
+var g_camera = new Camera();
 
 function renderAllShapes() {
   //check the time at the start of this function
