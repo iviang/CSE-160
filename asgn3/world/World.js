@@ -397,7 +397,7 @@ function renderAllShapes() {
 
   //pass view matrix
   var viewMat=new Matrix4();
-  viewMat.setLookAt(0,0,-1, 0,0,0, 0,1,0); //(eye, at, up)
+  viewMat.setLookAt(0,0,1, 0,0,-100, 0,1,0); //(eye, at, up)
   gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
 
   //Pass the matrix to u_ModelMatrix attribute
