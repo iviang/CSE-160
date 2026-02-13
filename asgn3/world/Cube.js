@@ -46,11 +46,11 @@ class Cube{
         gl.uniform4f(u_FragColor, rgba[0]*.7, rgba[1]*.7, rgba[2]*.7, rgba[3]);
 
         //left
-        // drawTriangle3D([0,0,0,  0,1,1,  0,1,0]);
-        // drawTriangle3D([0,0,0,  0,0,1,  0,1,1]);
+        drawTriangle3D([0,0,0,  0,1,1,  0,1,0]);
+        drawTriangle3D([0,0,0,  0,0,1,  0,1,1]);
 
-        drawTriangle3DUV( [0,0,0,  0,1,1,  0,1,0], [0,0, 1,1, 1,0] ); //new addition
-        drawTriangle3DUV( [0,0,0,  0,0,1,  0,1,1], [0,0, 0,1, 1,1] ); //new addition
+        // drawTriangle3DUV( [0,0,0,  0,1,1,  0,1,0], [0,0, 1,1, 1,0] ); //new addition
+        // drawTriangle3DUV( [0,0,0,  0,0,1,  0,1,1], [0,0, 0,1, 1,1] ); //new addition
         
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.6, rgba[1]*.6, rgba[2]*.6, rgba[3]);
