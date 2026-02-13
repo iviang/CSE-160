@@ -7,9 +7,13 @@ site:
 https://iviang.github.io/CSE-160/asgn3/world/World.html
 http://localhost:8000/asgn3/world/World.html
 
+0. done
+1. I implemented an extra buffer
+2. 
+
 References:
 refrenced asgn2
 used youtube playlist for guidance
 used the WebGL textbook for guidance
 used gpt for debug support
-
+WebGL PG: CH.5 TexturedQuad example (initTextures and loadTexture)
