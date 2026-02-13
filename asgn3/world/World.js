@@ -377,7 +377,7 @@ function updateAnimationAngles(){
 
 function keydown(ev) { //modify for the wasd keys
   const speed = 0.1; //speed
-  const alpha = 5; //rotation speed
+  const alpha = 0.05; //rotation speed
 
   if (ev.keyCode == 87) {        // W
     camera.moveForward(speed);
