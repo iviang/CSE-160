@@ -380,17 +380,17 @@ function keydown(ev) { //modify for the wasd keys
   const alpha = 0.05; //rotation speed
 
   if (ev.keyCode == 87) {        // W
-    g_camera.moveForward(speed);
+    camera.moveForward(speed);
   } else if (ev.keyCode == 83) { // S
-    g_camera.moveBackwards(speed);
+    camera.moveBackwards(speed);
   } else if (ev.keyCode == 65) { // A
-    g_camera.moveLeft(speed);
+    camera.moveLeft(speed);
   } else if (ev.keyCode == 68) { // D
-    g_camera.moveRight(speed);
+    camera.moveRight(speed);
   } else if (ev.keyCode == 81) { // Q
-    g_camera.panLeft(alpha);
+    camera.panLeft(alpha);
   } else if (ev.keyCode == 69) { // E
-    g_camera.panRight(alpha);
+    camera.panRight(alpha);
   }
 
   renderAllShapes();
@@ -408,10 +408,6 @@ function keydown(ev) { //modify for the wasd keys
 // const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
 // const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey
 
-var g_eye=[0,0,3];
-var g_at=[0,0,-100];
-var g_up=[0,1,0];
-var g_camera = new Camera();
 
 function renderAllShapes() {
   //check the time at the start of this function
@@ -427,9 +423,9 @@ function renderAllShapes() {
   // viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
   // viewMat.setLookAt(0,0,3, 0,0,-100, 0,1,0); //(eye: xyz more z = farther away, at, up) 
   viewMat.setLookAt(
-    g_camera.eye.elements[0], g_camera.eye.elements[1], g_camera.eye.elements[2],
-    g_camera.at.elements[0],  g_camera.at.elements[1],  g_camera.at.elements[2],
-    g_camera.up.elements[0],  g_camera.up.elements[1],  g_camera.up.elements[2]
+    camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
+    camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2],
+    camera.up.elements[0],  camera.up.elements[1],  camera.up.elements[2]
   )
   gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
 

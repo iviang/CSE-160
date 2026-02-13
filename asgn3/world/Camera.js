@@ -1,5 +1,5 @@
 class Camera{
-    constructor(){
+    constructor(canvas){
         this.fov=60; //fov       
         this.eye=new Vector3([0,0,0]); //eye
         this.at=new Vector3([0,0,-1]); //at
@@ -46,7 +46,7 @@ class Camera{
         ];
     }
     
-    moveForward(){
+    moveForward(speed){
         let f = new Vector3();
         f.set(this.at);
         f.sub(this.eye);
@@ -57,7 +57,7 @@ class Camera{
         this.at.add(f);
     }
 
-    moveBackwards()  {
+    moveBackwards(speed)  {
         let b = new Vector3();
         b.set(this.eye);
         b.sub(this.at);
@@ -69,7 +69,7 @@ class Camera{
 
     }
 
-    moveLeft() {
+    moveLeft(speed) {
         let f = new Vector3();
         f.set(this.at);
         f.sub(this.eye);
@@ -82,7 +82,7 @@ class Camera{
         this.at.add(s);
     }
 
-    moveRight() {
+    moveRight(speed) {
         let f = new Vector3();
         f.set(this.eye);
         f.sub(this.at);
@@ -95,7 +95,7 @@ class Camera{
         this.at.add(s);
     }
 
-    panLeft() {
+    panLeft(alpha) {
         let f = new Vector3();
         f.set(this.at);
         f.sub(this.eye);
@@ -108,7 +108,7 @@ class Camera{
         this.at.add(f_prime);
     }
 
-    panRight() {
+    panRight(alpha) {
         let f = new Vector3();
         f.set(this.at);
         f.sub(this.eye);
