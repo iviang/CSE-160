@@ -1,0 +1,147 @@
+<!--
+Student Name: Vivian Nguyen
+UCSC Email: vnguy180@ucsc.edu
+
+Notes to Grader:
+https://iviang.github.io/CSE-160/asgn2/src/World.html
+All problems solved.
+Github pages link submitted in comments
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blocky World</title>
+  </head>
+
+  <body onload="main()">
+    <p>
+    Vivian Nguyen<br>
+    vnguy180@ucsc.edu<br>
+    Blocky World<br>
+    Shift-click to poke 
+    </p>
+
+    <canvas id="webgl" width="400" height="400">
+      Please use a browser that supports "canvas"
+    </canvas>
+    <p>
+    
+    <p id="numdot"> XXX </p>
+    
+    Full Body Animation: 
+    <button type="button" id="animationOnButton">Start</button>
+    <button type="button" id="animationOffButton">Stop</button>
+
+    <p>
+
+    Camera Angle <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlide">
+    <p>
+
+    <p>
+    Head Turn  <input type="range" min="-45" max="45" value="0" class="slider" id="headSlide">
+    
+    Animation:
+    <button type="button" id="animationHeadOnButton">ON</button>
+    <button type="button" id="animationHeadOffButton">OFF</button>
+
+    <p>
+    Wiggle <input type="range" min="-5" max="0" value="0" class="slider" id="buttSlide">
+    
+    Animation:
+    <button type="button" id="animationWiggleOnButton">ON</button>
+    <button type="button" id="animationWiggleOffButton">OFF</button>
+    
+    <p>
+    Wag Tail <input type="range" min="-20" max="20" value="0" class="slider" id="tailSlide">
+    
+    Animation:
+    <button type="button" id="animationTailOnButton">ON</button>
+    <button type="button" id="animationTailOffButton">OFF</button>
+
+    <p>
+    Walk: 
+    <button type="button" id="animationWalkOnButton">ON</button>
+    <button type="button" id="animationWalkOffButton">OFF</button>
+    
+    <p>
+    Individual Leg sections:
+    <p>
+    Front Legs: =========================================
+
+    <p>
+    Front Right Leg <input type="range" min="-10" max="35" value="0" class="slider" id="upperFRSlide">
+    
+    Animation:
+    <button type="button" id="animationFrontRightLegOnButton">ON</button>
+    <button type="button" id="animationFrontRightLegOffButton">OFF</button>
+
+  
+    <p>
+    Lower Front Right Leg <input type="range" min="-35" max="5" value="0" class="slider" id="lowerFRSlide">
+    
+    Animation:
+    <button type="button" id="animationLowerFrontRightLegOnButton">ON</button>
+    <button type="button" id="animationLowerFrontRightLegOffButton">OFF</button>
+
+    <p>
+    Front Left Leg <input type="range" min="-10" max="35" value="0" class="slider" id="upperFLSlide">
+    
+    Animation:
+    <button type="button" id="animationFrontLeftLegOnButton">ON</button>
+    <button type="button" id="animationFrontLeftLegOffButton">OFF</button>
+
+    <p>
+    Lower Front Left Leg <input type="range" min="-35" max="5" value="0" class="slider" id="lowerFLSlide">
+    
+    Animation:
+    <button type="button" id="animationLowerFrontLeftLegOnButton">ON</button>
+    <button type="button" id="animationLowerFrontLeftLegOffButton">OFF</button>
+
+    <p>
+    Back Legs:=========================================
+    <p>
+    Back Right Leg <input type="range" min="-10" max="35" value="0" class="slider" id="upperBRSlide">
+    
+    Animation:
+    <button type="button" id="animationBackRightLegOnButton">ON</button>
+    <button type="button" id="animationBackRightLegOffButton">OFF</button>
+
+    <p>
+    Lower Back Right Leg <input type="range" min="-30" max="0" value="0" class="slider" id="lowerBRSlide">
+    
+    Animation:
+    <button type="button" id="animationLowerBackRightLegOnButton">ON</button>
+    <button type="button" id="animationLowerBackRightLegOffButton">OFF</button>
+
+    <p>
+    Back Left Leg <input type="range" min="-10" max="35" value="0" class="slider" id="upperBLSlide">
+    
+    Animation:
+    <button type="button" id="animationBackLeftLegOnButton">ON</button>
+    <button type="button" id="animationBackLeftLegOffButton">OFF</button>
+
+    <p>
+    Lower Back Left Leg <input type="range" min="-30" max="0" value="0" class="slider" id="lowerBLSlide">
+    
+    Animation:
+    <button type="button" id="animationLowerBackLeftLegOnButton">ON</button>
+    <button type="button" id="animationLowerBackLeftLegOffButton">OFF</button>
+
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Point.js"></script>
+    <script src="Cube.js"></script>
+    <script src="BlockyAnimal.js"></script>
+    <script src="Sphere.js"></script>
+    <script src="Cone.js"></script>
+  </body>
+</html>
+ 
