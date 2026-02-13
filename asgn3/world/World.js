@@ -394,9 +394,9 @@ function keydown(ev) { //modify for the wasd keys
 // const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
 // const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey
 
-// var g_eye=[0,0,3];
-// var g_at=[0,0,-100];
-// var g_up=[0,1,0];
+var g_eye=[0,0,3];
+var g_at=[0,0,-100];
+var g_up=[0,1,0];
 var g_camera = new Camera();
 
 function renderAllShapes() {
