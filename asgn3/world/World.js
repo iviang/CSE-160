@@ -412,30 +412,29 @@ function keydown(ev) { //modify for the wasd keys
 function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
-  
-  //pass projection matrix 3.6a video
-  var projMat=new Matrix4();
-  projMat.setPerspective(50, 1*canvas.width/canvas.height, 1, 100);
-  gl.uniformMatrix4fv(u_ProjectionMatrix, false, projMat.elements);
-
-  //pass view matrix 3.6a video
-  var viewMat=new Matrix4();
-  // viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
-  // viewMat.setLookAt(0,0,3, 0,0,-100, 0,1,0); //(eye: xyz more z = farther away, at, up) 
-  viewMat.setLookAt(
-    camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
-    camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2],
-    camera.up.elements[0],  camera.up.elements[1],  camera.up.elements[2]
-  )
-  gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
-
-  //Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat=new Matrix4().rotate(g_globalAngle,0,1,0);
-  gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
+
+  //pass projection matrix 3.6a video
+  // var projMat=new Matrix4();
+  // projMat.setPerspective(50, 1*canvas.width/canvas.height, 1, 100);
+  gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
+  gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
+
+  //pass view matrix 3.6a video
+  // viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
+  // viewMat.setLookAt(0,0,3, 0,0,-100, 0,1,0); //(eye: xyz more z = farther away, at, up) 
+  // viewMat.setLookAt(
+  //   camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
+  //   camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2],
+  //   camera.up.elements[0],  camera.up.elements[1],  camera.up.elements[2]
+  // )
+
+  //Pass the matrix to u_ModelMatrix attribute
+  var globalRotMat=new Matrix4().rotate(g_globalAngle,0,1,0);
+  gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   //draw the floor
   var body = new Cube();
