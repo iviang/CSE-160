@@ -228,11 +228,11 @@ function tick() {
   //update animation angles
   updateAnimationAngles();
 
-  if(g_pokeAnimation && (g_seconds - g_pokeTime) > g_pDuration) {
-    g_pokeAnimation=false;
-    g_pRoll=0;
-    g_pHop=0;
-  }
+  // if(g_pokeAnimation && (g_seconds - g_pokeTime) > g_pDuration) {
+  //   g_pokeAnimation=false;
+  //   g_pRoll=0;
+  //   g_pHop=0;
+  // }
 
   // Draw everything
   renderAllShapes();
