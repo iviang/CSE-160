@@ -158,7 +158,7 @@ const CIRCLE = 2;
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
 let g_selectedType=POINT;
-let g_AnimalGlobalRotation=0;
+let g_globalAngle=0;
 let g_yellowAngle=0;
 let g_magentaAngle=0;
 let g_yellowAnimation=false;
@@ -190,7 +190,7 @@ function addActionsForHtmlUI(){
   //size slider events
   // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_globalAngle = this.value; renderAllShapes(); });
   //size slider events
-  document.getElementById('angleSlide').addEventListener('mousemove', function() { g_AnimalGlobalRotation = this.value; renderAllShapes(); });
+  document.getElementById('angleSlide').addEventListener('mousemove', function() { g_globalAngle = this.value; renderAllShapes(); });
 }
 
 
@@ -311,12 +311,6 @@ function tick() {
   //update animation angles
   updateAnimationAngles();
 
-  // if(g_pokeAnimation && (g_seconds - g_pokeTime) > g_pDuration) {
-  //   g_pokeAnimation=false;
-  //   g_pRoll=0;
-  //   g_pHop=0;
-  // }
-
   // Draw everything
   renderAllShapes();
 
@@ -394,33 +388,26 @@ function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
   
+  //pass projection matrix
+  var projMat=new Matrix4();
+  gl.uniformMatrix4fv(u_ProjectionMatrix, false, projMat.elements);
+
+  //pass view matrix
+  var viewMat=new Matrix4();
+  gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
+
   //Pass the matrix to u_ModelMatrix attribute
-  var globalRotMat=new Matrix4().rotate(g_mouseRotX, 1,0,0).rotate(g_mouseRotY,0,1,0).rotate(g_AnimalGlobalRotation,0,1,0);
+  var globalRotMat=new Matrix4().rotate(g_globalAngle,0,1,0);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
 
-  //base
-  // var base = new Matrix4();
-  // base.translate(-0.30, -0.20 + g_pHop, -0.15); //attaches to the body and butt cubes
-
-  // base.translate(0.25, 0.15, 0.25);        // pivot tweak (adjust if roll looks off-center)
-  // base.rotate(g_pRoll, 1, 0, 0);        // roll around Z axis (screen-facing roll)
-  // base.translate(-0.25, -0.15, -0.25);
-
-  // //draw the body cube
-  // var body = new Cube();
-  // body.color = MGREY;
-  // body.matrix.set(base); 
-  // // body.matrix.translate(-.3, -.2, -0.15);
-  // // body.matrix.rotate(-5,1,0,0);
-  // body.matrix.scale(.5, .3, .5);
-  // body.render();
 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
+  body.textureNum=0;
   body.matrix.translate(-.25, -.75, 0.0);
   body.matrix.rotate(-5,1,0,0);
   body.matrix.scale(0.5, .3, .5);
