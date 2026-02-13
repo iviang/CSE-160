@@ -462,35 +462,35 @@ var g_map=[
   [1, 0, 0, 0, 0, 0, 0, 1], 
 ];
 
-// function drawMap() {
-//   for (x=0;x<8;x++) {
-//     for (y=0;y<8;y++) {
-//       //console.log(x,y);
-//       if (g_map[x][y] == 1) {
-//         var body = new Cube();
-//         body.color = [1.0, 1.0, 1.0, 1.0];
-//         body.matrix.translate(x-4, -.75, y-4);
-//         body.render();
-//       }
-//     }
-//   }
-// }
-
 function drawMap() {
-  for (x=0;x<16;x++) {
-    for (y=0;y<16;y++) {
+  for (x=0;x<8;x++) {
+    for (y=0;y<8;y++) {
       //console.log(x,y);
-      if (x==0 || x==31 || y==0 || y==31) {
-        var bodyqq = new Cube(); 
+      if (g_map[x][y] == 1) {
+        var body = new Cube();
         body.color = [1.0, 1.0, 1.0, 1.0];
-        body.matrix.translate(0, -.75, 0);
-        body.matrix.scale(.3,.3,.3);
-        body.matrix.translate(x-16, 0, y-16);
+        body.matrix.translate(x-4, -.75, y-4);
         body.render();
       }
     }
   }
 }
+
+// function drawMap() {
+//   for (let x = 0; x < g_map.length; x++) {
+//     for (let z = 0; z < g_map[0].length; z++) {
+//       //console.log(x,y);
+//       if (x==0 || x==31 || y==0 || y==31) {
+//         var bodyqq = new Cube(); 
+//         body.color = [1.0, 1.0, 1.0, 1.0];
+//         body.matrix.translate(0, -.75, 0);
+//         body.matrix.scale(.3,.3,.3);
+//         body.matrix.translate(x-16, 0, y-16);
+//         body.render();
+//       }
+//     }
+//   }
+// }
 
 function renderAllShapes() {
   //check the time at the start of this function
@@ -535,6 +535,8 @@ function renderAllShapes() {
   sky.matrix.scale(150,150,150);
   sky.matrix.translate(-.5, -0.5, -0.5);
   sky.render();
+  
+  drawMap();
 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
