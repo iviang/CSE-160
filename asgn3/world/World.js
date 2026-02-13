@@ -195,14 +195,14 @@ function initTextures() {
     return false;
   }
   // Register the event handler to be called on loading an image
-  image.onload = function(){ loadTexture(0, u_Sampler0, image); };
+  image.onload = function(){ sendTextureToGLSL(0, u_Sampler0, image); };
   // Tell the browser to load an image
   image.src = 'sky.jpg';
 
   return true;
 }
 
-function loadTexture(n, u_Sampler, image) {
+function sendTextureToGLSL(n, u_Sampler, image) {
   var texture = gl.createTexture();
   if (!texture) {
     console.log('Failed to create the texture object');
