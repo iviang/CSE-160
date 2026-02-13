@@ -4,7 +4,7 @@ class Cube{
         this.color = [1.0, 1.0, 1.0, 1.0];
         this.matrix = new Matrix4();
 
-        this.textureNum=-2; //added
+        this.textureNum=0; //added
     }
 
     render() {
