@@ -11,3 +11,5 @@ References:
 refrenced asgn2
 used youtube playlist for guidance
 used the WebGL textbook for guidance
+used gpt for debug support
+
