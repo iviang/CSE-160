@@ -101,7 +101,7 @@ class Camera{
         f.sub(this.eye);
         
         let rotationMatrix = new Matrix4();
-        rotationMatrix.setRotate(alpha, this.up.x, this.up.y, this.up.z);
+        rotationMatrix.setRotate(alpha, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
 
         let f_prime = rotationMatrix.multiplyVector3(f);
         this.at.set(this.eye);
@@ -114,7 +114,7 @@ class Camera{
         f.sub(this.eye);
 
         let rotationMatrix = new Matrix4();
-        rotationMatrix.setRotate(-alpha, this.up.x, this.up.y, this.up.z);
+        rotationMatrix.setRotate(-alpha, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
 
         let f_prime = rotationMatrix.multiplyVector3(f);
         this.at.set(this.eye);
