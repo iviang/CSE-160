@@ -123,129 +123,70 @@ let g_selectedSize=5;
 let g_selectedType=POINT;
 let g_AnimalGlobalRotation=0;
 
-let g_btail=0;
-let g_m1tail=0;
-let g_m2tail=0;
-let g_tiptail=0;
+// let g_btail=0;
+// let g_m1tail=0;
+// let g_m2tail=0;
+// let g_tiptail=0;
 
-let g_upperFR= 0;
-let g_lowerFR= 0;
-let g_pawFR=0;
+// let g_upperFR= 0;
+// let g_lowerFR= 0;
+// let g_pawFR=0;
 
-let g_upperBR= 0;
-let g_lowerBR= 0;
-let g_pawBR=0;
+// let g_upperBR= 0;
+// let g_lowerBR= 0;
+// let g_pawBR=0;
 
-let g_upperFL= 0;
-let g_lowerFL= 0;
-let g_pawFL=0;
+// let g_upperFL= 0;
+// let g_lowerFL= 0;
+// let g_pawFL=0;
 
-let g_upperBL= 0;
-let g_lowerBL= 0;
-let g_pawBL=0;
+// let g_upperBL= 0;
+// let g_lowerBL= 0;
+// let g_pawBL=0;
 
-let g_headAnimation=false;
-let g_headAngle=0;
+// let g_headAnimation=false;
+// let g_headAngle=0;
 
-let g_buttAnimation=false;
-let g_buttAngle=0;
+// let g_buttAnimation=false;
+// let g_buttAngle=0;
 
-let g_tailAnimation=false;
+// let g_tailAnimation=false;
 
-let g_upperFRAnimation=false;
-let g_lowerFRAnimation=false;
+// let g_upperFRAnimation=false;
+// let g_lowerFRAnimation=false;
 
-let g_upperFLAnimation=false;
-let g_lowerFLAnimation=false;
+// let g_upperFLAnimation=false;
+// let g_lowerFLAnimation=false;
 
-let g_upperBRAnimation=false;
-let g_lowerBRAnimation=false;
+// let g_upperBRAnimation=false;
+// let g_lowerBRAnimation=false;
 
-let g_upperBLAnimation=false;
-let g_lowerBLAnimation=false;
+// let g_upperBLAnimation=false;
+// let g_lowerBLAnimation=false;
 
-let g_Animation=false;
-let g_WalkAnimation=false;
+// let g_Animation=false;
+// let g_WalkAnimation=false;
 
-let g_pokeAnimation=false;
-let g_pokeTime=0;
-let g_pDuration = 0.5;
-let g_pRoll= 0;
-let g_pHop= 0; 
+// let g_pokeAnimation=false;
+// let g_pokeTime=0;
+// let g_pDuration = 0.5;
+// let g_pRoll= 0;
+// let g_pHop= 0; 
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
   
   //Button Events ===================
 
-  //full animation
-  document.getElementById('animationOffButton').onclick = function() {g_Animation=false;};
-  document.getElementById('animationOnButton').onclick = function() {g_Animation=true;};
+  // document.getElementById('animationBackRightLegOffButton').onclick = function() {g_upperBRAnimation=false;};
+  // document.getElementById('animationBackRightLegOnButton').onclick = function() {g_upperBRAnimation=true;};
 
-  //head turning animation
-  document.getElementById('animationHeadOffButton').onclick = function() {g_headAnimation=false;};
-  document.getElementById('animationHeadOnButton').onclick = function() {g_headAnimation=true;};
-
-  //move butt
-  document.getElementById('animationWiggleOffButton').onclick = function() {g_buttAnimation=false;};
-  document.getElementById('animationWiggleOnButton').onclick = function() {g_buttAnimation=true;};
-
-  //move tail built whole tail at once not just sections
-  document.getElementById('animationTailOffButton').onclick = function() {g_tailAnimation=false;};
-  document.getElementById('animationTailOnButton').onclick = function() {g_tailAnimation=true;};
-
-  //walking animation
-  document.getElementById('animationWalkOffButton').onclick = function() {g_WalkAnimation=false;};
-  document.getElementById('animationWalkOnButton').onclick = function() {g_WalkAnimation=true;};
-
-  //Individual Leg events:
-  //FRONT LEGS
-  document.getElementById('animationFrontRightLegOffButton').onclick = function() {g_upperFRAnimation=false;};
-  document.getElementById('animationFrontRightLegOnButton').onclick = function() {g_upperFRAnimation=true;};
-
-  document.getElementById('animationLowerFrontRightLegOffButton').onclick = function() {g_lowerFRAnimation=false;};
-  document.getElementById('animationLowerFrontRightLegOnButton').onclick = function() {g_lowerFRAnimation=true;};
-
-  document.getElementById('animationFrontLeftLegOffButton').onclick = function() {g_upperFLAnimation=false;};
-  document.getElementById('animationFrontLeftLegOnButton').onclick = function() {g_upperFLAnimation=true;};
-
-  document.getElementById('animationLowerFrontLeftLegOffButton').onclick = function() {g_lowerFLAnimation=false;};
-  document.getElementById('animationLowerFrontLeftLegOnButton').onclick = function() {g_lowerFLAnimation=true;};
-
-  //BACK LEGS
-
-  document.getElementById('animationBackRightLegOffButton').onclick = function() {g_upperBRAnimation=false;};
-  document.getElementById('animationBackRightLegOnButton').onclick = function() {g_upperBRAnimation=true;};
-
-  document.getElementById('animationLowerBackRightLegOffButton').onclick = function() {g_lowerBRAnimation=false;};
-  document.getElementById('animationLowerBackRightLegOnButton').onclick = function() {g_lowerBRAnimation=true;};
-
-  document.getElementById('animationBackLeftLegOffButton').onclick = function() {g_upperBLAnimation=false;};
-  document.getElementById('animationBackLeftLegOnButton').onclick = function() {g_upperBLAnimation=true;};
-
-  document.getElementById('animationLowerBackLeftLegOffButton').onclick = function() {g_lowerBLAnimation=false;};
-  document.getElementById('animationLowerBackLeftLegOnButton').onclick = function() {g_lowerBLAnimation=true;};
 
   // slider events =====================
-  document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
+  // document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
 
-  document.getElementById('buttSlide').addEventListener('mousemove', function() { g_buttAngle = this.value; renderAllShapes(); }); //wiggle slider
 
-  document.getElementById('tailSlide').addEventListener('mousemove', function() { g_btail = this.value; renderAllShapes(); }); //wag tail slider
 
-  //front legs slider
-  document.getElementById('upperFRSlide').addEventListener('mousemove', function() { g_upperFR = this.value; renderAllShapes(); });
-  document.getElementById('lowerFRSlide').addEventListener('mousemove', function() { g_lowerFR = this.value; renderAllShapes(); });
-
-  document.getElementById('upperFLSlide').addEventListener('mousemove', function() { g_upperFL = this.value; renderAllShapes(); });
-  document.getElementById('lowerFLSlide').addEventListener('mousemove', function() { g_lowerFL = this.value; renderAllShapes(); });
-
-  //back legs slider
-  document.getElementById('upperBRSlide').addEventListener('mousemove', function() { g_upperBR = this.value; renderAllShapes(); });
-  document.getElementById('lowerBRSlide').addEventListener('mousemove', function() { g_lowerBR = this.value; renderAllShapes(); });
-
-  document.getElementById('upperBLSlide').addEventListener('mousemove', function() { g_upperBL = this.value; renderAllShapes(); });
-  document.getElementById('lowerBLSlide').addEventListener('mousemove', function() { g_lowerBL = this.value; renderAllShapes(); });
 
   //size slider events
   document.getElementById('angleSlide').addEventListener('mousemove', function() { g_AnimalGlobalRotation = this.value; renderAllShapes(); });
@@ -262,7 +203,7 @@ function main() {
   // Mouse detection
   mouseDetect(); 
   //poke animation trigger
-  shiftClick();
+  // shiftClick();
 
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -338,72 +279,46 @@ function tick() {
 
 //individual animation functions so that the overall animation button can call upon them
 
-function headAnimation() {
-  g_headAngle = (45*Math.sin(g_seconds));
-}
+// function headAnimation() {
+//   g_headAngle = (45*Math.sin(g_seconds));
+// }
 
-function tailAnimation() {
-  g_btail = (10*Math.sin(g_seconds));
-  g_m1tail = (20*Math.sin(g_seconds));
-  g_m2tail = (25*Math.sin(g_seconds));
-  g_tiptail = (30*Math.sin(g_seconds));
-}
+// function tailAnimation() {
+//   g_btail = (10*Math.sin(g_seconds));
+//   g_m1tail = (20*Math.sin(g_seconds));
+//   g_m2tail = (25*Math.sin(g_seconds));
+//   g_tiptail = (30*Math.sin(g_seconds));
+// }
 
-function buttAnimation() {
-  const min = -5;
-  const max = 5;
-  const midpoint = (min + max) / 2;
-  const amplitude = (max - min) / 2;
-  g_buttAngle = midpoint + amplitude * Math.sin(g_seconds);
-}
+// function buttAnimation() {
+//   const min = -5;
+//   const max = 5;
+//   const midpoint = (min + max) / 2;
+//   const amplitude = (max - min) / 2;
+//   g_buttAngle = midpoint + amplitude * Math.sin(g_seconds);
+// }
 
-function walkAnimation() {
-  const t = 3 * g_seconds;
-  //walking should be diagonal to look natural
-  const group_A = t; //Front Right sync with Back Left
-  const group_B = t + Math.PI; //Front Right sync with Back Left
-  const delay = Math.PI / 2; // attempt to delay the lower legs
+// function walkAnimation() {
+//   const t = 3 * g_seconds;
+//   //walking should be diagonal to look natural
+//   const group_A = t; //Front Right sync with Back Left
+//   const group_B = t + Math.PI; //Front Right sync with Back Left
+//   const delay = Math.PI / 2; // attempt to delay the lower legs
 
-  g_upperFR = walkRestrictions(-10, 35,group_A);
-  g_upperBL = walkRestrictions(-10, 35, group_A);
+//   g_upperFR = walkRestrictions(-10, 35,group_A);
+//   g_upperBL = walkRestrictions(-10, 35, group_A);
 
-  g_upperFL = walkRestrictions(-10, 35, group_B);
-  g_upperBR = walkRestrictions(-10, 35, group_B);
+//   g_upperFL = walkRestrictions(-10, 35, group_B);
+//   g_upperBR = walkRestrictions(-10, 35, group_B);
 
-  g_lowerFR = walkRestrictions(-35, 5, group_A + delay);
-  g_lowerBL = walkRestrictions(-15, 5, group_A + delay);
+//   g_lowerFR = walkRestrictions(-35, 5, group_A + delay);
+//   g_lowerBL = walkRestrictions(-15, 5, group_A + delay);
 
-  g_lowerFL = walkRestrictions(-35, 5, group_B + delay);
-  g_lowerBR = walkRestrictions(-15, 5, group_B + delay);
+//   g_lowerFL = walkRestrictions(-35, 5, group_B + delay);
+//   g_lowerBR = walkRestrictions(-15, 5, group_B + delay);
 
-}
-
-function walkRestrictions(min, max, t){
-  const midpoint = (min+max) / 2;
-  const amplitude = (max-min) / 2;
-  return midpoint + amplitude * Math.sin(t);
-}
-
-function shiftClick(){ //triggered by shift click button on keyb
-  canvas.addEventListener("click", function(ev) {if (!ev.shiftKey) return; startPoke(); });  
-}
-
-//poke animation part:
-
-function startPoke(){
-  g_pokeAnimation=true;
-  g_pokeTime = g_seconds;
-}
-
-function pokeAnimation() {
-  //rolling
-  let t = (g_seconds - g_pokeTime) / g_pDuration;
-  t = Math.max(0, Math.min(1, t));
-  const ease = t * t * (3 - 2 * t); 
-  g_pRoll = 360 * ease;
-  g_pHop = 0.10 * Math.sin(Math.PI*t);  
-}
-
+// }
+ 
 //update the angles of everything if currently animated
 function updateAnimationAngles(){
 
