@@ -65,13 +65,6 @@ function drawTriangle3D(vertices) {
     return -1;
   }
 
-  // if (g_vertexBuffer3D === null) {
-  //   g_vertexBuffer3D = gl.createBuffer();
-  //   if (!g_vertexBuffer3D)
-  //     console.log('Failed to create the buffer object');
-  //   return -1;
-  // }
-
   // Bind the buffer object to target
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
   // Write date into the buffer object

@@ -98,7 +98,7 @@ function connectVariablesToGLSL(){
     console.log('Failed to get the storage lcoation of u_GlobalRotateMatrix');
     return;
   }
-
+  
   //
   u_ViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
   if (!u_ViewMatrix) {
@@ -106,9 +106,18 @@ function connectVariablesToGLSL(){
     return;
   }
 
+  u_ProjectionMatrix = gl.getUniformLocation(gl.program, 'u_ProjectionMatrix');
+  if (!u_ProjectionMatrix) {
+    console.log('Failed to get the storage location of u_ProjectionMatrix');
+    return;
+  }
+
   //set an initial value for this matrix to identity
   var identityM = new Matrix4();
   gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
+  gl.uniformMatrix4fv(u_ViewMatrix, false, identityM.elements);
+  gl.uniformMatrix4fv(u_ProjectionMatrix, false, identityM.elements);
+  gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, identityM.elements);
 
 }
 
