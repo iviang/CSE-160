@@ -125,9 +125,9 @@ function connectVariablesToGLSL(){
   //set an initial value for this matrix to identity
   var identityM = new Matrix4();
   gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
-  // gl.uniformMatrix4fv(u_ViewMatrix, false, identityM.elements);
-  // gl.uniformMatrix4fv(u_ProjectionMatrix, false, identityM.elements);
-  // gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, identityM.elements);
+  gl.uniformMatrix4fv(u_ViewMatrix, false, identityM.elements);
+  gl.uniformMatrix4fv(u_ProjectionMatrix, false, identityM.elements);
+  gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, identityM.elements);
 
 }
 
