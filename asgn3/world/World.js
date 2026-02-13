@@ -31,7 +31,7 @@ var FSHADER_SOURCE = `
 
     } else if (u_whichTexture == 0) {                   //use texture0 = uv grid
       gl_FragColor = texture2D(u_Sampler0, v_UV);       
-      
+
     } else if (u_whichTexture == 1) {                   //use texture1 = sky
       gl_FragColor = texture2D(u_Sampler1, v_UV);       
   
@@ -275,7 +275,7 @@ function sendTextureToTEXTURE1(image) {
   // Set the texture parameters
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   // Set the texture image
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+  gl.texImage2D(gl.TEXTURE_2D, 1, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
   
   // Set the texture unit 1 to the sampler
   gl.uniform1i(u_Sampler1, 1);
@@ -443,18 +443,6 @@ function keydown(ev) { //modify for the wasd keys
 
   renderAllShapes();
 }
-
-
-//color creation
-// const BLACK = [0.0, 0.0, 0.0, 1.0];
-// const PINK  = [1.0, 0.6, 0.7, 1.0];
-// const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
-// const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
-// const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
-// const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
-// const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
-// const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
-// const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey
 
 
 function renderAllShapes() {
