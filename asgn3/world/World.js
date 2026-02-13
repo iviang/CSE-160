@@ -324,7 +324,7 @@ function main() {
   document.onkeydown = keydown;
 
   initTextures();
-
+  buildWall();  
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -522,6 +522,10 @@ function renderAllShapes() {
   // projMat.setPerspective(50, 1*canvas.width/canvas.height, 1, 100);
   gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
   gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
+
+  for (let i = 0; i < walls.length; i++) {
+    walls[i].render();
+}
 
   //pass view matrix 3.6a video
   // viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
