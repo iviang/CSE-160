@@ -54,6 +54,9 @@ let u_ProjectionMatrix;
 let u_ViewMatrix;
 let u_GlobalRotateMatrix;
 let u_Sampler0;
+let u_Sampler1;
+
+
 let u_whichTexture;
 
 let g_mouseRotX = 0;
