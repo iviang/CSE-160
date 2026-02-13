@@ -29,9 +29,10 @@ var FSHADER_SOURCE = `
     } else if (u_whichTexture == -1) {                  //use UV debug color
       gl_FragColor = vec4(v_UV, 1.0, 1.0);
 
-    } else if (u_whichTexture == 0) {                   //use texture0
+    } else if (u_whichTexture == 0) {                   //use texture0 = uv grid
       gl_FragColor = texture2D(u_Sampler0, v_UV);       
-    } else if (u_whichTexture == 1) {                   //use texture1
+      
+    } else if (u_whichTexture == 1) {                   //use texture1 = sky
       gl_FragColor = texture2D(u_Sampler1, v_UV);       
   
     } else {                                            //error push Redish
@@ -492,6 +493,13 @@ function renderAllShapes() {
   body.matrix.translate(-.5, 0, -0.5);
   body.render();
 
+  //draw the SKY BOX 
+  var sky = new Cube();
+  sky.color = [1.0, 0.0, 0.0, 1.0];
+  sky.textureNum=1;
+  sky.matrix.scale(50,50,50);
+  sky.matrix.translate(-.5, -0.5, -0.5);
+  sky.render();
 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
