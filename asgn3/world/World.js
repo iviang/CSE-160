@@ -118,9 +118,9 @@ function connectVariablesToGLSL(){
   //set an initial value for this matrix to identity
   var identityM = new Matrix4();
   gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
-  gl.uniformMatrix4fv(u_ViewMatrix, false, identityM.elements);
-  gl.uniformMatrix4fv(u_ProjectionMatrix, false, identityM.elements);
-  gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, identityM.elements);
+  // gl.uniformMatrix4fv(u_ViewMatrix, false, identityM.elements);
+  // gl.uniformMatrix4fv(u_ProjectionMatrix, false, identityM.elements);
+  // gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, identityM.elements);
 
 }
 
@@ -177,9 +177,9 @@ function initTextures(gl, n) {
   }
 
   // Get the storage location of u_Sampler
-  var u_Sampler = gl.getUniformLocation(gl.program, 'u_Sampler');
-  if (!u_Sampler) {
-    console.log('Failed to get the storage location of u_Sampler');
+  var u_Sampler0 = gl.getUniformLocation(gl.program, 'u_Sampler0');
+  if (!u_Sampler0) {
+    console.log('Failed to get the storage location of u_Sampler0');
     return false;
   }
   var image = new Image();  // Create the image object
@@ -188,14 +188,14 @@ function initTextures(gl, n) {
     return false;
   }
   // Register the event handler to be called on loading an image
-  image.onload = function(){ loadTexture(gl, n, texture, u_Sampler, image); };
+  image.onload = function(){ loadTexture(gl, n, texture, u_Sampler0, image); };
   // Tell the browser to load an image
-  image.src = '../resources/sky.jpg';
+  image.src = 'sky.jpg';
 
   return true;
 }
 
-function loadTexture(gl, n, texture, u_Sampler, image) {
+function loadTexture(gl, n, texture, u_Sampler0, image) {
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
   // Enable texture unit0
   gl.activeTexture(gl.TEXTURE0);
@@ -208,7 +208,7 @@ function loadTexture(gl, n, texture, u_Sampler, image) {
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
   
   // Set the texture unit 0 to the sampler
-  gl.uniform1i(u_Sampler, 0);
+  gl.uniform1i(u_Sampler0, 0);
   
   gl.clear(gl.COLOR_BUFFER_BIT);   // Clear <canvas>
 
