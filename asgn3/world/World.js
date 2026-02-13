@@ -251,6 +251,7 @@ function main() {
   // mouseDetect(); 
   //poke animation trigger
   // shiftClick();
+  document.onkeydown = keydown;
 
   initTextures();
 
@@ -372,32 +373,44 @@ function updateAnimationAngles(){
   }
 }
 
-
+function keydown(ev) { //modify for the wasd keys
+  if (ev.keyCode==39) { //right arrow
+    g_eye[0] += 0.2;
+  } else if (ev.keyCode==37) { //left arrow
+    g_eye[0] -= 0.2;
+  }
+  renderAllShapes();
+  console.log(ev.keyCode);
+}
 
 //color creation
-const BLACK = [0.0, 0.0, 0.0, 1.0];
-const PINK  = [1.0, 0.6, 0.7, 1.0];
-const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
-const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
-const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
-const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
-const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
-const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
-const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey
+// const BLACK = [0.0, 0.0, 0.0, 1.0];
+// const PINK  = [1.0, 0.6, 0.7, 1.0];
+// const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
+// const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
+// const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
+// const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
+// const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
+// const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
+// const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey
 
+var g_eye=[0,0,3];
+var g_at=[0,0,-100];
+var g_up=[0,1,0];
 
 function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
   
-  //pass projection matrix
+  //pass projection matrix 3.6a video
   var projMat=new Matrix4();
   projMat.setPerspective(50, 1*canvas.width/canvas.height, 1, 100);
   gl.uniformMatrix4fv(u_ProjectionMatrix, false, projMat.elements);
 
-  //pass view matrix
+  //pass view matrix 3.6a video
   var viewMat=new Matrix4();
-  viewMat.setLookAt(0,0,3, 0,0,-100, 0,1,0); //(eye: xyz more z = farther away, at, up)
+  viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
+  // viewMat.setLookAt(0,0,3, 0,0,-100, 0,1,0); //(eye: xyz more z = farther away, at, up) 
   gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
 
   //Pass the matrix to u_ModelMatrix attribute
