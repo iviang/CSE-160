@@ -374,14 +374,28 @@ function updateAnimationAngles(){
 }
 
 function keydown(ev) { //modify for the wasd keys
-  if (ev.keyCode==39) { //right arrow
-    g_eye[0] += 0.2;
-  } else if (ev.keyCode==37) { //left arrow
-    g_eye[0] -= 0.2;
+//   if (ev.keyCode==39) { //right arrow
+//     g_eye[0] += 0.2;
+//   } else if (ev.keyCode==37) { //left arrow
+//     g_eye[0] -= 0.2;
+//   }
+//   renderAllShapes();
+//   console.log(ev.keyCode);
+// }
+
+  if (ev.keyCode == 87) {        // W
+    g_camera.forward();
+  } else if (ev.keyCode == 83) { // S
+    g_camera.back();
+  } else if (ev.keyCode == 65) { // A
+    g_camera.left();
+  } else if (ev.keyCode == 68) { // D
+    g_camera.right();
   }
+
   renderAllShapes();
-  console.log(ev.keyCode);
 }
+
 
 //color creation
 // const BLACK = [0.0, 0.0, 0.0, 1.0];
