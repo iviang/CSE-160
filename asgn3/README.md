@@ -14,4 +14,5 @@ used youtube playlist for guidance
 used the WebGL textbook for guidance
 used gpt for debug support
 WebGL PG: CH.5 TexturedQuad example (initTextures and loadTexture)
-https://www.toptal.com/developers/keycode/table 
+https://www.toptal.com/developers/keycode/table
+https://www.deviantart.com/cymae/art/UV-Mapping-Grid-153007848 

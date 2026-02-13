@@ -20,6 +20,7 @@ var FSHADER_SOURCE = `
   varying vec2 v_UV;
   uniform vec4 u_FragColor;
   uniform sampler2D u_Sampler0;
+  uniform sampler2D u_Sampler1;
   uniform int u_whichTexture;
   void main() {
     if (u_whichTexture == -2) {
@@ -30,6 +31,9 @@ var FSHADER_SOURCE = `
 
     } else if (u_whichTexture == 0) {                   //use texture0
       gl_FragColor = texture2D(u_Sampler0, v_UV);       
+    } else if (u_whichTexture == 1) {                   //use texture1
+      gl_FragColor = texture2D(u_Sampler1, v_UV);       
+  
     } else {                                            //error push Redish
       gl_FragColor = vec4(1,.2,.2,1);
     }
@@ -198,18 +202,30 @@ function addActionsForHtmlUI(){
 
 
 function initTextures() {
-
-  var image = new Image();  // Create the image object
-  if (!image) {
+  //UV GRID TEXTURE================
+  var image0 = new Image();  // Create the image object
+  if (!image0) {
     console.log('Failed to create the image object');
     return false;
   }
   // Register the event handler to be called on loading an image
-  image.onload = function(){ sendTextureToTEXTURE0(image); };
+  image0.onload = function(){ sendTextureToTEXTURE0(image0); };
   // Tell the browser to load an image
-  image.src = 'sky.jpg';
+  image0.src = 'uvgrid.png';
 
-  //add more texture loading 
+  //SKY TEXTURE==========
+  var image1 = new Image();  // Create the image object
+  if (!image1) {
+    console.log('Failed to create the image object');
+    return false;
+  }
+  // Register the event handler to be called on loading an image
+  image1.onload = function(){ sendTextureToTEXTURE1(image1); };
+  // Tell the browser to load an image
+  image1.src = 'sky.jpg';
+
+
+
   return true;
 }
 
@@ -238,6 +254,34 @@ function sendTextureToTEXTURE0(image) {
   // gl.drawArrays(gl.TRIANGLE_STRIP, 0, n); // Draw the rectangle
   console.log('Finished loadTexture');
 }
+
+function sendTextureToTEXTURE1(image) {
+  var texture = gl.createTexture(); // Create a texture object
+  if (!texture) {
+    console.log('Failed to create the texture object');
+    return false;
+  }
+  
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
+  // Enable texture unit1
+  gl.activeTexture(gl.TEXTURE1);
+  // Bind the texture object to the target
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+
+  // Set the texture parameters
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  // Set the texture image
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+  
+  // Set the texture unit 1 to the sampler
+  gl.uniform1i(u_Sampler1, 1);
+
+  console.log('Finished loadTexture');
+}
+
+
+
+
 
 
 function main() {
@@ -436,10 +480,10 @@ function renderAllShapes() {
   var globalRotMat=new Matrix4().rotate(g_globalAngle,0,1,0);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
-  //draw the floor
+  //draw the GROUND 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
-  body.textureNum=-2;
+  body.textureNum=0;
   body.matrix.translate(0, -.75, 0.0);
   body.matrix.scale(10,0,10);
   body.matrix.translate(-.5, 0, -0.5);
