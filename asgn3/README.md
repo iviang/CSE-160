@@ -7,3 +7,7 @@ site:
 https://iviang.github.io/CSE-160/asgn3/world/World.html
 http://localhost:8000/asgn3/world/World.html
 
+References:
+refrenced asgn2
+used youtube playlist for guidance
+used the WebGL textbook for guidance

@@ -17,7 +17,7 @@ class Cube{
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
 
         //front of the cube
-        drawTriangle3D( [0,0,0, 1,1,0, 1,0,0]);
+        drawTriangle3DUV( [0,0,0, 1,1,0, 1,0,0], [1,0, 0,1, 1,1] ); //new addition
         drawTriangle3D( [0,0,0, 0,1,0, 1,1,0]);
 
         //pass the color of a point to u_FragColor uniform variable
