@@ -392,7 +392,7 @@ function renderAllShapes() {
   
   //pass projection matrix
   var projMat=new Matrix4();
-  projMat.setPerspective(30, canvas.width/canvas.height, .1, 100);
+  projMat.setPerspective(50, 1*canvas.width/canvas.height, .1, 100);
   gl.uniformMatrix4fv(u_ProjectionMatrix, false, projMat.elements);
 
   //pass view matrix
