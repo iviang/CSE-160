@@ -413,9 +413,9 @@ function renderAllShapes() {
   // viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
   // viewMat.setLookAt(0,0,3, 0,0,-100, 0,1,0); //(eye: xyz more z = farther away, at, up) 
   viewMat.setLookAt(
-    g_camera.eye.x, g_camera.eye.y, g_camera.eye.z,
-    g_camera.at.x, g_camera.at.y, g_camera.at.z,
-    g_camera.up.x, g_camera.up.y, g_camera.up.z 
+    g_camera.eye.elements[0], g_camera.eye.elements[1], g_camera.eye.elements[2],
+    g_camera.at.elements[0],  g_camera.at.elements[1],  g_camera.at.elements[2],
+    g_camera.up.elements[0],  g_camera.up.elements[1],  g_camera.up.elements[2]
   )
   gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
 
