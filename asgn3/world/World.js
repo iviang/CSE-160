@@ -553,57 +553,6 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
 // }
 
 
-function getSquare(d) { //want square infront of us
-  const f = new Vector3();
-  f.set(camera.at);
-  f.sub(camera.eye);
-
-  f.elements[1] = 0; //disregard y coord here
-  const len = Math.sqrt( f.elements[0] * f.elements[0] + f.elements[2] * f.elements[2]
-  );
-
-  if (len < 0.0001) {
-    return null;
-  }
-
-  f.elements[0] /= len; //x coord normalizd
-  f.elements[2] /= len; //z coord normalizd
-
-  const worldX = camera.eye.elements[0] + f.elements[0] * d;
-  const worldZ = camera.eye.elements[2] + f.elements[2] * d;
-  const mapX = Math.floor(worldX + 16);
-  const mapZ = Math.floor(worldZ + 16);
-
-  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
-    return null;
-  }
-
-  return {mapX, mapZ};
-
-}
-
-const max_height = 10; //max height of blocks to prevent lag / overflows 
-
-function addBlock() { //add block in front
-  const square = getSquare(1);
-  if (!square) {
-    console.log('No square in front to add block');
-    return;
-  }
-  const {mapX, mapZ} = square;
-  g_map[mapX][mapZ] = Math.min(max_height, g_map[mapX][mapZ] + 1); //height increment w limit
-}
-
-function delBlock() { //delete block in front
-  const square = getSquare(1);
-  if (!square) {
-    console.log('No square in front to delete block');
-    return;
-  }
-  const {mapX, mapZ} = square;
-  g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
-}
-
 var g_startTime=performance.now()/1000.0;
 var g_seconds=performance.now()/1000.0-g_startTime;
 
@@ -756,6 +705,58 @@ function drawMap() {
     }
   }
 }
+
+function getSquare(d) { //want square infront of us
+  const f = new Vector3();
+  f.set(camera.at);
+  f.sub(camera.eye);
+
+  f.elements[1] = 0; //disregard y coord here
+  const len = Math.sqrt( f.elements[0] * f.elements[0] + f.elements[2] * f.elements[2]
+  );
+
+  if (len < 0.0001) {
+    return null;
+  }
+
+  f.elements[0] /= len; //x coord normalizd
+  f.elements[2] /= len; //z coord normalizd
+
+  const worldX = camera.eye.elements[0] + f.elements[0] * d;
+  const worldZ = camera.eye.elements[2] + f.elements[2] * d;
+  const mapX = Math.floor(worldX + 16);
+  const mapZ = Math.floor(worldZ + 16);
+
+  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
+    return null;
+  }
+
+  return {mapX, mapZ};
+
+}
+
+const max_height = 10; //max height of blocks to prevent lag / overflows 
+
+function addBlock() { //add block in front
+  const square = getSquare(1);
+  if (!square) {
+    console.log('No square in front to add block');
+    return;
+  }
+  const {mapX, mapZ} = square;
+  g_map[mapX][mapZ] = Math.min(max_height, g_map[mapX][mapZ] + 1); //height increment w limit
+}
+
+function delBlock() { //delete block in front
+  const square = getSquare(1);
+  if (!square) {
+    console.log('No square in front to delete block');
+    return;
+  }
+  const {mapX, mapZ} = square;
+  g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
+}
+
 
 
 function renderAllShapes() {
