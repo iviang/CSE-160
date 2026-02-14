@@ -515,24 +515,26 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
 }
 
 //collision detection function 
-function collisionDetect(worldX, worldZ, worldY) {
+function collisionDetect(worldX, worldZ) {
   const mapX = Math.floor(worldX + 16);
   const mapZ = Math.floor(worldZ + 16);
-  const height = g_map[mapX][mapZ];
+  // const height = g_map[mapX][mapZ];
 
-  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { //even if open, we cant go off the map
+  //even if open, we cant go off the map
+  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
     return true;
   }
 
-  if (height <= 0) {
-    return false;
-  }
+  // if (height <= 0) {
+  //   return false;
+  // }
 
-  return true;
+  // return true;
+  return g_map[mapX][mapZ] > 0; 
 }
 
-function reposition(worldX, worldZ, worldY) {
-  const s = playerSize;
+function reposition(worldX, worldZ) {
+  const s = P_Size;
 
   const points =[
     [worldX + s, worldZ],
@@ -542,7 +544,7 @@ function reposition(worldX, worldZ, worldY) {
   ];
 
   for (const [px, pz] of points) {
-    if (collisionDetect(px, pz, worldY)) {
+    if (collisionDetect(px, pz)) {
       return false;
     }
   }
