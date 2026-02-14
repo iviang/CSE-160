@@ -22,6 +22,7 @@ var FSHADER_SOURCE = `
   uniform sampler2D u_Sampler0;
   uniform sampler2D u_Sampler1;
   uniform sampler2D u_Sampler2;
+  uniform sampler2D u_Sampler3;
   uniform int u_whichTexture;
   void main() {
     if (u_whichTexture == -2) {
@@ -37,6 +38,8 @@ var FSHADER_SOURCE = `
       gl_FragColor = texture2D(u_Sampler1, v_UV);       
     } else if (u_whichTexture == 2) {                   //use texture2 = grass
       gl_FragColor = texture2D(u_Sampler2, v_UV);       
+    } else if (u_whichTexture == 3) {                   //use texture3 = dirt
+      gl_FragColor = texture2D(u_Sampler3, v_UV);       
     } else {                                            //error push Redish
       gl_FragColor = vec4(1,.2,.2,1);
     }
