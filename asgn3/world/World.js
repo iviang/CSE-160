@@ -448,20 +448,6 @@ function sendTextureToTEXTURE4(image) { //glass
 }
 
 
-function buildWall(){
-  walls = [];
-  for (let x = 0; x < g_map.length; x++) {
-    for (let z = 0; z < g_map[0].length; z++) {
-      if (g_map[x][z] == 1) {
-        let w = new Cube();
-        w.textureNum = 4; //texture
-        w.matrix.translate(x-16, -.25, z-16);
-        walls.push(w);
-      }
-    }
-  }
-}
-
 function main() {
 
   setupWebGL(); //set up canvas and gl variables
@@ -615,6 +601,20 @@ function keydown(ev) { //modify for the wasd keys
   }
 
   renderAllShapes();
+}
+
+function buildWall(){
+  walls = [];
+  for (let x = 0; x < g_map.length; x++) {
+    for (let z = 0; z < g_map[0].length; z++) {
+      if (g_map[x][z] == 1) {
+        let w = new Cube();
+        w.textureNum = 4; //texture
+        w.matrix.translate(x-16, -.25, z-16);
+        walls.push(w);
+      }
+    }
+  }
 }
 
 var g_map=[

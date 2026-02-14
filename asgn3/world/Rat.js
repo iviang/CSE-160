@@ -1,13 +1,13 @@
 //color creation
-// const BLACK = [0.0, 0.0, 0.0, 1.0];
-// const PINK  = [1.0, 0.6, 0.7, 1.0];
-// const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
-// const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
-// const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
-// const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
-// const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
-// const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
-// const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey 
+const BLACK = [0.0, 0.0, 0.0, 1.0];
+const PINK  = [1.0, 0.6, 0.7, 1.0];
+const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
+const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
+const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
+const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
+const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
+const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
+const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey 
 
 let g_buttAngle = 0;
 let g_btail = 0;
@@ -37,6 +37,7 @@ class Rat {
 
     //draw the body cube
     var body = new Cube();
+    body.textureNum = -2;
     body.color = MGREY;
     body.matrix.set(base); 
     body.matrix.scale(.5, .3, .5);
@@ -47,6 +48,7 @@ class Rat {
     //butt =======================================================
 
     var butt = new Cube();
+    body.textureNum = -2;
     butt.color = GREY;
     butt.matrix.set(base);
     butt.matrix.translate(-0.20, -0.05, -0.025);
@@ -61,6 +63,7 @@ class Rat {
 
     //base of tail
     var btail = new Cube();
+    body.textureNum = -2;
     btail.color = DPINK;
     btail.matrix.set(buttCoordinates); //connects to butt
     btail.matrix.translate(-.25,.15,.4);
@@ -73,6 +76,7 @@ class Rat {
     // mid tail 1
 
     var m1tail = new Cube();
+    body.textureNum = -2;
     m1tail.color = PINK;
     m1tail.matrix.set(btailCoordinates); //connect to base of tail
     m1tail.matrix.translate(-.9,.1,.2);
@@ -84,6 +88,7 @@ class Rat {
 
     // mid tail 2
     var m2tail = new Cube();
+    body.textureNum = -2;
     m2tail.color = PINK;
     m2tail.matrix.set(m1tailCoordinates); //connect to base of tail
     m2tail.matrix.translate(-.9,.1,.2);
@@ -95,6 +100,7 @@ class Rat {
 
     // tail tip
     var tiptail = new Cone();
+    body.textureNum = -2;
     tiptail.color = PINK;
     tiptail.matrix.set(m2tailCoordinates); //connect to base of tail
     tiptail.matrix.translate(-.9,.1,.2);
@@ -107,6 +113,7 @@ class Rat {
     //HEAD ==================================================================================
     
     var head = new Cube();
+    body.textureNum = -2;
     head.color = LLGREY;
     head.matrix.set(bodyCoordinates); //connects to body
     head.matrix.translate(1,0,0.07);
@@ -118,6 +125,7 @@ class Rat {
 
     //ears ===============================================
     var earR = new Cone();
+    body.textureNum = -2;
     earR.color = GREY;
     earR.matrix.set(headCoordinates);
     earR.matrix.translate(0, 1.25, -0.13);
@@ -126,6 +134,7 @@ class Rat {
     earR.render();
 
     var inearR = new Cone();
+    body.textureNum = -2;
     inearR.color = PINK;
     inearR.matrix.set(headCoordinates);
     inearR.matrix.translate(0.1, 1.15, -0.1);
@@ -134,6 +143,7 @@ class Rat {
     inearR.render();
 
     var earL = new Cone();
+    body.textureNum = -2;
     earL.color = GREY;
     earL.matrix.set(headCoordinates);
     earL.matrix.translate(0, .6, 1.15);
@@ -142,6 +152,7 @@ class Rat {
     earL.render();
 
     var inearL = new Cone();
+    body.textureNum = -2;
     inearL.color = PINK;
     inearL.matrix.set(headCoordinates);
     inearL.matrix.translate(0.12, .7, 1.13);
@@ -152,6 +163,7 @@ class Rat {
 
     //snout ========================================================
     var snout = new Cube();
+    body.textureNum = -2;
     snout.color = LLGREY;
     snout.matrix.set(headCoordinates); //connects to head
     snout.matrix.translate(1,0.05,0.16);
@@ -162,6 +174,7 @@ class Rat {
 
     //snout2
     var snout2 = new Sphere();
+    body.textureNum = -2;
     snout2.color = LLGREY;
     snout2.matrix.set(snoutCoordinates); //connects to head
     snout2.matrix.translate(0.6,0,0.16);
@@ -172,6 +185,7 @@ class Rat {
 
     //nose ================================================================
     var nose = new Sphere();
+    body.textureNum = -2;
     nose.color = PINK; 
     nose.matrix.set(snout2Coordinates); //connects to head
     nose.matrix.translate(.8,0.05,0.4);
@@ -180,6 +194,7 @@ class Rat {
 
     //EYES ==============================================================
     var eyeR = new Sphere();
+    body.textureNum = -2;
     eyeR.color = BLACK;
     eyeR.matrix.set(snoutCoordinates);
     eyeR.matrix.translate(0, 0.5, -.2);
@@ -187,6 +202,7 @@ class Rat {
     eyeR.render();
 
     var eyeL = new Sphere();
+    body.textureNum = -2;
     eyeL.color = BLACK;
     eyeL.matrix.set(snoutCoordinates);
     eyeL.matrix.translate(0, 0.5, .9);
@@ -201,6 +217,7 @@ class Rat {
 
     // upper FRONT RIGHT leg
     var upperFR = new Cube();
+    body.textureNum = -2;
     upperFR.color = LGREY;
 
     upperFR.matrix.set(bodyCoordinates); //connects to body
@@ -212,6 +229,7 @@ class Rat {
 
     // lower FRONT RIGHT leg
     var lowerFR = new Cube();
+    body.textureNum = -2;
     lowerFR.color = GREY; 
 
     lowerFR.matrix.set(upperFRCoordinates); //CONNECTS TO UPPER LEG
@@ -225,6 +243,7 @@ class Rat {
 
     // Front RIGHT paw
     var pawFR = new Cube();
+    body.textureNum = -2;
     pawFR.color = PINK;
 
     pawFR.matrix.set(lowerFRCoordinates); //CONNECTS TO UPPER LEG
@@ -237,6 +256,7 @@ class Rat {
     
     // upper BACK RIGHT leg
     var upperBR = new Cube();
+    body.textureNum = -2;
     upperBR.color = DGREY;
 
     upperBR.matrix.set(buttCoordinates); //connects to body
@@ -248,6 +268,7 @@ class Rat {
 
     // lower BACK RIGHT leg
     var lowerBR = new Cube();
+    body.textureNum = -2;
     lowerBR.color = GREY; 
 
     lowerBR.matrix.set(upperBRCoordinates); //CONNECTS TO UPPER LEG
@@ -262,6 +283,7 @@ class Rat {
 
     // BACK RIGHT paw
     var pawBR = new Cube();
+    body.textureNum = -2;
     pawBR.color = [1.0, 0.6, 0.7, 1.0]; // [0.6, 0.6, 0.6, 1.0];
 
     pawBR.matrix.set(lowerBRCoordinates); //CONNECTS TO UPPER LEG
@@ -274,6 +296,7 @@ class Rat {
 
     // upper FRONT LEFT leg
     var upperFL = new Cube();
+    body.textureNum = -2;
     upperFL.color = LGREY;  
 
     upperFL.matrix.set(bodyCoordinates); //connects to body
@@ -285,6 +308,7 @@ class Rat {
 
     // lower FRONT LEFT leg
     var lowerFL = new Cube();
+    body.textureNum = -2;
     lowerFL.color = GREY; 
 
     lowerFL.matrix.set(upperFLCoordinates); //CONNECTS TO UPPER LEG
@@ -298,6 +322,7 @@ class Rat {
 
     // Front LEFT paw
     var pawFL = new Cube();
+    body.textureNum = -2;
     pawFL.color = [1.0, 0.6, 0.7, 1.0];  
 
     pawFL.matrix.set(lowerFLCoordinates); //CONNECTS TO UPPER LEG
@@ -309,6 +334,7 @@ class Rat {
 
     // upper BACK LEFT leg
     var upperBL = new Cube();
+    body.textureNum = -2;
     upperBL.color = DGREY; 
 
     upperBL.matrix.set(buttCoordinates); //connects to body
@@ -320,6 +346,7 @@ class Rat {
 
     // lower BACK LEFT leg
     var lowerBL = new Cube();
+    body.textureNum = -2;
     lowerBL.color = GREY;  
 
     lowerBL.matrix.set(upperBLCoordinates); //CONNECTS TO UPPER LEG
@@ -335,6 +362,7 @@ class Rat {
 
     // BACK LEFT paw
     var pawBL = new Cube();
+    body.textureNum = -2;
     pawBL.color = [1.0, 0.6, 0.7, 1.0]; // [0.6, 0.6, 0.6, 1.0];
 
     pawBL.matrix.set(lowerBLCoordinates); //CONNECTS TO UPPER LEG
