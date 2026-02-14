@@ -92,7 +92,7 @@ class Cube{
         var alluvs=[];
         var allverts=[];
 
-        
+
         function tri(v, uv){
             allverts=allverts.concat(v);
             alluvs=alluvs.concat(uv);
@@ -123,6 +123,6 @@ class Cube{
         tri( [0,0,1,  1,1,1,  1,0,1], [0,0, 1,0, 1,1] ); //new addition
         tri( [0,0,1,  0,1,1,  1,1,1], [0,0, 0,1, 1,0] ); //new addition
 
-        drawTriangle3DUV(allverts, alluvs);
+        drawTriangle3DUVFast(allverts, alluvs);
     }
 }

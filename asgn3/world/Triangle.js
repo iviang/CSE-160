@@ -80,7 +80,7 @@ function drawTriangle3D(vertices) {
 }
 
 function drawTriangle3DUV(vertices, uv) {
-  var n = 3; // The number of vertices
+  var n = vertices.length / 3; // The number of vertices
 
   //--------------------
   //create a buffer object for positions
