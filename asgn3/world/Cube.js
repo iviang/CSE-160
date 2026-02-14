@@ -79,9 +79,9 @@ class Cube{
     }
 
     renderfast() {
-        // var xy = this.position;
         var rgba = this.color;
-        // var size = this.size;
+
+        gl.uniform1i(u_whichTexture, this.textureNum); 
 
         // Pass the color of a point to u_FragColor variable
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
@@ -89,31 +89,40 @@ class Cube{
         //Pass tge natrix to u_ModelMatrix attibute
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
 
+        var alluvs=[];
         var allverts=[];
-        //front of the cube
-        allverts=allverts.concat([0,0,0, 1,1,0, 1,0,0]); //new addition
-        allverts=allverts.concat( [0,0,0, 0,1,0, 1,1,0]); //new addition
 
+        
+        function tri(v, uv){
+            allverts=allverts.concat(v);
+            alluvs=alluvs.concat(uv);
+        }
+
+        //front
+        tri( [0,0,0, 1,1,0, 1,0,0], [0,0, 1,1, 1,0] ); //new addition
+        tri( [0,0,0, 0,1,0, 1,1,0], [0,0, 0,1, 1,1] ); //new addition
+    
         //top
-        allverts=allverts.concat([0,1,0,  0,1,1,  1,1,1]);
-        allverts=allverts.concat([0,1,0,  1,1,1,  1,1,0]);
+        tri( [0,1,0,  0,1,1,  1,1,1], [0,0, 0,1, 1,1] ); //new addition
+        tri( [0,1,0,  1,1,1,  1,1,0], [0,0, 1,1, 1,0] ); //new addition
 
         //bot
-        allverts=allverts.concat([0,0,0,  1,0,1,  1,0,0]);
-        allverts=allverts.concat([0,0,0,  0,0,1,  1,0,1]);
+        tri( [0,0,0,  1,0,1,  1,0,0], [0,0, 1,0, 1,1] ); //new addition
+        tri( [0,0,0,  0,0,1,  1,0,1], [0,0, 0,1, 1,0] ); //new addition
 
         //left
-        allverts=allverts.concat([0,0,0,  0,1,0,  0,1,1]);
-        allverts=allverts.concat([0,0,0,  0,1,1,  0,0,1]);
+        tri( [0,0,0,  0,1,0,  0,1,1], [0,0, 1,0, 1,1] ); //new addition
+        tri( [0,0,0,  0,1,1,  0,0,1], [0,0, 1,1, 0,1] ); //new addition
+
 
         //right
-        allverts=allverts.concat([1,0,0,  1,1,1,  1,1,0]);
-        allverts=allverts.concat([1,0,0,  1,0,1,  1,1,1]);
+        tri( [1,0,0,  1,1,1,  1,1,0], [0,0, 1,0, 1,1] ); //new addition
+        tri( [1,0,0,  1,0,1,  1,1,1], [0,0, 0,1, 1,0] ); //new addition
 
         //back
-        allverts=allverts.concat([0,0,1,  1,1,1,  1,0,1]);
-        allverts=allverts.concat([0,0,1,  0,1,1,  1,1,1]);
+        tri( [0,0,1,  1,1,1,  1,0,1], [0,0, 1,0, 1,1] ); //new addition
+        tri( [0,0,1,  0,1,1,  1,1,1], [0,0, 0,1, 1,0] ); //new addition
 
-        drawTriangle3D(allverts);
+        drawTriangle3DUV(allverts, alluvs);
     }
 }
