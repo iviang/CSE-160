@@ -599,7 +599,9 @@ function drawMap() {
         var body = new Cube();
         body.textureNum=3; //texture
         // body.color = [1.0, 1.0, 1.0, 1.0];
-        body.matrix.translate(x-16, -.75, y-16);
+        body.matrix.translate(0, -.75, 0);
+        body.matrix.scale(.4,.4,.4);
+        body.matrix.translate(x-16, 0, y-16);
         body.render();
       }
     }
