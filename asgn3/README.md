@@ -20,3 +20,4 @@ WebGL PG: CH.5 TexturedQuad example (initTextures and loadTexture)
 https://www.toptal.com/developers/keycode/table
 https://www.deviantart.com/cymae/art/UV-Mapping-Grid-153007848 
 https://www.vecteezy.com/vector-art/2948772-pixel-minecraft-style-land-background 
+https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Collision_detection 

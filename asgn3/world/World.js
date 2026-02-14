@@ -203,6 +203,9 @@ const POINT = 0;
 const TRIANGLE = 1;
 const CIRCLE = 2;
 
+const P_Size = 0.5; //size of player controlling 
+const P_Height = -0.65; //match ground level
+
 //global variables related to UI
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
@@ -511,6 +514,23 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
   };
 }
 
+//collision detection function 
+function collisionDetect(x, z, y) {
+  const mapX = Math.floor(x + 16);
+  const mapZ = Math.floor(z + 16);
+  const height = g_map[mapX][mapZ];
+
+  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { //even if open, we cant go off the map
+    return true;
+  }
+
+  if (height <= 0) {
+    return false;
+  }
+
+  return true;
+}
+
 var g_startTime=performance.now()/1000.0;
 var g_seconds=performance.now()/1000.0-g_startTime;
 
@@ -692,7 +712,7 @@ function renderAllShapes() {
   var globalRotMat=new Matrix4().rotate(g_globalAngle,0,1,0);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
-  //draw the GROUND 
+  //draw the GROUND ==========
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
   body.textureNum=2;
@@ -701,7 +721,7 @@ function renderAllShapes() {
   // body.matrix.translate(-.5, 0, -0.5);
   body.render();
 
-  //draw the SKY BOX 
+  //draw the SKY BOX ==========
   var sky = new Cube();
   sky.color = [1.0, 0.0, 0.0, 1.0];
   sky.textureNum=1;
@@ -751,15 +771,6 @@ function renderAllShapes() {
   ground.matrix.scale(2, .1, 2);
   ground.render();
 
-  // a bunch of cubes rotating
-  // var K=10.0;
-  // for (var i=1; i<K; i++) {
-  //   var c = new Cube;
-  //   c.matrix.translate(-.8,1.9*i/K-1.0,0);
-  //   c.matrix.rotate(g_seconds*100,1,1,1);
-  //   c.matrix.scale(.1, 0.5/K, 1.0/K);
-  //   c.render();
-  // }
 
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
