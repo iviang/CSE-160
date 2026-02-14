@@ -68,6 +68,7 @@ let u_Sampler2;
 let u_Sampler3;
 let u_Sampler4;
 
+let g_rat = null;
 
 let walls = [];
 
@@ -455,7 +456,7 @@ function main() {
   setupWebGL(); //set up canvas and gl variables
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
   camera = new Camera(canvas); // set up camera
-
+  g_rat = new Rat(); //set up rat
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
 
