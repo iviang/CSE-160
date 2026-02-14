@@ -109,16 +109,17 @@ class Camera{
     }
 
     panRight(alpha) {
-        let f = new Vector3();
-        f.set(this.at);
-        f.sub(this.eye);
+        this.panLeft(-alpha);
+        // let f = new Vector3();
+        // f.set(this.at);
+        // f.sub(this.eye);
 
-        let rotationMatrix = new Matrix4();
-        rotationMatrix.setRotate(-alpha, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
+        // let rotationMatrix = new Matrix4();
+        // rotationMatrix.setRotate(-alpha, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
 
-        let f_prime = rotationMatrix.multiplyVector3(f);
-        this.at.set(this.eye);
-        this.at.add(f_prime);
+        // let f_prime = rotationMatrix.multiplyVector3(f);
+        // this.at.set(this.eye);
+        // this.at.add(f_prime);
     }
 
 }
