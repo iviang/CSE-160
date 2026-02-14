@@ -19,11 +19,8 @@ class Rat {
   render() {
     //base
     var base = new Matrix4();
-    base.translate(-0.30, -0.20 + g_pHop, -0.15); //attaches to the body and butt cubes
-
-    base.translate(0.25, 0.15, 0.25);        // pivot tweak (adjust if roll looks off-center)
-    base.rotate(g_pRoll, 1, 0, 0);        // roll around Z axis (screen-facing roll)
-    base.translate(-0.25, -0.15, -0.25);
+    base.translate(this.position[0], this.position[1], this.position[2]);
+    base.rotate(this.rotation, 0, 1, 0);
 
     //draw the body cube
     var body = new Cube();
