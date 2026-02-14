@@ -500,14 +500,18 @@ var g_map=[
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
 ];
 
+g_map.length === 32;
+g_map[0].length === 32;
+
 function drawMap() {
-  for (x=0;x<8;x++) {
-    for (y=0;y<8;y++) {
+  for (x=0;x<g_map.length;x++) {
+    for (y=0;y<g_map[0].length;y++) {
       //console.log(x,y);
       if (g_map[x][y] == 1) {
         var body = new Cube();
-        body.color = [1.0, 1.0, 1.0, 1.0];
-        body.matrix.translate(x-4, -.75, y-4);
+        body.textureNum=0; //texture
+        // body.color = [1.0, 1.0, 1.0, 1.0];
+        body.matrix.translate(x-16, -.75, y-16);
         body.render();
       }
     }
@@ -548,9 +552,9 @@ function renderAllShapes() {
   gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
   gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
 
-  for (let i = 0; i < walls.length; i++) {
-    walls[i].render();
-}
+//   for (let i = 0; i < walls.length; i++) {
+//     walls[i].render();
+// }
 
   //pass view matrix 3.6a video
   // viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
@@ -565,8 +569,8 @@ function renderAllShapes() {
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
   body.textureNum=0;
-  body.matrix.translate(0, -.75, 0.0);
-  body.matrix.scale(10,0.1,10);
+  body.matrix.translate(-16, -.75, -16);
+  body.matrix.scale(32,0.1,32);
   body.matrix.translate(-.5, 0, -0.5);
   body.render();
 
