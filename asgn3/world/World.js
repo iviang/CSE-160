@@ -56,6 +56,7 @@ let u_ViewMatrix;
 let u_GlobalRotateMatrix;
 let u_Sampler0;
 let u_Sampler1;
+let u_Sampler2;
 
 let walls = [];
 
@@ -152,6 +153,12 @@ function connectVariablesToGLSL(){
     return;
   }
 
+  u_Sampler2 = gl.getUniformLocation(gl.program, 'u_Sampler2');
+  if (!u_Sampler2) {
+    console.log('Failed to get the storage location of u_Sampler2');
+    return;
+  }
+
   u_whichTexture = gl.getUniformLocation(gl.program, 'u_whichTexture');
   if (!u_whichTexture) {
     console.log('Failed to get the storage location of u_whichTexture');
@@ -237,7 +244,16 @@ function initTextures() {
   // Tell the browser to load an image
   image1.src = 'blue.jpg';
 
-
+  //SKY TEXTURE==========
+  var image2 = new Image();  // Create the image object
+  if (!image2) {
+    console.log('Failed to create the image object');
+    return false;
+  }
+  // Register the event handler to be called on loading an image
+  image2.onload = function(){ sendTextureToTEXTURE2(image2); };
+  // Tell the browser to load an image
+  image2.src = 'grass.png';
 
   return true;
 }
@@ -292,6 +308,29 @@ function sendTextureToTEXTURE1(image) {
   console.log('Finished loadTexture');
 }
 
+function sendTextureToTEXTURE2(image) {
+  var texture = gl.createTexture(); // Create a texture object
+  if (!texture) {
+    console.log('Failed to create the texture object');
+    return false;
+  }
+  
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
+  // Enable texture unit1
+  gl.activeTexture(gl.TEXTURE2);
+  // Bind the texture object to the target
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+
+  // Set the texture parameters
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  // Set the texture image
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+  
+  // Set the texture unit 1 to the sampler
+  gl.uniform1i(u_Sampler2, 2);
+
+  console.log('Finished loadTexture');
+}
 
 
 function buildWall(){
@@ -568,7 +607,7 @@ function renderAllShapes() {
   //draw the GROUND 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
-  body.textureNum=0;
+  body.textureNum=2;
   body.matrix.translate(-16, -.75, -16);
   body.matrix.scale(32,0.1,32);
   // body.matrix.translate(-.5, 0, -0.5);
