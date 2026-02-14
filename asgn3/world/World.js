@@ -244,7 +244,7 @@ function initTextures() {
   // Tell the browser to load an image
   image1.src = 'blue.jpg';
 
-  //SKY TEXTURE==========
+  //GRASS TEXTURE==========
   var image2 = new Image();  // Create the image object
   if (!image2) {
     console.log('Failed to create the image object');
@@ -316,7 +316,7 @@ function sendTextureToTEXTURE2(image) {
   }
   
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
-  // Enable texture unit1
+  // Enable texture unit2
   gl.activeTexture(gl.TEXTURE2);
   // Bind the texture object to the target
   gl.bindTexture(gl.TEXTURE_2D, texture);
