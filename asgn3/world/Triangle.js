@@ -57,7 +57,7 @@ function drawTriangle(vertices) {
 }
 
 function drawTriangle3D(vertices) {
-  var n = vertices.length3; // The number of vertices
+  var n = vertices.length/3; // The number of vertices
 
   var vertexBuffer = gl.createBuffer();
   if (!vertexBuffer) {
