@@ -14,10 +14,11 @@ CAMERA ROTATION:
 Q,E, MOUSE
 
 ADD BLOCK: "1"
-DELETE BLOCK: "2"
+DELETE BLOCK: "2" = "eat"
 
-note:
-had PC issues and had to borrow different device to finish 
+NOTES:
+had PC issues and had to borrow different device to make progress
+explanation of the game: you are a rat, collect cheese around the map to gain points.
 
 References:
 asgn3 pdf
@@ -32,4 +33,5 @@ https://www.vecteezy.com/vector-art/2948772-pixel-minecraft-style-land-backgroun
 https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Collision_detection
 https://en.wikipedia.org/wiki/NaN
 https://www.w3tutorials.net/blog/let-user-delete-a-selected-fabric-js-object/ 
-https://minecraft.fandom.com/wiki/Breaking 
+https://minecraft.fandom.com/wiki/Breaking
+https://static.vecteezy.com/system/resources/previews/005/266/188/original/cheese-background-illustration-slice-porous-yellow-swiss-cheese-maasdam-edam-cheese-day-vector.jpg 
