@@ -531,7 +531,6 @@ function collisionDetect(worldX, worldZ) {
 
   // return true;
   return g_map[mapX][mapZ] > 0; 
-  return true;
 
 }
 
@@ -754,45 +753,45 @@ function renderAllShapes() {
   
   drawMap();
 
-  var body = new Cube();
-  body.color = [1.0, 0.0, 0.0, 1.0];
-  body.textureNum=0;
-  body.matrix.translate(-.25, -.75, 0.0);
-  body.matrix.rotate(-5,1,0,0);
-  body.matrix.scale(0.5, .3, .5);
-  body.render();
+  // var body = new Cube();
+  // body.color = [1.0, 0.0, 0.0, 1.0];
+  // body.textureNum=0;
+  // body.matrix.translate(-.25, -.75, 0.0);
+  // body.matrix.rotate(-5,1,0,0);
+  // body.matrix.scale(0.5, .3, .5);
+  // body.render();
 
   // var bodyCoordinates= new Matrix4(body.matrix);
 
   // draw a left arm
-  var yellow = new Cube();
-  yellow.color = [1,1,0,1];
-  yellow.matrix.setTranslate(0, -.5, 0.0);
-  yellow.matrix.rotate(-5,1,0,0);
-  yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
-  var yellowCoordinatesMat=new Matrix4(yellow.matrix);
-  yellow.matrix.scale(0.25, .7, .5);
-  yellow.matrix.translate(-.5,0,0);
-  yellow.render();
+  // var yellow = new Cube();
+  // yellow.color = [1,1,0,1];
+  // yellow.matrix.setTranslate(0, -.5, 0.0);
+  // yellow.matrix.rotate(-5,1,0,0);
+  // yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
+  // var yellowCoordinatesMat=new Matrix4(yellow.matrix);
+  // yellow.matrix.scale(0.25, .7, .5);
+  // yellow.matrix.translate(-.5,0,0);
+  // yellow.render();
 
 
   // Test box
-  var magenta = new Cube();
-  magenta.color = [1,0,1,1];
-  magenta.textureNum=0;
-  magenta.matrix = yellowCoordinatesMat;
-  magenta.matrix.translate(0, 0.65, 0);
-  magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
-  magenta.matrix.scale(.3,.3,.3);
-  magenta.matrix.translate(-.5, 0, -0.001);
-  magenta.render();
+  // var magenta = new Cube();
+  // magenta.color = [1,0,1,1];
+  // magenta.textureNum=0;
+  // magenta.matrix = yellowCoordinatesMat;
+  // magenta.matrix.translate(0, 0.65, 0);
+  // magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
+  // magenta.matrix.scale(.3,.3,.3);
+  // magenta.matrix.translate(-.5, 0, -0.001);
+  // magenta.render();
 
 
   //ground plane
-  var ground = new Cube();
-  ground.matrix.translate(0, 0, -1);
-  ground.matrix.scale(2, .1, 2);
-  ground.render();
+  // var ground = new Cube();
+  // ground.matrix.translate(0, 0, -1);
+  // ground.matrix.scale(2, .1, 2);
+  // ground.render();
 
 
   //check the time at the end of the funciton, and show on web pg
