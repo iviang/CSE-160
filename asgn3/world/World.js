@@ -76,6 +76,7 @@ let u_whichTexture;
 
 let g_mouseRotX = 0;
 let g_mouseRotY = 0;
+
  
 function setupWebGL(){
   // Retrieve <canvas> element
@@ -470,15 +471,15 @@ function main() {
 
 }
 
-function mouseDetect() {
+function mouseDetect() { //converted into the rotation funct for mouse/camera 
   let drag = false;
   let prevX = 0;
-  let prevY = 0;
+  // let prevY = 0;
 
   canvas.onmousedown=function(ev) {
     drag=true;
     prevX=ev.clientX;
-    prevY=ev.clientY;
+    // prevY=ev.clientY;
   };
 
   canvas.onmouseup=function(ev){
@@ -494,19 +495,21 @@ function mouseDetect() {
     if (!drag) return;
 
     const dx = ev.clientX - prevX;
-    const dy = ev.clientY - prevY;
+    // const dy = ev.clientY - prevY;
 
     const sensitivity = 0.5;
 
-    g_mouseRotY += dx * sensitivity;
-    g_mouseRotX += dy * sensitivity;
+    g_camera.pan(dx * sensitivity);
 
-    g_mouseRotX = Math.max(-90, Math.min(90, g_mouseRotX));
+    // g_mouseRotY += dx * sensitivity;
+    // g_mouseRotX += dy * sensitivity;
+
+    // g_mouseRotX = Math.max(-90, Math.min(90, g_mouseRotX));
 
     prevX = ev.clientX;
-    prevY = ev.clientY;
+    // prevY = ev.clientY;
 
-    renderAllShapes();
+    // renderAllShapes();
   };
 }
 
