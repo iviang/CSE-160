@@ -554,8 +554,8 @@ function keydown(ev) { //modify for the wasd keys
 
 var g_map=[
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -593,20 +593,17 @@ g_map[0].length === 32;
 
 function drawMap() {
   for (x=0;x<g_map.length;x++) {
-    for (y=0;y<g_map[0].length;y++) {
+    for (z=0;z<g_map[0].length;z++) {
       //console.log(x,y);
-      if (g_map[x][y] == 1) {
-        var body = new Cube();
-        body.textureNum=3; //texture
-        // body.color = [1.0, 1.0, 1.0, 1.0];
-        
-        // body.matrix.translate(0, -.75, 0);
-        // body.matrix.scale(.4,.4,.4);
-        // body.matrix.translate(x-16, 0, y-16);
-
-        body.matrix.translate(x-16, -.75, y-16);
-
-        body.render();
+      let height = g_map[x][z]; //N
+      
+      if (height >0) {
+        for (let y = 0; y < height; y++) { 
+          var body = new Cube();
+          body.textureNum=3; //texture
+          body.matrix.translate(x-16,y-.75, z-16);
+          body.render();
+        }
       }
     }
   }
