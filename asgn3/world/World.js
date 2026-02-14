@@ -205,15 +205,15 @@ const TRIANGLE = 1;
 const CIRCLE = 2;
 
 
-const BLACK = [0.0, 0.0, 0.0, 1.0];
-const PINK  = [1.0, 0.6, 0.7, 1.0];
-const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
-const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
-const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
-const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
-const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
-const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
-const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey 
+// const BLACK = [0.0, 0.0, 0.0, 1.0];
+// const PINK  = [1.0, 0.6, 0.7, 1.0];
+// const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
+// const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
+// const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
+// const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
+// const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
+// const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
+// const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey 
 
 // const P_Size = 0.5; //size of player controlling 
 // const P_Height = -0.65; //match ground level
