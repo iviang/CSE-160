@@ -24,6 +24,8 @@ var FSHADER_SOURCE = `
   uniform sampler2D u_Sampler2;
   uniform sampler2D u_Sampler3;
   uniform sampler2D u_Sampler4;
+  uniform sampler2D u_Sampler5;
+
   uniform int u_whichTexture;
   void main() {
     if (u_whichTexture == -2) {
@@ -43,6 +45,8 @@ var FSHADER_SOURCE = `
       gl_FragColor = texture2D(u_Sampler3, v_UV);       
     } else if (u_whichTexture == 4) {                   //use texture4 = glass
       gl_FragColor = texture2D(u_Sampler4, v_UV);   
+    } else if (u_whichTexture == 5) {                   //use texture5 = cheese
+      gl_FragColor = texture2D(u_Sampler5, v_UV);   
     } else {                                            //error push Redish
       gl_FragColor = vec4(1,.2,.2,1);
     }
@@ -67,6 +71,7 @@ let u_Sampler1;
 let u_Sampler2;
 let u_Sampler3;
 let u_Sampler4;
+let u_Sampler5;
 
 let g_rat = null;
 
@@ -184,6 +189,12 @@ function connectVariablesToGLSL(){
     return;
   }
 
+  u_Sampler5 = gl.getUniformLocation(gl.program, 'u_Sampler5');
+  if (!u_Sampler5) {
+    console.log('Failed to get the storage location of u_Sampler5');
+    return;
+  }
+
   u_whichTexture = gl.getUniformLocation(gl.program, 'u_whichTexture');
   if (!u_whichTexture) {
     console.log('Failed to get the storage location of u_whichTexture');
@@ -203,17 +214,6 @@ function connectVariablesToGLSL(){
 const POINT = 0;
 const TRIANGLE = 1;
 const CIRCLE = 2;
-
-
-// const BLACK = [0.0, 0.0, 0.0, 1.0];
-// const PINK  = [1.0, 0.6, 0.7, 1.0];
-// const DPINK = [0.6, 0.5, 0.6, 1.0]; //darker pink
-// const LGREY = [0.7, 0.7, 0.7, 1.0]; //light grey
-// const GREY = [0.6, 0.6, 0.6, 1.0]; //grey
-// const LLGREY = [0.9, 0.9, 0.9, 1.0]; //super light grey
-// const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
-// const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
-// const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey 
 
 // const P_Size = 0.5; //size of player controlling 
 // const P_Height = -0.65; //match ground level
@@ -318,7 +318,17 @@ function initTextures() {
   // Tell the browser to load an image
   image4.src = '../textures/glass.png';
 
+  //CHEESE TEXTURE==========
+  var image5 = new Image();  // Create the image object
+  if (!image5) {
+    console.log('Failed to create the image object');
+    return false;
+  }
 
+  // Register the event handler to be called on loading an image
+  image5.onload = function(){ sendTextureToTEXTURE5(image5); };
+  // Tell the browser to load an image
+  image5.src = '../textures/cheese.jpg';
 
 
 
@@ -443,6 +453,30 @@ function sendTextureToTEXTURE4(image) { //glass
   
   // Set the texture unit 1 to the sampler
   gl.uniform1i(u_Sampler4, 4);
+
+  console.log('Finished loadTexture');
+}
+
+function sendTextureToTEXTURE5(image) { //cheese
+  var texture = gl.createTexture(); // Create a texture object
+  if (!texture) {
+    console.log('Failed to create the texture object');
+    return false;
+  }
+  
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
+  // Enable texture unit5
+  gl.activeTexture(gl.TEXTURE5);
+  // Bind the texture object to the target
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+
+  // Set the texture parameters
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  // Set the texture image
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+  
+  // Set the texture unit 1 to the sampler
+  gl.uniform1i(u_Sampler5, 5);
 
   console.log('Finished loadTexture');
 }
@@ -794,7 +828,14 @@ function renderAllShapes() {
   g_rat.position = [0, -.65, 0];
   g_rat.render();
 
-
+  //draw the cheese ==========
+  var cheese = new Cube();
+  cheese.color = [1.0, 1.0, 0.0, 1.0];
+  cheese.textureNum=5;
+  cheese.matrix.translate(10, -.65, 10);
+  cheese.matrix.scale(0.5,0.5,0.5);
+  cheese.render();
+  
   // var body = new Cube();
   // body.color = [1.0, 0.0, 0.0, 1.0];
   // body.textureNum=0;
