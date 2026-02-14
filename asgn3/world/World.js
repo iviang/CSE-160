@@ -389,7 +389,7 @@ function buildWall(){
       if (g_map[x][z] == 1) {
         let w = new Cube();
         w.textureNum = 3; //texture
-        w.matrix.translate(x-4, -.25, z-4);
+        w.matrix.translate(x-16, -.25, z-16);
         walls.push(w);
       }
     }
