@@ -641,9 +641,9 @@ function keydown(ev) { //modify for the wasd keys
   } else if (ev.keyCode == 69) { // E
     camera.panRight(alpha);
   } else if (ev.keyCode == 49) { // 1
-    addBlockInFront();
+    addBlock();
   } else if (ev.keyCode == 50) { // 2
-    deleteBlockInFront();
+    delBlock();
   }
 
   renderAllShapes();
