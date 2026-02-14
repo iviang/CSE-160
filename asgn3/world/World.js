@@ -571,7 +571,7 @@ function renderAllShapes() {
   body.textureNum=0;
   body.matrix.translate(-16, -.75, -16);
   body.matrix.scale(32,0.1,32);
-  body.matrix.translate(-.5, 0, -0.5);
+  // body.matrix.translate(-.5, 0, -0.5);
   body.render();
 
   //draw the SKY BOX 
