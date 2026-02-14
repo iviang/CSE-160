@@ -99,20 +99,20 @@ class Cube{
         allverts=allverts.concat([0,1,0,  1,1,1,  1,1,0]);
 
         //bot
-        allverts=allverts.concat([0,0,0,  1,0,0,  1,0,1]);
-        allverts=allverts.concat([0,0,0,  1,0,1,  0,0,1]);
+        allverts=allverts.concat([0,0,0,  1,0,1,  1,0,0]);
+        allverts=allverts.concat([0,0,0,  0,0,1,  1,0,1]);
 
         //left
-        allverts=allverts.concat([0,0,0,  0,1,1,  0,1,0]);
-        allverts=allverts.concat([0,0,0,  0,0,1,  0,1,1]);
+        allverts=allverts.concat([0,0,0,  0,1,0,  0,1,1]);
+        allverts=allverts.concat([0,0,0,  0,1,1,  0,0,1]);
 
         //right
-        allverts=allverts.concat([1,0,0,  1,1,0,  1,1,1]);
-        allverts=allverts.concat([1,0,0,  1,1,1,  1,0,1]);
+        allverts=allverts.concat([1,0,0,  1,1,1,  1,1,0]);
+        allverts=allverts.concat([1,0,0,  1,0,1,  1,1,1]);
 
         //back
-        allverts=allverts.concat([0,0,1,  1,0,1,  1,1,1]);
-        allverts=allverts.concat([0,0,1,  1,1,1,  0,1,1]);
+        allverts=allverts.concat([0,0,1,  1,1,1,  1,0,1]);
+        allverts=allverts.concat([0,0,1,  0,1,1,  1,1,1]);
 
         drawTriangle3D(allverts);
     }
