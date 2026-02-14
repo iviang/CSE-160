@@ -203,8 +203,8 @@ const POINT = 0;
 const TRIANGLE = 1;
 const CIRCLE = 2;
 
-const P_Size = 0.5; //size of player controlling 
-const P_Height = -0.65; //match ground level
+// const P_Size = 0.5; //size of player controlling 
+// const P_Height = -0.65; //match ground level
 
 //global variables related to UI
 let g_selectedColor=[1.0,1.0,1.0,1.0];
@@ -515,42 +515,42 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
 }
 
 //collision detection function 
-function collisionDetect(worldX, worldZ) {
-  const mapX = Math.floor(worldX + 16);
-  const mapZ = Math.floor(worldZ + 16);
-  // const height = g_map[mapX][mapZ];
+// function collisionDetect(worldX, worldZ) {
+//   const mapX = Math.floor(worldX + 16);
+//   const mapZ = Math.floor(worldZ + 16);
+//   // const height = g_map[mapX][mapZ];
 
-  //even if open, we cant go off the map
-  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
-    return true;
-  }
+//   //even if open, we cant go off the map
+//   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
+//     return true;
+//   }
 
-  // if (height <= 0) {
-  //   return false;
-  // }
+//   // if (height <= 0) {
+//   //   return false;
+//   // }
 
-  // return true;
-  return g_map[mapX][mapZ] > 0; 
+//   // return true;
+//   return g_map[mapX][mapZ] > 0; 
 
-}
+// }
 
-function reposition(worldX, worldZ) {
-  const s = P_Size;
+// function reposition(worldX, worldZ) {
+//   const s = P_Size;
 
-  const points =[
-    [worldX + s, worldZ],
-    [worldX - s, worldZ],
-    [worldX, worldZ + s],
-    [worldX, worldZ - s],
-  ];
+//   const points =[
+//     [worldX + s, worldZ],
+//     [worldX - s, worldZ],
+//     [worldX, worldZ + s],
+//     [worldX, worldZ - s],
+//   ];
 
-  for (const [px, pz] of points) {
-    if (collisionDetect(px, pz)) {
-      return false;
-    }
-  }
-  return true;
-}
+//   for (const [px, pz] of points) {
+//     if (collisionDetect(px, pz)) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
 
 var g_startTime=performance.now()/1000.0;
@@ -678,7 +678,7 @@ var g_map=[
   [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
   [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
   [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3], 
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 
 ];
 
 g_map.length === 32;
