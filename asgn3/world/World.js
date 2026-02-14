@@ -594,7 +594,7 @@ function drawMap() {
       //console.log(x,y);
       if (g_map[x][y] == 1) {
         var body = new Cube();
-        body.textureNum=3; //texture
+        body.textureNum=0; //texture
         // body.color = [1.0, 1.0, 1.0, 1.0];
         body.matrix.translate(x-16, -.75, y-16);
         body.render();
