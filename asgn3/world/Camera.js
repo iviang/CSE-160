@@ -53,18 +53,8 @@ class Camera{
         f.normalize();
         f.mul(speed);
 
-        let newEye = new Vector3();
-        newEye.set(this.eye);
-        newEye.add(f);
-
-        let newAt = new Vector3();
-        newAt.set(this.at);
-        newAt.add(f);
-
-        if (reposition(newEye, newAt)) {
-            this.eye.set(newEye);
-            this.at.set(newAt);
-        }
+        this.eye.add(f);
+        this.at.add(f);
     }
 
     moveBackwards(speed)  {
