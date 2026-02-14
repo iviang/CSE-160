@@ -602,7 +602,7 @@ function drawMap() {
           var body = new Cube();
           body.textureNum=3; //texture
           body.matrix.translate(x-16,-.75+y, z-16);
-          body.render();
+          body.renderfast();
         }
       }
     }
