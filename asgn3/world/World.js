@@ -277,7 +277,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image3.onload = function(){ sendTextureToTEXTURE3(image3); };
   // Tell the browser to load an image
-  image3.src = 'dirt.png';
+  image3.src = 'dirt.jpg';
 
   return true;
 }
@@ -350,7 +350,7 @@ function sendTextureToTEXTURE2(image) {
   // Set the texture image
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
   
-  // Set the texture unit 1 to the sampler
+  // Set the texture unit 2 to the sampler
   gl.uniform1i(u_Sampler2, 2);
 
   console.log('Finished loadTexture');
@@ -364,7 +364,7 @@ function sendTextureToTEXTURE3(image) {
   }
   
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
-  // Enable texture unit2
+  // Enable texture unit3
   gl.activeTexture(gl.TEXTURE3);
   // Bind the texture object to the target
   gl.bindTexture(gl.TEXTURE_2D, texture);
