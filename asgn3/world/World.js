@@ -457,7 +457,7 @@ function main() {
   addActionsForHtmlUI();
 
   // Mouse detection
-  // mouseDetect(); 
+  mouseDetect(); 
   //poke animation trigger
   // shiftClick();
   document.onkeydown = keydown;
