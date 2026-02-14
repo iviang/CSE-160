@@ -121,7 +121,7 @@ class Cube{
         function tri(v, uv){
             allverts=allverts.concat(v);
             alluvs=alluvs.concat(uv);
-        }
+        };
 
         //front
         tri( [0,0,0, 1,1,0, 1,0,0], [0,0, 1,1, 1,0] ); //new addition
