@@ -738,7 +738,7 @@ function getSquare(d) { //want square infront of us
 const max_height = 10; //max height of blocks to prevent lag / overflows 
 
 function addBlock() { //add block in front
-  const square = getSquare(1);
+  const square = getSquare(3);
   if (!square) {
     console.log('No square in front to add block');
     return;
@@ -748,7 +748,7 @@ function addBlock() { //add block in front
 }
 
 function delBlock() { //delete block in front
-  const square = getSquare(1);
+  const square = getSquare(3);
   if (!square) {
     console.log('No square in front to delete block');
     return;
