@@ -21,7 +21,7 @@ class Cube{
         //Pass tge natrix to u_ModelMatrix attibute
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
 
-        const face(v0, v1, v2, v3) => {
+        const face = (v0, v1, v2, v3) => {
         //triangle 1
             drawTriangle3DUV(
                 [...v0, ...v1, ...v2],
