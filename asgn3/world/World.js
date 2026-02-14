@@ -266,7 +266,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image1.onload = function(){ sendTextureToTEXTURE1(image1); };
   // Tell the browser to load an image
-  image1.src = 'blue.jpg';
+  image1.src = 'sky.jpg';
 
   //GRASS TEXTURE==========
   var image2 = new Image();  // Create the image object
