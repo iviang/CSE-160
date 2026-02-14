@@ -23,6 +23,7 @@ var FSHADER_SOURCE = `
   uniform sampler2D u_Sampler1;
   uniform sampler2D u_Sampler2;
   uniform sampler2D u_Sampler3;
+  uniform sampler2D u_Sampler4;
   uniform int u_whichTexture;
   void main() {
     if (u_whichTexture == -2) {
@@ -40,6 +41,8 @@ var FSHADER_SOURCE = `
       gl_FragColor = texture2D(u_Sampler2, v_UV);       
     } else if (u_whichTexture == 3) {                   //use texture3 = dirt
       gl_FragColor = texture2D(u_Sampler3, v_UV);       
+    } else if (u_whichTexture == 4) {                   //use texture4 = glass
+      gl_FragColor = texture2D(u_Sampler4, v_UV);   
     } else {                                            //error push Redish
       gl_FragColor = vec4(1,.2,.2,1);
     }
@@ -63,6 +66,8 @@ let u_Sampler0;
 let u_Sampler1;
 let u_Sampler2;
 let u_Sampler3;
+let u_Sampler4;
+
 
 let walls = [];
 
@@ -168,6 +173,12 @@ function connectVariablesToGLSL(){
   u_Sampler3 = gl.getUniformLocation(gl.program, 'u_Sampler3');
   if (!u_Sampler3) {
     console.log('Failed to get the storage location of u_Sampler3');
+    return;
+  }
+
+  u_Sampler4 = gl.getUniformLocation(gl.program, 'u_Sampler4');
+  if (!u_Sampler4) {
+    console.log('Failed to get the storage location of u_Sampler4');
     return;
   }
 
@@ -279,6 +290,22 @@ function initTextures() {
   // Tell the browser to load an image
   image3.src = 'dirt.jpg';
 
+  //GLASS TEXTURE==========
+  var image4 = new Image();  // Create the image object
+  if (!image4) {
+    console.log('Failed to create the image object');
+    return false;
+  }
+
+  // Register the event handler to be called on loading an image
+  image4.onload = function(){ sendTextureToTEXTURE4(image4); };
+  // Tell the browser to load an image
+  image4.src = 'glass.png';
+
+
+
+
+
   return true;
 }
 
@@ -380,6 +407,29 @@ function sendTextureToTEXTURE3(image) { //dirt
   console.log('Finished loadTexture');
 }
 
+function sendTextureToTEXTURE4(image) { //glass
+  var texture = gl.createTexture(); // Create a texture object
+  if (!texture) {
+    console.log('Failed to create the texture object');
+    return false;
+  }
+  
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
+  // Enable texture unit4
+  gl.activeTexture(gl.TEXTURE4);
+  // Bind the texture object to the target
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+
+  // Set the texture parameters
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  // Set the texture image
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+  
+  // Set the texture unit 1 to the sampler
+  gl.uniform1i(u_Sampler4, 4);
+
+  console.log('Finished loadTexture');
+}
 
 
 function buildWall(){
@@ -388,7 +438,7 @@ function buildWall(){
     for (let z = 0; z < g_map[0].length; z++) {
       if (g_map[x][z] == 1) {
         let w = new Cube();
-        w.textureNum = 3; //texture
+        w.textureNum = 4; //texture
         w.matrix.translate(x-16, -.25, z-16);
         walls.push(w);
       }
