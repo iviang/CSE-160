@@ -606,7 +606,7 @@ function drawMap() {
 
         body.matrix.translate(x-16, -.75, y-16);
 
-        body.renderfast();
+        body.render();
       }
     }
   }
