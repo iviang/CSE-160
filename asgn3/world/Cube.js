@@ -55,7 +55,7 @@ class Cube{
         // drawTriangle3D([0,0,0,  0,1,1,  0,1,0]);
         // drawTriangle3D([0,0,0,  0,0,1,  0,1,1]);
 
-        drawTriangle3DUV( [0,0,0,  0,1,0,  0,1,1], [0,0, 1,0, 1,1] ); //new addition
+        drawTriangle3DUV( [0,1,0,  0,1,1,  0,0,0], [0,0, 1,0, 1,1] ); //new addition
         drawTriangle3DUV( [0,0,0,  0,1,1,  0,0,1], [0,0, 1,1, 0,1] ); //new addition
         
         //pass the color of a point to u_FragColor uniform variable
@@ -65,11 +65,12 @@ class Cube{
         // drawTriangle3D([1,0,0,  1,1,0,  1,1,1]);
         // drawTriangle3D([1,0,0,  1,1,1,  1,0,1]);
 
-        drawTriangle3DUV( [1,0,0,  1,1,1,  1,1,0], [0,0, 1,0, 1,1] ); //new addition
-        drawTriangle3DUV( [1,0,0,  1,0,1,  1,1,1], [0,0, 0,1, 1,0] ); //new addition
+        drawTriangle3DUV( [1,1,0,  1,1,1,  1,0,0], [0,0, 1,0, 1,1] ); //new addition
+        drawTriangle3DUV( [1,0,0,  1,1,1,  1,0,1], [0,0, 0,1, 1,0] ); //new addition
 
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.5, rgba[1]*.5, rgba[2]*.5, rgba[3]);
+        
         //back
         // drawTriangle3D([0,0,1,  1,0,1,  1,1,1]);
         // drawTriangle3D([0,0,1,  1,1,1,  0,1,1]);
@@ -77,5 +78,44 @@ class Cube{
         drawTriangle3DUV( [0,0,1,  0,1,1,  1,1,1], [0,0, 0,1, 1,0] ); //new addition
 
 
+    }
+
+    renderfast() {
+        // var xy = this.position;
+        var rgba = this.color;
+        // var size = this.size;
+
+        // Pass the color of a point to u_FragColor variable
+        gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+
+        //Pass tge natrix to u_ModelMatrix attibute
+        gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
+
+        var allverts=[];
+        //front of the cube
+        allverts=allverts.concat([0,0,0, 1,1,0, 1,0,0]); //new addition
+        allverts=allverts.concat( [0,0,0, 0,1,0, 1,1,0]); //new addition
+
+        //top
+        allverts=allverts.concat([0,1,0,  0,1,1,  1,1,1]);
+        allverts=allverts.concat([0,1,0,  1,1,1,  1,1,0]);
+
+        //bot
+        allverts=allverts.concat([0,0,0,  0,0,1,  1,0,1]);
+        allverts=allverts.concat([0,0,0,  1,0,1,  1,0,0]);
+
+        //left
+        allverts=allverts.concat([0,1,0,  0,1,1,  0,0,0]);
+        allverts=allverts.concat([0,0,0,  0,1,1,  0,0,1]);
+
+        //right
+        allverts=allverts.concat([1,1,0,  1,1,1,  1,0,0]);
+        allverts=allverts.concat([1,0,0,  1,1,1,  1,0,1]);
+
+        //back
+        allverts=allverts.concat([0,0,1,  1,1,1,  1,0,1]);
+        allverts=allverts.concat([0,0,1,  0,1,1,  1,1,1]);
+
+        drawTriangle3D(allverts);
     }
 }
