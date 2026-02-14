@@ -609,7 +609,7 @@ function renderAllShapes() {
   //draw the GROUND 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
-  body.textureNum=0;
+  body.textureNum=2;
   body.matrix.translate(-16, -.75, -16);
   body.matrix.scale(32,0.1,32);
   // body.matrix.translate(-.5, 0, -0.5);
