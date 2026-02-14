@@ -282,7 +282,7 @@ function initTextures() {
   return true;
 }
 
-function sendTextureToTEXTURE0(image) {
+function sendTextureToTEXTURE0(image) { //uv grid
   var texture = gl.createTexture(); // Create a texture object
   if (!texture) {
     console.log('Failed to create the texture object');
@@ -308,7 +308,7 @@ function sendTextureToTEXTURE0(image) {
   console.log('Finished loadTexture');
 }
 
-function sendTextureToTEXTURE1(image) {
+function sendTextureToTEXTURE1(image) { //sky
   var texture = gl.createTexture(); // Create a texture object
   if (!texture) {
     console.log('Failed to create the texture object');
@@ -332,7 +332,7 @@ function sendTextureToTEXTURE1(image) {
   console.log('Finished loadTexture');
 }
 
-function sendTextureToTEXTURE2(image) {
+function sendTextureToTEXTURE2(image) { //grass
   var texture = gl.createTexture(); // Create a texture object
   if (!texture) {
     console.log('Failed to create the texture object');
@@ -348,7 +348,7 @@ function sendTextureToTEXTURE2(image) {
   // Set the texture parameters
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   // Set the texture image
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
   
   // Set the texture unit 2 to the sampler
   gl.uniform1i(u_Sampler2, 2);
@@ -356,7 +356,7 @@ function sendTextureToTEXTURE2(image) {
   console.log('Finished loadTexture');
 }
 
-function sendTextureToTEXTURE3(image) {
+function sendTextureToTEXTURE3(image) { //dirt
   var texture = gl.createTexture(); // Create a texture object
   if (!texture) {
     console.log('Failed to create the texture object');
