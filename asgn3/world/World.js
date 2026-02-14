@@ -601,7 +601,7 @@ function drawMap() {
         for (let y = 0; y < height; y++) { 
           var body = new Cube();
           body.textureNum=3; //texture
-          body.matrix.translate(x-16,-.75+y, z-16);
+          body.matrix.translate(x-16,-.74+y, z-16);
           body.renderfast();
         }
       }
