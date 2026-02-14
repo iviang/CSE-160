@@ -7,6 +7,9 @@ site:
 https://iviang.github.io/CSE-160/asgn3/world/World.html
 http://localhost:8000/asgn3/world/World.html
 
+note:
+had PC issues and had to borrow different device to finish 
+
 References:
 asgn3 pdf
 refrenced asgn2 construction
