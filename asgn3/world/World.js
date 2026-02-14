@@ -531,6 +531,8 @@ function collisionDetect(worldX, worldZ) {
 
   // return true;
   return g_map[mapX][mapZ] > 0; 
+  return true;
+
 }
 
 function reposition(worldX, worldZ) {
