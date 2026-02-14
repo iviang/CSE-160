@@ -531,7 +531,23 @@ function collisionDetect(worldX, worldZ, worldY) {
   return true;
 }
 
-function 
+function reposition(worldX, worldZ, worldY) {
+  const s = playerSize;
+
+  const points =[
+    [worldX + s, worldZ],
+    [worldX - s, worldZ],
+    [worldX, worldZ + s],
+    [worldX, worldZ - s],
+  ];
+
+  for (const [px, pz] of points) {
+    if (collisionDetect(px, pz, worldY)) {
+      return false;
+    }
+  }
+  return true;
+}
 
 
 var g_startTime=performance.now()/1000.0;
