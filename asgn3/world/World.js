@@ -515,9 +515,9 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
 }
 
 //collision detection function 
-function collisionDetect(x, z, y) {
-  const mapX = Math.floor(x + 16);
-  const mapZ = Math.floor(z + 16);
+function collisionDetect(worldX, worldZ, worldY) {
+  const mapX = Math.floor(worldX + 16);
+  const mapZ = Math.floor(worldZ + 16);
   const height = g_map[mapX][mapZ];
 
   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { //even if open, we cant go off the map
@@ -530,6 +530,9 @@ function collisionDetect(x, z, y) {
 
   return true;
 }
+
+function 
+
 
 var g_startTime=performance.now()/1000.0;
 var g_seconds=performance.now()/1000.0-g_startTime;
