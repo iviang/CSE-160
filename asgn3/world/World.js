@@ -258,7 +258,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image0.onload = function(){ sendTextureToTEXTURE0(image0); };
   // Tell the browser to load an image
-  image0.src = 'uvgrid.png';
+  image0.src = '../textures/uvgrid.png';
 
   //SKY TEXTURE==========
   var image1 = new Image();  // Create the image object
@@ -269,7 +269,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image1.onload = function(){ sendTextureToTEXTURE1(image1); };
   // Tell the browser to load an image
-  image1.src = 'sky.jpg';
+  image1.src = '../textures/sky.jpg';
 
   //GRASS TEXTURE==========
   var image2 = new Image();  // Create the image object
@@ -280,7 +280,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image2.onload = function(){ sendTextureToTEXTURE2(image2); };
   // Tell the browser to load an image
-  image2.src = 'grass.png';
+  image2.src = '../textures/grass.png';
 
   //DIRT TEXTURE==========
   var image3 = new Image();  // Create the image object
@@ -292,7 +292,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image3.onload = function(){ sendTextureToTEXTURE3(image3); };
   // Tell the browser to load an image
-  image3.src = 'dirt.jpg';
+  image3.src = '../textures/dirt.jpg';
 
   //GLASS TEXTURE==========
   var image4 = new Image();  // Create the image object
@@ -304,7 +304,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image4.onload = function(){ sendTextureToTEXTURE4(image4); };
   // Tell the browser to load an image
-  image4.src = 'glass.png';
+  image4.src = '../textures/glass.png';
 
 
 
@@ -502,36 +502,12 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
 
     camera.panLeft(dx * sensitivity);
 
-    // g_mouseRotY += dx * sensitivity;
-    // g_mouseRotX += dy * sensitivity;
-
-    // g_mouseRotX = Math.max(-90, Math.min(90, g_mouseRotX));
-
     prevX = ev.clientX;
     // prevY = ev.clientY;
 
     // renderAllShapes();
   };
 }
-
-// function reposition(worldX, worldZ) {
-//   const s = P_Size;
-
-//   const points =[
-//     [worldX + s, worldZ],
-//     [worldX - s, worldZ],
-//     [worldX, worldZ + s],
-//     [worldX, worldZ - s],
-//   ];
-
-//   for (const [px, pz] of points) {
-//     if (collisionDetect(px, pz)) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
-
 
 var g_startTime=performance.now()/1000.0;
 var g_seconds=performance.now()/1000.0-g_startTime;
@@ -687,24 +663,24 @@ function drawMap() {
 }
 
 //collision detection function 
-function collisionDetect(worldX, worldZ) {
-  const mapX = Math.floor(worldX + 16);
-  const mapZ = Math.floor(worldZ + 16);
-  // const height = g_map[mapX][mapZ];
+// function collisionDetect(worldX, worldZ) {
+//   const mapX = Math.floor(worldX + 16);
+//   const mapZ = Math.floor(worldZ + 16);
+//   // const height = g_map[mapX][mapZ];
 
-  //even if open, we cant go off the map
-  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
-    return true;
-  }
+//   //even if open, we cant go off the map
+//   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
+//     return true;
+//   }
 
-  // if (height <= 0) {
-  //   return false;
-  // }
+//   // if (height <= 0) {
+//   //   return false;
+//   // }
 
-  // return true;
-  return g_map[mapX][mapZ] > 0; 
+//   // return true;
+//   return g_map[mapX][mapZ] > 0; 
 
-}
+// }
 
 function getSquare(d) { //want square infront of us
   const f = new Vector3();
@@ -771,19 +747,9 @@ function renderAllShapes() {
     camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2],
     camera.up.elements[0],  camera.up.elements[1],  camera.up.elements[2]
   )
-  //pass projection matrix 3.6a video
-  // var projMat=new Matrix4();
-  // projMat.setPerspective(50, 1*canvas.width/canvas.height, 1, 100);
+
   gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
   gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
-
-//   for (let i = 0; i < walls.length; i++) {
-//     walls[i].render();
-// }
-
-  //pass view matrix 3.6a video
-  // viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]); //(eye: xyz more z = farther away, at, up) 
-  // viewMat.setLookAt(0,0,3, 0,0,-100, 0,1,0); //(eye: xyz more z = farther away, at, up) 
 
 
   //Pass the matrix to u_ModelMatrix attribute
