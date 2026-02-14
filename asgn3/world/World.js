@@ -59,6 +59,7 @@ let u_GlobalRotateMatrix;
 let u_Sampler0;
 let u_Sampler1;
 let u_Sampler2;
+let u_Sampler3;
 
 let walls = [];
 
@@ -161,6 +162,12 @@ function connectVariablesToGLSL(){
     return;
   }
 
+  u_Sampler3 = gl.getUniformLocation(gl.program, 'u_Sampler3');
+  if (!u_Sampler3) {
+    console.log('Failed to get the storage location of u_Sampler3');
+    return;
+  }
+
   u_whichTexture = gl.getUniformLocation(gl.program, 'u_whichTexture');
   if (!u_whichTexture) {
     console.log('Failed to get the storage location of u_whichTexture');
@@ -257,6 +264,18 @@ function initTextures() {
   // Tell the browser to load an image
   image2.src = 'grass.png';
 
+  //DIRT TEXTURE==========
+  var image3 = new Image();  // Create the image object
+  if (!image3) {
+    console.log('Failed to create the image object');
+    return false;
+  }
+
+  // Register the event handler to be called on loading an image
+  image3.onload = function(){ sendTextureToTEXTURE3(image3); };
+  // Tell the browser to load an image
+  image3.src = 'dirt.png';
+
   return true;
 }
 
@@ -333,6 +352,31 @@ function sendTextureToTEXTURE2(image) {
 
   console.log('Finished loadTexture');
 }
+
+function sendTextureToTEXTURE3(image) {
+  var texture = gl.createTexture(); // Create a texture object
+  if (!texture) {
+    console.log('Failed to create the texture object');
+    return false;
+  }
+  
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
+  // Enable texture unit2
+  gl.activeTexture(gl.TEXTURE3);
+  // Bind the texture object to the target
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+
+  // Set the texture parameters
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  // Set the texture image
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+  
+  // Set the texture unit 1 to the sampler
+  gl.uniform1i(u_Sampler3, 3);
+
+  console.log('Finished loadTexture');
+}
+
 
 
 function buildWall(){
@@ -550,7 +594,7 @@ function drawMap() {
       //console.log(x,y);
       if (g_map[x][y] == 1) {
         var body = new Cube();
-        body.textureNum=0; //texture
+        body.textureNum=3; //texture
         // body.color = [1.0, 1.0, 1.0, 1.0];
         body.matrix.translate(x-16, -.75, y-16);
         body.render();
