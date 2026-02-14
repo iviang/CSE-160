@@ -457,9 +457,7 @@ function main() {
   addActionsForHtmlUI();
 
   // Mouse detection
-  mouseDetect(); 
-  //poke animation trigger
-  // shiftClick();
+  mouseDetect();  
   document.onkeydown = keydown;
 
   initTextures();
@@ -499,7 +497,7 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
 
     const sensitivity = 0.5;
 
-    g_camera.pan(dx * sensitivity);
+    camera.panLeft(dx * sensitivity);
 
     // g_mouseRotY += dx * sensitivity;
     // g_mouseRotX += dy * sensitivity;
