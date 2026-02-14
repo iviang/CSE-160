@@ -9,6 +9,18 @@ const MGREY = [0.8, 0.8, 0.8, 1.0]; //medium grey
 const DGREY = [0.55, 0.55, 0.55, 1.0];; //darky grey
 const DDGREY = [0.5, 0.5, 0.5, 1.0];; //darkER grey 
 
+let g_buttAngle = 0;
+let g_btail = 0;
+let g_m1tail = 0;
+let g_m2tail = 0;
+let g_tiptail = 0;
+let g_headAngle = 0;
+
+let g_upperFR = 0, g_lowerFR = 0, g_pawFR = 0;
+let g_upperBR = 0, g_lowerBR = 0, g_pawBR = 0;
+let g_upperFL = 0, g_lowerFL = 0, g_pawFL = 0;
+let g_upperBL = 0, g_lowerBL = 0, g_pawBL = 0;
+
 class Rat {
   constructor() {
     this.position = [0, 0, 0];
@@ -316,7 +328,7 @@ class Rat {
     lowerBL.matrix.rotate(g_lowerBL, 0,0,1); //set up for joint
     lowerBL.matrix.translate(-1.0, 0.0, -0.5);
     lowerBL.matrix.scale(0.6, .7, 0.9);
-    lowerBR.matrix.translate(-0.4, 0, 0.0);
+    lowerBL.matrix.translate(-0.4, 0, 0.0);
     lowerBL.render();
     var lowerBLCoordinates=new Matrix4(lowerBL.matrix);
 

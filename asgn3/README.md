@@ -7,6 +7,15 @@ site:
 https://iviang.github.io/CSE-160/asgn3/world/World.html
 http://localhost:8000/asgn3/world/World.html
 
+MOVEMENT KEYS:
+WASD
+
+CAMERA ROTATION: 
+Q,E, MOUSE
+
+ADD BLOCK: "1"
+DELETE BLOCK: "2"
+
 note:
 had PC issues and had to borrow different device to finish 
 
