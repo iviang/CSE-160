@@ -45,8 +45,8 @@ class Cube{
         // drawTriangle3D([0,0,0,  1,0,0,  1,0,1]);
         // drawTriangle3D([0,0,0,  1,0,1,  0,0,1]);
 
-        drawTriangle3DUV( [0,0,0,  1,0,0,  1,0,1], [0,0, 1,0, 1,1] ); //new addition
-        drawTriangle3DUV( [0,0,0,  1,0,1,  0,0,1], [0,0, 0,1, 1,0] ); //new addition
+        drawTriangle3DUV( [0,0,0,  1,0,1,  1,0,0], [0,0, 1,0, 1,1] ); //new addition
+        drawTriangle3DUV( [0,0,0,  0,0,1,  1,0,1], [0,0, 0,1, 1,0] ); //new addition
 
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.7, rgba[1]*.7, rgba[2]*.7, rgba[3]);
@@ -55,8 +55,8 @@ class Cube{
         // drawTriangle3D([0,0,0,  0,1,1,  0,1,0]);
         // drawTriangle3D([0,0,0,  0,0,1,  0,1,1]);
 
-        drawTriangle3DUV( [0,0,0,  0,1,1,  0,1,0], [0,0, 1,0, 1,1] ); //new addition
-        drawTriangle3DUV( [0,0,0,  0,0,1,  0,1,1], [0,0, 1,1, 0,1] ); //new addition
+        drawTriangle3DUV( [0,0,0,  0,1,0,  0,1,1], [0,0, 1,0, 1,1] ); //new addition
+        drawTriangle3DUV( [0,0,0,  0,1,1,  0,0,1], [0,0, 1,1, 0,1] ); //new addition
         
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.6, rgba[1]*.6, rgba[2]*.6, rgba[3]);
@@ -65,18 +65,16 @@ class Cube{
         // drawTriangle3D([1,0,0,  1,1,0,  1,1,1]);
         // drawTriangle3D([1,0,0,  1,1,1,  1,0,1]);
 
-        drawTriangle3DUV( [1,0,0,  1,1,0,  1,1,1], [0,0, 1,0, 1,1] ); //new addition
-        drawTriangle3DUV( [1,0,0,  1,1,1,  1,0,1], [0,0, 0,1, 1,0] ); //new addition
+        drawTriangle3DUV( [1,0,0,  1,1,1,  1,1,0], [0,0, 1,0, 1,1] ); //new addition
+        drawTriangle3DUV( [1,0,0,  1,0,1,  1,1,1], [0,0, 0,1, 1,0] ); //new addition
 
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.5, rgba[1]*.5, rgba[2]*.5, rgba[3]);
-
         //back
         // drawTriangle3D([0,0,1,  1,0,1,  1,1,1]);
         // drawTriangle3D([0,0,1,  1,1,1,  0,1,1]);
-        drawTriangle3DUV( [0,0,1,  1,0,1,  1,1,1], [0,0, 1,0, 1,1] ); //new addition
-        drawTriangle3DUV( [0,0,1,  1,1,1,  0,1,1], [0,0, 0,1, 1,0] ); //new addition
-
+        drawTriangle3DUV( [0,0,1,  1,1,1,  1,0,1], [0,0, 1,0, 1,1] ); //new addition
+        drawTriangle3DUV( [0,0,1,  0,1,1,  1,1,1], [0,0, 0,1, 1,0] ); //new addition
 
     }
 
