@@ -514,26 +514,6 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
   };
 }
 
-//collision detection function 
-// function collisionDetect(worldX, worldZ) {
-//   const mapX = Math.floor(worldX + 16);
-//   const mapZ = Math.floor(worldZ + 16);
-//   // const height = g_map[mapX][mapZ];
-
-//   //even if open, we cant go off the map
-//   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
-//     return true;
-//   }
-
-//   // if (height <= 0) {
-//   //   return false;
-//   // }
-
-//   // return true;
-//   return g_map[mapX][mapZ] > 0; 
-
-// }
-
 // function reposition(worldX, worldZ) {
 //   const s = P_Size;
 
@@ -704,6 +684,26 @@ function drawMap() {
       }
     }
   }
+}
+
+//collision detection function 
+function collisionDetect(worldX, worldZ) {
+  const mapX = Math.floor(worldX + 16);
+  const mapZ = Math.floor(worldZ + 16);
+  // const height = g_map[mapX][mapZ];
+
+  //even if open, we cant go off the map
+  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
+    return true;
+  }
+
+  // if (height <= 0) {
+  //   return false;
+  // }
+
+  // return true;
+  return g_map[mapX][mapZ] > 0; 
+
 }
 
 function getSquare(d) { //want square infront of us
