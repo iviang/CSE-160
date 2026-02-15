@@ -828,16 +828,17 @@ function Boundary(worldX, worldZ) {
 //collision detection function 
 function collisionDetect(worldX, worldZ) {
   const r = 0.25;
+  const shift = 0.001;
 
   const pts = [
-    [worldX + r, worldZ],
-    [worldX - r, worldZ],
-    [worldX, worldZ + r],
-    [worldX, worldZ - r],
-    [worldX + r, worldZ + r],
-    [worldX + r, worldZ - r],
-    [worldX - r, worldZ + r],
-    [worldX - r, worldZ - r],
+    [worldX + r - shift, worldZ],
+    [worldX - r + shift, worldZ],
+    [worldX, worldZ + r - shift],
+    [worldX, worldZ - r + shift],
+    [worldX + r - shift, worldZ + r - shift],
+    [worldX + r - shift, worldZ - r + shift],
+    [worldX - r + shift, worldZ + r - shift],
+    [worldX - r + shift, worldZ - r] + shift,
   ];
 
   for (const [x,z] of pts) {
