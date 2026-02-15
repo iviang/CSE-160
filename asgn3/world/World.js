@@ -847,19 +847,45 @@ function delBlock() { //delete block in front
   g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
 }
 
+// function updateThirdPersonCamera() {
+//   const d = 6;
+//   const height = 2;
+
+//   const rad = g_rat.rotation * Math.PI/180;
+
+//   const cameraX = g_rat.position[0] - Math.sin(rad) * d;
+//   const cameraY = g_rat.position[1] + height;
+//   const cameraZ = g_rat.position[2] - Math.cos(rad) * d;
+
+//   camera.eye.set([cameraX, cameraY, cameraZ]);
+
+//   camera.at.set([g_rat.position[0], g_rat.position[1]+0.5, g_rat.position[2]])
+// }
+
 function updateThirdPersonCamera() {
-  const d = 6;
-  const height = 2;
+  const rx = g_rat.position[0];
+  const ry = g_rat.position[1];
+  const rz = g_rat.position[2];
 
-  const rad = g_rat.rotation * Math.PI/180;
+  const d = 6.0;
+  const height = 2.0;
+  const yaw = g_globalAngle * Math.PI / 180;
 
-  const X = g_rat.position[0] - Math.sin(rad) * d;
-  const Y = g_rat.position[1] + height;
-  const Z = g_rat.position[2] - Math.cos(rad) * d;
+  const camX = rx - Math.sin(yaw) * d;
+  const camY = ry + height;
+  const camZ = rz - Math.cos(yaw) * d;
 
-  camera.eye.set([X, Y, Z]);
+  camera.eye.elements[0] = camX;
+  camera.eye.elements[1] = camY;
+  camera.eye.elements[2] = camZ;
 
-  camera.at.set([g_rat.position[0], g_rat.position[1]+0.5, g_rat.position[2]])
+  camera.at.elements[0] = rx;
+  camera.at.elements[1] = ry + 0.5;
+  camera.at.elements[2] = rz;
+
+  camera.up.elements[0] = 0;
+  camera.up.elements[1] = 1;
+  camera.up.elements[2] = 0;
 }
 
 function renderAllShapes() {
