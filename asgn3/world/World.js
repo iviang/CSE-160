@@ -705,13 +705,28 @@ function keydown(ev) { //modify for the wasd keys
 
 //CONTROLLING THE RAT IN OVERHEAD ONLY!!
   function moveRat(dx , dz) {
-    const Xnew = g_rat.position[0] + dx;
-    const Znew = g_rat.position[2] + dz;
-    //keep rat on the map
-    if (!Boundary(Xnew, Znew)) {
-      g_rat.position[0] += dx;
-      g_rat.position[2] += dz;
+
+    let x = g_rat.position[0];
+    let z = g_rat.position[2];
+
+    const Xnew = x + dx;
+    if (!collisionDetect(Xnew, z)) {
+      x = Xnew;
     }
+
+    const Znew = z + dz;
+    if (!collisionDetect(x, Znew)) {
+      z = Znew;
+    }
+
+    g_ratPosition[0] = x;
+    g_ratPosition[2] = z;
+
+    // //keep rat on the map
+    // if (!Boundary(Xnew, Znew)) {
+    //   g_rat.position[0] += dx;
+    //   g_rat.position[2] += dz;
+    // }
 
     g_rat.position[1] = -0.65; //no flying
 
