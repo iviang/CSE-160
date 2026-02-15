@@ -530,7 +530,7 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
     const dx = ev.clientX - prevX;
     const dy = ev.clientY - prevY;
 
-    const sensitivity = 0.5;
+    const sensitivity = 0.2;
 
     camera.panLeft(dx * sensitivity);
     camera.panUp(-dy * sensitivity);
