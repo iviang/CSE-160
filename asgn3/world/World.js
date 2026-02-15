@@ -653,7 +653,7 @@ function keydown(ev) { //modify for the wasd keys
     buildWall();
   }
 
-  renderAllShapes();
+  // renderAllShapes();
 }
 
 function buildWall(){
@@ -665,6 +665,7 @@ function buildWall(){
       
       if (height <= 0) continue;
 
+      //finding the edge walls
       const isEdge = (x === 0 || z === 0 || x === g_map.length -1 || z === g_map[0].length - 1);
       // outer wall is glass texture while internal walls are dirt texture
       const texture = isEdge ? 4 : 3;
