@@ -709,7 +709,7 @@ function keydown(ev) { //modify for the wasd keys
     const Znew = g_rat.position[2] + dz;
     //keep rat on the map
     if (!Boundary(Xnew, Znew)) {
-      g_rat.position[0] = Xnew;
+      g_rat.position[0] += Xnew;
       g_rat.position[2] += Znew;
     }
 
