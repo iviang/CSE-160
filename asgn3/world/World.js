@@ -830,6 +830,7 @@ function getSquare(d) { //want square infront of us
 
   f.elements[0] /= len; //x coord normalizd
   f.elements[2] /= len; //z coord normalizd
+  
   const push = 0.15;
   const worldX = camera.eye.elements[0] + f.elements[0] * (d+push);
   const worldZ = camera.eye.elements[2] + f.elements[2] * (d+push);
