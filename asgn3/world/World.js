@@ -923,14 +923,23 @@ function Overhead(){ //top down view for the maze
 
 function newFP(){ //creates a new view over the rat no matter where it's moved to 
   const height = 1;
+  const d = 1;
+
   
   camera.eye.elements[0] = g_rat.position[0];
   camera.eye.elements[1] = g_rat.position[1] + height;
   camera.eye.elements[2] = g_rat.position[2];
 
-  camera.at.elements[0] = camera.eye.elements[0] + g_fpsFwd[0];
+  const offset = -90;
+  const yaw = (g_rat.rotation + offset) * Math.PI / 180;
+
+  const fx = Math.sin(yaw);
+  const fz = -Math.cos(yaw);
+  g_fpsFwd = [fx, 0, fz];
+
+  camera.at.elements[0] = camera.eye.elements[0] + fx * d;
   camera.at.elements[1] = camera.eye.elements[1];
-  camera.at.elements[2] = camera.eye.elements[2] + g_fpsFwd[2];
+  camera.at.elements[2] = camera.eye.elements[2] + fz * d;
 
   camera.up.elements[0] = 0;
   camera.up.elements[1] = 1;
@@ -971,7 +980,9 @@ function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
 
-  // ThirdRatCamera();
+  if (g_mode === "fps") {
+    newFP();
+  }
 
   if (g_mode === "overhead") {
     Overhead();
