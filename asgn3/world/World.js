@@ -867,7 +867,7 @@ function updateThirdPersonCamera() {
   const ry = g_rat.position[1];
   const rz = g_rat.position[2];
 
-  const d = 3.0;
+  const d = 1.0;
   const height = 1.0;
   const yaw = g_globalAngle * Math.PI / 180;
 
