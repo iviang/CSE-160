@@ -658,14 +658,21 @@ function keydown(ev) { //modify for the wasd keys
 
 function buildWall(){
   walls = [];
+
   for (let x = 0; x < g_map.length; x++) {
     for (let z = 0; z < g_map[0].length; z++) {
       const height = g_map[x][z];
+      
+      if (height <= 0) continue;
 
-      if (height > 0) {
-        for (let y = 0; y < height; y++) {
+      const isEdge = (x === 0 || z === 0 || x === g_map.length -1 || z === g_map[0].length - 1);
+      // outer wall is glass texture while internal walls are dirt texture
+      const texture = isEdge ? 4 : 3;
+
+      // if (height > 0) {
+      for (let y = 0; y < height; y++) {
           let w = new Cube();
-          w.textureNum = 4; //texture
+          w.textureNum = texture; //texture
           w.matrix.translate(x-16, -.65 + y, z-16);
           walls.push(w);
         }
@@ -673,8 +680,25 @@ function buildWall(){
       }
     }
   }
-}
 
+// function buildWall(){
+//   walls = [];
+//   for (let x = 0; x < g_map.length; x++) {
+//     for (let z = 0; z < g_map[0].length; z++) {
+//       const height = g_map[x][z];
+
+//       if (height > 0) {
+//         for (let y = 0; y < height; y++) {
+//           let w = new Cube();
+//           w.textureNum = 4; //texture
+//           w.matrix.translate(x-16, -.65 + y, z-16);
+//           walls.push(w);
+//         }
+
+//       }
+//     }
+//   }
+// }
 
 var g_map=[
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
