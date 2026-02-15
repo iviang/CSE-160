@@ -947,6 +947,15 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
   const fx = g_ratHead[0];
   const fz = g_ratHead[2];
 
+  let len = Math.sqrt(fx*fx + fz*fz);
+  if (len < 0.0001) { // fallback
+    fx = 0;
+    fz = -1;
+    len = 1;
+  }
+  fx /= len;
+  fz /= len;
+
   camera.at.elements[0] = camera.eye.elements[0] + fx * d;
   camera.at.elements[1] = camera.eye.elements[1];
   camera.at.elements[2] = camera.eye.elements[2] + fz * d;
