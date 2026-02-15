@@ -683,12 +683,16 @@ function keydown(ev) { //modify for the wasd keys
     }
   } else { //overhead mode to control rat but doesnt move the camera
      if (ev.keyCode == 87) {    // W
+      g_rat.rotation = 0; //top head bottom tail
       moveRat(0, -speed); 
     } else if (ev.keyCode == 83) { // S
+      g_rat.rotation = 180; //top tail bottom head
       moveRat(0, speed); 
     } else if (ev.keyCode == 65) { // A
+      g_rat.rotation = 90; //left head right tail
       moveRat(-speed,0); 
     } else if (ev.keyCode == 68) { // D
+      g_rat.rotation = 270; //left tail right head
       moveRat(speed,0); 
     } 
 
@@ -848,22 +852,6 @@ function collisionDetect(worldX, worldZ) {
   }
   return false;
 
-  // const mapX = Math.floor(worldX + 16);
-  // const mapZ = Math.floor(worldZ + 16);
-  // const height = g_map[mapX][mapZ];
-
-  //even if open, we cant go off the map
-  // if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
-  //   return true;
-  // }
-
-  // if (height <= 0) {
-  //   return false;
-  // }
-
-  // return true;
-  // return g_map[mapX][mapZ] > 0; 
-
 }
 
 function getSquare(d) { //want square infront of us
@@ -918,33 +906,8 @@ function delBlock() { //delete block in front
   g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
 }
 
-// function ThirdRatCamera() { //third person camera over the rat
-//   const rx = g_rat.position[0];
-//   const ry = g_rat.position[1];
-//   const rz = g_rat.position[2];
 
-//   const d = 2.0;
-//   const height = 1.5;
-//   const yaw = g_globalAngle * Math.PI / 180;
-
-//   const camX = rx - Math.sin(yaw) * d;
-//   const camY = ry + height;
-//   const camZ = rz - Math.cos(yaw) * d;
-
-//   camera.eye.elements[0] = camX;
-//   camera.eye.elements[1] = camY;
-//   camera.eye.elements[2] = camZ;
-
-//   camera.at.elements[0] = rx;
-//   camera.at.elements[1] = ry + 0.5;
-//   camera.at.elements[2] = rz;
-
-//   camera.up.elements[0] = 0;
-//   camera.up.elements[1] = 1;
-//   camera.up.elements[2] = 0;
-// }
-
-function Overhead(){
+function Overhead(){ //top down view for the maze
   camera.eye.elements[0] = 0;
   camera.eye.elements[1] = 30;
   camera.eye.elements[2] = 0;
@@ -958,7 +921,7 @@ function Overhead(){
   camera.up.elements[2] = -1;
 }
 
-function newFP(){
+function newFP(){ //creates a new view over the rat no matter where it's moved to 
   const height = 1;
   
   camera.eye.elements[0] = g_rat.position[0];
@@ -974,7 +937,7 @@ function newFP(){
   camera.up.elements[2] = 0;
 }
 
-function restart() {
+function restart() { //restart to center, restart rat position
   g_mode = "fps";
 
   g_rat.position[0] = g_ratPosition[0];
