@@ -848,7 +848,7 @@ function delBlock() { //delete block in front
 }
 
 function updateThirdPersonCamera() {
-  const d = 3;
+  const d = 6;
   const height = 2;
 
   const rad = g_rat.rotation * Math.PI/180;
