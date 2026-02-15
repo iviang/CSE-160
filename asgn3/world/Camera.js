@@ -64,6 +64,9 @@ class Camera{
         let b = new Vector3();
         b.set(this.eye);
         b.sub(this.at);
+
+        b.elements[1]=0; //keep view from flying around
+        
         b.normalize();
         b.mul(speed);
 
