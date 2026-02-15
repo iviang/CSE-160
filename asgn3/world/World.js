@@ -251,7 +251,8 @@ function addActionsForHtmlUI(){
     newFP();
   };
   document.getElementById('restartButton').onclick = function() {
-    restart();
+    // restart();
+    if (restartButton) restartButton.onclick = () => restart(); 
   };
 
   // slider events =====================
@@ -507,9 +508,9 @@ function main() {
   g_rat = new Rat(); //set up rat
   g_rat.position = [0, -.65, 0];
   g_rat.rotation = 0;
-  g_spawnEye = new Vector3([camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]]);
-  g_spawnAt  = new Vector3([camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2]]);
-  g_spawnUp  = new Vector3([camera.up.elements[0],  camera.up.elements[1],  camera.up.elements[2]]);
+  g_eye = new Vector3([camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]]);
+  g_at  = new Vector3([camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2]]);
+  g_up  = new Vector3([camera.up.elements[0],  camera.up.elements[1],  camera.up.elements[2]]);
 
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
