@@ -836,10 +836,7 @@ function renderAllShapes() {
   sky.matrix.translate(-.5, -0.5, -0.5);
   sky.render();
   
-  // drawMap();
-  for (let i = 0; i < walls.length; i++) {
-    walls[i].renderfast();
-  }
+  drawMap();
 
   //draw the RAT ==========
   var rat = new Matrix4();
