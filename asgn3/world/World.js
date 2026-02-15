@@ -687,9 +687,9 @@ function keydown(ev) { //modify for the wasd keys
     } else if (ev.keyCode == 83) { // S
       moveRat(speed,0); 
     } else if (ev.keyCode == 65) { // A
-      moveRat(0, speed); 
+      moveRat(-speed,0); 
     } else if (ev.keyCode == 68) { // D
-      moveRat(0, -speed); 
+      moveRat(speed,0); 
     } 
 
   }
