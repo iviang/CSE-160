@@ -512,14 +512,14 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
   canvas.onmousedown=function(ev) {
     drag=true;
     prevX=ev.clientX;
-    // prevY=ev.clientY;
+    prevY=ev.clientY;
   };
 
-  canvas.onmouseup=function(ev){
+  canvas.onmouseup=function(){
     drag=false;
   };
 
-  canvas.onmouseleave=function(ev){
+  canvas.onmouseleave=function(){
     drag=false;
   };
 
