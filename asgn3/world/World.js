@@ -662,6 +662,7 @@ function keydown(ev) { //modify for the wasd keys
     delBlock();
     buildWall();
   }
+}
 
   function moveRat(fwd , right) {
     const fx = camera.at.elements[0] - camera.eye.elements[0];
