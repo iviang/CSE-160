@@ -658,61 +658,86 @@ function keydown(ev) { //modify for the wasd keys
   const speed = 0.1; //speed
   const alpha = 5; //rotation speed
 
-  if (ev.keyCode == 87) {        // W
-    camera.moveForward(speed);
-    // moveRat(speed,0); 
-  } else if (ev.keyCode == 83) { // S
-    camera.moveBackwards(speed);
-    // moveRat(-speed,0); 
+  if (g_mode === "fps") {
+      if (ev.keyCode == 87) {    // W
+      camera.moveForward(speed);
+      // moveRat(speed,0); 
+    } else if (ev.keyCode == 83) { // S
+      camera.moveBackwards(speed);
+      // moveRat(-speed,0); 
 
-  } else if (ev.keyCode == 65) { // A
-    camera.moveLeft(speed);
-    // g_rat.rotation += alpha;
-    // moveRat(0, speed); 
+    } else if (ev.keyCode == 65) { // A
+      camera.moveLeft(speed);
+      // g_rat.rotation += alpha;
+      // moveRat(0, speed); 
 
-  } else if (ev.keyCode == 68) { // D
-    camera.moveRight(speed);
-    // g_rat.rotation -= alpha;
-    // moveRat(0, -speed); 
+    } else if (ev.keyCode == 68) { // D
+      camera.moveRight(speed);
+      // g_rat.rotation -= alpha;
+      // moveRat(0, -speed); 
+    
+    } else if (ev.keyCode == 81) { // Q
+      camera.panLeft(alpha);
+    } else if (ev.keyCode == 69) { // E
+      camera.panRight(alpha);
+    }
+  } else { //overhead mode to control rat but doesnt move the camera
+     if (ev.keyCode == 87) {    // W
+      moveRat(speed,0); 
+    } else if (ev.keyCode == 83) { // S
+      moveRat(-speed,0); 
+    } else if (ev.keyCode == 65) { // A
+      moveRat(0, speed); 
+    } else if (ev.keyCode == 68) { // D
+      moveRat(0, -speed); 
+    } 
 
-  } else if (ev.keyCode == 81) { // Q
-    camera.panLeft(alpha);
-  } else if (ev.keyCode == 69) { // E
-    camera.panRight(alpha);
-  } else if (ev.keyCode == 49) { // 1
+  }
+
+  if (ev.keyCode == 49) { // press "1"
     addBlock();
     buildWall();
-  } else if (ev.keyCode == 50) { // 2
+  } else if (ev.keyCode == 50) { // press "2"
     delBlock();
     buildWall();
   }
 }
 
-//   function moveRat(fwd , right) {
-//     const fx = camera.at.elements[0] - camera.eye.elements[0];
-//     const fz = camera.at.elements[2] - camera.eye.elements[2];
-//     let len = Math.sqrt(fx*fx + fz*fz);
-//     if (len < 0.0001) return;
+//CONTROLLING THE RAT IN OVERHEAD ONLY!!
+  function moveRat(dx , dz) {
+    const Xnew = g_rat.position[0] + dx;
+    const Znew = g_rat.position[2] + dz;
+    //keep rat on the map
+    if (!Boundary(Xnew, Znew)) {
+      g_rat.position[0] = Xnew;
+      g_rat.position[2] + Znew;
+    }
 
-//     const fnx = fx / len;
-//     const fnz = fz / len;
-//     const rnx = fnz;
-//     const rnz = -fnx;
-//     g_rat.position[0] += fnx * fwd + rnx * right;
-//     g_rat.position[2] += fnz * fwd + rnz * right;
+    g_rat.position[1] = -0.65; //no flying
 
-//     g_rat.position[1] = -0.65;
+
+    // let len = Math.sqrt(fx*fx + fz*fz);
+    // if (len < 0.0001) return;
+
+    // const fnx = fx / len;
+    // const fnz = fz / len;
+    // const rnx = fnz;
+    // const rnz = -fnx;
+    // g_rat.position[0] += fnx * fwd + rnx * right;
+    // g_rat.position[2] += fnz * fwd + rnz * right;
+
+    // g_rat.position[1] = -0.65;
     
-//     // const rad = g_rat.rotation * Math.PI / 180; //rotation of the rat in radians
+    // const rad = g_rat.rotation * Math.PI / 180; //rotation of the rat in radians
 
-//     // const dx = Math.sin(rad) * speed;
-//     // const dz = Math.cos(rad) * speed;
+    // const dx = Math.sin(rad) * speed;
+    // const dz = Math.cos(rad) * speed;
 
-//     // g_rat.position[0] += dx;
-//     // g_rat.position[2] += dz;
-//   // }
+    // g_rat.position[0] += dx;
+    // g_rat.position[2] += dz;
+  // }
 
-// }
+}
 
 function buildWall(){
   walls = [];
@@ -740,7 +765,6 @@ function buildWall(){
     }
   }
 
-\
 var g_map=[
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
   [2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2],
@@ -798,7 +822,7 @@ function drawMap() {
   }
 }
 
-//keeps camera from going outside the map array
+//keeps rat from going outside the map array
 function Boundary(worldX, worldZ) {
   const mapX = Math.floor(worldX + 16);
   const mapZ = Math.floor(worldZ + 16);
