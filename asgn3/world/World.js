@@ -868,8 +868,8 @@ function ThirdRatCamera() { //third person camera over the rat
   const ry = g_rat.position[1];
   const rz = g_rat.position[2];
 
-  const d = 1.0;
-  const height = 1.0;
+  const d = 2.0;
+  const height = 1.5;
   const yaw = g_globalAngle * Math.PI / 180;
 
   const camX = rx - Math.sin(yaw) * d;
