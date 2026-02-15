@@ -944,8 +944,8 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
   // const fz = -Math.cos(yaw);
   // g_fpsFwd = [fx, 0, fz];
 
-  const fx = g_ratHead[0];
-  const fz = g_ratHead[2];
+  let fx = g_ratHead[0];
+  let fz = g_ratHead[2];
 
   let len = Math.sqrt(fx*fx + fz*fz);
   if (len < 0.0001) { // fallback
@@ -989,7 +989,7 @@ function restart() { //restart to center, restart rat position
   const fz = camera.at.elements[2] - camera.eye.elements[2];
   const len = Math.sqrt(fx*fx + fz*fz) || 1;
   g_fpsFwd = [fx/len, 0, fz/len];
-  g_fpsFwd = Math.atan2(g_fpsFwd[0], -g_fpsFwd[2]);
+  g_fpsYaw = Math.atan2(g_fpsFwd[0], -g_fpsFwd[2]);
 
 }
 
