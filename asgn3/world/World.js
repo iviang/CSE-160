@@ -528,14 +528,15 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
     if (!drag) return;
 
     const dx = ev.clientX - prevX;
-    // const dy = ev.clientY - prevY;
+    const dy = ev.clientY - prevY;
 
     const sensitivity = 0.5;
 
     camera.panLeft(dx * sensitivity);
+    camera.panUp(-dy * sensitivity);
 
     prevX = ev.clientX;
-    // prevY = ev.clientY;
+    prevY = ev.clientY;
 
     // renderAllShapes();
   };
