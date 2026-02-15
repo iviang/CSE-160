@@ -647,8 +647,10 @@ function keydown(ev) { //modify for the wasd keys
     camera.panRight(alpha);
   } else if (ev.keyCode == 49) { // 1
     addBlock();
+    buildWall();
   } else if (ev.keyCode == 50) { // 2
     delBlock();
+    buildWall();
   }
 
   renderAllShapes();
@@ -672,7 +674,6 @@ function buildWall(){
     }
   }
 }
-
 
 
 var g_map=[
