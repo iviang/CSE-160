@@ -251,8 +251,8 @@ function addActionsForHtmlUI(){
     newFP();
   };
   document.getElementById('restartButton').onclick = function() {
-    // restart();
-    if (restartButton) restartButton.onclick = () => restart(); 
+    restart();
+    // if (restartButton) restartButton.onclick = () => restart(); 
   };
 
   // slider events =====================
@@ -714,28 +714,6 @@ function keydown(ev) { //modify for the wasd keys
     }
 
     g_rat.position[1] = -0.65; //no flying
-
-
-    // let len = Math.sqrt(fx*fx + fz*fz);
-    // if (len < 0.0001) return;
-
-    // const fnx = fx / len;
-    // const fnz = fz / len;
-    // const rnx = fnz;
-    // const rnz = -fnx;
-    // g_rat.position[0] += fnx * fwd + rnx * right;
-    // g_rat.position[2] += fnz * fwd + rnz * right;
-
-    // g_rat.position[1] = -0.65;
-    
-    // const rad = g_rat.rotation * Math.PI / 180; //rotation of the rat in radians
-
-    // const dx = Math.sin(rad) * speed;
-    // const dz = Math.cos(rad) * speed;
-
-    // g_rat.position[0] += dx;
-    // g_rat.position[2] += dz;
-  // }
 
 }
 
