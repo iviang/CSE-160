@@ -980,9 +980,9 @@ function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
 
-  if (g_mode === "fps") {
-    newFP();
-  }
+  // if (g_mode === "fps") {
+  //   newFP();
+  // }
 
   if (g_mode === "overhead") {
     Overhead();
