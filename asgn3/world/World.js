@@ -81,6 +81,7 @@ let g_at = null;
 let g_up = null;
 let g_ratPosition = [0, -0.65, 0];
 let g_fpsFwd = [0,0,1];
+let g_fpsYaw = 0;
 let walls = [];
 
 
@@ -930,12 +931,12 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
   camera.eye.elements[1] = g_rat.position[1] + height;
   camera.eye.elements[2] = g_rat.position[2];
 
-  const offset = -90;
-  const yaw = (g_rat.rotation + offset) * Math.PI / 180;
+  // const offset = -90;
+  const yaw = g_fpsYaw + (g_rat.rotation * Math.PI / 180);
 
   const fx = Math.sin(yaw);
   const fz = -Math.cos(yaw);
-  g_fpsFwd = [fx, 0, fz];
+  // g_fpsFwd = [fx, 0, fz];
 
   camera.at.elements[0] = camera.eye.elements[0] + fx * d;
   camera.at.elements[1] = camera.eye.elements[1];
@@ -970,6 +971,8 @@ function restart() { //restart to center, restart rat position
   const fz = camera.at.elements[2] - camera.eye.elements[2];
   const len = Math.sqrt(fx*fx + fz*fz) || 1;
   g_fpsFwd = [fx/len, 0, fz/len];
+  g_fpsFwd = Math.atan2(g_fpsFwd[0], -g_fpsFwd[2]);
+
 }
 
 function renderAllShapes() {
