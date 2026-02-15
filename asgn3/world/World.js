@@ -927,6 +927,48 @@ function Overhead(){
   camera.up.elements[2] = -1;
 }
 
+function newFP(){
+  const height = 1;
+  
+  camera.eye.elements[0] = g_rat.position[0];
+  camera.eye.elements[1] = g_rat.position[1] + height;
+  camera.eye.elements[2] = g_rat.position[2];
+
+  camera.at.elements[0] = camera.eye.elements[0] + g_fpsFwd[0];
+  camera.at.elements[1] = camera.eye.elements[1];
+  camera.at.elements[2] = camera.eye.elements[2] + g_fpsFwd[2];
+
+  camera.up.elements[0] = 0;
+  camera.up.elements[1] = 1;
+  camera.up.elements[2] = 0;
+}
+
+function restart() {
+  g_mode = "fps";
+
+  g_rat.position[0] = g_ratPosition[0];
+  g_rat.position[1] = g_ratPosition[1];
+  g_rat.position[2] = g_ratPosition[2];
+  g_rat.rotation = 0;
+
+  camera.eye.elements[0] = g_eye.elements[0];
+  camera.eye.elements[1] = g_eye.elements[1];
+  camera.eye.elements[2] = g_eye.elements[2];
+
+  camera.at.elements[0] = g_at.elements[0];
+  camera.at.elements[1] = g_at.elements[1];
+  camera.at.elements[2] = g_at.elements[2];
+
+  camera.up.elements[0] = g_up.elements[0];
+  camera.up.elements[1] = g_up.elements[1];
+  camera.up.elements[2] = g_up.elements[2];
+
+  const fx = camera.at.elements[0] - camera.eye.elements[0];
+  const fz = camera.at.elements[2] - camera.eye.elements[2];
+  const len = Math.sqrt(fx*fx + fz*fz) || 1;
+  g_fpsFwd = [fx/len, 0, fz/len];
+}
+
 function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
