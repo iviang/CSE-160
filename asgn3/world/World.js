@@ -562,7 +562,7 @@ function tick() {
     g_fps = g_fpsFrames;
     // g_fps = (g_fpsFrames * 1000) / tot;
     g_fpsFrames = 0;
-    g_fpsLastTime = now;
+    g_prevTime = now;
   }
 
   g_seconds = performance.now()/1000 - g_startTime;
