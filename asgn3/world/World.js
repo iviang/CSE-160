@@ -685,20 +685,20 @@ function keydown(ev) { //modify for the wasd keys
     }
   } else { //overhead mode to control rat but doesnt move the camera
      if (ev.keyCode == 87) {    // W
-      // g_rat.rotation = 0; //top head bottom tail
+      g_rat.rotation = 0; //top head bottom tail
       g_ratHead = [0,0,-1];
       moveRat(0, -speed); 
     } else if (ev.keyCode == 83) { // S
-      // g_rat.rotation = 180; //top tail bottom head
+      g_rat.rotation = 180; //top tail bottom head
       g_ratHead = [0,0,1];
 
       moveRat(0, speed); 
     } else if (ev.keyCode == 65) { // A
-      // g_rat.rotation = 90; //left head right tail
+      g_rat.rotation = 90; //left head right tail
       g_ratHead = [-1,0,0];
       moveRat(-speed,0); 
     } else if (ev.keyCode == 68) { // D
-      // g_rat.rotation = 270; //left tail right head
+      g_rat.rotation = 270; //left tail right head
       g_ratHead = [1,0,0];
       moveRat(speed,0); 
     } 
