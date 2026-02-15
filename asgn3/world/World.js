@@ -636,18 +636,20 @@ function keydown(ev) { //modify for the wasd keys
 
   if (ev.keyCode == 87) {        // W
     // camera.moveForward(speed);
-    moveRat(speed); 
+    moveRat(speed,0); 
   } else if (ev.keyCode == 83) { // S
     // camera.moveBackwards(speed);
-    moveRat(-speed); 
+    moveRat(-speed,0); 
 
   } else if (ev.keyCode == 65) { // A
     // camera.moveLeft(speed);
-    g_rat.rotation += alpha;
+    // g_rat.rotation += alpha;
+    moveRat(0,-speed); 
 
   } else if (ev.keyCode == 68) { // D
     // camera.moveRight(speed);
-    g_rat.rotation -= alpha;
+    // g_rat.rotation -= alpha;
+    moveRat(0, speed); 
 
   } else if (ev.keyCode == 81) { // Q
     camera.panLeft(alpha);
@@ -661,17 +663,30 @@ function keydown(ev) { //modify for the wasd keys
     buildWall();
   }
 
-  function moveRat(speed) {
-    const rad = g_rat.rotation * Math.PI / 180; //rotation of the rat in radians
+  function moveRat(fwd , right) {
+    const fx = camera.at.elements[0] - camera.eye.elements[0];
+    const fz = camera.at.elements[2] - camera.eye.elements[2];
+    let len = Math.sqrt(fx*fx + fz*fz);
+    if (len < 0.0001) return;
 
-    const dx = Math.sin(rad) * speed;
-    const dz = Math.cos(rad) * speed;
+    const fnx = fx / len;
+    const fnz = fz / len;
+    const rnx = fnz;
+    const rnz = -fnx;
+    g_rat.position[0] += fnx * fwd + rnx * right;
+    g_rat.position[2] += fnz * fwd + rnz * right;
 
-    g_rat.position[0] += dx;
-    g_rat.position[2] += dz;
-  }
+    g_rat.position[1] = -0.65;
+    
+    // const rad = g_rat.rotation * Math.PI / 180; //rotation of the rat in radians
 
-  // renderAllShapes();
+    // const dx = Math.sin(rad) * speed;
+    // const dz = Math.cos(rad) * speed;
+
+    // g_rat.position[0] += dx;
+    // g_rat.position[2] += dz;
+  // }
+
 }
 
 function buildWall(){
@@ -847,22 +862,7 @@ function delBlock() { //delete block in front
   g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
 }
 
-// function updateThirdPersonCamera() {
-//   const d = 6;
-//   const height = 2;
-
-//   const rad = g_rat.rotation * Math.PI/180;
-
-//   const cameraX = g_rat.position[0] - Math.sin(rad) * d;
-//   const cameraY = g_rat.position[1] + height;
-//   const cameraZ = g_rat.position[2] - Math.cos(rad) * d;
-
-//   camera.eye.set([cameraX, cameraY, cameraZ]);
-
-//   camera.at.set([g_rat.position[0], g_rat.position[1]+0.5, g_rat.position[2]])
-// }
-
-function updateThirdPersonCamera() {
+function ThirdRatCamera() { //third person camera over the rat
   const rx = g_rat.position[0];
   const ry = g_rat.position[1];
   const rz = g_rat.position[2];
@@ -896,7 +896,7 @@ function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
 
-  updateThirdPersonCamera();
+  ThirdRatCamera();
 
   camera.viewMatrix.setLookAt(
     camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
