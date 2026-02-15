@@ -644,12 +644,12 @@ function keydown(ev) { //modify for the wasd keys
   } else if (ev.keyCode == 65) { // A
     // camera.moveLeft(speed);
     // g_rat.rotation += alpha;
-    moveRat(0,-speed); 
+    moveRat(0, speed); 
 
   } else if (ev.keyCode == 68) { // D
     // camera.moveRight(speed);
     // g_rat.rotation -= alpha;
-    moveRat(0, speed); 
+    moveRat(0, -speed); 
 
   } else if (ev.keyCode == 81) { // Q
     camera.panLeft(alpha);
