@@ -710,7 +710,7 @@ function keydown(ev) { //modify for the wasd keys
     //keep rat on the map
     if (!Boundary(Xnew, Znew)) {
       g_rat.position[0] = Xnew;
-      g_rat.position[2] + Znew;
+      g_rat.position[2] += Znew;
     }
 
     g_rat.position[1] = -0.65; //no flying
