@@ -893,7 +893,7 @@ function renderAllShapes() {
 
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
-  sendTextToHTML(" ms: " + Math.floor(duration) + " fps: " + Math.floor(10000/duration)/10, "numdot");
+  sendTextToHTML(" ms: " + Math.floor(duration) + " fps: " + g_fps.toFixed(1), "numdot");
 
 }
 
