@@ -490,7 +490,7 @@ function main() {
   g_rat = new Rat(); //set up rat
   g_rat.position = [0, -.65, 0];
   g_rat.rotation = 0;
-  
+
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
 
@@ -830,9 +830,9 @@ function getSquare(d) { //want square infront of us
 
   f.elements[0] /= len; //x coord normalizd
   f.elements[2] /= len; //z coord normalizd
-
-  const worldX = camera.eye.elements[0] + f.elements[0] * d;
-  const worldZ = camera.eye.elements[2] + f.elements[2] * d;
+  const push = 0.15;
+  const worldX = camera.eye.elements[0] + f.elements[0] * (d+push);
+  const worldZ = camera.eye.elements[2] + f.elements[2] * (d+push);
   const mapX = Math.floor(worldX + 16);
   const mapZ = Math.floor(worldZ + 16);
 
@@ -847,7 +847,7 @@ function getSquare(d) { //want square infront of us
 const max_height = 10; //max height of blocks to prevent lag / overflows 
 
 function addBlock() { //add block in front
-  const square = getSquare(3);
+  const square = getSquare(1);
   if (!square) {
     console.log('No square in front to add block');
     return;
@@ -857,7 +857,7 @@ function addBlock() { //add block in front
 }
 
 function delBlock() { //delete block in front
-  const square = getSquare(3);
+  const square = getSquare(1);
   if (!square) {
     console.log('No square in front to delete block');
     return;
