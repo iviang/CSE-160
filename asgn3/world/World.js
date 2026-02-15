@@ -870,7 +870,7 @@ function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
 
-  updateThirdPersonCamera();
+  // updateThirdPersonCamera();
 
   camera.viewMatrix.setLookAt(
     camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
