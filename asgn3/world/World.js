@@ -683,9 +683,9 @@ function keydown(ev) { //modify for the wasd keys
     }
   } else { //overhead mode to control rat but doesnt move the camera
      if (ev.keyCode == 87) {    // W
-      moveRat(-speed,0); 
+      moveRat(0, speed); 
     } else if (ev.keyCode == 83) { // S
-      moveRat(speed,0); 
+      moveRat(0, -speed); 
     } else if (ev.keyCode == 65) { // A
       moveRat(-speed,0); 
     } else if (ev.keyCode == 68) { // D
