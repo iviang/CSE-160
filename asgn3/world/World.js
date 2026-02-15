@@ -488,6 +488,9 @@ function main() {
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
   camera = new Camera(canvas); // set up camera
   g_rat = new Rat(); //set up rat
+  g_rat.position = [0, -.65, 0];
+  g_rat.rotation = 0;
+  
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
 
@@ -939,7 +942,7 @@ function renderAllShapes() {
   var rat = new Matrix4();
   rat.translate(0, -.65, 0);
   rat.scale(1,1,1);
-  g_rat.position = [0, -.65, 0];
+  // g_rat.position = [0, -.65, 0];
   g_rat.render();
 
   //draw the cheese ==========
