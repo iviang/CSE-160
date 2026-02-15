@@ -811,24 +811,44 @@ function Boundary(worldX, worldZ) {
 }
 
 //collision detection function 
-// function collisionDetect(worldX, worldZ) {
-//   const mapX = Math.floor(worldX + 16);
-//   const mapZ = Math.floor(worldZ + 16);
-//   // const height = g_map[mapX][mapZ];
+function collisionDetect(worldX, worldZ) {
+  const r = 0.25;
 
-//   //even if open, we cant go off the map
-//   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
-//     return true;
-//   }
+  const pts = [
+    [worldX + r, worldZ],
+    [worldX - r, worldZ],
+    [worldX, worldZ + r],
+    [worldX, worldZ - r],
+    [worldX + r, worldZ + r],
+    [worldX + r, worldZ - r],
+    [worldX - r, worldZ + r],
+    [worldX - r, worldZ - r],
+  ];
 
-//   // if (height <= 0) {
-//   //   return false;
-//   // }
+  for (const [x,z] of pts) {
+    if (Boundary(x,z)) {
+      return true;
+    }  
+  }
+  return false;
 
-//   // return true;
-//   return g_map[mapX][mapZ] > 0; 
+  // const mapX = Math.floor(worldX + 16);
+  // const mapZ = Math.floor(worldZ + 16);
+  // const height = g_map[mapX][mapZ];
 
-// }
+  //even if open, we cant go off the map
+  // if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) { 
+  //   return true;
+  // }
+
+  // if (height <= 0) {
+  //   return false;
+  // }
+
+  // return true;
+  // return g_map[mapX][mapZ] > 0; 
+
+}
 
 function getSquare(d) { //want square infront of us
   const f = new Vector3();
