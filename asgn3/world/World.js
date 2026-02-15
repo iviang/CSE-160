@@ -635,13 +635,20 @@ function keydown(ev) { //modify for the wasd keys
   const alpha = 5; //rotation speed
 
   if (ev.keyCode == 87) {        // W
-    camera.moveForward(speed);
+    // camera.moveForward(speed);
+    moveRat(speed); 
   } else if (ev.keyCode == 83) { // S
-    camera.moveBackwards(speed);
+    // camera.moveBackwards(speed);
+    moveRat(-speed); 
+
   } else if (ev.keyCode == 65) { // A
-    camera.moveLeft(speed);
+    // camera.moveLeft(speed);
+    g_rat.rotation += alpha;
+
   } else if (ev.keyCode == 68) { // D
-    camera.moveRight(speed);
+    // camera.moveRight(speed);
+    g_rat.rotation -= alpha;
+
   } else if (ev.keyCode == 81) { // Q
     camera.panLeft(alpha);
   } else if (ev.keyCode == 69) { // E
@@ -652,6 +659,16 @@ function keydown(ev) { //modify for the wasd keys
   } else if (ev.keyCode == 50) { // 2
     delBlock();
     buildWall();
+  }
+
+  function moveRat(speed) {
+    const rad = g_rat.rotation * Math.PI / 180; //rotation of the rat in radians
+
+    const dx = Math.sin(rad) * speed;
+    const dz = Math.cos(rad) * speed;
+
+    g_rat.position[0] += dx;
+    g_rat.position[2] += dz;
   }
 
   // renderAllShapes();
@@ -879,7 +896,7 @@ function renderAllShapes() {
   var rat = new Matrix4();
   rat.translate(0, -.65, 0);
   rat.scale(1,1,1);
-  g_rat.position = [0, -.65, 0];
+  // g_rat.position = [0, -.65, 0];
   g_rat.render();
 
   //draw the cheese ==========
