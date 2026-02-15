@@ -690,10 +690,10 @@ function keydown(ev) { //modify for the wasd keys
       g_rat.rotation = 180; //top tail bottom head
       moveRat(0, speed); 
     } else if (ev.keyCode == 65) { // A
-      g_rat.rotation = 90; //left head right tail
+      g_rat.rotation = 90 + 180; //left head right tail
       moveRat(-speed,0); 
     } else if (ev.keyCode == 68) { // D
-      g_rat.rotation = 270; //left tail right head
+      g_rat.rotation = 270 + 180; //left tail right head
       moveRat(speed,0); 
     } 
 
