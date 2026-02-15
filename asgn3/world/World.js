@@ -75,6 +75,12 @@ let u_Sampler5;
 
 let g_rat = null;
 
+let g_mode = "fps";
+let g_eye = null;
+let g_at = null;
+let g_up = null;
+let g_ratPosition = [0, -0.65, 0];
+let g_fpsFwd = [0,0,1];
 let walls = [];
 
 
@@ -233,9 +239,20 @@ function addActionsForHtmlUI(){
   
   //Button Events ===================
 
-  // document.getElementById('animationBackRightLegOffButton').onclick = function() {g_upperBRAnimation=false;};
-  // document.getElementById('animationBackRightLegOnButton').onclick = function() {g_upperBRAnimation=true;};
-
+  document.getElementById('ratcamButton').onclick = function() {
+    const fx = camera.at.elements[0] - camera.eye.elements[0];
+    const fz = camera.at.elements[2] - camera.eye.elements[2];
+    const len = Math.sqrt(fx*fx + fz*fz) || 1;
+    g_fpsFwd = [fx/len, 0, fz/len];
+    g_mode = "overhead";
+  };
+  document.getElementById('camButton').onclick = function() {
+    g_mode = "fps";
+    newFP();
+  };
+  document.getElementById('restartButton').onclick = function() {
+    restart();
+  };
 
   // slider events =====================
   // document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
@@ -490,6 +507,9 @@ function main() {
   g_rat = new Rat(); //set up rat
   g_rat.position = [0, -.65, 0];
   g_rat.rotation = 0;
+  g_spawnEye = new Vector3([camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]]);
+  g_spawnAt  = new Vector3([camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2]]);
+  g_spawnUp  = new Vector3([camera.up.elements[0],  camera.up.elements[1],  camera.up.elements[2]]);
 
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
@@ -893,6 +913,20 @@ function delBlock() { //delete block in front
 //   camera.up.elements[2] = 0;
 // }
 
+function Overhead(){
+  camera.eye.elements[0] = 0;
+  camera.eye.elements[1] = 30;
+  camera.eye.elements[2] = 0;
+
+  camera.at.elements[0] = 0;
+  camera.at.elements[1] = 0;
+  camera.at.elements[2] = 0;
+
+  camera.up.elements[0] = 0;
+  camera.up.elements[1] = 0;
+  camera.up.elements[2] = -1;
+}
+
 function renderAllShapes() {
   //check the time at the start of this function
   var startTime = performance.now();
@@ -902,6 +936,10 @@ function renderAllShapes() {
   // gl.clear(gl.COLOR_BUFFER_BIT );
 
   // ThirdRatCamera();
+
+  if (g_mode === "overhead") {
+    Overhead();
+  }
 
   camera.viewMatrix.setLookAt(
     camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
