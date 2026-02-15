@@ -847,7 +847,20 @@ function delBlock() { //delete block in front
   g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
 }
 
+function updateThirdPersonCamera() {
+  const d = 3;
+  const height = 2;
 
+  const rad = g_rat.rotation * Math.PI/180;
+
+  const X = g_rat.position[0] - Math.sin(rad) * d;
+  const Y = g_rat.position[1] + height;
+  const Z = g_rat.position[2] - Math.cos(rad) * d;
+
+  camera.eye.set([X, Y, Z]);
+
+  camera.at.set([g_rat.position[0], g_rat.position[1]+0.5, g_rat.position[2]])
+}
 
 function renderAllShapes() {
   //check the time at the start of this function
@@ -856,6 +869,9 @@ function renderAllShapes() {
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
+
+  updateThirdPersonCamera();
+
   camera.viewMatrix.setLookAt(
     camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
     camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2],
