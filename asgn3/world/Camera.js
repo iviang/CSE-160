@@ -122,4 +122,25 @@ class Camera{
         // this.at.add(f_prime);
     }
 
+    panUp(alpha) {
+        let f = new Vector3();
+        f.set(this.at);
+        f.sub(this.eye);
+
+        let right = Vector3.cross(f, this.up);
+        right.normalize();
+
+        let rotationMatrix = new Matrix4();
+        rotationMatrix.setRotate(alpha, right.elements[0], right.elements[1], right.elements[2]);
+
+        let f_prime = rotationMatrix.multiplyVector3(f);
+
+        this.at.set(this.eye);
+        this.at.add(f_prime);
+        }
+
+    panDown(alpha) {
+        this.panUp(-alpha);
+    }
+
 }
