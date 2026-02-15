@@ -544,11 +544,25 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
 var g_startTime=performance.now()/1000.0;
 var g_seconds=performance.now()/1000.0-g_startTime;
 
+let g_prevTime = performance.now();
+let g_fps = 0;
+let g_fpsFrames = 0;
+let g_fpsLastTime = performance.now(); // ms
+
 // Called by browser repeatedly whenever its time
 function tick() {
   // save current time
   g_seconds=performance.now()/1000.0-g_startTime;
-  // console.log(g_seconds); //removed to improve performance
+
+  const now = performance.now();
+  g_fpsFrames++;
+
+  const tot = now - g_fpsLastTime;
+  if (tot >= 500) {
+    g_fps = (g_fpsFrames * 1000) / tot;
+    g_fpsFrames = 0;
+    g_fpsLastTime = tot;
+  }
 
   //update animation angles
   updateAnimationAngles();
