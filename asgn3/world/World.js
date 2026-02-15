@@ -658,15 +658,22 @@ function buildWall(){
   walls = [];
   for (let x = 0; x < g_map.length; x++) {
     for (let z = 0; z < g_map[0].length; z++) {
-      if (g_map[x][z] == 1) {
-        let w = new Cube();
-        w.textureNum = 4; //texture
-        w.matrix.translate(x-16, -.25, z-16);
-        walls.push(w);
+      const height = g_map[x][z];
+
+      if (height > 0) {
+        for (let y = 0; y < height; y++) {
+          let w = new Cube();
+          w.textureNum = 4; //texture
+          w.matrix.translate(x-16, -.65 + y, z-16);
+          walls.push(w);
+        }
+
       }
     }
   }
 }
+
+
 
 var g_map=[
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
@@ -836,7 +843,10 @@ function renderAllShapes() {
   sky.matrix.translate(-.5, -0.5, -0.5);
   sky.render();
   
-  drawMap();
+  // drawMap();
+  for (let i = 0; i < walls.length; i++) {
+    walls[i].renderfast();
+  }
 
   //draw the RAT ==========
   var rat = new Matrix4();
