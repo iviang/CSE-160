@@ -16,6 +16,10 @@ Q,E, MOUSE
 ADD BLOCK: "1"
 DELETE BLOCK: "2" = "eat"
 
+
+
+
+
 NOTES:
 had PC issues and had to borrow different device to make progress
 explanation of the game: you are a rat, collect cheese around the map to gain points.

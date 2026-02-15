@@ -740,25 +740,7 @@ function buildWall(){
     }
   }
 
-// function buildWall(){
-//   walls = [];
-//   for (let x = 0; x < g_map.length; x++) {
-//     for (let z = 0; z < g_map[0].length; z++) {
-//       const height = g_map[x][z];
-
-//       if (height > 0) {
-//         for (let y = 0; y < height; y++) {
-//           let w = new Cube();
-//           w.textureNum = 4; //texture
-//           w.matrix.translate(x-16, -.65 + y, z-16);
-//           walls.push(w);
-//         }
-
-//       }
-//     }
-//   }
-// }
-
+\
 var g_map=[
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
   [2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2],
@@ -814,6 +796,16 @@ function drawMap() {
       }
     }
   }
+}
+
+//keeps camera from going outside the map array
+function Boundary(worldX, worldZ) {
+  const mapX = Math.floor(worldX + 16);
+  const mapZ = Math.floor(worldZ + 16);
+  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
+    return true;
+  } 
+  return g_map[mapX][mapZ] > 0;
 }
 
 //collision detection function 
