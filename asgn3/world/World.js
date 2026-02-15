@@ -838,7 +838,7 @@ function collisionDetect(worldX, worldZ) {
     [worldX + r - shift, worldZ + r - shift],
     [worldX + r - shift, worldZ - r + shift],
     [worldX - r + shift, worldZ + r - shift],
-    [worldX - r + shift, worldZ - r] + shift,
+    [worldX - r + shift, worldZ - r + shift],
   ];
 
   for (const [x,z] of pts) {
