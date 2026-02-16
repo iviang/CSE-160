@@ -290,7 +290,7 @@ function GameUI() {
   }
 
   score.innerHTML = `Cheese Found: ${g_cheeseCollected} / ${TotCheese}`;
-  score.innerHTML = `Time: ${((performance.now()/1000) - g_startTime).toFixed(2)}s`;
+  timer.innerHTML = `Time: ${((performance.now()/1000) - g_startTime).toFixed(2)}s`;
 
 }
 
