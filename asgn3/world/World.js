@@ -1078,7 +1078,7 @@ function renderAllShapes() {
     cheese.textureNum=5;
     cheese.matrix.translate(g_cheesePosition[0], g_cheesePosition[1], g_cheesePosition[2]); //temp for testing.
     cheese.matrix.scale(0.5,0.5,0.5);
-    cheese.render();
+    cheese.renderfast();
   }
   
   
