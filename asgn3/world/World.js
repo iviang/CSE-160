@@ -363,12 +363,12 @@ function renderBest() {
   const e = document.getElementById("best");
   if (!e) return;
 
-  if (!g_bestRun) {
+  if (!g_best) {
     e.innerHTML = "—";
     return;
   }
 
-  e.innerHTML = `${g_bestRun.found}/${TotCheese} Cheeses Found in  ${g_bestRun.time.toFixed(2)} Seconds`;
+  e.innerHTML = `${g_best.found}/${TotCheese} Cheeses Found in  ${g_best.time.toFixed(2)} Seconds`;
 }
 
 function initTextures() {
