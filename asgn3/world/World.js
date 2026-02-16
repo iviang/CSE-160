@@ -287,8 +287,8 @@ function GameUI() {
     return;
   }
 
-  score.innerHTML = 'Cheese Found: ${g_cheeseCollected} / 5';
-  score.innerHTML = 'Time: ${runTime().toFixed(2)}s';
+  score.innerHTML = `Cheese Found: ${g_cheeseCollected} / 5`;
+  score.innerHTML = `Time: ${runTime().toFixed(2)}s`;
 
 }
 
@@ -1116,7 +1116,7 @@ function renderAllShapes() {
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
   sendTextToHTML(" ms: " + Math.floor(duration) + " fps: " + g_fps, "numdot");
-
+  GameUI();
 }
 
 //set the text of a HTML element
@@ -1154,7 +1154,6 @@ function click(ev) { //transforms the coords from browser to canvas
 
   //draw every shape that is supposed to be in the canvas
   renderAllShapes();
-  GameUI();
 }
 
 //extract the event click and return in WebGL Coordinates
