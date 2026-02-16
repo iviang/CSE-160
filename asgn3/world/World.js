@@ -979,8 +979,10 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
   camera.up.elements[2] = 0;
 }
 
-function restart() { //restart to center, restart rat position
+function restart() { //restart to center, restart rat position, reset score and time counters
   g_mode = "fps";
+  g_startTime = performance.now() / 1000;
+  g_cheeseCollected = 0;
 
   g_rat.position[0] = g_ratPosition[0];
   g_rat.position[1] = g_ratPosition[1];
