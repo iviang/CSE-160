@@ -1017,7 +1017,7 @@ function spawnCheese() {
 
     const cheese = new Cube();
     cheese.textureNum = 5;
-    cheese.matrix.translate((c.mapX - 16) + .25, -0.65, (c.mapZ - 16) + .25);
+    cheese.matrix.translate((c.mapX - 16), -0.65, (c.mapZ - 16));
     cheese.matrix.scale(0.5, 0.5, 0.5);
     g_cheeseCube.push(cheese);
     
