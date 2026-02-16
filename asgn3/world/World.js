@@ -728,7 +728,9 @@ function keydown(ev) { //modify for the wasd keys
   } else if (ev.keyCode == 50) { // press "2"
     delBlock();
     buildWall();
-  }
+  } else if (ev.keyCode == 82) {//R
+    eatCheese();
+  } 
 }
 
 //CONTROLLING THE RAT IN OVERHEAD ONLY!!
@@ -930,6 +932,20 @@ function delBlock() { //delete block in front
   g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
 }
 
+function eatCheese() {
+  if (!g_cheese) return;
+
+  const square = getSquare(1.2);
+  if (!square) return;
+
+  const cheeseMapX = Math.floor(g_cheesePosition[0] + 16);
+  const cheeseMapZ = Math.floor(g_cheesePosition[2] + 16);
+
+  if (sq.mapX === cheeseMapX && square.mapZ === cheeseMapZ) {
+    g_cheese = false;
+    g_cheeseCollected += 1;
+  }
+}
 
 function Overhead(){ //top down view for the maze
   camera.eye.elements[0] = 0;
