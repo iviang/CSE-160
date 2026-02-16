@@ -1065,10 +1065,6 @@ function renderAllShapes() {
   }
 
   //draw the RAT ==========
-  // var rat = new Matrix4();
-  // rat.translate(0, -.65, 0);
-  // rat.scale(1,1,1);
-  // g_rat.position = [0, -.65, 0];
   g_rat.render();
 
   //draw the cheese ==========
