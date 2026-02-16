@@ -12,7 +12,7 @@ MOVEMENT KEYS:
 WASD
 
 CAMERA ROTATION: 
-Q,E, MOUSE
+Q, E, MOUSE
 
 ADD BLOCK: "1"
 DELETE BLOCK: "2"
@@ -27,7 +27,7 @@ ABOUT THE "GAME" ===========================
 You are controlling this rat, navigate and break through the walls to collect cheese. 
 You can only break through walls when in First POV mode or the starting mode.
 Collect all the cheese on the board with "R" as fast as possible.
-There are 5 cheeses and there is a leaderboard at the bottom. There are always 5 cheesese and the challenge is that sometimes it's not visible on the overhead map by being hidden by the surropunding terrain.
+There are 5 cheeses and there is a leaderboard at the bottom. There are always 5 cheeses and the challenge is that sometimes it's not visible on the overhead map by being hidden by the surropunding terrain.
 When in First POV mode, you can adjust the camera and add/delete blocks as long as the rat is positioned about a cube away from the one you want to target.
  
 
