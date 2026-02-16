@@ -74,7 +74,8 @@ let u_Sampler4;
 let u_Sampler5;
 
 let g_rat = null;
-let g_ratHead = [0,0,-1]; 
+let g_ratHead = [0,0,-1];
+const RAT_OFFSET = [0.25, 0, 0.25];
 
 // let g_cheese = true;
 // let g_cheesePosition = [1, -0.65, 1]; //temp
@@ -1045,9 +1046,9 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
   const d = 1;
 
   
-  camera.eye.elements[0] = g_rat.position[0];
+  camera.eye.elements[0] = g_rat.position[0] + RAT_OFFSET[0];
   camera.eye.elements[1] = g_rat.position[1] + height;
-  camera.eye.elements[2] = g_rat.position[2];
+  camera.eye.elements[2] = g_rat.position[2] + RAT_OFFSET[2];
 
   // const offset = -90;
   // const yaw = g_fpsYaw + (g_rat.rotation * Math.PI / 180);
