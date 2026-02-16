@@ -361,7 +361,7 @@ function best(run){ //tracking best play
 
 function renderBest() {
   const e = document.getElementById("best");
-  if (!ee) return;
+  if (!e) return;
 
   if (!g_bestRun) {
     e.innerHTML = "—";
