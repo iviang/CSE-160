@@ -1020,7 +1020,7 @@ function restart() { //restart to center, restart rat position, reset score and 
 
 
   g_cheeseCollected = 0;
-  // g_cheese = true;
+  g_cheese = true;
 
   g_rat.position[0] = g_ratPosition[0];
   g_rat.position[1] = g_ratPosition[1];
