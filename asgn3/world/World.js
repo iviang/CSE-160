@@ -332,13 +332,13 @@ function scoreBoard(){
     const r = g_runs[i];
     html += `#${i + 1}: ${r.found}/${TotCheese} in ${r.time.toFixed(2)}s<br>`;
     }
-  el.innerHTML = html;
+  e.innerHTML = html;
 }
 
 function final(){
   if (g_final) return;
 
-  g_runs.push({ found: g_cheeseCollected, time: elapsedTime()});
+  g_runs.push({found: g_cheeseCollected, time: elapsedTime()});
   
   g_final = true;
   scoreBoard();
