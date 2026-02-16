@@ -432,7 +432,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image4.onload = function(){ sendTextureToTEXTURE4(image4); };
   // Tell the browser to load an image
-  image4.src = '../textures/glass.png';
+  image4.src = '../textures/Glass.png';
 
   //CHEESE TEXTURE==========
   var image5 = new Image();  // Create the image object
@@ -675,8 +675,6 @@ let g_fpsFrames = 0;
 // Called by browser repeatedly whenever its time
 function tick() {
   // save current time
-  // g_seconds=performance.now()/1000.0-g_startTime;
-
   const now = performance.now();
   g_fpsFrames++;
 
@@ -690,9 +688,6 @@ function tick() {
 
   g_seconds = performance.now()/1000 - g_startTime;
 
-  //update animation angles
-  // updateAnimationAngles();
-
   // Draw everything
   renderAllShapes();
 
@@ -700,57 +695,6 @@ function tick() {
   requestAnimationFrame(tick);
 }
 
-//individual animation functions so that the overall animation button can call upon them
-
-// function headAnimation() {
-//   g_headAngle = (45*Math.sin(g_seconds));
-// }
-
-// function tailAnimation() {
-//   g_btail = (10*Math.sin(g_seconds));
-//   g_m1tail = (20*Math.sin(g_seconds));
-//   g_m2tail = (25*Math.sin(g_seconds));
-//   g_tiptail = (30*Math.sin(g_seconds));
-// }
-
-// function buttAnimation() {
-//   const min = -5;
-//   const max = 5;
-//   const midpoint = (min + max) / 2;
-//   const amplitude = (max - min) / 2;
-//   g_buttAngle = midpoint + amplitude * Math.sin(g_seconds);
-// }
-
-// function walkAnimation() {
-//   const t = 3 * g_seconds;
-//   //walking should be diagonal to look natural
-//   const group_A = t; //Front Right sync with Back Left
-//   const group_B = t + Math.PI; //Front Right sync with Back Left
-//   const delay = Math.PI / 2; // attempt to delay the lower legs
-
-//   g_upperFR = walkRestrictions(-10, 35,group_A);
-//   g_upperBL = walkRestrictions(-10, 35, group_A);
-
-//   g_upperFL = walkRestrictions(-10, 35, group_B);
-//   g_upperBR = walkRestrictions(-10, 35, group_B);
-
-//   g_lowerFR = walkRestrictions(-35, 5, group_A + delay);
-//   g_lowerBL = walkRestrictions(-15, 5, group_A + delay);
-
-//   g_lowerFL = walkRestrictions(-35, 5, group_B + delay);
-//   g_lowerBR = walkRestrictions(-15, 5, group_B + delay);
-
-// }
- 
-//update the angles of everything if currently animated
-// function updateAnimationAngles(){
-//   if (g_yellowAnimation) {
-//     g_yellowAngle = (45*Math.sin(g_seconds));
-//   }
-//   if (g_magentaAnimation) {
-//     g_magentaAngle = (45*Math.sin(3*g_seconds));
-//   }
-// }
 
 function keydown(ev) { //modify for the wasd keys
   const speed = 0.1; //speed
