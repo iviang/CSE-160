@@ -957,7 +957,7 @@ function eatCheese() { //USES the same Delete block function above but it only w
     const mapZ = Math.floor(g_ratPosition[2] + 16);
     square = {mapX, mapZ} ;
   } else {
-    square = getSquare(1.2);
+    square = getSquare(2);
   }
 
   if (!square) return;
