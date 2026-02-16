@@ -941,7 +941,7 @@ function eatCheese() {
   const cheeseMapX = Math.floor(g_cheesePosition[0] + 16);
   const cheeseMapZ = Math.floor(g_cheesePosition[2] + 16);
 
-  if (sq.mapX === cheeseMapX && square.mapZ === cheeseMapZ) {
+  if (square.mapX === cheeseMapX && square.mapZ === cheeseMapZ) {
     g_cheese = false;
     g_cheeseCollected += 1;
   }
