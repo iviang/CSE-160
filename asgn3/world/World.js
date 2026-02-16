@@ -327,7 +327,7 @@ function scoreBoard(){
     return;
   }
 
-  let html = "Score History";
+  let html = "";
     for (let i = g_runs.length - 1; i >= 0; i--) {
     const r = g_runs[i];
     html += `#${i + 1}: ${r.found}/${TotCheese} Cheeses Found in ${r.time.toFixed(2)} Seconds<br>`;
