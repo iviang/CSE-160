@@ -1015,8 +1015,8 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
 function restart() { //restart to center, restart rat position, reset score and time counters
   g_mode = "fps";
   g_startTime = performance.now() / 1000;
-  // g_timer = true;
-  // g_tEnd = 0;
+  g_timer = true;
+  g_tEnd = 0;
 
 
   g_cheeseCollected = 0;
