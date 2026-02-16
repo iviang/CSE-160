@@ -338,7 +338,7 @@ function scoreBoard(){
 function final(){
   if (g_final) return;
 
-  g_runs.push({ found = g_cheeseCollected, time: elapsedTime()});
+  g_runs.push({ found: g_cheeseCollected, time: elapsedTime()});
   
   g_final = true;
   scoreBoard();
