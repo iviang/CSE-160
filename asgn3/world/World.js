@@ -347,7 +347,7 @@ function final(){
   scoreBoard();
 }
 
-function best(){ //tracking best play
+function best(run){ //tracking best play
   if (!g_best) {
     g_best = { found: run.found, time: run.time };
     return;
