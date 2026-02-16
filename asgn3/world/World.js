@@ -1049,7 +1049,7 @@ function renderAllShapes() {
   body.matrix.translate(-16, -.76, -16);
   body.matrix.scale(32,0.1,32);
   // body.matrix.translate(-.5, 0, -0.5);
-  body.renderfast();
+  body.render();
 
   //draw the SKY BOX ==========
   var sky = new Cube();
@@ -1069,7 +1069,7 @@ function renderAllShapes() {
   rat.translate(0, -.65, 0);
   rat.scale(1,1,1);
   // g_rat.position = [0, -.65, 0];
-  g_rat.renderfast();
+  g_rat.render();
 
   //draw the cheese ==========
   if (g_cheese) {
@@ -1078,7 +1078,7 @@ function renderAllShapes() {
     cheese.textureNum=5;
     cheese.matrix.translate(g_cheesePosition[0], g_cheesePosition[1], g_cheesePosition[2]); //temp for testing.
     cheese.matrix.scale(0.5,0.5,0.5);
-    cheese.renderfast();
+    cheese.render();
   }
   
   
