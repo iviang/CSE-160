@@ -79,7 +79,7 @@ let g_ratHead = [0,0,-1];
 let g_cheese = true;
 let g_cheesePosition = [1, -0.65, 1]; //temp
 let g_cheeseCollected = 0;
-const TotCheese = 1;
+const TotCheese = 1; //temp
 
 let g_mode = "fps";
 let g_eye = null;
