@@ -1019,6 +1019,7 @@ function eatCheese() { //USES the same Delete block function above but it only w
       if (g_cheeseCollected >= TotCheese && g_timer) {
         g_timer = false;
         g_tEnd = performance.now() / 1000;
+        final();  
       }
       return;
     }
@@ -1114,6 +1115,8 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
 
 function restart() { //restart to center, restart rat position, reset score and time counters
   g_mode = "fps";
+  final();
+  g_final = false;
   g_startTime = performance.now() / 1000;
   g_timer = true;
   g_tEnd = 0;
