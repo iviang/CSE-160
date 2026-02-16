@@ -86,10 +86,10 @@ let g_cheeseCube = [];
 const TotCheese = 5;
 
 
-
 let g_timer = true;
 let g_tEnd = 0;
 let g_runs = [];
+let g_best = null;
 let g_final = false;
 
 let g_mode = "fps";
@@ -336,14 +336,40 @@ function scoreBoard(){
 }
 
 function final(){
-  if (g_final) return;
+  const run = {found: g_cheeseCollected, time: (g_tEnd - g_startTime) };
+  // if (g_final) return;
 
-  g_runs.push({found: g_cheeseCollected, time: elapsedTime()});
+  g_runs.push(run);
   
-  g_final = true;
+  // g_final = true;
+  best(run);
+  renderBest();
   scoreBoard();
 }
 
+function best(){ //tracking best play
+  if (!g_best) {
+    g_best = { found: run.found, time: run.time };
+    return;
+  }
+
+  if (run.found > g_best.found || (run.found === g_best.found && run.time < g_best.time)) {
+    g_best = {found: run.found, time: run.time };
+  }
+
+}
+
+function renderBest() {
+  const e = document.getElementById("best");
+  if (!ee) return;
+
+  if (!g_bestRun) {
+    e.innerHTML = "—";
+    return;
+  }
+
+  e.innerHTML = `${g_bestRun.found}/${TotCheese} Cheeses Found in  ${g_bestRun.time.toFixed(2)} Seconds`;
+}
 
 function initTextures() {
   //UV GRID TEXTURE================
