@@ -957,7 +957,16 @@ function eatCheese() { //USES the same Delete block function above but it only w
     const mapZ = Math.floor(g_ratPosition[2] + 16);
     square = {mapX, mapZ} ;
   } else {
-    square = getSquare(2);
+    // square = getSquare(1); //issue is that it's to specific and isn't selectimng well
+    const dist = [0.8, 1.0, 1.3, 1.6];
+    for (let d of dist) {
+      const testSquare = getSquare(d);
+      if (testSquare) {
+        square = testSquare;
+        break;
+      }
+    }
+
   }
 
   if (!square) return;
@@ -1008,7 +1017,7 @@ function spawnCheese() {
 
     const cheese = new Cube();
     cheese.textureNum = 5;
-    cheese.matrix.translate(c.mapX - 16, -0.65, c.mapZ - 16);
+    cheese.matrix.translate((c.mapX - 16) + .25, -0.65, (c.mapZ - 16) + .25);
     cheese.matrix.scale(0.5, 0.5, 0.5);
     g_cheeseCube.push(cheese);
     
