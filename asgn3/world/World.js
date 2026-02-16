@@ -89,6 +89,8 @@ const TotCheese = 5;
 
 let g_timer = true;
 let g_tEnd = 0;
+let g_runs = [];
+let g_final = false;
 
 let g_mode = "fps";
 let g_eye = null;
@@ -294,7 +296,7 @@ function addActionsForHtmlUI(){
 }
 
 function GameUI() {
-  const score = document.getElementById("scoreBoard");
+  const score = document.getElementById("score");
   const timer = document.getElementById("timer");
 
   if (!score || !timer) {
@@ -308,6 +310,38 @@ function GameUI() {
 
   timer.innerHTML = `Time: ${t.toFixed(2)}s`;
 
+}
+
+function elapsedTime() {
+  const now = performance.now() / 1000;
+  const end = (g_timer ? now : g_tEnd);
+  return end - g_startTime;
+}
+
+function scoreBoard(){
+  const e = document.getElementById("scoreBoard");
+  if (!e) return;
+
+  if (g_runs.length === 0 ) {
+    e.innerHTML = "";
+    return;
+  }
+
+  let html = "Score History";
+    for (let i = g_runs.length - 1; i >= 0; i--) {
+    const r = g_runs[i];
+    html += `#${i + 1}: ${r.found}/${TotCheese} in ${r.time.toFixed(2)}s<br>`;
+    }
+  el.innerHTML = html;
+}
+
+function final(){
+  if (g_final) return;
+
+  g_runs.push({ found = g_cheeseCollected, time: elapsedTime()});
+  
+  g_final = true;
+  scoreBoard();
 }
 
 
@@ -547,7 +581,7 @@ function main() {
 
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
-
+  scoreBoard(); //set up the scoreboard
   // Mouse detection
   mouseDetect();  
   document.onkeydown = keydown;
