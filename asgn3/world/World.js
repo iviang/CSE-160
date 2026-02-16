@@ -1072,7 +1072,7 @@ function renderAllShapes() {
   var cheese = new Cube();
   cheese.color = [1.0, 1.0, 0.0, 1.0];
   cheese.textureNum=5;
-  cheese.matrix.translate(10, -.65, 10);
+  cheese.matrix.translate(1, -.65, 1);
   cheese.matrix.scale(0.5,0.5,0.5);
   cheese.render();
   
