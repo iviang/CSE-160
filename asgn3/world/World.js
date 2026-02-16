@@ -336,12 +336,17 @@ function scoreBoard(){
 }
 
 function final(){
-  const run = {found: g_cheeseCollected, time: (g_tEnd - g_startTime) };
-  // if (g_final) return;
+  if (g_final) return;
 
+  if (g_timer) {
+    g_timer = false;
+    g_tEnd = performance.now() / 1000;
+  }
+
+  const run = {found: g_cheeseCollected, time: (g_tEnd - g_startTime) };
   g_runs.push(run);
   
-  // g_final = true;
+  g_final = true;
   best(run);
   renderBest();
   scoreBoard();
@@ -368,7 +373,7 @@ function renderBest() {
     return;
   }
 
-  e.innerHTML = `${g_best.found}/${TotCheese} Cheeses Found in  ${g_best.time.toFixed(2)} Seconds`;
+  e.innerHTML = `${g_best.found}/${TotCheese} Cheeses Found in ${g_best.time.toFixed(2)} Seconds`;
 }
 
 function initTextures() {
@@ -1148,7 +1153,7 @@ function restart() { //restart to center, restart rat position, reset score and 
   g_tEnd = 0;
 
   g_cheeseCollected = 0;
-  g_cheese = true;
+  // g_cheese = true;
   spawnCheese(); //randomly places 5 cheese cubes
 
   g_rat.position[0] = g_ratPosition[0];
