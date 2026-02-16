@@ -953,8 +953,8 @@ function eatCheese() { //USES the same Delete block function above but it only w
   let square = null;
 
   if (g_mode === "overhead") {
-    const mapX = Math.floor(g_cheesePosition[0] + 16);
-    const mapZ = Math.floor(g_cheesePosition[2] + 16);
+    const mapX = Math.floor(g_ratPosition[0] + 16);
+    const mapZ = Math.floor(g_ratPosition[2] + 16);
     square = {mapX, mapZ} ;
   } else {
     square = getSquare(1.2);
