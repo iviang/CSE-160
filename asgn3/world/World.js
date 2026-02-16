@@ -76,10 +76,15 @@ let u_Sampler5;
 let g_rat = null;
 let g_ratHead = [0,0,-1]; 
 
-let g_cheese = true;
-let g_cheesePosition = [1, -0.65, 1]; //temp
+// let g_cheese = true;
+// let g_cheesePosition = [1, -0.65, 1]; //temp
 let g_cheeseCollected = 0;
-const TotCheese = 1; //temp
+let g_cheeseCell = [];
+let g_cheeseCube = [];
+
+const TotCheese = 5;
+
+
 
 let g_timer = true;
 let g_tEnd = 0;
@@ -548,6 +553,7 @@ function main() {
 
   initTextures();
   buildWall();  
+  spawnCheese();
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -939,25 +945,75 @@ function delBlock() { //delete block in front
   g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
 }
 
-function eatCheese() { //USES the same Delete block function above but it only will apply to the cheese and keeps count in the scores below. 
-  if (!g_cheese) return;
 
-  const square = getSquare(1.2);
+//CHEESE FUNCTIONS:
+
+function eatCheese() { //USES the same Delete block function above but it only will apply to the cheese and keeps count in the scores below. 
+  if (g_cheeseCube.length === 0) return;
+  let square = null;
+
+  if (g_mode === overhead) {
+    const mapX = Math.floor(g_cheesePosition[0] + 16);
+    const mapZ = Math.floor(g_cheesePosition[2] + 16);
+    square = {mapX, mapZ} ;
+  } else {
+    square = getSquare(1.2);
+  }
+
   if (!square) return;
 
-  const cheeseMapX = Math.floor(g_cheesePosition[0] + 16);
-  const cheeseMapZ = Math.floor(g_cheesePosition[2] + 16);
+  for (let i = 0; i < g_cheeseCell.length; i++) {
+    const cell = g_cheeseCell[i];
+    if (cell.mapX === square.mapX && cell.mapZ === square.mapZ) {
 
-  if (square.mapX === cheeseMapX && square.mapZ === cheeseMapZ) {
-    g_cheese = false;
-    g_cheeseCollected += 1;
 
-    if (g_cheeseCollected >= TotCheese && g_timer) {
-      g_timer = false;
-      g_tEnd = performance.now() / 1000;
+      g_cheeseCell.splice(i,1);
+      g_cheeseCube.splice(i,1);
+      g_cheeseCollected += 1;
+
+
+      if (g_cheeseCollected >= TotCheese && g_timer) {
+        g_timer = false;
+        g_tEnd = performance.now() / 1000;
+      }
+      return;
     }
-  
   }
+}
+
+function spawnCheese() {
+  g_cheeseCell = [];
+  g_cheeseCube = [];
+
+  const free = []; //open spaces to spawn in on the map
+  for (let x = 0; x < g_map.length; x++) {
+    for (let z = 0; z < g_map[0].length; z++) {
+      if (g_map[x][z] === 0) {
+        free.push({ mapX: x, mapZ: z });
+      }
+    }
+  }
+
+  //logic from fisher yate shuffling 
+  for (let i = free.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = free[i];
+    free[i] = free[j];
+    free[j] = temp;
+  }
+  
+ for (let i = 0; i < TotCheese && i < free.length; i++) {
+    const c = free[i];
+    g_cheeseCell.push(c);
+
+    const cheese = new Cube();
+    cheese.textureNum = 5;
+    cheese.matrix.translate(c.mapX - 16, -0.65, c.mapZ - 16);
+    cheese.matrix.scale(0.5, 0.5, 0.5);
+    g_cheeseCube.push(cheese);
+    
+  }
+
 
 }
 
@@ -1018,9 +1074,9 @@ function restart() { //restart to center, restart rat position, reset score and 
   g_timer = true;
   g_tEnd = 0;
 
-
   g_cheeseCollected = 0;
   g_cheese = true;
+  spawnCheese(); //randomly places 5 cheese cubes
 
   g_rat.position[0] = g_ratPosition[0];
   g_rat.position[1] = g_ratPosition[1];
@@ -1046,6 +1102,9 @@ function restart() { //restart to center, restart rat position, reset score and 
   g_fpsYaw = Math.atan2(g_fpsFwd[0], -g_fpsFwd[2]);
 
 }
+
+
+
 
 function renderAllShapes() {
   //check the time at the start of this function
@@ -1103,13 +1162,15 @@ function renderAllShapes() {
   g_rat.render();
 
   //draw the cheese ==========
-  if (g_cheese) {
-    var cheese = new Cube();
-    // cheese.color = [1.0, 1.0, 0.0, 1.0];
-    cheese.textureNum=5;
-    cheese.matrix.translate(g_cheesePosition[0], g_cheesePosition[1], g_cheesePosition[2]); //temp for testing.
-    cheese.matrix.scale(0.5,0.5,0.5);
-    cheese.renderfast();
+  // if (g_cheese) {
+  //   var cheese = new Cube();
+  //   cheese.textureNum=5;
+  //   cheese.matrix.translate(g_cheesePosition[0], g_cheesePosition[1], g_cheesePosition[2]); //temp for testing.
+  //   cheese.matrix.scale(0.5,0.5,0.5);
+  //   cheese.renderfast();
+  // } 
+  for (let i = 0; i < g_cheeseCube.length; i++) {
+    g_cheeseCube[i].renderfast();
   }
   
   

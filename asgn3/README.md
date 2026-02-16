@@ -51,4 +51,6 @@ https://minecraft.fandom.com/wiki/Breaking
 https://static.vecteezy.com/system/resources/previews/005/266/188/original/cheese-background-illustration-slice-porous-yellow-swiss-cheese-maasdam-edam-cheese-day-vector.jpg 
 https://www.threejs-blocks.com/docs/ThirdPersonCamera 
 https://stackoverflow.com/questions/78832778/how-to-make-the-camera-to-follow-the-model-from-a-third-person-perspective 
-https://en.wikipedia.org/wiki/Third-person_(video_games) 
+https://en.wikipedia.org/wiki/Third-person_(video_games)
+https://en.wikipedia.org/wiki/Random_number_generation 
+https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle 
