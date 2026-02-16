@@ -75,6 +75,9 @@ let u_Sampler5;
 
 let g_rat = null;
 let g_ratHead = [0,0,-1]; 
+
+let g_cheese = true;
+let g_cheesePosition = [1, -0.65, 1]; //temp
 let g_cheeseCollected = 0;
 const TotCheese = 5;
 
@@ -1046,7 +1049,7 @@ function renderAllShapes() {
   body.matrix.translate(-16, -.76, -16);
   body.matrix.scale(32,0.1,32);
   // body.matrix.translate(-.5, 0, -0.5);
-  body.render();
+  body.renderfast();
 
   //draw the SKY BOX ==========
   var sky = new Cube();
@@ -1066,15 +1069,18 @@ function renderAllShapes() {
   rat.translate(0, -.65, 0);
   rat.scale(1,1,1);
   // g_rat.position = [0, -.65, 0];
-  g_rat.render();
+  g_rat.renderfast();
 
   //draw the cheese ==========
-  var cheese = new Cube();
-  cheese.color = [1.0, 1.0, 0.0, 1.0];
-  cheese.textureNum=5;
-  cheese.matrix.translate(1, -.65, 1);
-  cheese.matrix.scale(0.5,0.5,0.5);
-  cheese.render();
+  if (g_cheese) {
+    var cheese = new Cube();
+    // cheese.color = [1.0, 1.0, 0.0, 1.0];
+    cheese.textureNum=5;
+    cheese.matrix.translate(g_cheesePosition[0], g_cheesePosition[1], g_cheesePosition[2]); //temp for testing.
+    cheese.matrix.scale(0.5,0.5,0.5);
+    cheese.renderfast();
+  }
+  
   
   // var body = new Cube();
   // body.color = [1.0, 0.0, 0.0, 1.0];
