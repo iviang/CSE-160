@@ -75,6 +75,8 @@ let u_Sampler5;
 
 let g_rat = null;
 let g_ratHead = [0,0,-1]; 
+let g_cheeseCollected = 0;
+const TotCheese = 5;
 
 let g_mode = "fps";
 let g_eye = null;
@@ -287,7 +289,7 @@ function GameUI() {
     return;
   }
 
-  score.innerHTML = `Cheese Found: ${g_cheeseCollected} / 5`;
+  score.innerHTML = `Cheese Found: ${g_cheeseCollected} / ${TotCheese}`;
   score.innerHTML = `Time: ${runTime().toFixed(2)}s`;
 
 }
@@ -546,7 +548,7 @@ function main() {
 function mouseDetect() { //converted into the rotation funct for mouse/camera 
   let drag = false;
   let prevX = 0;
-  // let prevY = 0;
+  let prevY = 0;
 
   canvas.onmousedown=function(ev) {
     drag=true;
