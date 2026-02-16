@@ -79,7 +79,7 @@ let g_ratHead = [0,0,-1];
 let g_cheese = true;
 let g_cheesePosition = [1, -0.65, 1]; //temp
 let g_cheeseCollected = 0;
-const TotCheese = 5;
+const TotCheese = 1;
 
 let g_mode = "fps";
 let g_eye = null;
@@ -932,7 +932,7 @@ function delBlock() { //delete block in front
   g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
 }
 
-function eatCheese() {
+function eatCheese() { //USES the same Delete block function above but it only will apply to the cheese and keeps count in the scores below. 
   if (!g_cheese) return;
 
   const square = getSquare(1.2);
