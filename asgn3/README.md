@@ -7,6 +7,13 @@ site:
 https://iviang.github.io/CSE-160/asgn3/world/World.html
 http://localhost:8000/asgn3/world/World.html
 
+NOTES:
+had PC issues and had to swap to a different device to finish up my work
+my cell selections are imperfect and may require repositioning but everything really does work as intended. 
+IF the First POV mode shows the inside of a wall, hold "A" until you see the rat.
+
+
+
 Controls:================================
 MOVEMENT KEYS:
 WASD
@@ -19,8 +26,11 @@ DELETE BLOCK: "2"
 
 EAT CHEESE: "R"
 
+BUTTONS: ======================================
 Overhead POV: see whole map and control the rat
+
 First POV: switch to the camera that's kind of like a third person over the rat no matter where it's moved on the map
+
 RESTART: reset all positions to the original placements, restarts timer and score.
 
 ABOUT THE "GAME" ===========================
@@ -29,11 +39,6 @@ You can only break through walls when in First POV mode or the starting mode.
 Collect all the cheese on the board with "R" as fast as possible.
 There are 5 cheeses and there is a leaderboard at the bottom. There are always 5 cheeses and the challenge is that sometimes it's not visible on the overhead map by being hidden by the surropunding terrain.
 When in First POV mode, you can adjust the camera and add/delete blocks as long as the rat is positioned about a cube away from the one you want to target.
- 
-
-NOTES:
-had PC issues and had to borrow different device to make progress
-my cell selections are imperfect and may require repositioning but everything really does work as intended. IF the FPOV shows the inside of a wall, hit "A" until you see the rat is a usual case I found.
 
 References:
 asgn3 pdf
