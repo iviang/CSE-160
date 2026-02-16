@@ -619,7 +619,7 @@ function tick() {
   g_seconds = performance.now()/1000 - g_startTime;
 
   //update animation angles
-  updateAnimationAngles();
+  // updateAnimationAngles();
 
   // Draw everything
   renderAllShapes();
