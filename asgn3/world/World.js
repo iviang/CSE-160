@@ -81,6 +81,9 @@ let g_cheesePosition = [1, -0.65, 1]; //temp
 let g_cheeseCollected = 0;
 const TotCheese = 1; //temp
 
+let g_timer = true;
+let g_tEnd = 0;
+
 let g_mode = "fps";
 let g_eye = null;
 let g_at = null;
@@ -236,10 +239,10 @@ let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
 let g_selectedType=POINT;
 let g_globalAngle=0;
-let g_yellowAngle=0;
-let g_magentaAngle=0;
-let g_yellowAnimation=false;
-let g_magentaAnimation=false;
+// let g_yellowAngle=0;
+// let g_magentaAngle=0;
+// let g_yellowAnimation=false;
+// let g_magentaAnimation=false;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -293,7 +296,11 @@ function GameUI() {
   }
 
   score.innerHTML = `Cheese Found: ${g_cheeseCollected} / ${TotCheese}`;
-  timer.innerHTML = `Time: ${((performance.now()/1000) - g_startTime).toFixed(2)}s`;
+
+  const now = performance.now() / 1000;
+  const t = (g_timer ? (now - g_startTime) : (g_tEnd - g_startTime));
+
+  timer.innerHTML = `Time: ${t.toFixed(2)}s`;
 
 }
 
@@ -944,7 +951,14 @@ function eatCheese() { //USES the same Delete block function above but it only w
   if (square.mapX === cheeseMapX && square.mapZ === cheeseMapZ) {
     g_cheese = false;
     g_cheeseCollected += 1;
+
+    if (g_cheeseCollected >= TotCheese && g_timer) {
+      g_timer = false;
+      g_tEnd = performance.now() / 1000;
+    }
+  
   }
+
 }
 
 function Overhead(){ //top down view for the maze
@@ -1001,7 +1015,12 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
 function restart() { //restart to center, restart rat position, reset score and time counters
   g_mode = "fps";
   g_startTime = performance.now() / 1000;
+  g_timer = true;
+  g_tEnd = 0;
+
+
   g_cheeseCollected = 0;
+  g_cheese = true;
 
   g_rat.position[0] = g_ratPosition[0];
   g_rat.position[1] = g_ratPosition[1];

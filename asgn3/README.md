@@ -15,15 +15,20 @@ CAMERA ROTATION:
 Q,E, MOUSE
 
 ADD BLOCK: "1"
-DELETE BLOCK: "2" = "eat"
+DELETE BLOCK: "2"
 
-Overhead POV: see and control the rat
+EAT CHEESE: "R"
+
+Overhead POV: see whole map and control the rat
 First POV: switch to the camera that's kind of like a third person over the rat no matter where it's moved on the map
-RESTART: reset all positions to the starting center, also move the rat back to center
+RESTART: reset all positions to the original placements, restarts timer and score.
+
+
 
 ABOUT THE "GAME" ===========================
 You are controlling this rat, navigate and break through the walls to collect cheese. 
 You can only break through walls when in First POV mode or the starting mode.
+Collect all the cheese on the board with "R" as fast as possible.
  
 
 NOTES:
