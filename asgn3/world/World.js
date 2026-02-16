@@ -1069,7 +1069,7 @@ function renderAllShapes() {
   rat.translate(0, -.65, 0);
   rat.scale(1,1,1);
   // g_rat.position = [0, -.65, 0];
-  g_rat.render();
+  g_rat.renderfast();
 
   //draw the cheese ==========
   if (g_cheese) {
