@@ -261,15 +261,15 @@ function addActionsForHtmlUI(){
   // document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
 
 
-  document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
-  document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
+  // document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
+  // document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
 
-  document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
-  document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
+  // document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
+  // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
-  //color slider events
-  document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
-  document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
+  // //color slider events
+  // document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
+  // document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
   // canvas.onmousemove = function(ev) { if (ev.buttons == 1) { click(ev) } };
 
@@ -277,6 +277,19 @@ function addActionsForHtmlUI(){
   // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_globalAngle = this.value; renderAllShapes(); });
   //size slider events
   document.getElementById('angleSlide').addEventListener('mousemove', function() { g_globalAngle = this.value; renderAllShapes(); });
+}
+
+function GameUI() {
+  const score = document.getElementById("scoreBoard");
+  const timer = document.getElementById("timer");
+
+  if (!score || !timer) {
+    return;
+  }
+
+  score.innerHTML = 'Cheese Found: ${g_cheeseCollected} / 5';
+  score.innerHTML = 'Time: ${runTime().toFixed(2)}s';
+
 }
 
 
@@ -564,7 +577,6 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
     prevX = ev.clientX;
     prevY = ev.clientY;
 
-    // renderAllShapes();
   };
 }
 
@@ -1142,6 +1154,7 @@ function click(ev) { //transforms the coords from browser to canvas
 
   //draw every shape that is supposed to be in the canvas
   renderAllShapes();
+  GameUI();
 }
 
 //extract the event click and return in WebGL Coordinates

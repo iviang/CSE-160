@@ -7,6 +7,7 @@ site:
 https://iviang.github.io/CSE-160/asgn3/world/World.html
 http://localhost:8000/asgn3/world/World.html
 
+Controls:================================
 MOVEMENT KEYS:
 WASD
 
@@ -16,13 +17,17 @@ Q,E, MOUSE
 ADD BLOCK: "1"
 DELETE BLOCK: "2" = "eat"
 
+Overhead POV: see and control the rat
+First POV: switch to the camera that's kind of like a third person over the rat no matter where it's moved on the map
+RESTART: reset all positions to the starting center, also move the rat back to center
 
-
-
+ABOUT THE "GAME" ===========================
+You are controlling this rat, navigate and break through the walls to collect cheese. 
+You can only break through walls when in First POV mode or the starting mode.
+ 
 
 NOTES:
 had PC issues and had to borrow different device to make progress
-explanation of the game: you are a rat, collect cheese around the map to gain points.
 
 References:
 asgn3 pdf
