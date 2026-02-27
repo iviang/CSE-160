@@ -353,19 +353,6 @@ function initTextures() {
   // Tell the browser to load an image
   image4.src = '../textures/Glass.png';
 
-  //CHEESE TEXTURE==========
-  var image5 = new Image();  // Create the image object
-  if (!image5) {
-    console.log('Failed to create the image object');
-    return false;
-  }
-
-  // Register the event handler to be called on loading an image
-  image5.onload = function(){ sendTextureToTEXTURE5(image5); };
-  // Tell the browser to load an image
-  image5.src = '../textures/cheese.jpg';
-
-
 
   return true;
 }
@@ -491,31 +478,6 @@ function sendTextureToTEXTURE4(image) { //glass
 
   console.log('Finished loadTexture');
 }
-
-function sendTextureToTEXTURE5(image) { //cheese
-  var texture = gl.createTexture(); // Create a texture object
-  if (!texture) {
-    console.log('Failed to create the texture object');
-    return false;
-  }
-  
-  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
-  // Enable texture unit5
-  gl.activeTexture(gl.TEXTURE5);
-  // Bind the texture object to the target
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-
-  // Set the texture parameters
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-  // Set the texture image
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
-  
-  // Set the texture unit 1 to the sampler
-  gl.uniform1i(u_Sampler5, 5);
-
-  console.log('Finished loadTexture');
-}
-
 
 function main() {
 
