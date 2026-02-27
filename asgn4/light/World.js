@@ -493,7 +493,6 @@ function main() {
 
   //set up actions for the HTML UI elements
   addActionsForHtmlUI();
-  scoreBoard(); //set up the scoreboard
   // Mouse detection
   mouseDetect();  
   document.onkeydown = keydown;
@@ -749,102 +748,6 @@ function delBlock() { //delete block in front
   g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
 }
 
-
-//CHEESE FUNCTIONS:
-
-function eatCheese() { //USES the same Delete block function above but it only will apply to the cheese and keeps count in the scores below. 
-  if (g_cheeseCube.length === 0) return;
-  let square = null;
-
-  if (g_mode === "overhead") {
-    const mapX = Math.floor(g_ratPosition[0] + 16);
-    const mapZ = Math.floor(g_ratPosition[2] + 16);
-    square = {mapX, mapZ} ;
-  } else {
-    // square = getSquare(1); //issue is that it's to specific and isn't selectimng well
-    const dist = [0.8, 1.0, 1.3, 1.6];
-    for (let d of dist) {
-      const testSquare = getSquare(d);
-      if (testSquare) {
-        square = testSquare;
-        break;
-      }
-    }
-
-  }
-
-  if (!square) return;
-
-  for (let i = 0; i < g_cheeseCell.length; i++) {
-    const cell = g_cheeseCell[i];
-    if (cell.mapX === square.mapX && cell.mapZ === square.mapZ) {
-
-
-      g_cheeseCell.splice(i,1);
-      g_cheeseCube.splice(i,1);
-      g_cheeseCollected += 1;
-
-
-      if (g_cheeseCollected >= TotCheese && g_timer) {
-        g_timer = false;
-        g_tEnd = performance.now() / 1000;
-        final();  
-      }
-      return;
-    }
-  }
-}
-
-function spawnCheese() {
-  g_cheeseCell = [];
-  g_cheeseCube = [];
-
-  const free = []; //open spaces to spawn in on the map
-  for (let x = 0; x < g_map.length; x++) {
-    for (let z = 0; z < g_map[0].length; z++) {
-      if (g_map[x][z] === 0) {
-        free.push({ mapX: x, mapZ: z });
-      }
-    }
-  }
-
-  //logic from fisher yate shuffling 
-  for (let i = free.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = free[i];
-    free[i] = free[j];
-    free[j] = temp;
-  }
-  
- for (let i = 0; i < TotCheese && i < free.length; i++) {
-    const c = free[i];
-    g_cheeseCell.push(c);
-
-    const cheese = new Cube();
-    cheese.textureNum = 5;
-    cheese.matrix.translate((c.mapX - 16), -0.65, (c.mapZ - 16));
-    cheese.matrix.scale(0.5, 0.5, 0.5);
-    g_cheeseCube.push(cheese);
-    
-  }
-
-
-}
-
-function Overhead(){ //top down view for the maze
-  camera.eye.elements[0] = 0;
-  camera.eye.elements[1] = 30;
-  camera.eye.elements[2] = 0;
-
-  camera.at.elements[0] = 0;
-  camera.at.elements[1] = 0;
-  camera.at.elements[2] = 0;
-
-  camera.up.elements[0] = 0;
-  camera.up.elements[1] = 0;
-  camera.up.elements[2] = -1;
-}
-
 function newFP(){ //creates a new view over the rat no matter where it's moved to 
   const height = 1;
   const d = 1;
@@ -882,43 +785,42 @@ function newFP(){ //creates a new view over the rat no matter where it's moved t
   camera.up.elements[2] = 0;
 }
 
-function restart() { //restart to center, restart rat position, reset score and time counters
-  g_mode = "fps";
-  final();
-  g_final = false;
-  g_startTime = performance.now() / 1000;
-  g_timer = true;
-  g_tEnd = 0;
+// function restart() { //restart to center, restart rat position, reset score and time counters
+//   g_mode = "fps";
+//   final();
+//   g_final = false;
+//   g_startTime = performance.now() / 1000;
+//   g_timer = true;
+//   g_tEnd = 0;
 
-  g_cheeseCollected = 0;
-  // g_cheese = true;
-  spawnCheese(); //randomly places 5 cheese cubes
+//   g_cheeseCollected = 0;
+//   // g_cheese = true;
+//   spawnCheese(); //randomly places 5 cheese cubes
 
-  g_rat.position[0] = g_ratPosition[0];
-  g_rat.position[1] = g_ratPosition[1];
-  g_rat.position[2] = g_ratPosition[2];
-  g_rat.rotation = 0;
+//   g_rat.position[0] = g_ratPosition[0];
+//   g_rat.position[1] = g_ratPosition[1];
+//   g_rat.position[2] = g_ratPosition[2];
+//   g_rat.rotation = 0;
 
-  camera.eye.elements[0] = g_eye.elements[0];
-  camera.eye.elements[1] = g_eye.elements[1];
-  camera.eye.elements[2] = g_eye.elements[2];
+//   camera.eye.elements[0] = g_eye.elements[0];
+//   camera.eye.elements[1] = g_eye.elements[1];
+//   camera.eye.elements[2] = g_eye.elements[2];
 
-  camera.at.elements[0] = g_at.elements[0];
-  camera.at.elements[1] = g_at.elements[1];
-  camera.at.elements[2] = g_at.elements[2];
+//   camera.at.elements[0] = g_at.elements[0];
+//   camera.at.elements[1] = g_at.elements[1];
+//   camera.at.elements[2] = g_at.elements[2];
 
-  camera.up.elements[0] = g_up.elements[0];
-  camera.up.elements[1] = g_up.elements[1];
-  camera.up.elements[2] = g_up.elements[2];
+//   camera.up.elements[0] = g_up.elements[0];
+//   camera.up.elements[1] = g_up.elements[1];
+//   camera.up.elements[2] = g_up.elements[2];
 
-  const fx = camera.at.elements[0] - camera.eye.elements[0];
-  const fz = camera.at.elements[2] - camera.eye.elements[2];
-  const len = Math.sqrt(fx*fx + fz*fz) || 1;
-  g_fpsFwd = [fx/len, 0, fz/len];
-  g_fpsYaw = Math.atan2(g_fpsFwd[0], -g_fpsFwd[2]);
+//   const fx = camera.at.elements[0] - camera.eye.elements[0];
+//   const fz = camera.at.elements[2] - camera.eye.elements[2];
+//   const len = Math.sqrt(fx*fx + fz*fz) || 1;
+//   g_fpsFwd = [fx/len, 0, fz/len];
+//   g_fpsYaw = Math.atan2(g_fpsFwd[0], -g_fpsFwd[2]);
 
-}
-
+// }
 
 
 
@@ -977,19 +879,7 @@ function renderAllShapes() {
   //draw the RAT ==========
   g_rat.render();
 
-  //draw the cheese ==========
-  // if (g_cheese) {
-  //   var cheese = new Cube();
-  //   cheese.textureNum=5;
-  //   cheese.matrix.translate(g_cheesePosition[0], g_cheesePosition[1], g_cheesePosition[2]); //temp for testing.
-  //   cheese.matrix.scale(0.5,0.5,0.5);
-  //   cheese.renderfast();
-  // } 
-  for (let i = 0; i < g_cheeseCube.length; i++) {
-    g_cheeseCube[i].renderfast();
-  }
-  
-  
+
   // var body = new Cube();
   // body.color = [1.0, 0.0, 0.0, 1.0];
   // body.textureNum=0;
