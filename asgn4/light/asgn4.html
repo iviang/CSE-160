@@ -1,0 +1,116 @@
+<!--
+Student Name: Vivian Nguyen
+UCSC Email: vnguy180@ucsc.edu
+
+Notes to Grader:
+https://iviang.github.io/CSE-160/asgn4/light/asgn4.html
+http://localhost:8000/asgn4/light/asgn4.html
+All problems solved.
+Github pages link submitted in comments
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blocky World</title>
+  </head>
+
+  <body onload="main()">
+    <p>
+    Vivian Nguyen<br>
+    vnguy180@ucsc.edu<br>
+    Blocky World: Cheese Run<br>
+
+    <br>
+    ABOUT: ----------------------------- <br>
+    You are controlling this rat, navigate and break through the walls to collect cheese. <br> 
+    You can only break through walls when in First POV mode or the starting mode. <br>
+    Eat all the cheese on the board as fast as possible!!! <br>    
+    There are always 5 cheeses and there is a leaderboard at the bottom.  <br> 
+    Note: sometimes cheese isn't easily visible on the overhead map. (find it or hit Restart for a new arrangement!)<br>
+    
+    <p>
+
+    </p>
+
+    <canvas id="webgl" width="800" height="800">
+      Please use a browser that supports "canvas"
+    </canvas>
+    <p>
+    
+    <p id="numdot"> XXX </p>
+    <p id="score"></p>
+    <p id="timer"></p>
+    <button type="button" id="ratcamButton">Overhead POV</button>
+    <button type="button" id="camButton">First POV</button>
+    <button type="button" id="restartButton">RESTART</button> 
+    <br>
+    <br>
+    Controls -------------------------- <br>
+    <br>
+    Movement Keys: <br>
+    W: forward <br>
+    A: left <br>
+    S: back <br>
+    D: right <br>
+    <br>
+    R: EAT THE CHEESE!!!!! <br>
+    <br>
+    Camera Rotation: <br>
+    Q, E, Mouse(click dragging) <br>
+    <br>
+    Building: <br>
+    "1": ADD BLOCK <br>
+    "2": DELETE BLOCK <br>
+    <br>
+    ------------------------------------ <br>
+    BEST PLAY:<p id="best"></p>
+    Scoreboard History:
+    <p>
+    <div id="scoreBoard"></div>
+
+
+
+
+<!-- 
+    <p>
+    X <input type="range" min="0" max="100" value="100" class="slider" id="redSlide">
+    <p>
+    X <input type="range" min="0" max="100" value="0" class="slider" id="greenSlide">   
+    <p>
+    X <input type="range" min="0" max="100" value="0" class="slider" id="blueSlide">
+    <p> -->
+    <!-- Magenta <input type="range" min="-45" max="45" value="0" class="slider" id="magentaSlide">
+    Animation:
+    <button type="button" id="animationMagentaOnButton">ON</button>
+    <button type="button" id="animationMagentaOffButton">OFF</button>
+    <p>
+    Yellow <input type="range" min="-45" max="45" value="0" class="slider" id="yellowSlide">
+    Animation:
+    <button type="button" id="animationYellowOnButton">ON</button>
+    <button type="button" id="animationYellowOffButton">OFF</button> -->
+    <p>
+    <!-- Camera Angle <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlide"> -->
+    <p>
+    
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Point.js"></script>
+    <script src="Cone.js"></script>
+    <script src="Sphere.js"></script> 
+    <script src="Cube.js"></script>
+    <script src="Camera.js"></script>
+    <script src="Rat.js"></script>    
+    <script src="World.js"></script>
+
+
+  </body>
+</html>
+ 
