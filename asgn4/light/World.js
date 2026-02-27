@@ -79,18 +79,18 @@ const RAT_OFFSET = [0.25, 0, 0.25];
 
 // let g_cheese = true;
 // let g_cheesePosition = [1, -0.65, 1]; //temp
-let g_cheeseCollected = 0;
-let g_cheeseCell = [];
-let g_cheeseCube = [];
+// let g_cheeseCollected = 0;
+// let g_cheeseCell = [];
+// let g_cheeseCube = [];
 
-const TotCheese = 5;
+// const TotCheese = 5;
 
 
-let g_timer = true;
-let g_tEnd = 0;
-let g_runs = [];
-let g_best = null;
-let g_final = false;
+// let g_timer = true;
+// let g_tEnd = 0;
+// let g_runs = [];
+// let g_best = null;
+// let g_final = false;
 
 let g_mode = "fps";
 let g_eye = null;
@@ -264,14 +264,14 @@ function addActionsForHtmlUI(){
     g_fpsFwd = [fx/len, 0, fz/len];
     g_mode = "overhead";
   };
-  document.getElementById('camButton').onclick = function() {
-    g_mode = "fps";
-    newFP();
-  };
-  document.getElementById('restartButton').onclick = function() {
-    restart();
-    // if (restartButton) restartButton.onclick = () => restart(); 
-  };
+  // document.getElementById('camButton').onclick = function() {
+  //   g_mode = "fps";
+  //   newFP();
+  // };
+  // document.getElementById('restartButton').onclick = function() {
+  //   restart();
+  //   // if (restartButton) restartButton.onclick = () => restart(); 
+  // };
 
   // slider events =====================
   // document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
@@ -293,87 +293,6 @@ function addActionsForHtmlUI(){
   // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_globalAngle = this.value; renderAllShapes(); });
   //size slider events
   // document.getElementById('angleSlide').addEventListener('mousemove', function() { g_globalAngle = this.value; renderAllShapes(); });
-}
-
-function GameUI() {
-  const score = document.getElementById("score");
-  const timer = document.getElementById("timer");
-
-  if (!score || !timer) {
-    return;
-  }
-
-  score.innerHTML = `Cheese Found: ${g_cheeseCollected} / ${TotCheese}`;
-
-  const now = performance.now() / 1000;
-  const t = (g_timer ? (now - g_startTime) : (g_tEnd - g_startTime));
-
-  timer.innerHTML = `Time: ${t.toFixed(2)}s`;
-
-}
-
-function elapsedTime() {
-  const now = performance.now() / 1000;
-  const end = (g_timer ? now : g_tEnd);
-  return end - g_startTime;
-}
-
-function scoreBoard(){
-  const e = document.getElementById("scoreBoard");
-  if (!e) return;
-
-  if (g_runs.length === 0 ) {
-    e.innerHTML = "";
-    return;
-  }
-
-  let html = "";
-    for (let i = g_runs.length - 1; i >= 0; i--) {
-    const r = g_runs[i];
-    html += `${i + 1}): ${r.found}/${TotCheese} Cheeses Found in ${r.time.toFixed(2)} Seconds<br>`;
-    }
-  e.innerHTML = html;
-}
-
-function final(){
-  if (g_final) return;
-
-  if (g_timer) {
-    g_timer = false;
-    g_tEnd = performance.now() / 1000;
-  }
-
-  const run = {found: g_cheeseCollected, time: (g_tEnd - g_startTime) };
-  g_runs.push(run);
-  
-  g_final = true;
-  best(run);
-  renderBest();
-  scoreBoard();
-}
-
-function best(run){ //tracking best play
-  if (!g_best) {
-    g_best = { found: run.found, time: run.time };
-    return;
-  }
-
-  if (run.found > g_best.found || (run.found === g_best.found && run.time < g_best.time)) {
-    g_best = {found: run.found, time: run.time };
-  }
-
-}
-
-function renderBest() {
-  const e = document.getElementById("best");
-  if (!e) return;
-
-  if (!g_best) {
-    e.innerHTML = "—";
-    return;
-  }
-
-  e.innerHTML = `${g_best.found}/${TotCheese} Cheeses Found in ${g_best.time.toFixed(2)} Seconds`;
 }
 
 function initTextures() {
