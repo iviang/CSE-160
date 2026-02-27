@@ -693,7 +693,7 @@ function renderAllShapes() {
   body.color = [1.0, 0.0, 0.0, 1.0];
   body.textureNum=2;
   body.matrix.translate(0, -0.76, 0);
-  body.matrix.scale(32, 0.1, 32);
+  body.matrix.scale(10, 0.1, 10);
   body.matrix.translate(-0.5, 0, -0.5);
   body.render();
 
@@ -701,7 +701,7 @@ function renderAllShapes() {
   var sky = new Cube();
   sky.color = [1.0, 0.0, 0.0, 1.0];
   sky.textureNum=1;
-  sky.matrix.scale(32, 32, 32);
+  sky.matrix.scale(10, 10, 10);
   sky.matrix.translate(-0.5, -0.5, -0.5);
   sky.render();
     
