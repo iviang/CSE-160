@@ -657,109 +657,6 @@ function drawMap() {
   }
 }
 
-//keeps rat from going outside the map array
-// function Boundary(worldX, worldZ) {
-//   const mapX = Math.floor(worldX + 16);
-//   const mapZ = Math.floor(worldZ + 16);
-//   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
-//     return true;
-//   } 
-//   return g_map[mapX][mapZ] > 0;
-// }
-
-// //collision detection function 
-// function collisionDetect(worldX, worldZ) {
-//   const r = 0.25;
-//   const shift = 0.001;
-
-//   const pts = [
-//     [worldX + r - shift, worldZ],
-//     [worldX - r + shift, worldZ],
-//     [worldX, worldZ + r - shift],
-//     [worldX, worldZ - r + shift],
-//     [worldX + r - shift, worldZ + r - shift],
-//     [worldX + r - shift, worldZ - r + shift],
-//     [worldX - r + shift, worldZ + r - shift],
-//     [worldX - r + shift, worldZ - r + shift],
-//   ];
-
-//   for (const [x,z] of pts) {
-//     if (Boundary(x,z)) {
-//       return true;
-//     }  
-//   }
-//   return false;
-
-// }
-
-// function getSquare(d) { //want square infront of us
-//   const f = new Vector3();
-//   f.set(camera.at);
-//   f.sub(camera.eye);
-
-//   f.elements[1] = 0; //disregard y coord here
-//   const len = Math.sqrt( f.elements[0] * f.elements[0] + f.elements[2] * f.elements[2]
-//   );
-
-//   if (len < 0.0001) {
-//     return null;
-//   }
-
-//   f.elements[0] /= len; //x coord normalizd
-//   f.elements[2] /= len; //z coord normalizd
-  
-//   const push = 0.15;
-//   const worldX = camera.eye.elements[0] + f.elements[0] * (d+push);
-//   const worldZ = camera.eye.elements[2] + f.elements[2] * (d+push);
-//   const mapX = Math.floor(worldX + 16);
-//   const mapZ = Math.floor(worldZ + 16);
-
-//   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
-//     return null;
-//   }
-
-//   return {mapX, mapZ};
-
-// }
-
-// function restart() { //restart to center, restart rat position, reset score and time counters
-//   g_mode = "fps";
-//   final();
-//   g_final = false;
-//   g_startTime = performance.now() / 1000;
-//   g_timer = true;
-//   g_tEnd = 0;
-
-//   g_cheeseCollected = 0;
-//   // g_cheese = true;
-//   spawnCheese(); //randomly places 5 cheese cubes
-
-//   g_rat.position[0] = g_ratPosition[0];
-//   g_rat.position[1] = g_ratPosition[1];
-//   g_rat.position[2] = g_ratPosition[2];
-//   g_rat.rotation = 0;
-
-//   camera.eye.elements[0] = g_eye.elements[0];
-//   camera.eye.elements[1] = g_eye.elements[1];
-//   camera.eye.elements[2] = g_eye.elements[2];
-
-//   camera.at.elements[0] = g_at.elements[0];
-//   camera.at.elements[1] = g_at.elements[1];
-//   camera.at.elements[2] = g_at.elements[2];
-
-//   camera.up.elements[0] = g_up.elements[0];
-//   camera.up.elements[1] = g_up.elements[1];
-//   camera.up.elements[2] = g_up.elements[2];
-
-//   const fx = camera.at.elements[0] - camera.eye.elements[0];
-//   const fz = camera.at.elements[2] - camera.eye.elements[2];
-//   const len = Math.sqrt(fx*fx + fz*fz) || 1;
-//   g_fpsFwd = [fx/len, 0, fz/len];
-//   g_fpsYaw = Math.atan2(g_fpsFwd[0], -g_fpsFwd[2]);
-
-// }
-
-
 
 function renderAllShapes() {
   //check the time at the start of this function
@@ -796,7 +693,7 @@ function renderAllShapes() {
   body.color = [1.0, 0.0, 0.0, 1.0];
   body.textureNum=2;
   body.matrix.translate(-16, -.76, -16);
-  body.matrix.scale(32,0.1,32);
+  body.matrix.scale(1,0.1,1);
   // body.matrix.translate(-.5, 0, -0.5);
   body.render();
 
