@@ -624,7 +624,7 @@ function buildWall(){
       for (let y = 0; y < height; y++) {
           let w = new Cube();
           w.textureNum = texture; //texture
-          w.matrix.translate(x-16, -.65 + y, z-16);
+          w.matrix.translate(x-2.5, -.65 + y, z-2.5);
           walls.push(w);
         }
 
