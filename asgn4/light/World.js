@@ -693,7 +693,7 @@ function renderAllShapes() {
   body.color = [1.0, 0.0, 0.0, 1.0];
   body.textureNum=2;
   body.matrix.translate(-16, -.76, -16);
-  body.matrix.scale(5,0.1,5);
+  body.matrix.scale(10,0.1,10);
   // body.matrix.translate(-.5, 0, -0.5);
   body.render();
 
