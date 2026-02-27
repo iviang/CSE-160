@@ -636,8 +636,8 @@ var g_map=[
   [0],
 ];
 
-g_map.length === 5;
-g_map[0].length === 5;
+g_map.length === 1;
+g_map[0].length === 1;
 
 function drawMap() {
   for (let x=0;x<g_map.length;x++) {
