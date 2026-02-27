@@ -692,19 +692,19 @@ function renderAllShapes() {
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
   body.textureNum=2;
-  body.matrix.translate(-16, -.76, -16);
-  body.matrix.scale(10,0.1,10);
-  // body.matrix.translate(-.5, 0, -0.5);
+  body.matrix.translate(0, -0.76, 0);
+  body.matrix.scale(32, 0.1, 32);
+  body.matrix.translate(-0.5, 0, -0.5);
   body.render();
 
   //draw the SKY BOX ==========
   var sky = new Cube();
   sky.color = [1.0, 0.0, 0.0, 1.0];
   sky.textureNum=1;
-  sky.matrix.scale(10,10,10);
-  sky.matrix.translate(-.5, -0.5, -0.5);
+  sky.matrix.scale(32, 32, 32);
+  sky.matrix.translate(-0.5, -0.5, -0.5);
   sky.render();
-  
+    
   // drawMap();
   for (let i = 0; i < walls.length; i++) {
     walls[i].renderfast();
