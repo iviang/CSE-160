@@ -658,128 +658,69 @@ function drawMap() {
 }
 
 //keeps rat from going outside the map array
-function Boundary(worldX, worldZ) {
-  const mapX = Math.floor(worldX + 16);
-  const mapZ = Math.floor(worldZ + 16);
-  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
-    return true;
-  } 
-  return g_map[mapX][mapZ] > 0;
-}
+// function Boundary(worldX, worldZ) {
+//   const mapX = Math.floor(worldX + 16);
+//   const mapZ = Math.floor(worldZ + 16);
+//   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
+//     return true;
+//   } 
+//   return g_map[mapX][mapZ] > 0;
+// }
 
-//collision detection function 
-function collisionDetect(worldX, worldZ) {
-  const r = 0.25;
-  const shift = 0.001;
+// //collision detection function 
+// function collisionDetect(worldX, worldZ) {
+//   const r = 0.25;
+//   const shift = 0.001;
 
-  const pts = [
-    [worldX + r - shift, worldZ],
-    [worldX - r + shift, worldZ],
-    [worldX, worldZ + r - shift],
-    [worldX, worldZ - r + shift],
-    [worldX + r - shift, worldZ + r - shift],
-    [worldX + r - shift, worldZ - r + shift],
-    [worldX - r + shift, worldZ + r - shift],
-    [worldX - r + shift, worldZ - r + shift],
-  ];
+//   const pts = [
+//     [worldX + r - shift, worldZ],
+//     [worldX - r + shift, worldZ],
+//     [worldX, worldZ + r - shift],
+//     [worldX, worldZ - r + shift],
+//     [worldX + r - shift, worldZ + r - shift],
+//     [worldX + r - shift, worldZ - r + shift],
+//     [worldX - r + shift, worldZ + r - shift],
+//     [worldX - r + shift, worldZ - r + shift],
+//   ];
 
-  for (const [x,z] of pts) {
-    if (Boundary(x,z)) {
-      return true;
-    }  
-  }
-  return false;
+//   for (const [x,z] of pts) {
+//     if (Boundary(x,z)) {
+//       return true;
+//     }  
+//   }
+//   return false;
 
-}
+// }
 
-function getSquare(d) { //want square infront of us
-  const f = new Vector3();
-  f.set(camera.at);
-  f.sub(camera.eye);
+// function getSquare(d) { //want square infront of us
+//   const f = new Vector3();
+//   f.set(camera.at);
+//   f.sub(camera.eye);
 
-  f.elements[1] = 0; //disregard y coord here
-  const len = Math.sqrt( f.elements[0] * f.elements[0] + f.elements[2] * f.elements[2]
-  );
+//   f.elements[1] = 0; //disregard y coord here
+//   const len = Math.sqrt( f.elements[0] * f.elements[0] + f.elements[2] * f.elements[2]
+//   );
 
-  if (len < 0.0001) {
-    return null;
-  }
+//   if (len < 0.0001) {
+//     return null;
+//   }
 
-  f.elements[0] /= len; //x coord normalizd
-  f.elements[2] /= len; //z coord normalizd
+//   f.elements[0] /= len; //x coord normalizd
+//   f.elements[2] /= len; //z coord normalizd
   
-  const push = 0.15;
-  const worldX = camera.eye.elements[0] + f.elements[0] * (d+push);
-  const worldZ = camera.eye.elements[2] + f.elements[2] * (d+push);
-  const mapX = Math.floor(worldX + 16);
-  const mapZ = Math.floor(worldZ + 16);
+//   const push = 0.15;
+//   const worldX = camera.eye.elements[0] + f.elements[0] * (d+push);
+//   const worldZ = camera.eye.elements[2] + f.elements[2] * (d+push);
+//   const mapX = Math.floor(worldX + 16);
+//   const mapZ = Math.floor(worldZ + 16);
 
-  if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
-    return null;
-  }
+//   if (mapX < 0 || mapX >= g_map.length || mapZ < 0 || mapZ >= g_map[0].length) {
+//     return null;
+//   }
 
-  return {mapX, mapZ};
+//   return {mapX, mapZ};
 
-}
-
-const max_height = 10; //max height of blocks to prevent lag / overflows 
-
-function addBlock() { //add block in front
-  const square = getSquare(2);
-  if (!square) {
-    console.log('No square in front to add block');
-    return;
-  }
-  const {mapX, mapZ} = square;
-  g_map[mapX][mapZ] = Math.min(max_height, g_map[mapX][mapZ] + 1); //height increment w limit
-}
-
-function delBlock() { //delete block in front
-  const square = getSquare(2);
-  if (!square) {
-    console.log('No square in front to delete block');
-    return;
-  }
-  const {mapX, mapZ} = square;
-  g_map[mapX][mapZ] = Math.max(0, g_map[mapX][mapZ] - 1); //height decrement w limit
-}
-
-function newFP(){ //creates a new view over the rat no matter where it's moved to 
-  const height = 1;
-  const d = 1;
-
-  
-  camera.eye.elements[0] = g_rat.position[0] + RAT_OFFSET[0];
-  camera.eye.elements[1] = g_rat.position[1] + height;
-  camera.eye.elements[2] = g_rat.position[2] + RAT_OFFSET[2];
-
-  // const offset = -90;
-  // const yaw = g_fpsYaw + (g_rat.rotation * Math.PI / 180);
-
-  // const fx = Math.sin(yaw);
-  // const fz = -Math.cos(yaw);
-  // g_fpsFwd = [fx, 0, fz];
-
-  let fx = g_ratHead[0];
-  let fz = g_ratHead[2];
-
-  let len = Math.sqrt(fx*fx + fz*fz);
-  if (len < 0.0001) { // fallback
-    fx = 0;
-    fz = -1;
-    len = 1;
-  }
-  fx /= len;
-  fz /= len;
-
-  camera.at.elements[0] = camera.eye.elements[0] + fx * d;
-  camera.at.elements[1] = camera.eye.elements[1];
-  camera.at.elements[2] = camera.eye.elements[2] + fz * d;
-
-  camera.up.elements[0] = 0;
-  camera.up.elements[1] = 1;
-  camera.up.elements[2] = 0;
-}
+// }
 
 // function restart() { //restart to center, restart rat position, reset score and time counters
 //   g_mode = "fps";
