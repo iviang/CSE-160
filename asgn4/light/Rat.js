@@ -181,7 +181,7 @@ class Rat {
     snout2.color = LLGREY;
     snout2.matrix.set(snoutCoordinates); //connects to head
     snout2.matrix.translate(0.6,0,0.16);
-    snout2.matrix.scale(1, 0.8, .8);
+    snout2.matrix.scale(0.8, 0.8, .8);
     snout2.render();
 
     var snout2Coordinates = new Matrix4(snout2.matrix);
