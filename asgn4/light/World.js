@@ -311,7 +311,7 @@ let g_yellowAnimation=false;
 let g_magentaAnimation=false;
 let g_normalOn=false;
 let g_lightOn=true;
-let g_lightPos=[0,1.5,0.5]; //added
+let g_lightPos=[0,1.5,0.75]; //added
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
