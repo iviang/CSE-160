@@ -689,6 +689,8 @@ function renderAllShapes() {
   g_rat.render();
 
   var sphere = new Sphere();
+  if (g_normalOn) sphere.textureNum=-3;
+
   sphere.matrix.translate(0, .5, 0);
   sphere.render();
 
