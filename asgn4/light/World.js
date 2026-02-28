@@ -64,7 +64,7 @@ let camera;
 let gl;
 let a_Position;
 let a_UV; 
-let aa_Normal; //added
+let a_Normal; //added
 let u_FragColor;
 let u_Size;
 let u_ModelMatrix;
