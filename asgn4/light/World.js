@@ -691,7 +691,7 @@ function renderAllShapes() {
   var sphere = new Sphere();
   if (g_normalOn) sphere.textureNum=-3;
 
-  sphere.matrix.translate(0, .25, 0);
+  sphere.matrix.translate(0, -.25, 0);
   sphere.matrix.scale(0.5, 0.5, 0.5)
   sphere.render();
 
