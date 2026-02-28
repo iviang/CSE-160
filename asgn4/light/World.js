@@ -4,7 +4,9 @@ var VSHADER_SOURCE = `
   precision mediump float;
   attribute vec4 a_Position;
   attribute vec2 a_UV;
+  attrinute vec3 a_Normal;
   varying vec2 v_UV;
+  varying vec3 v_Normal;
   uniform mat4 u_ModelMatrix;
   uniform mat4 u_GlobalRotateMatrix;
   uniform mat4 u_ViewMatrix;
@@ -12,12 +14,14 @@ var VSHADER_SOURCE = `
   void main() {
     gl_Position = u_ProjectionMatrix * u_ViewMatrix * u_GlobalRotateMatrix * u_ModelMatrix * a_Position;
     v_UV = a_UV;
+    v_Normal = a_Normal;
   }`
 
 // Fragment shader program
 var FSHADER_SOURCE = `
   precision mediump float;
   varying vec2 v_UV;
+  varying vec3 v_Normal;
   uniform vec4 u_FragColor;
   uniform sampler2D u_Sampler0;
   uniform sampler2D u_Sampler1;
@@ -28,7 +32,9 @@ var FSHADER_SOURCE = `
 
   uniform int u_whichTexture;
   void main() {
-    if (u_whichTexture == -2) {
+    if (u_whichTexture == -3) {
+      gl_FragColor = vec4((v_Normal+1.0)/2.0, 1.0);     //use normal
+    } else if (u_whichTexture == -2) {
       gl_FragColor = u_FragColor;                       //use color
 
     } else if (u_whichTexture == -1) {                  //use UV debug color
@@ -45,8 +51,6 @@ var FSHADER_SOURCE = `
       gl_FragColor = texture2D(u_Sampler3, v_UV);       
     } else if (u_whichTexture == 4) {                   //use texture4 = glass
       gl_FragColor = texture2D(u_Sampler4, v_UV);   
-    } else if (u_whichTexture == 5) {                   //use texture5 = cheese
-      gl_FragColor = texture2D(u_Sampler5, v_UV);   
     } else {                                            //error push Redish
       gl_FragColor = vec4(1,.2,.2,1);
     }
@@ -56,10 +60,11 @@ var FSHADER_SOURCE = `
 
 // Global Variables
 let canvas;
-let camera; //
+let camera; 
 let gl;
 let a_Position;
-let a_UV; // 
+let a_UV; 
+let aa_Normal; //added
 let u_FragColor;
 let u_Size;
 let u_ModelMatrix;
@@ -144,6 +149,13 @@ function connectVariablesToGLSL(){
   a_UV = gl.getAttribLocation(gl.program, 'a_UV');
   if (a_UV < 0) {
     console.log('Failed to get the storage location of a_UV');
+    return;
+  }
+
+  // Get the storage location of a_Normal
+  a_Normal = gl.getAttribLocation(gl.program, 'a_Normal');
+  if (a_Normal < 0) {
+    console.log('Failed to get the storage location of a_Normal');
     return;
   }
 
