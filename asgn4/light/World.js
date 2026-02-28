@@ -525,7 +525,7 @@ function updateAnimationAngles(){
   if (g_magentaAnimation) {
     g_magentaAngle = (45*Math.sin(3*g_seconds));
   }
-  g_lightPos[0] = Math.cos(g_seconds);
+  g_lightPos[0] = 2.3*Math.cos(g_seconds);
 }
 
 
