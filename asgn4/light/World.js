@@ -9,13 +9,15 @@ var VSHADER_SOURCE = `
   varying vec3 v_Normal;
   varying vec4 v_VertPos;
   uniform mat4 u_ModelMatrix;
+  uniform mat4 u_NormalMatrix;
   uniform mat4 u_GlobalRotateMatrix;
   uniform mat4 u_ViewMatrix;
   uniform mat4 u_ProjectionMatrix;
   void main() {
     gl_Position = u_ProjectionMatrix * u_ViewMatrix * u_GlobalRotateMatrix * u_ModelMatrix * a_Position;
     v_UV = a_UV;
-    v_Normal = a_Normal;
+    v_Normal = normalize(vec3(u_NormalMatrix * vec4(a_Normal,1)));
+    // v_Normal = a_Normal;
     v_VertPos = u_ModelMatrix * a_Position;
   }`
 
@@ -115,6 +117,7 @@ let u_cameraPos; //added
 let u_FragColor;
 let u_Size;
 let u_ModelMatrix;
+let u_NormalMatrix;
 let u_ProjectionMatrix;
 let u_ViewMatrix;
 let u_GlobalRotateMatrix;
@@ -201,6 +204,13 @@ function connectVariablesToGLSL(){
   u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
   if (!u_ModelMatrix) {
     console.log('Failed to get the storage lcoation of u_ModelMatrix');
+    return;
+  }
+
+  //get the storage location of u_ModelMatrix
+  u_NormalMatrix = gl.getUniformLocation(gl.program, 'u_NormalMatrix');
+  if (!u_NormalMatrix) {
+    console.log('Failed to get the storage lcoation of u_NormalMatrix');
     return;
   }
 
@@ -676,6 +686,8 @@ function renderAllShapes() {
   body.matrix.translate(-1.75, -.75, -0.7);
   body.matrix.rotate(-5,1,0,0);
   body.matrix.scale(0.5, .3, .5);
+  body.normalMatrix.setInverseOf(body.matrix).transpose();
+
   body.render();
 
   var bodyCoordinates= new Matrix4(body.matrix);
@@ -694,6 +706,7 @@ function renderAllShapes() {
   var yellowCoordinatesMat=new Matrix4(yellow.matrix);
   yellow.matrix.scale(0.25, .7, .5);
   yellow.matrix.translate(-.5,0,0);
+  yellow.normalMatrix.setInverseOf(yellow.matrix).transpose();
   yellow.render();
 
 
@@ -709,6 +722,8 @@ function renderAllShapes() {
   magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
   magenta.matrix.scale(.3,.3,.3);
   magenta.matrix.translate(-.5, 0, -0.001);
+  magenta.normalMatrix.setInverseOf(magenta.matrix).transpose();
+
   magenta.render();
 
   //check the time at the end of the funciton, and show on web pg
