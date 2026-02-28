@@ -21,57 +21,60 @@ class Cube{
         //Pass tge natrix to u_ModelMatrix attibute
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
 
-        const face = (v0, v1, v2, v3) => {
-        //triangle 1
-            drawTriangle3DUV(
+        const faceNormal = (v0, v1, v2, v3, n) => {
+            //triangle 1
+            drawTriangle3DUVNormal(
                 [...v0, ...v1, ...v2],
-                [0,0, 1,0, 1,1]
+                [0,0, 1,0, 1,1],
+                [...n, ...n, ...n]
             );
             //triangl 2
-            drawTriangle3DUV(
+            drawTriangle3DUVNormal(
                 [...v0, ...v2, ...v3],
-                [0,0, 1,1, 0,1]
+                [0,0, 1,1, 0,1],
+                [...n, ...n, ...n]
             );
         };
 
         //front of the cube =====
  
-        face([0,0,0], [1,0,0], [1,1,0], [0,1,0]);
+        faceNormal([0,0,0], [1,0,0], [1,1,0], [0,1,0], [0,0,-1]);
 
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.9, rgba[1]*.9, rgba[2]*.9, rgba[3]);
 
         //other sides of cube top, bot, left, right, back
  
-        face([0,1,0], [1,1,0], [1,1,1], [0,1,1]);
+        faceNormal([0,1,0], [1,1,0], [1,1,1], [0,1,1], [0,1,0]);
 
         //pass the color of a poiunt to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.8, rgba[1]*.8, rgba[2]*.8, rgba[3]);
 
         //bot ===============
  
-        face([0,0,1], [1,0,1], [1,0,0], [0,0,0]);
+        faceNormal([0,0,1], [1,0,1], [1,0,0], [0,0,0], [0,-1,0]);
+
 
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.7, rgba[1]*.7, rgba[2]*.7, rgba[3]);
 
         //left =================
  
-        face([0,0,1], [0,0,0], [0,1,0], [0,1,1]);
+        faceNormal([0,0,1], [0,0,0], [0,1,0], [0,1,1], [-1,0,0]);
         
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.6, rgba[1]*.6, rgba[2]*.6, rgba[3]);
 
         //right =================
  
-        face([1,0,0], [1,0,1], [1,1,1], [1,1,0]);
+        faceNormal([1,0,0], [1,0,1], [1,1,1], [1,1,0], [1,0,0]);
 
         //pass the color of a point to u_FragColor uniform variable
         gl.uniform4f(u_FragColor, rgba[0]*.5, rgba[1]*.5, rgba[2]*.5, rgba[3]);
 
         //back =================
  
-        face([1,0,1], [0,0,1], [0,1,1], [1,1,1]);
+        faceNormal([1,0,1], [0,0,1], [0,1,1], [1,1,1], [0,0,1]);
     }
 
     renderfast() {
