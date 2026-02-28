@@ -539,10 +539,10 @@ function tick() {
 //update the angles of everything if currently animated
 function updateAnimationAngles(){
   if (g_yellowAnimation) {
-    g_yellowAngle = (45*Math.sin(g_seconds));
+    g_yellowAngle = (20*Math.sin(g_seconds));
   }
   if (g_magentaAnimation) {
-    g_magentaAngle = (45*Math.sin(3*g_seconds));
+    g_magentaAngle = (20*Math.sin(3*g_seconds));
   }
   g_lightPos[0] = 2.3*Math.cos(g_seconds);
 }
@@ -664,7 +664,6 @@ function renderAllShapes() {
   gl.uniform1f(u_specStrength, 1.0);
   sphere.textureNum = 1; //cheese texture
   if (g_normalOn) sphere.textureNum=-3;
-
   sphere.matrix.translate(0, -0.2, -1);
   sphere.matrix.scale(0.5, 0.5, 0.5)
   sphere.render();
