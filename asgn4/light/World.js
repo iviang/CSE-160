@@ -23,6 +23,7 @@ var FSHADER_SOURCE = `
   varying vec2 v_UV;
   varying vec3 v_Normal;
   uniform vec4 u_FragColor;
+  uniform vec4 u_lightPos;
   uniform sampler2D u_Sampler0;
   uniform sampler2D u_Sampler1;
   uniform sampler2D u_Sampler2;
@@ -163,8 +164,14 @@ function connectVariablesToGLSL(){
     console.log('Failed to get the storage lcoation of u_GlobalRotateMatrix');
     return;
   }
+
+  u_lightPos = gl.getUniformLocation(gl.program, 'u_lightPos');
+  if (!u_lightPos) {
+    console.log('Failed to get the storage location of u_lightPos');
+    return;
+  }
+
   
-  //
   u_ViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
   if (!u_ViewMatrix) {
     console.log('Failed to get the storage location of u_ViewMatrix');
@@ -176,6 +183,8 @@ function connectVariablesToGLSL(){
     console.log('Failed to get the storage location of u_ProjectionMatrix');
     return;
   }
+
+
 
   //get the storage location of u_Sampler0
   u_Sampler0 = gl.getUniformLocation(gl.program, 'u_Sampler0');
