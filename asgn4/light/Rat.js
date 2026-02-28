@@ -204,7 +204,7 @@ class Rat {
     eyeR.color = BLACK;
     eyeR.matrix.set(snoutCoordinates);
     eyeR.matrix.translate(0, 0.5, 0.1);
-    eyeR.matrix.scale(0.5, 0.3, 0.3);
+    eyeR.matrix.scale(0.3, 0.3, 0.3);
     eyeR.render();
 
     var eyeL = new Sphere();
@@ -214,7 +214,7 @@ class Rat {
     eyeL.color = BLACK;
     eyeL.matrix.set(snoutCoordinates);
     eyeL.matrix.translate(0, 0.5, .9);
-    eyeL.matrix.scale(0.5, 0.3, 0.3);
+    eyeL.matrix.scale(0.3, 0.3, 0.3);
     eyeL.render();
 
 
