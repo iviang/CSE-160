@@ -520,10 +520,8 @@ function tick() {
   const now = performance.now();
   g_fpsFrames++;
 
-  // // const tot = now - g_fpsLastTime;
   if (now - g_prevTime >= 1000) {
     g_fps = g_fpsFrames;
-    // g_fps = (g_fpsFrames * 1000) / tot;
     g_fpsFrames = 0;
     g_prevTime = now;
   }
@@ -559,21 +557,15 @@ function keydown(ev) { //modify for the wasd keys
   if (g_mode === "fps") {
       if (ev.keyCode == 87) {    // W
       camera.moveForward(speed);
-      // moveRat(speed,0); 
     } else if (ev.keyCode == 83) { // S
       camera.moveBackwards(speed);
-      // moveRat(-speed,0); 
 
     } else if (ev.keyCode == 65) { // A
       camera.moveLeft(speed);
-      // g_rat.rotation += alpha;
-      // moveRat(0, speed); 
 
     } else if (ev.keyCode == 68) { // D
       camera.moveRight(speed);
-      // g_rat.rotation -= alpha;
-      // moveRat(0, -speed); 
-    
+
     } else if (ev.keyCode == 81) { // Q
       camera.panLeft(alpha);
     } else if (ev.keyCode == 69) { // E
@@ -582,39 +574,6 @@ function keydown(ev) { //modify for the wasd keys
   } 
 
 }
-
-function buildWall(){
-  walls = [];
-
-  for (let x = 0; x < g_map.length; x++) {
-    for (let z = 0; z < g_map[0].length; z++) {
-      const height = g_map[x][z];
-      
-      if (height <= 0) continue;
-
-      //finding the edge walls
-      const isEdge = (x === 0 || z === 0 || x === g_map.length -1 || z === g_map[0].length - 1);
-      // outer wall is glass texture while internal walls are dirt texture
-      const texture = isEdge ? 4 : 3;
-
-      // if (height > 0) {
-      for (let y = 0; y < height; y++) {
-          let w = new Cube();
-          w.textureNum = texture; //texture
-          w.matrix.translate(x-2.5, -.65 + y, z-2.5);
-          walls.push(w);
-        }
-
-      }
-    }
-  }
-
-var g_map=[
-  [0],
-];
-
-g_map.length === 1;
-g_map[0].length === 1;
 
 function drawMap() {
   for (let x=0;x<g_map.length;x++) {
@@ -642,10 +601,6 @@ function renderAllShapes() {
   //Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   // gl.clear(gl.COLOR_BUFFER_BIT );
-
-  // if (g_mode === "fps") {
-  //   newFP();
-  // }
 
 
   //Pass the light pos to GLSL
@@ -753,17 +708,6 @@ function renderAllShapes() {
   magenta.matrix.translate(-.5, 0, -0.001);
   magenta.render();
 
-
-  //ground plane
-  // var ground = new Cube();
-  // if (g_normalOn) ground.textureNum=-3;
-  // ground.matrix.translate(0, 0, -1);
-  // ground.matrix.scale(2, .1, 2);
-  // ground.render();
-
-
-  //check the time at the end of the funciton, and show on web pg
-  var duration = performance.now() - startTime;
   sendTextToHTML(" ms: " + Math.floor(duration) + " fps: " + g_fps, "numdot");
 }
 
@@ -791,12 +735,10 @@ function click(ev) { //transforms the coords from browser to canvas
     point = new Triangle();
   } else {
     point = new Circle();
-    // point.segments = g_selectedSeg;
   }
   point.position=[x,y];
   point.color=g_selectedColor.slice();
   point.size=g_selectedSize;
-//   g_redoList = [];
   g_shapesList.push(point);
 
 
