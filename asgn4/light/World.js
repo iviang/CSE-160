@@ -135,7 +135,7 @@ let g_mode = "fps";
 let g_eye = null;
 let g_at = null;
 let g_up = null;
-let g_ratPosition = [0, 0, 0];
+let g_ratPosition = [0, -0.65, 0];
 let g_fpsFwd = [0,0,1];
 let g_fpsYaw = 0;
 let walls = [];
@@ -458,7 +458,7 @@ function main() {
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
   camera = new Camera(canvas); // set up camera
   g_rat = new Rat(); //set up rat
-  g_rat.position = [1.2, -.65, -1.2];
+  g_rat.position = [1.2, 0, -1.2];
   g_rat.rotation = 180;
   g_eye = new Vector3([camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]]);
   g_at  = new Vector3([camera.at.elements[0],  camera.at.elements[1],  camera.at.elements[2]]);
