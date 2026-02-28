@@ -192,7 +192,7 @@ class Rat {
     body.textureNum = -2;
     nose.color = PINK; 
     nose.matrix.set(snout2Coordinates); //connects to head
-    nose.matrix.translate(.8,0.05,0.4);
+    nose.matrix.translate(.8,0.05,0);
     nose.matrix.scale(.5, .3, .2);
     nose.render();
 
