@@ -1,7 +1,7 @@
 class Camera{
     constructor(canvas){
         this.fov=60; //fov       
-        this.eye=new Vector3([0, .5, 2]); //eye
+        this.eye=new Vector3([0, .5, 2.4]); //eye
         this.at=new Vector3([0, .5, 0]); //at
         this.up=new Vector3([0,1,0]); //up
 
