@@ -75,7 +75,6 @@ let u_Sampler1;
 let u_Sampler2;
 let u_Sampler3;
 let u_Sampler4;
-let u_Sampler5;
 
 let g_rat = null;
 let g_ratHead = [0,0,-1];
@@ -221,12 +220,6 @@ function connectVariablesToGLSL(){
   u_Sampler4 = gl.getUniformLocation(gl.program, 'u_Sampler4');
   if (!u_Sampler4) {
     console.log('Failed to get the storage location of u_Sampler4');
-    return;
-  }
-
-  u_Sampler5 = gl.getUniformLocation(gl.program, 'u_Sampler5');
-  if (!u_Sampler5) {
-    console.log('Failed to get the storage location of u_Sampler5');
     return;
   }
 
