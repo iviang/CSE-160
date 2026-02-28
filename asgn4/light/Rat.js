@@ -35,7 +35,7 @@ class Rat {
     base.translate(this.position[0], this.position[1], this.position[2]);
     base.rotate(this.rotation, 0, 1, 0);
     base.rotate(90, 0, 1, 0);
-    base.translate(-0.25, 0, -0.25);
+    base.translate(0.25, 0, 0.25);
 
     //draw the body cube
     var body = new Cube();
