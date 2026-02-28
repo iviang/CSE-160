@@ -77,9 +77,18 @@ var FSHADER_SOURCE = `
     vec3 N = normalize(v_Normal);
     float nDotL = max(dot(N,L), 0.0);
 
-    vec3 diffuse = vec3(gl_FragColor) * nDotL;
+    //reflection
+    vec3 R = reflect(L,N);
+
+    //eye
+    vec3 E = normalize(u_cameraPos - vec3 (v_VertPos));
+
+    //specular
+    float specular = pow(max(dot(E,R), 0.0), 10.0);
+    
+    vec3 diffuse = vec3(gl_FragColor) * nDotL *0.7;
     vec3 ambient = vec3(gl_FragColor) * 0.3;
-    gl_FragColor = vec4(diffuse+ambient, 1.0);
+    gl_FragColor = vec4(specular+diffuse+ambient, 1.0);
 
 
 
