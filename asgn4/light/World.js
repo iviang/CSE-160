@@ -76,8 +76,14 @@ var FSHADER_SOURCE = `
     vec3 L = normalize(lightVector);
     vec3 N = normalize(v_Normal);
     float nDotL = max(dot(N,L), 0.0);
-    gl_FragColor = gl_FragColor * nDotL;
-    gl_FragColor.a = 1.0;
+
+    vec3 diffuse = vec3(gl_FragColor) * nDotL;
+    vec3 ambient = vec3(gl_FragColor) * 0.3;
+    gl_FragColor = vec4(diffuse+ambient, 1.0);
+
+
+
+
   }`
 
 
