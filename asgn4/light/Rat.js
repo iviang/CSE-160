@@ -190,6 +190,8 @@ class Rat {
     snout2.matrix.set(snoutCoordinates); //connects to head
     snout2.matrix.translate(0.8,0.35,0.5);
     snout2.matrix.scale(0.5, 0.5, .5);
+    snout2.normalMatrix.setInverseOf(snout2.matrix).transpose();
+
     snout2.render();
 
     var snout2Coordinates = new Matrix4(snout2.matrix);
@@ -202,6 +204,8 @@ class Rat {
     nose.matrix.set(snout2Coordinates); //connects to head
     nose.matrix.translate(1.2,0.05,0);
     nose.matrix.scale(.5, .3, .2);
+    nose.normalMatrix.setInverseOf(nose.matrix).transpose();
+
     nose.render();
 
     //EYES ==============================================================
@@ -213,6 +217,8 @@ class Rat {
     eyeR.matrix.set(snoutCoordinates);
     eyeR.matrix.translate(0, 0.5, 0.1);
     eyeR.matrix.scale(0.3, 0.3, 0.3);
+
+    eyeR.normalMatrix.setInverseOf(eyeR.matrix).transpose();
     eyeR.render();
 
     var eyeL = new Sphere();
@@ -223,6 +229,9 @@ class Rat {
     eyeL.matrix.set(snoutCoordinates);
     eyeL.matrix.translate(0, 0.5, .9);
     eyeL.matrix.scale(0.3, 0.3, 0.3);
+
+    eyeL.normalMatrix.setInverseOf(eyeL.matrix).transpose();
+
     eyeL.render();
 
 
