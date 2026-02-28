@@ -180,7 +180,7 @@ class Rat {
     body.textureNum = -2;
     snout2.color = LLGREY;
     snout2.matrix.set(snoutCoordinates); //connects to head
-    snout2.matrix.translate(0.6,0.35,0.5);
+    snout2.matrix.translate(1,0.35,0.5);
     snout2.matrix.scale(0.5, 0.5, .5);
     snout2.render();
 
