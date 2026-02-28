@@ -23,7 +23,7 @@ var FSHADER_SOURCE = `
   varying vec2 v_UV;
   varying vec3 v_Normal;
   uniform vec4 u_FragColor;
-  uniform vec4 u_lightPos;
+  uniform vec3 u_lightPos;
   uniform sampler2D u_Sampler0;
   uniform sampler2D u_Sampler1;
   uniform sampler2D u_Sampler2;
