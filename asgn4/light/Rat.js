@@ -56,6 +56,7 @@ class Rat {
     butt.matrix.translate(-0.20, -0.05, -0.025);
     butt.matrix.rotate(g_buttAngle, 0,1,0);
     butt.matrix.scale(0.3, 0.36, 0.55);
+    butt.normalMatrix.setInverseOf(butt.matrix).transpose();
     butt.render();
     
     var buttCoordinates = new Matrix4(butt.matrix);
@@ -71,6 +72,7 @@ class Rat {
     btail.matrix.translate(-.25,.15,.4);
     btail.matrix.rotate(g_btail, 0,1,0);
     btail.matrix.scale(.3, .3, .2);
+    btail.normalMatrix.setInverseOf(btail.matrix).transpose();
     btail.render();
 
     var btailCoordinates = new Matrix4(btail.matrix);
@@ -84,6 +86,7 @@ class Rat {
     m1tail.matrix.translate(-.9,.1,.2);
     m1tail.matrix.rotate(g_m1tail, 0,1,0);
     m1tail.matrix.scale(1, .8, .6);
+    m1tail.normalMatrix.setInverseOf(m1tail.matrix).transpose();
     m1tail.render();
 
     var m1tailCoordinates = new Matrix4(m1tail.matrix);
@@ -96,6 +99,8 @@ class Rat {
     m2tail.matrix.translate(-.9,.1,.2);
     m2tail.matrix.rotate(g_m2tail, 0,1,0);
     m2tail.matrix.scale(1, .65, .6);
+    m2tail.normalMatrix.setInverseOf(m2tail.matrix).transpose();
+
     m2tail.render();
 
     var m2tailCoordinates = new Matrix4(m2tail.matrix);
@@ -121,6 +126,8 @@ class Rat {
     head.matrix.translate(1,0,0.07);
     head.matrix.rotate(-g_headAngle, 0,1,0); //move head
     head.matrix.scale(.5, .9, .85);
+    head.normalMatrix.setInverseOf(head.matrix).transpose();
+
     head.render();
 
     var headCoordinates = new Matrix4(head.matrix);
@@ -170,6 +177,8 @@ class Rat {
     snout.matrix.set(headCoordinates); //connects to head
     snout.matrix.translate(1,0.05,0.16);
     snout.matrix.scale(.4, .8, .7);
+    snout.normalMatrix.setInverseOf(snout.matrix).transpose();
+
     snout.render();
 
     var snoutCoordinates = new Matrix4(snout.matrix);
@@ -231,6 +240,7 @@ class Rat {
     upperFR.matrix.translate(0.75, -.3, -0.01);
     upperFR.matrix.rotate(g_upperFR, 0,0,1); //move the leg
     upperFR.matrix.scale(0.15, 0.6, 0.25);
+    upperFR.normalMatrix.setInverseOf(upperFR.matrix).transpose();
     upperFR.render(); 
     var upperFRCoordinates=new Matrix4(upperFR.matrix);
 
@@ -244,6 +254,7 @@ class Rat {
     lowerFR.matrix.rotate(g_lowerFR, 0,0,1); //set up for joint
     lowerFR.matrix.scale(0.8, .7, 0.9);
     lowerFR.matrix.translate(-1.0, -1.0, -0.5);
+    lowerFR.normalMatrix.setInverseOf(upperFR.matrix).transpose();
 
     lowerFR.render();
     var lowerFRCoordinates=new Matrix4(lowerFR.matrix);
@@ -257,6 +268,8 @@ class Rat {
     pawFR.matrix.translate(.5, -.1, 0.1);
     pawFR.matrix.rotate(g_pawFR, 0,0,1); //set up for joint
     pawFR.matrix.scale(0.8, .1, 0.9);
+    pawFR.normalMatrix.setInverseOf(pawFR.matrix).transpose();
+
     pawFR.render();
 
 
@@ -270,6 +283,8 @@ class Rat {
     upperBR.matrix.translate(0.5, -.1, -0.01);
     upperBR.matrix.rotate(g_upperBR, 0,0,1);
     upperBR.matrix.scale(0.4, 0.6, 0.2);
+    upperBR.normalMatrix.setInverseOf(upperBR.matrix).transpose();
+
     upperBR.render(); 
     var upperBRCoordinates=new Matrix4(upperBR.matrix);
 
@@ -285,6 +300,7 @@ class Rat {
     lowerBR.matrix.translate(-1.0, 0.0, -0.5);
     lowerBR.matrix.scale(0.8, .7, 0.9);
     lowerBR.matrix.translate(-0.4, 0, 0.0);
+    lowerBR.normalMatrix.setInverseOf(lowerBR.matrix).transpose();
     lowerBR.render();
     var lowerBRCoordinates=new Matrix4(lowerBR.matrix);
 
@@ -297,6 +313,8 @@ class Rat {
     pawBR.matrix.translate(.5, -.1, 0.1);
     pawBR.matrix.rotate(g_pawBR, 0,0,1); //set up for joint
     pawBR.matrix.scale(0.8, .1, 0.9);
+    pawBR.normalMatrix.setInverseOf(pawBR.matrix).transpose();
+
     pawBR.render();
 
     //L SIDE: =================================================
@@ -310,6 +328,8 @@ class Rat {
     upperFL.matrix.translate(0.75, -.3, .72);
     upperFL.matrix.rotate(g_upperFL, 0,0,1);
     upperFL.matrix.scale(0.15, 0.6, 0.25);
+    upperFL.normalMatrix.setInverseOf(upperFL.matrix).transpose();
+
     upperFL.render(); 
     var upperFLCoordinates=new Matrix4(upperFL.matrix);
 
@@ -324,6 +344,8 @@ class Rat {
     lowerFL.matrix.rotate(g_lowerFL, 0,0,1); //set up for joint
     lowerFL.matrix.scale(0.8, .7, 0.9);
     lowerFL.matrix.translate(-1.0, -1.0, -0.5);
+    lowerFL.normalMatrix.setInverseOf(lowerFL.matrix).transpose();
+
     lowerFL.render();
     var lowerFLCoordinates=new Matrix4(lowerFL.matrix);
 
@@ -336,6 +358,8 @@ class Rat {
     pawFL.matrix.translate(.5, -.1, 0.1);
     pawFL.matrix.rotate(g_pawFL, 0,0,1); //set up for joint
     pawFL.matrix.scale(0.8, .1, 0.9);
+    pawFL.normalMatrix.setInverseOf(pawFL.matrix).transpose();
+
     pawFL.render();
 
 
@@ -348,6 +372,8 @@ class Rat {
     upperBL.matrix.translate(0.5, -.1, .81);
     upperBL.matrix.rotate(g_upperBL, 0,0,1);
     upperBL.matrix.scale(0.4, 0.6, 0.2);
+    upperBL.normalMatrix.setInverseOf(upperBL.matrix).transpose();
+
     upperBL.render(); 
     var upperBLCoordinates=new Matrix4(upperBL.matrix);
 
@@ -363,6 +389,8 @@ class Rat {
     lowerBL.matrix.translate(-1.0, 0.0, -0.5);
     lowerBL.matrix.scale(0.6, .7, 0.9);
     lowerBL.matrix.translate(-0.4, 0, 0.0);
+    lowerBL.normalMatrix.setInverseOf(lowerBL.matrix).transpose();
+
     lowerBL.render();
     var lowerBLCoordinates=new Matrix4(lowerBL.matrix);
 
@@ -376,6 +404,8 @@ class Rat {
     pawBL.matrix.translate(.5, -.1, 0.1);
     pawBL.matrix.rotate(g_pawBL, 0,0,1); //set up for joint
     pawBL.matrix.scale(0.8, .1, 0.9);
+    pawBL.normalMatrix.setInverseOf(pawBL.matrix).transpose();
+
     pawBL.render();
   }
 }
