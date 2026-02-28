@@ -28,7 +28,6 @@ var FSHADER_SOURCE = `
   uniform sampler2D u_Sampler2;
   uniform sampler2D u_Sampler3;
   uniform sampler2D u_Sampler4;
-  uniform sampler2D u_Sampler5;
 
   uniform int u_whichTexture;
   void main() {
