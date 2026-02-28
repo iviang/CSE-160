@@ -688,6 +688,8 @@ function renderAllShapes() {
   //draw the RAT ==========
   g_rat.render();
 
+  var sphere = new Sphere();
+  sphere.render();
 
   var body = new Cube();
   body.color = [1.0, 0.0, 0.0, 1.0];
