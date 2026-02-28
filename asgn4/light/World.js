@@ -48,14 +48,10 @@ var FSHADER_SOURCE = `
     } else if (u_whichTexture == 0) {                   //use texture0 = uv grid
       gl_FragColor = texture2D(u_Sampler0, v_UV);       
 
-    } else if (u_whichTexture == 1) {                   //use texture1 = sky
+    } else if (u_whichTexture == 1) {                   //use texture1 = cheese
       gl_FragColor = texture2D(u_Sampler1, v_UV);       
     } else if (u_whichTexture == 2) {                   //use texture2 = grass
       gl_FragColor = texture2D(u_Sampler2, v_UV);       
-    } else if (u_whichTexture == 3) {                   //use texture3 = dirt
-      gl_FragColor = texture2D(u_Sampler3, v_UV);       
-    } else if (u_whichTexture == 4) {                   //use texture4 = glass
-      gl_FragColor = texture2D(u_Sampler4, v_UV);   
     } else {                                            //error push Redish
       gl_FragColor = vec4(1,.2,.2,1);
     }
@@ -115,8 +111,6 @@ let u_GlobalRotateMatrix;
 let u_Sampler0;
 let u_Sampler1;
 let u_Sampler2;
-let u_Sampler3;
-let u_Sampler4;
 
 let g_rat = null;
 let g_ratHead = [0,0,-1];
@@ -252,18 +246,6 @@ function connectVariablesToGLSL(){
     return;
   }
 
-  u_Sampler3 = gl.getUniformLocation(gl.program, 'u_Sampler3');
-  if (!u_Sampler3) {
-    console.log('Failed to get the storage location of u_Sampler3');
-    return;
-  }
-
-  u_Sampler4 = gl.getUniformLocation(gl.program, 'u_Sampler4');
-  if (!u_Sampler4) {
-    console.log('Failed to get the storage location of u_Sampler4');
-    return;
-  }
-
   u_whichTexture = gl.getUniformLocation(gl.program, 'u_whichTexture');
   if (!u_whichTexture) {
     console.log('Failed to get the storage location of u_whichTexture');
@@ -337,7 +319,7 @@ function initTextures() {
   // Tell the browser to load an image
   image0.src = '../textures/uvgrid.png';
 
-  //SKY TEXTURE==========
+  //CHEESE TEXTURE==========
   var image1 = new Image();  // Create the image object
   if (!image1) {
     console.log('Failed to create the image object');
@@ -346,7 +328,7 @@ function initTextures() {
   // Register the event handler to be called on loading an image
   image1.onload = function(){ sendTextureToTEXTURE1(image1); };
   // Tell the browser to load an image
-  image1.src = '../textures/sky.jpg';
+  image1.src = '../textures/cheese.jpg';
 
   //GRASS TEXTURE==========
   var image2 = new Image();  // Create the image object
@@ -358,31 +340,6 @@ function initTextures() {
   image2.onload = function(){ sendTextureToTEXTURE2(image2); };
   // Tell the browser to load an image
   image2.src = '../textures/grass.png';
-
-  //DIRT TEXTURE==========
-  var image3 = new Image();  // Create the image object
-  if (!image3) {
-    console.log('Failed to create the image object');
-    return false;
-  }
-
-  // Register the event handler to be called on loading an image
-  image3.onload = function(){ sendTextureToTEXTURE3(image3); };
-  // Tell the browser to load an image
-  image3.src = '../textures/dirt.jpg';
-
-  //GLASS TEXTURE==========
-  var image4 = new Image();  // Create the image object
-  if (!image4) {
-    console.log('Failed to create the image object');
-    return false;
-  }
-
-  // Register the event handler to be called on loading an image
-  image4.onload = function(){ sendTextureToTEXTURE4(image4); };
-  // Tell the browser to load an image
-  image4.src = '../textures/Glass.png';
-
 
   return true;
 }
@@ -413,7 +370,7 @@ function sendTextureToTEXTURE0(image) { //uv grid
   console.log('Finished loadTexture');
 }
 
-function sendTextureToTEXTURE1(image) { //sky
+function sendTextureToTEXTURE1(image) { //cheese
   var texture = gl.createTexture(); // Create a texture object
   if (!texture) {
     console.log('Failed to create the texture object');
@@ -461,53 +418,6 @@ function sendTextureToTEXTURE2(image) { //grass
   console.log('Finished loadTexture');
 }
 
-function sendTextureToTEXTURE3(image) { //dirt
-  var texture = gl.createTexture(); // Create a texture object
-  if (!texture) {
-    console.log('Failed to create the texture object');
-    return false;
-  }
-  
-  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
-  // Enable texture unit3
-  gl.activeTexture(gl.TEXTURE3);
-  // Bind the texture object to the target
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-
-  // Set the texture parameters
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-  // Set the texture image
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
-  
-  // Set the texture unit 1 to the sampler
-  gl.uniform1i(u_Sampler3, 3);
-
-  console.log('Finished loadTexture');
-}
-
-function sendTextureToTEXTURE4(image) { //glass
-  var texture = gl.createTexture(); // Create a texture object
-  if (!texture) {
-    console.log('Failed to create the texture object');
-    return false;
-  }
-  
-  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1); // Flip the image's y axis
-  // Enable texture unit4
-  gl.activeTexture(gl.TEXTURE4);
-  // Bind the texture object to the target
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-
-  // Set the texture parameters
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-  // Set the texture image
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-  
-  // Set the texture unit 1 to the sampler
-  gl.uniform1i(u_Sampler4, 4);
-
-  console.log('Finished loadTexture');
-}
 
 function main() {
 
