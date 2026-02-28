@@ -7,7 +7,8 @@ class Triangle{
     this.color = [1.0, 1.0, 1.0, 1.0];
     this.size = 5.0;
 
-    this.vertices = null; //
+    this.vertices = null;
+    this.normals = null; //added
   }
   render() {
     var xy = this.position;
@@ -79,7 +80,7 @@ function drawTriangle3D(vertices) {
   gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 
-function drawTriangle3DUV(vertices, uv) {
+function drawTriangle3DUVNormal(vertices, uv, normals) {
   var n = vertices.length / 3; // The number of vertices
 
   //--------------------
@@ -121,10 +122,31 @@ function drawTriangle3DUV(vertices, uv) {
 
   //enable the assignment to a_Position variable
   gl.enableVertexAttribArray(a_UV);
+  //-------------------
+  //create a buffer object for Normals
+  var normalBuffer = gl.createBuffer();
+  if (!normalBuffer) {
+    console.log('Failed to create the buffer object');
+    return -1;
+  }
+
+  //bind the buffer object to target
+  gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+
+  //write date into the buffer object
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.DYNAMIC_DRAW);  
+
+  //assign the buffer object to a_Position variable
+  gl.vertexAttribPointer(a_Normal, 3, gl.FLOAT, false, 0, 0);
+
+  //enable the assignment to a_Position variable
+  gl.enableVertexAttribArray(a_Normal);
 
   //--------------------
   //draw the triangle
   gl.drawArrays(gl.TRIANGLES, 0, n);
+
+  g_vertexBuffer=null;
 
 }
 
@@ -176,3 +198,5 @@ function drawTriangle3DUVFast(vertices, uv) {
   gl.drawArrays(gl.TRIANGLES, 0, n);
 
 }
+
+
