@@ -20,7 +20,7 @@ refrenced asgn3 construction
 - camera class reused
 - textures reused
 used youtube playlist for guidance
-used the WebGL textbook for guidance
+used the WebGL textbook for guidance (8. Lighting and Heirarchical Objects)
 used gpt for debug support
 https://en.wikipedia.org/wiki/Spherical_coordinate_system
 https://asawicki.info/news_1301_reflect_and_refract_functions.html 

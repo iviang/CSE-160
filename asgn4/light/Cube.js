@@ -20,6 +20,7 @@ class Cube{
 
         //Pass tge natrix to u_ModelMatrix attibute
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
+        gl.uniformMatrix4fv(u_NormalMatrix, false, this.normalMatrix.elements);
 
         const faceNormal = (v0, v1, v2, v3, n) => {
             //triangle 1
@@ -87,7 +88,7 @@ class Cube{
 
         //Pass tge natrix to u_ModelMatrix attibute
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
-
+        gl.uniformMatrix4fv(u_NormalMatrix, false, this.normalMatrix.elements);
         var alluvs=[];
         var allverts=[];
 
