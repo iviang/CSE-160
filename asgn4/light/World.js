@@ -644,7 +644,7 @@ function renderAllShapes() {
 
   //draw the SKY BOX ==========
   var sky = new Cube();
-  sky.color = [0.5, 0 , 1, 1.0];
+  sky.color = [0.5, 0.75 , 1, 1.0];
   if (g_normalOn) sky.textureNum=-3;
   sky.matrix.scale(-5, -5, -5);
   sky.matrix.translate(-0.5, -0.5, -0.5);
