@@ -670,6 +670,7 @@ function renderAllShapes() {
   body.matrix.translate(0, -0.76, 0);
   body.matrix.scale(10, 0.1, 10);
   body.matrix.translate(-0.5, 0, -0.5);
+  gl.uniform1f(u_specStrength, 0.0);
   body.render();
 
   //draw the SKY BOX ==========
