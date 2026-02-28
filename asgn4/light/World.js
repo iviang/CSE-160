@@ -35,6 +35,7 @@ var FSHADER_SOURCE = `
   uniform vec3 u_lightPos;
   uniform vec3 u_cameraPos;
   varying vec4 v_VertPos;
+  uniform float u_specStrength;
 
   void main() {
     if (u_whichTexture == -3) {
@@ -81,8 +82,8 @@ var FSHADER_SOURCE = `
     vec3 E = normalize(u_cameraPos - vec3 (v_VertPos));
 
     //specular
-    float specular = pow(max(dot(E,R), 0.0), 10.0);
-    
+    float specular = u_specStrength * pow(max(dot(E,R), 0.0), 10.0);
+  
     vec3 diffuse = vec3(gl_FragColor) * nDotL *0.7;
     vec3 ambient = vec3(gl_FragColor) * 0.3;
     gl_FragColor = vec4(specular+diffuse+ambient, 1.0);
@@ -108,6 +109,7 @@ let u_ModelMatrix;
 let u_ProjectionMatrix;
 let u_ViewMatrix;
 let u_GlobalRotateMatrix;
+let u_specStrength;
 let u_Sampler0;
 let u_Sampler1;
 let u_Sampler2;
@@ -202,6 +204,12 @@ function connectVariablesToGLSL(){
   u_lightPos = gl.getUniformLocation(gl.program, 'u_lightPos');
   if (!u_lightPos) {
     console.log('Failed to get the storage location of u_lightPos');
+    return;
+  }
+
+  u_specStrength = gl.getUniformLocation(gl.program, 'u_specStrength');
+  if (!u_specStrength) {
+    console.log('Failed to get the storage location of u_specStrength');
     return;
   }
 
@@ -670,6 +678,7 @@ function renderAllShapes() {
   if (g_normalOn) sky.textureNum=-3;
   sky.matrix.scale(-5, -5, -5);
   sky.matrix.translate(-0.5, -0.5, -0.5);
+  gl.uniform1f(u_specStrength, 0.0)
   sky.render();
     
   // drawMap();
