@@ -97,10 +97,6 @@ var FSHADER_SOURCE = `
       //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
       // }
     }
-    
-
-
-
 
   }`
 
