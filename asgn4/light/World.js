@@ -461,6 +461,7 @@ function main() {
   document.onkeydown = keydown;
 
   initTextures();
+  buildWall();  
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -511,7 +512,6 @@ var g_seconds=performance.now()/1000.0-g_startTime;
 let g_prevTime = performance.now();
 let g_fps = 0;
 let g_fpsFrames = 0;
-// let g_fpsLastTime = performance.now(); // ms
 
 // Called by browser repeatedly whenever its time
 function tick() {
@@ -606,7 +606,6 @@ function renderAllShapes() {
   gl.uniform3f(u_lightPos, g_lightPos[0], g_lightPos[1], g_lightPos[2]);
 
   //pass the camera pos to GLSL
-
   gl.uniform3f(u_cameraPos,camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]);
 
   gl.uniform1i(u_lightOn, g_lightOn);
@@ -707,6 +706,8 @@ function renderAllShapes() {
   magenta.matrix.translate(-.5, 0, -0.001);
   magenta.render();
 
+  //check the time at the end of the funciton, and show on web pg
+  var duration = performance.now() - startTime;
   sendTextToHTML(" ms: " + Math.floor(duration) + " fps: " + g_fps, "numdot");
 }
 
