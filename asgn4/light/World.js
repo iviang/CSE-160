@@ -677,6 +677,8 @@ function renderAllShapes() {
   if (g_normalOn) sphere.textureNum=-3;
   sphere.matrix.translate(0, -0.2, -1);
   sphere.matrix.scale(0.5, 0.5, 0.5)
+  sphere.normalMatrix.setInverseOf(sphere.matrix).transpose();
+
   sphere.render();
 
   var body = new Cube();
