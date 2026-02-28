@@ -36,6 +36,7 @@ var FSHADER_SOURCE = `
   uniform vec3 u_cameraPos;
   varying vec4 v_VertPos;
   uniform float u_specStrength;
+  uniform bool u_lightOn;
 
   void main() {
     if (u_whichTexture == -3) {
@@ -82,11 +83,18 @@ var FSHADER_SOURCE = `
     vec3 E = normalize(u_cameraPos - vec3 (v_VertPos));
 
     //specular
-    float specular = u_specStrength * pow(max(dot(E,R), 0.0), 10.0);
+    float specular = u_specStrength * pow(max(dot(E,R), 0.0), 64.0);
   
     vec3 diffuse = vec3(gl_FragColor) * nDotL *0.7;
-    vec3 ambient = vec3(gl_FragColor) * 0.3;
-    gl_FragColor = vec4(specular+diffuse+ambient, 1.0);
+    vec3 ambient = vec3(gl_FragColor) * 0.2;
+    if (u_lightOn) {
+      if (u_whichTexture == 0) {
+        gl_FragColor = vec4(specular+diffuse+ambient, 1.0);
+      } else {
+        gl_FragColor = vec4(diffuse+ambient, 1.0);  
+      }
+    }
+    
 
 
 
@@ -101,15 +109,15 @@ let gl;
 let a_Position;
 let a_UV; 
 let a_Normal; //added
-let u_lightPos;
-let u_cameraPos;
+let u_lightPos; //added
+let u_cameraPos; //added
 let u_FragColor;
 let u_Size;
 let u_ModelMatrix;
 let u_ProjectionMatrix;
 let u_ViewMatrix;
 let u_GlobalRotateMatrix;
-let u_specStrength;
+let u_specStrength; //added
 let u_Sampler0;
 let u_Sampler1;
 let u_Sampler2;
@@ -284,25 +292,24 @@ let g_magentaAngle=0;
 let g_yellowAnimation=false;
 let g_magentaAnimation=false;
 let g_normalOn=false;
-let g_lightPos=[0,1.5,0.5]; //
+let g_lightOn=true;
+let g_lightPos=[0,1.5,0.5]; //added
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
   
   //Button Events ===================
 
+  document.getElementById('lightOn').onclick = function() {g_lightOn=true};
+  document.getElementById('lightOff').onclick = function() {g_lightOn=false};
   document.getElementById('normalOn').onclick = function() {g_normalOn=true};
   document.getElementById('normalOff').onclick = function() {g_normalOn=false};
-
-  // slider events =====================
-
   document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
   document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
 
   document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
   document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
-
-  // //color slider events
+  // slider events =====================
   document.getElementById('yellowSlide').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) {g_yellowAngle = this.value; renderAllShapes(); }});
   document.getElementById('magentaSlide').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_magentaAngle = this.value; renderAllShapes(); }});
   document.getElementById('lightSlideX').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[0] = this.value/100; renderAllShapes(); }});
@@ -639,6 +646,8 @@ function renderAllShapes() {
   //pass the camera pos to GLSL
 
   gl.uniform3f(u_cameraPos,camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]);
+
+  gl.uniform1i(u_lightOn, g_lightOn);
 
   //Draw the light
   var light = new Cube();
