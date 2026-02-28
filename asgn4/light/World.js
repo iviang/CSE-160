@@ -461,7 +461,6 @@ function main() {
   document.onkeydown = keydown;
 
   initTextures();
-  buildWall();  
   // Specify the color for clearing <canvas>
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
