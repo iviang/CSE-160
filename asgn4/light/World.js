@@ -241,6 +241,7 @@ let g_magentaAngle=0;
 // let g_yellowAnimation=false;
 // let g_magentaAnimation=false;
 let g_normalOn=false;
+let g_lightPos=[0,1,-2]; //
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -251,8 +252,6 @@ function addActionsForHtmlUI(){
   document.getElementById('normalOff').onclick = function() {g_normalOn=false};
 
   // slider events =====================
-  // document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
-
 
   // document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
   // document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
@@ -261,10 +260,13 @@ function addActionsForHtmlUI(){
   // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
   // //color slider events
-  document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
-  document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
+  document.getElementById('yellowSlide').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) {g_yellowAngle = this.value; renderAllShapes(); }});
+  document.getElementById('magentaSlide').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_magentaAngle = this.value; renderAllShapes(); }});
+  document.getElementById('lightSlideX').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[0] = this.value/100; renderAllShapes(); }});
+  document.getElementById('lightSlideY').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[1] = this.value/100; renderAllShapes(); }});
+  document.getElementById('lightSlideZ').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[2] = this.value/100; renderAllShapes(); }});
 
-  // canvas.onmousemove = function(ev) { if (ev.buttons == 1) { click(ev) } };
+  canvas.onmousemove = function(ev) {if (ev.buttons == 1) { click(ev) }};
 
   //size slider events
   document.getElementById('angleSlide').addEventListener('mousemove', function() { g_globalAngle = this.value; renderAllShapes(); });
@@ -645,9 +647,18 @@ function renderAllShapes() {
   //   newFP();
   // }
 
-  if (g_mode === "overhead") {
-    Overhead();
-  }
+
+  //Pass the light pos to GLSL
+  gl.uniform3f(u_lightPos, g_lightPos[0], g_lightPos[1], g_lightPos[2]);
+
+  //Draw the light
+  var light = new Cube();
+  light.color = [2,2,0,1];
+  light.matrix.translate(g_lightPos[0], g_lightPos[1], g_lightPos[2]);
+  light.matrix.scale(.1,.1,.1);
+  light.matrix.translate(-.5,-.5,-.5);
+  light.render();
+
 
   camera.viewMatrix.setLookAt(
     camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
@@ -668,13 +679,13 @@ function renderAllShapes() {
   body.color = [1.0, 0.0, 0.0, 1.0];
   body.textureNum=2;
   body.matrix.translate(0, -0.76, 0);
-  body.matrix.scale(5, 0.1, 5);
+  body.matrix.scale(5, 0, 5);
   body.matrix.translate(-0.5, 0, -0.5);
   body.render();
 
   //draw the SKY BOX ==========
   var sky = new Cube();
-  sky.color = [1.0, 0.0, 0.0, 1.0];
+  sky.color = [0.8, 0.8, 0.8, 1.0];
   if (g_normalOn) sky.textureNum=-3;
   sky.matrix.scale(-5, -5, -5);
   sky.matrix.translate(-0.5, -0.5, -0.5);
