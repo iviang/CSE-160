@@ -684,7 +684,7 @@ function renderAllShapes() {
   body.color = [1.0, 0.0, 0.0, 1.0];
   body.textureNum=2;
   body.matrix.translate(0, -0.76, 0);
-  body.matrix.scale(10, 0.1, 10);
+  body.matrix.scale(5, 0.1, 5);
   body.matrix.translate(-0.5, 0, -0.5);
   gl.uniform1f(u_specStrength, 0.0);
   body.render();
