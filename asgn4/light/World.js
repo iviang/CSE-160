@@ -697,12 +697,14 @@ function renderAllShapes() {
   body.matrix.scale(0.5, .3, .5);
   body.render();
 
-  // var bodyCoordinates= new Matrix4(body.matrix);
+  var bodyCoordinates= new Matrix4(body.matrix);
 
   // draw a left arm
   var yellow = new Cube();
   yellow.color = [1,1,0,1];
   if (g_normalOn) yellow.textureNum=-3;
+  yellow.matrix = bodyCoordinates;
+
   yellow.matrix.setTranslate(0, -.5, 0.0);
   yellow.matrix.rotate(-5,1,0,0);
   yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
@@ -716,7 +718,7 @@ function renderAllShapes() {
   var magenta = new Cube();
   magenta.color = [1,0,1,1];
   if (g_normalOn) magenta.textureNum=-3;
-  magenta.textureNum=0;
+  // magenta.textureNum=0;
   magenta.matrix = yellowCoordinatesMat;
   magenta.matrix.translate(0, 0.65, 0);
   magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
