@@ -176,7 +176,7 @@ class Rat {
 
     //snout2
     var snout2 = new Sphere();
-    body.textureNum = -2;
+    // body.textureNum = -2;
     snout2.color = LLGREY;
     snout2.matrix.set(snoutCoordinates); //connects to head
     snout2.matrix.translate(0.8,0.35,0.5);
@@ -187,7 +187,7 @@ class Rat {
 
     //nose ================================================================
     var nose = new Sphere();
-    body.textureNum = -2;
+    // body.textureNum = -2;
     nose.color = PINK; 
     nose.matrix.set(snout2Coordinates); //connects to head
     nose.matrix.translate(1.2,0.05,0);
@@ -196,7 +196,7 @@ class Rat {
 
     //EYES ==============================================================
     var eyeR = new Sphere();
-    body.textureNum = -2;
+    // body.textureNum = -2;
     eyeR.color = BLACK;
     eyeR.matrix.set(snoutCoordinates);
     eyeR.matrix.translate(0, 0.5, 0.1);
@@ -204,7 +204,7 @@ class Rat {
     eyeR.render();
 
     var eyeL = new Sphere();
-    body.textureNum = -2;
+    // body.textureNum = -2;
     eyeL.color = BLACK;
     eyeL.matrix.set(snoutCoordinates);
     eyeL.matrix.translate(0, 0.5, .9);
