@@ -678,7 +678,7 @@ function renderAllShapes() {
   if (g_normalOn) sky.textureNum=-3;
   sky.matrix.scale(-5, -5, -5);
   sky.matrix.translate(-0.5, -0.5, -0.5);
-  gl.uniform1f(u_specStrength, 0.0)
+  gl.uniform1f(u_specStrength, 0.0);
   sky.render();
     
   // drawMap();
@@ -690,6 +690,7 @@ function renderAllShapes() {
   g_rat.render();
 
   var sphere = new Sphere();
+  gl.uniform1f(u_specStrength, 1.0);
   sphere.textureNum = 1;
   if (g_normalOn) sphere.textureNum=-3;
 
