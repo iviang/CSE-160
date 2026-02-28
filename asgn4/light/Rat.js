@@ -176,6 +176,7 @@ class Rat {
 
     //snout2
     var snout2 = new Sphere();
+    if (g_normalOn) sphere.textureNum=-3;
     body.textureNum = -2;
     snout2.color = LLGREY;
     snout2.matrix.set(snoutCoordinates); //connects to head
@@ -187,6 +188,7 @@ class Rat {
 
     //nose ================================================================
     var nose = new Sphere();
+    if (g_normalOn) sphere.textureNum=-3;
     body.textureNum = -2;
     nose.color = PINK; 
     nose.matrix.set(snout2Coordinates); //connects to head
