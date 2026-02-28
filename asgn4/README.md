@@ -14,3 +14,4 @@ used youtube playlist for guidance
 used the WebGL textbook for guidance
 used gpt for debug support
 https://en.wikipedia.org/wiki/Spherical_coordinate_system
+https://asawicki.info/news_1301_reflect_and_refract_functions.html 

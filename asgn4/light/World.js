@@ -33,6 +33,7 @@ var FSHADER_SOURCE = `
 
   uniform int u_whichTexture;
   uniform vec3 u_lightPos;
+  uniform vec3 u_cameraPos;
   varying vec4 v_VertPos;
 
   void main() {
@@ -78,7 +79,7 @@ var FSHADER_SOURCE = `
     float nDotL = max(dot(N,L), 0.0);
 
     //reflection
-    vec3 R = reflect(L,N);
+    vec3 R = reflect(-L,N);
 
     //eye
     vec3 E = normalize(u_cameraPos - vec3 (v_VertPos));
@@ -104,6 +105,7 @@ let a_Position;
 let a_UV; 
 let a_Normal; //added
 let u_lightPos;
+let u_cameraPos;
 let u_FragColor;
 let u_Size;
 let u_ModelMatrix;
@@ -206,6 +208,12 @@ function connectVariablesToGLSL(){
   u_lightPos = gl.getUniformLocation(gl.program, 'u_lightPos');
   if (!u_lightPos) {
     console.log('Failed to get the storage location of u_lightPos');
+    return;
+  }
+
+  u_cameraPos = gl.getUniformLocation(gl.program, 'u_cameraPos');
+  if (!u_cameraPos) {
+    console.log('Failed to get the storage location of u_cameraPos');
     return;
   }
 
@@ -709,6 +717,10 @@ function renderAllShapes() {
 
   //Pass the light pos to GLSL
   gl.uniform3f(u_lightPos, g_lightPos[0], g_lightPos[1], g_lightPos[2]);
+
+  //pass the camera pos to GLSL
+
+  gl.uniform3f(u_cameraPos,camera.eye.elements[0], camera.at.elements[1], camera.up.elements[2]);
 
   //Draw the light
   var light = new Cube();
