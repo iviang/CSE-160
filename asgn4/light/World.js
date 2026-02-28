@@ -689,7 +689,7 @@ function renderAllShapes() {
   g_rat.render();
 
   var sphere = new Sphere();
-  sphere.matrix.translate(-0.5, 1, 1);
+  sphere.matrix.translate(-0.5, -.5, 0);
   sphere.render();
 
   var body = new Cube();
