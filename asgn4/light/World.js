@@ -676,8 +676,8 @@ function renderAllShapes() {
   var sky = new Cube();
   sky.color = [1.0, 0.0, 0.0, 1.0];
   if (g_normalOn) sky.textureNum=-3;
-  sky.matrix.scale(5, 5, 5);
-  sky.matrix.translate(0.5, 0.5, 0.5);
+  sky.matrix.scale(-5, -5, -5);
+  sky.matrix.translate(-0.5, -0.5, -0.5);
   sky.render();
     
   // drawMap();
