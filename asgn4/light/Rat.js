@@ -196,6 +196,8 @@ class Rat {
 
     //EYES ==============================================================
     var eyeR = new Sphere();
+    gl.uniform1f(u_specStrength, 1.0);
+
     // body.textureNum = -2;
     eyeR.color = BLACK;
     eyeR.matrix.set(snoutCoordinates);
@@ -205,6 +207,8 @@ class Rat {
 
     var eyeL = new Sphere();
     // body.textureNum = -2;
+    gl.uniform1f(u_specStrength, 1.0);
+
     eyeL.color = BLACK;
     eyeL.matrix.set(snoutCoordinates);
     eyeL.matrix.translate(0, 0.5, .9);
