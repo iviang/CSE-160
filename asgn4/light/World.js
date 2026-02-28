@@ -80,21 +80,6 @@ let g_rat = null;
 let g_ratHead = [0,0,-1];
 const RAT_OFFSET = [0.25, 0, 0.25];
 
-// let g_cheese = true;
-// let g_cheesePosition = [1, -0.65, 1]; //temp
-// let g_cheeseCollected = 0;
-// let g_cheeseCell = [];
-// let g_cheeseCube = [];
-
-// const TotCheese = 5;
-
-
-// let g_timer = true;
-// let g_tEnd = 0;
-// let g_runs = [];
-// let g_best = null;
-// let g_final = false;
-
 let g_mode = "fps";
 let g_eye = null;
 let g_at = null;
@@ -251,41 +236,29 @@ let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
 let g_selectedType=POINT;
 let g_globalAngle=0;
-// let g_yellowAngle=0;
-// let g_magentaAngle=0;
-// let g_yellowAnimation=false;
-// let g_magentaAnimation=false;
+let g_yellowAngle=0;
+let g_magentaAngle=0;
+let g_yellowAnimation=false;
+let g_magentaAnimation=false;
+let g_normalOn=false;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
   
   //Button Events ===================
 
-  document.getElementById('ratcamButton').onclick = function() {
-    const fx = camera.at.elements[0] - camera.eye.elements[0];
-    const fz = camera.at.elements[2] - camera.eye.elements[2];
-    const len = Math.sqrt(fx*fx + fz*fz) || 1;
-    g_fpsFwd = [fx/len, 0, fz/len];
-    g_mode = "overhead";
-  };
-  // document.getElementById('camButton').onclick = function() {
-  //   g_mode = "fps";
-  //   newFP();
-  // };
-  // document.getElementById('restartButton').onclick = function() {
-  //   restart();
-  //   // if (restartButton) restartButton.onclick = () => restart(); 
-  // };
+  document.getElementById('normalOn').onclick = function() {g_normalOn=true};
+  document.getElementById('normalOff').onclick = function() {g_normalOn=false};
 
   // slider events =====================
   // document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
 
 
-  // document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
-  // document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
+  document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
+  document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
 
-  // document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
-  // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
+  document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
+  document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
   // //color slider events
   // document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
@@ -293,8 +266,6 @@ function addActionsForHtmlUI(){
 
   // canvas.onmousemove = function(ev) { if (ev.buttons == 1) { click(ev) } };
 
-  //size slider events
-  // document.getElementById('angleSlide').addEventListener('mouseup', function() { g_globalAngle = this.value; renderAllShapes(); });
   //size slider events
   document.getElementById('angleSlide').addEventListener('mousemove', function() { g_globalAngle = this.value; renderAllShapes(); });
 }
@@ -704,7 +675,7 @@ function renderAllShapes() {
   //draw the SKY BOX ==========
   var sky = new Cube();
   sky.color = [1.0, 0.0, 0.0, 1.0];
-  sky.textureNum=1;
+  if (g_normalOn) sky.textureNum=-3;
   sky.matrix.scale(5, 5, 5);
   sky.matrix.translate(-0.5, -0.5, -0.5);
   sky.render();
@@ -718,45 +689,48 @@ function renderAllShapes() {
   g_rat.render();
 
 
-  // var body = new Cube();
-  // body.color = [1.0, 0.0, 0.0, 1.0];
-  // body.textureNum=0;
-  // body.matrix.translate(-.25, -.75, 0.0);
-  // body.matrix.rotate(-5,1,0,0);
-  // body.matrix.scale(0.5, .3, .5);
-  // body.render();
+  var body = new Cube();
+  body.color = [1.0, 0.0, 0.0, 1.0];
+  if (g_normalOn) body.textureNum=-3;
+  body.matrix.translate(-.25, -.75, 0.0);
+  body.matrix.rotate(-5,1,0,0);
+  body.matrix.scale(0.5, .3, .5);
+  body.render();
 
   // var bodyCoordinates= new Matrix4(body.matrix);
 
   // draw a left arm
-  // var yellow = new Cube();
-  // yellow.color = [1,1,0,1];
-  // yellow.matrix.setTranslate(0, -.5, 0.0);
-  // yellow.matrix.rotate(-5,1,0,0);
-  // yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
-  // var yellowCoordinatesMat=new Matrix4(yellow.matrix);
-  // yellow.matrix.scale(0.25, .7, .5);
-  // yellow.matrix.translate(-.5,0,0);
-  // yellow.render();
+  var yellow = new Cube();
+  yellow.color = [1,1,0,1];
+  if (g_normalOn) yellow.textureNum=-3;
+  yellow.matrix.setTranslate(0, -.5, 0.0);
+  yellow.matrix.rotate(-5,1,0,0);
+  yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
+  var yellowCoordinatesMat=new Matrix4(yellow.matrix);
+  yellow.matrix.scale(0.25, .7, .5);
+  yellow.matrix.translate(-.5,0,0);
+  yellow.render();
 
 
   // Test box
-  // var magenta = new Cube();
-  // magenta.color = [1,0,1,1];
-  // magenta.textureNum=0;
-  // magenta.matrix = yellowCoordinatesMat;
-  // magenta.matrix.translate(0, 0.65, 0);
-  // magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
-  // magenta.matrix.scale(.3,.3,.3);
-  // magenta.matrix.translate(-.5, 0, -0.001);
-  // magenta.render();
+  var magenta = new Cube();
+  magenta.color = [1,0,1,1];
+  if (g_normalOn) magenta.textureNum=-3;
+  magenta.textureNum=0;
+  magenta.matrix = yellowCoordinatesMat;
+  magenta.matrix.translate(0, 0.65, 0);
+  magenta.matrix.rotate(-g_magentaAngle, 0,0,1);
+  magenta.matrix.scale(.3,.3,.3);
+  magenta.matrix.translate(-.5, 0, -0.001);
+  magenta.render();
 
 
   //ground plane
-  // var ground = new Cube();
-  // ground.matrix.translate(0, 0, -1);
-  // ground.matrix.scale(2, .1, 2);
-  // ground.render();
+  var ground = new Cube();
+  if (g_normalOn) ground.textureNum=-3;
+  ground.matrix.translate(0, 0, -1);
+  ground.matrix.scale(2, .1, 2);
+  ground.render();
 
 
   //check the time at the end of the funciton, and show on web pg
