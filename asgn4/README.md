@@ -5,11 +5,20 @@ CSE 160
 
 site:
 https://iviang.github.io/CSE-160/asgn4/light/asgn4.html
+http://localhost:8000/asgn4/light/asgn4.html
+
+Notes:
+
+
 
 References:
 asgn4 pdf
-refrenced asgn2 construction - sphere class made for animal shape
+refrenced asgn2 construction 
+- sphere class made for animal shape
+- reused animal
 refrenced asgn3 construction
+- camera class reused
+- textures reused
 used youtube playlist for guidance
 used the WebGL textbook for guidance
 used gpt for debug support
