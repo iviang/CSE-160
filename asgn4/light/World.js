@@ -705,7 +705,7 @@ function renderAllShapes() {
   if (g_normalOn) yellow.textureNum=-3;
   yellow.matrix = bodyCoordinates;
 
-  yellow.matrix.setTranslate(0, -.5, 0.0);
+  yellow.matrix.setTranslate(0, -.5, -0.7);
   yellow.matrix.rotate(-5,1,0,0);
   yellow.matrix.rotate(-g_yellowAngle, 0,0,1); 
   var yellowCoordinatesMat=new Matrix4(yellow.matrix);
