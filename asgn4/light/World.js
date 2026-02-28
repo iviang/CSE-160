@@ -720,7 +720,7 @@ function renderAllShapes() {
 
   //pass the camera pos to GLSL
 
-  gl.uniform3f(u_cameraPos,camera.eye.elements[0], camera.at.elements[1], camera.up.elements[2]);
+  gl.uniform3f(u_cameraPos,camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]);
 
   //Draw the light
   var light = new Cube();
