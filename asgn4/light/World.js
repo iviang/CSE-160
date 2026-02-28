@@ -250,9 +250,6 @@ const POINT = 0;
 const TRIANGLE = 1;
 const CIRCLE = 2;
 
-// const P_Size = 0.5; //size of player controlling 
-// const P_Height = -0.65; //match ground level
-
 //global variables related to UI
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=5;
@@ -260,8 +257,8 @@ let g_selectedType=POINT;
 let g_globalAngle=0;
 let g_yellowAngle=0;
 let g_magentaAngle=0;
-// let g_yellowAnimation=false;
-// let g_magentaAnimation=false;
+let g_yellowAnimation=false;
+let g_magentaAnimation=false;
 let g_normalOn=false;
 let g_lightPos=[0,1,-2]; //
 
@@ -275,11 +272,11 @@ function addActionsForHtmlUI(){
 
   // slider events =====================
 
-  // document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
-  // document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
+  document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
+  document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
 
-  // document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
-  // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
+  document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
+  document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
   // //color slider events
   document.getElementById('yellowSlide').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) {g_yellowAngle = this.value; renderAllShapes(); }});
@@ -543,7 +540,7 @@ function mouseDetect() { //converted into the rotation funct for mouse/camera
 }
 
 var g_startTime=performance.now()/1000.0;
-// var g_seconds=performance.now()/1000.0-g_startTime;
+var g_seconds=performance.now()/1000.0-g_startTime;
 
 let g_prevTime = performance.now();
 let g_fps = 0;
@@ -571,6 +568,17 @@ function tick() {
 
   // Tell the browser to update again when it has time
   requestAnimationFrame(tick);
+}
+
+//update the angles of everything if currently animated
+function updateAnimationAngles(){
+  if (g_yellowAnimation) {
+    g_yellowAngle = (45*Math.sin(g_seconds));
+  }
+  if (g_magentaAnimation) {
+    g_magentaAngle = (45*Math.sin(3*g_seconds));
+  }
+  g_lightPos[0] = cos(g_seconds);
 }
 
 
