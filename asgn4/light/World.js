@@ -118,6 +118,7 @@ let u_ProjectionMatrix;
 let u_ViewMatrix;
 let u_GlobalRotateMatrix;
 let u_specStrength; //added
+let u_lightOn;
 let u_Sampler0;
 let u_Sampler1;
 let u_Sampler2;
