@@ -523,7 +523,7 @@ function tick() {
   // // const tot = now - g_fpsLastTime;
   if (now - g_prevTime >= 1000) {
     g_fps = g_fpsFrames;
-    g_fps = (g_fpsFrames * 1000) / tot;
+    // g_fps = (g_fpsFrames * 1000) / tot;
     g_fpsFrames = 0;
     g_prevTime = now;
   }
