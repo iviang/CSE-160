@@ -645,7 +645,7 @@ function renderAllShapes() {
   light.color = [2,2,0,1];
   light.matrix.translate(g_lightPos[0], g_lightPos[1], g_lightPos[2]);
   light.matrix.scale(-.1,-.1,-.1);
-  light.matrix.translate(-.5,-.5,0);
+  light.matrix.translate(-.5,-.5,-.5);
   light.render();
 
 
