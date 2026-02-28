@@ -284,7 +284,7 @@ let g_magentaAngle=0;
 let g_yellowAnimation=false;
 let g_magentaAnimation=false;
 let g_normalOn=false;
-let g_lightPos=[0,1,0.5]; //
+let g_lightPos=[0,1.5,0.5]; //
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
