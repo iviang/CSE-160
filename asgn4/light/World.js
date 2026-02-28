@@ -238,8 +238,8 @@ let g_selectedType=POINT;
 let g_globalAngle=0;
 let g_yellowAngle=0;
 let g_magentaAngle=0;
-let g_yellowAnimation=false;
-let g_magentaAnimation=false;
+// let g_yellowAnimation=false;
+// let g_magentaAnimation=false;
 let g_normalOn=false;
 
 //set up actions for the HTML UI elements
@@ -254,15 +254,15 @@ function addActionsForHtmlUI(){
   // document.getElementById('headSlide').addEventListener('mousemove', function() { g_headAngle = this.value; renderAllShapes(); }); //head turn slider
 
 
-  document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
-  document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
+  // document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
+  // document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
 
-  document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
-  document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
+  // document.getElementById('animationMagentaOffButton').onclick = function() {g_magentaAnimation=false;};
+  // document.getElementById('animationMagentaOnButton').onclick = function() {g_magentaAnimation=true;};
 
   // //color slider events
-  // document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
-  // document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
+  document.getElementById('yellowSlide').addEventListener('mousemove', function() { g_yellowAngle = this.value; renderAllShapes(); });
+  document.getElementById('magentaSlide').addEventListener('mousemove', function() { g_magentaAngle = this.value; renderAllShapes(); });
 
   // canvas.onmousemove = function(ev) { if (ev.buttons == 1) { click(ev) } };
 
