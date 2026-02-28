@@ -203,7 +203,7 @@ class Rat {
     body.textureNum = -2;
     eyeR.color = BLACK;
     eyeR.matrix.set(snoutCoordinates);
-    eyeR.matrix.translate(0, 0.5, -.2);
+    eyeR.matrix.translate(0, 0.5, 0);
     eyeR.matrix.scale(0.5, 0.3, 0.3);
     eyeR.render();
 
@@ -213,7 +213,7 @@ class Rat {
     body.textureNum = -2;
     eyeL.color = BLACK;
     eyeL.matrix.set(snoutCoordinates);
-    eyeL.matrix.translate(0, 0.5, .2);
+    eyeL.matrix.translate(0, 0.5, .9);
     eyeL.matrix.scale(0.5, 0.3, 0.3);
     eyeL.render();
 
