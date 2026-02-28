@@ -188,6 +188,7 @@ class Rat {
     //nose ================================================================
     var nose = new Sphere();
     // body.textureNum = -2;
+    gl.uniform1f(u_specStrength, 1.0);
     nose.color = PINK; 
     nose.matrix.set(snout2Coordinates); //connects to head
     nose.matrix.translate(1.2,0.05,0);
