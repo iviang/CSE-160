@@ -550,16 +550,16 @@ let g_fpsFrames = 0;
 // Called by browser repeatedly whenever its time
 function tick() {
   // save current time
-  const now = performance.now();
-  g_fpsFrames++;
+  // const now = performance.now();
+  // g_fpsFrames++;
 
-  // const tot = now - g_fpsLastTime;
-  if (now - g_prevTime >= 1000) {
-    g_fps = g_fpsFrames;
-    // g_fps = (g_fpsFrames * 1000) / tot;
-    g_fpsFrames = 0;
-    g_prevTime = now;
-  }
+  // // const tot = now - g_fpsLastTime;
+  // if (now - g_prevTime >= 1000) {
+  //   g_fps = g_fpsFrames;
+  //   // g_fps = (g_fpsFrames * 1000) / tot;
+  //   g_fpsFrames = 0;
+  //   g_prevTime = now;
+  // }
 
   g_seconds = performance.now()/1000 - g_startTime;
 
