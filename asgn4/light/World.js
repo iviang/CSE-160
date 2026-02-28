@@ -726,11 +726,11 @@ function renderAllShapes() {
 
 
   //ground plane
-  var ground = new Cube();
-  if (g_normalOn) ground.textureNum=-3;
-  ground.matrix.translate(0, 0, -1);
-  ground.matrix.scale(2, .1, 2);
-  ground.render();
+  // var ground = new Cube();
+  // if (g_normalOn) ground.textureNum=-3;
+  // ground.matrix.translate(0, 0, -1);
+  // ground.matrix.scale(2, .1, 2);
+  // ground.render();
 
 
   //check the time at the end of the funciton, and show on web pg
