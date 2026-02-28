@@ -29,7 +29,9 @@ class Sphere{
 
         //Pass the matrix to u_ModelMatrix attibute
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
-
+        this.normalMatrix = new Matrix4();
+        this.normalMatrix.setInverseOf(this.matrix).transpose();
+        gl.uniformMatrix4fv(u_NormalMatrix, false, this.normalMatrix.elements);
         var d=Math.PI/25;
         var dd=Math.PI/25;
 
