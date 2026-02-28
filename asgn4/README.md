@@ -8,7 +8,18 @@ https://iviang.github.io/CSE-160/asgn4/light/asgn4.html
 http://localhost:8000/asgn4/light/asgn4.html
 
 Notes:
+I have implemented my rat from the asgn2.
+I made the cheese ball, rat eyes, and rat nose shiny, while the other components are made matte.
+Cheese cubes are matte.
+rat body is matte.
+I already had a sphere class from when I made asgn2 so I reused it but did end up changing it a bit.
 
+Controls:================================
+MOVEMENT KEYS:
+WASD
+
+CAMERA ROTATION: 
+Q, E, MOUSE
 
 
 References:
