@@ -670,6 +670,7 @@ function renderAllShapes() {
   sphere.render();
 
   var body = new Cube();
+  body.textureNum = 1; //cheese texture
   body.color = [1.0, 0.0, 0.0, 1.0];
   if (g_normalOn) body.textureNum=-3;
   body.matrix.translate(-1.75, -.75, -0.7);
@@ -681,6 +682,8 @@ function renderAllShapes() {
 
   // draw a left arm
   var yellow = new Cube();
+  yellow.textureNum = 1; //cheese texture
+
   yellow.color = [1,1,0,1];
   if (g_normalOn) yellow.textureNum=-3;
   yellow.matrix = bodyCoordinates;
@@ -696,6 +699,8 @@ function renderAllShapes() {
 
   // Test box
   var magenta = new Cube();
+  magenta.textureNum = 1; //cheese texture
+
   magenta.color = [1,0,1,1];
   if (g_normalOn) magenta.textureNum=-3;
   // magenta.textureNum=0;
