@@ -67,7 +67,8 @@ var FSHADER_SOURCE = `
       gl_FragColor = vec4(1,.2,.2,1);
     }
     vec3 surfaceColor = gl_FragColor.rgb;
-    // vec3 lightVector = u_lightPos - vec3(v_VertPos) ;
+
+    vec3 lightVector = u_lightPos - vec3(v_VertPos) ;
     // float r=length(lightVector);
 
     //R/G visualization
