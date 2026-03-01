@@ -800,7 +800,8 @@ function renderAllShapes() {
   //teapot obj
   if (g_teapot && g_teapot.isFullLoaded) {
     gl.useProgram(gl.program); 
-
+    g_teapot.color = [1, 0, 1, 1]; // magenta
+    g_teapot.textureNum = -2;
     gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
     gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
 
