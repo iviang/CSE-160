@@ -693,6 +693,13 @@ function renderAllShapes() {
   light.matrix.translate(-.5,-.5,-.5);
   light.render();
 
+  //draw the spotlight
+  var spotlight = new Cube();
+  spotlight.color = [2,2,0,1];
+  spotlight.matrix.translate(g_spotlightPos[0], g_spotlightPos[1], g_spotlightPos[2]);
+  spotlight.matrix.scale(-.1,-.1,-.1);
+  spotlight.matrix.translate(-.5,-.5,-.5);
+  spotlight.render();
 
   camera.viewMatrix.setLookAt(
     camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2],
