@@ -103,7 +103,7 @@ var FSHADER_SOURCE = `
       vec3 diffuse  = surfaceColor * nDotL * 0.7;
       vec3 ambient  = surfaceColor * 0.2;
 
-      Color += diffuse + ambient + vec3(spec);
+      Color += diffuse + ambient + vec3(specular);
     } 
 
     if (u_spotlightOn) {
