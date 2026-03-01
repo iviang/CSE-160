@@ -85,7 +85,7 @@ var FSHADER_SOURCE = `
     }
 
     float spill = 0.12; 
-    vec3 Color = surfaceColor * spill;
+    vec3 outColor = surfaceColor * spill;
 
     //N dot L
     // vec3 L = normalize(lightVector);
@@ -133,7 +133,7 @@ var FSHADER_SOURCE = `
       Color += (diffuseS + ambientS + vec3(specularS)) * spotFactor;
     }
 
-    gl_FragColor = vec4(Color, 1.0);
+    gl_FragColor = vec4(outColor + Color, 1.0);
 
     // float nDotL = max(dot(N,L), 0.0);
 
