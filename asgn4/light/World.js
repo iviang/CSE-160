@@ -116,7 +116,18 @@ var FSHADER_SOURCE = `
       // } else {
       //   spotlightFactor = 0.0;
       // }
-      vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor;
+
+      float DotS = max(dot(N,Ls), 0.0);
+      vec3 Rs = reflect(-Ls, N);
+      vec3 Es = normalize(u_cameraPos - vec3(v_VertPos));
+
+      float specularS = u_specStrength * pow(max(dot(Es, Rs), 0.0), 64.0);
+
+      vec3 diffuseS = vec3(u_FragColor) * DotS * 0.7;
+      vec3 ambientS = vec3(u_FragColor) * 0.2;
+
+      // vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor;
+      vec3 spotlightAdd = (diffuseS + ambientS + vec3(specularS)) * spotlightFactor;
       // gl_FragColor = vec4((diffuse + ambient + vec3(specular)) * spotlightFactor, 1.0);
       gl_FragColor = vec4(baseColor + spotlightAdd, 1.0);
 
