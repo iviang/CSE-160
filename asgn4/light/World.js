@@ -96,6 +96,9 @@ var FSHADER_SOURCE = `
   
     vec3 diffuse = vec3(gl_FragColor) * nDotL *0.7;
     vec3 ambient = vec3(gl_FragColor) * 0.2;
+
+    vec3 baseColor = gl_FragColor.rgb;
+
     if (u_lightOn) {
       gl_FragColor = vec4(diffuse + ambient + vec3(specular), 1.0);
       // if (u_whichTexture == 0) {
@@ -104,7 +107,7 @@ var FSHADER_SOURCE = `
       //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
       // }
     } 
-    vec3 baseColor = gl_FragColor.rgb;
+    // vec3 baseColor = gl_FragColor.rgb;
 
     // float spotlightFactor = 1.0;
   
