@@ -19,6 +19,14 @@ class Model {
     }
 
     async parseModel(fileContent) {
+        this.vertexBuffer = gl.createBuffer();
+        this.normalBuffer = gl.createBuffer();
+
+        if (!this.vertexBuffer || !this.normalBuffer) {
+            console.error("Failed to create buffers");
+            return;
+        }
+
         const lines = fileContent.split(/\r?\n/);
         const allVertices = [];
         const allNormals = [];
@@ -65,7 +73,6 @@ class Model {
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, this.modelData.normals, gl.STATIC_DRAW);
-
 
         this.isFullLoaded = true;
         // console.log("all vertices:", allVertices);
