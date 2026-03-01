@@ -102,7 +102,7 @@ var FSHADER_SOURCE = `
       vec3 diffuse  = surfaceColor * nDotL * 0.7;
       vec3 ambient  = surfaceColor * 0.2;
 
-      outColor += diffuse + ambient + vec3(spec);
+      Color += diffuse + ambient + vec3(spec);
     } 
 
     if (u_spotlightOn) {
@@ -122,7 +122,7 @@ var FSHADER_SOURCE = `
 
       vec3 diffuseS = surfaceColor * nDotLs * 0.7;
       vec3 ambientS = surfaceColor * 0.2;
-      outColor += (diffuseS + ambientS + vec3(specularS)) * spotFactor;
+      Color += (diffuseS + ambientS + vec3(specularS)) * spotFactor;
     }
 
     gl_FragColor = vec4(outColor, 1.0);
