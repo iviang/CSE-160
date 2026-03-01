@@ -799,16 +799,19 @@ function renderAllShapes() {
 
   //teapot obj
   if (g_teapot && g_teapot.isFullLoaded) {
-    g_teapot.matrix.setIdentity();
-    g_teapot.matrix.scale(5, 5, 5); 
+    gl.useProgram(gl.program); 
 
- 
-    g_teapot.textureNum = -2;
-    g_teapot.color = [1, 0, 1, 1]; 
+    gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
+    gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
 
-     gl.disable(gl.DEPTH_TEST);
+    var globalRotMat = new Matrix4().rotate(g_globalAngle,0,1,0);
+    gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
+
+    gl.uniform3f(u_cameraPos, camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]);
+    gl.uniform1i(u_lightOn, 0);
+    gl.uniform1i(u_spotlightOn, 0);
     g_teapot.render();
-    gl.enable(gl.DEPTH_TEST);
+
   }
  
   // drawMap();
