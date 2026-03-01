@@ -18,7 +18,8 @@ var VSHADER_SOURCE = `
     v_UV = a_UV;
     v_Normal = normalize(vec3(u_NormalMatrix * vec4(a_Normal,0)));
     // v_Normal = a_Normal;
-    v_VertPos = u_ModelMatrix * a_Position;
+    // v_VertPos = u_ModelMatrix * a_Position;
+    v_VertPos = u_GlobalRotateMatrix * u_ModelMatrix * a_Position;
   }`
 
 // Fragment shader program
