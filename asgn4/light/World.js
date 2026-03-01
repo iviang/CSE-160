@@ -67,8 +67,8 @@ var FSHADER_SOURCE = `
       gl_FragColor = vec4(1,.2,.2,1);
     }
     vec3 surfaceColor = gl_FragColor.rgb;
-    vec3 lightVector = u_lightPos - vec3(v_VertPos) ;
-    float r=length(lightVector);
+    // vec3 lightVector = u_lightPos - vec3(v_VertPos) ;
+    // float r=length(lightVector);
 
     //R/G visualization
     // if (r<1.0) {
@@ -80,70 +80,117 @@ var FSHADER_SOURCE = `
     //light fall off visualization 1/r^2
     // gl_FragColor = vec4(vec3(gl_FragColor)/(r*r),1);  
 
+    if (!u_lightOn && !u_spotlightOn) {
+      gl_FragColor = vec4(surfaceColor, 1.0);
+      return;
+    }
+    
     //N dot L
     vec3 L = normalize(lightVector);
     vec3 N = normalize(v_Normal);
-    float nDotL = max(dot(N,L), 0.0);
 
-    //reflection
-    vec3 R = reflect(-L,N);
+    vec3 V = normalize(u_cameraPos - vec3(v_VertPos)); //
+    vec3 Color = vec3(0.0);
 
-    //eye
-    vec3 E = normalize(u_cameraPos - vec3 (v_VertPos));
+    if (u_lightOn) {
+      vec3 L = normalize(u_lightPos - vec3(v_VertPos));
+      float nDotL = max(dot(N, L), 0.0);
 
-    //specular
-    float specular = u_specStrength * pow(max(dot(E,R), 0.0), 64.0);
+      vec3 R = reflect(-L, N);
+      float specular = u_specStrength * pow(max(dot(V, R), 0.0), 64.0);
+
+      vec3 diffuse  = surfaceColor * nDotL * 0.7;
+      vec3 ambient  = surfaceColor * 0.2;
+
+      outColor += diffuse + ambient + vec3(spec);
+    } 
+
+    if (u_spotlightOn) {
+      vec3 Ls = normalize(u_spotlightPos - vec3(v_VertPos));
+      vec3 D = -normalize(u_spotlightDir);
+      float spotCos = dot(D, Ls);
+
+      float spotFactor = 0.0;
+      if (spotCos >= u_spotlightCos) {
+        spotFactor = pow(spotCos, u_spotlightExpo);
+      }
+
+      float nDotLs = max(dot(N, Ls), 0.0);
+
+      vec3 Rs = reflect(-Ls, N);
+      float specularS = u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0);
+
+      vec3 diffuseS = surfaceColor * nDotLs * 0.7;
+      vec3 ambientS = surfaceColor * 0.2;
+      outColor += (diffuseS + ambientS + vec3(specularS)) * spotFactor;
+    }
+
+    gl_FragColor = vec4(outColor, 1.0);
+
+    // float nDotL = max(dot(N,L), 0.0);
+
+    // //reflection
+    // vec3 R = reflect(-L,N);
+
+    // //eye
+    // vec3 E = normalize(u_cameraPos - vec3 (v_VertPos));
+
+    // //specular
+    // float specular = u_specStrength * pow(max(dot(E,R), 0.0), 64.0);
   
-    vec3 diffuse = vec3(gl_FragColor) * nDotL *0.7;
-    vec3 ambient = vec3(gl_FragColor) * 0.2;
+    // vec3 diffuse = vec3(gl_FragColor) * nDotL *0.7;
+    // vec3 ambient = vec3(gl_FragColor) * 0.2;
+
+    // if (u_lightOn) {
+    //   gl_FragColor = vec4(diffuse + ambient + vec3(specular), 1.0);
+    //   // if (u_whichTexture == 0) {
+    //   //   gl_FragColor = vec4(specular+diffuse+ambient, 1.0);
+    //   // } else {
+    //   //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
+    //   // }
+    // } 
     // vec3 baseColor = gl_FragColor.rgb;
 
     // float spotlightFactor = 1.0;
-    if (u_lightOn) {
-      gl_FragColor = vec4(diffuse + ambient + vec3(specular), 1.0);
-      // if (u_whichTexture == 0) {
-      //   gl_FragColor = vec4(specular+diffuse+ambient, 1.0);
-      // } else {
-      //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
-      // }
-    } else if (u_spotlightOn) {
-      vec3 baseColor = gl_FragColor.rgb;
+  
+    // if (u_spotlightOn) {
+    //   vec3 baseColor = gl_FragColor.rgb;
 
-      vec3 lightVectorS = u_spotlightPos - vec3(v_VertPos);
-      vec3 Ls = normalize(lightVectorS);
-      vec3 N = normalize(v_Normal);
-      vec3 D = -normalize(u_spotlightDir);
+    //   vec3 lightVectorS = u_spotlightPos - vec3(v_VertPos);
+    //   vec3 Ls = normalize(lightVectorS);
+    //   vec3 N = normalize(v_Normal);
+    //   vec3 D = -normalize(u_spotlightDir);
 
-      float spotlightCos= dot(D, Ls);
+    //   float spotlightCos= dot(D, Ls);
 
-      float spotlightFactor = 0.0;
-      if (spotlightCos >= u_spotlightCos) {
-        spotlightFactor = pow(spotlightCos, u_spotlightExpo);
-      }
+    //   float spotlightFactor = 0.0;
+    //   if (spotlightCos >= u_spotlightCos) {
+    //     spotlightFactor = pow(spotlightCos, u_spotlightExpo);
+    //   }
 
-      // } else {
-      //   spotlightFactor = 0.0;
-      // }
+    //   // } else {
+    //   //   spotlightFactor = 0.0;
+    //   // }
 
-      float nDotLS = max(dot(N,Ls), 0.0);
-      vec3 diffuseS = surfaceColor * nDotLS * 0.7;
-      vec3 ambientS = surfaceColor * 0.2;
+    //   float nDotLS = max(dot(N,Ls), 0.0);
+    //   vec3 diffuseS = surfaceColor * nDotLS * 0.7;
+    //   vec3 ambientS = surfaceColor * 0.2;
 
-      vec3 Rs = reflect(-Ls, N);
-      vec3 Es = normalize(u_cameraPos - vec3(v_VertPos));
+    //   vec3 Rs = reflect(-Ls, N);
+    //   vec3 Es = normalize(u_cameraPos - vec3(v_VertPos));
 
-      float specularS = u_specStrength * pow(max(dot(Es, Rs), 0.0), 64.0);
+    //   float specularS = u_specStrength * pow(max(dot(Es, Rs), 0.0), 64.0);
 
-      // vec3 diffuseS = vec3(u_FragColor) * nDotLS * 0.7;
-      // vec3 ambientS = vec3(u_FragColor) * 0.2;
-      // vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor;
+    //   // vec3 diffuseS = vec3(u_FragColor) * nDotLS * 0.7;
+    //   // vec3 ambientS = vec3(u_FragColor) * 0.2;
+    //   // vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor;
 
-      vec3 spotlightAdd = (diffuseS + ambientS + vec3(specularS)) * spotlightFactor;
+    //   vec3 spotlightAdd = (diffuseS + ambientS + vec3(specularS)) * spotlightFactor;
 
-      // gl_FragColor = vec4((diffuse + ambient + vec3(specular)) * spotlightFactor, 1.0);
-      gl_FragColor = vec4(baseColor + spotlightAdd, 1.0);
+    //   // gl_FragColor = vec4((diffuse + ambient + vec3(specular)) * spotlightFactor, 1.0);
+    //   gl_FragColor = vec4(baseColor + spotlightAdd, 1.0);
 
-    }
+    // }
   }`
 
 
