@@ -14,13 +14,16 @@ Cheese cubes are matte.
 rat body is matte.
 I already had a sphere class from when I made asgn2 so I reused it but did end up changing it a bit.
 
+For total no light, both Light and Spotlight have to be "Off".
+Spotlight does incorporate diffuse, ambient, and specular. 
+Since some textures were purposefully made not shiny, the shiny highlights are a bit less obvious but are there if you move the camera closer.
+
 Controls:================================
 MOVEMENT KEYS:
 WASD
 
 CAMERA ROTATION: 
 Q, E, MOUSE
-
 
 References:
 asgn4 pdf
