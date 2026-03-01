@@ -85,7 +85,7 @@ var FSHADER_SOURCE = `
     }
 
     float spill = 0.12; 
-    vec3 outColor = surfaceColor * spill;
+    vec3 Color = surfaceColor * spill;
 
     //N dot L
     // vec3 L = normalize(lightVector);
