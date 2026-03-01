@@ -870,8 +870,8 @@ function renderAllShapes() {
   if (g_teapot && g_teapot.isFullLoaded) {
 
     g_teapot.matrix.setIdentity();
-    g_teapot.matrix.setTranslate(0.0, -0.75, -1.0);
-    g_teapot.matrix.scale(0.3, 0.3, 0.3);
+    g_teapot.matrix.setTranslate(0.2, -0.75, -2.0);
+    g_teapot.matrix.scale(0.2, 0.2, 0.2);
     g_teapot.matrix.rotate(g_seconds * 30, 0, 1, 0);
 
     g_teapot.color = [1, 0, 1, 1];
