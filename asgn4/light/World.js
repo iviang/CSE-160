@@ -1,5 +1,6 @@
 // ColoredPoint.js (c) 2012 matsuda
 // Vertex shader program
+import Model from './Model.js';
 var VSHADER_SOURCE = `
   precision mediump float;
   attribute vec4 a_Position;
