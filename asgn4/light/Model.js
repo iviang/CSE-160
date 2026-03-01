@@ -36,7 +36,7 @@ class Model {
 
         for (let i=0; i < lines.length; i++) {
             const line = lines[i];
-            const tokens = line.split(" ");
+            const tokens = line.split("/");
 
             if (tokens[0] == 'v') {
                 allVertices.push(parseFloat(tokens[1]), parseFloat(tokens[2]), parseFloat(tokens[3]));
