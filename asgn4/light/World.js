@@ -810,8 +810,7 @@ function renderAllShapes() {
     g_teapot.render();
     gl.enable(gl.DEPTH_TEST);
   }
-    gl.uniform1i(u_lightOn, g_lightOn);
-    gl.uniform1i(u_spotlightOn, g_spotlightOn);
+ 
   // drawMap();
   for (let i = 0; i < walls.length; i++) {
     walls[i].renderfast();
