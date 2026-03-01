@@ -35,6 +35,10 @@ var FSHADER_SOURCE = `
 
   uniform int u_whichTexture;
   uniform vec3 u_lightPos;
+  uniform vec3 u_spotlightPos;
+  uniform vec3 u_spotlightDir;
+  uniform float u_spotlightCos;
+  uniform float u_spotlightExpo;
   uniform vec3 u_cameraPos;
   varying vec4 v_VertPos;
   uniform float u_specStrength;
@@ -633,6 +637,7 @@ function renderAllShapes() {
   gl.uniform3f(u_cameraPos,camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]);
 
   gl.uniform1i(u_lightOn, g_lightOn);
+  gl.uniform1i(u_spotlightOn, g_spotlightOn);
 
   //Draw the light
   var light = new Cube();
