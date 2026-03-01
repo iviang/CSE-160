@@ -18,6 +18,8 @@ For total no light, both Light and Spotlight have to be "Off".
 Spotlight does incorporate diffuse, ambient, and specular. 
 Since some textures were purposefully made not shiny, the shiny highlights are a bit less obvious but are there if you move the camera closer.
 
+object is teapot
+
 Controls:================================
 MOVEMENT KEYS:
 WASD
