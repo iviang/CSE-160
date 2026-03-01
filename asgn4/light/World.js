@@ -120,7 +120,7 @@ var FSHADER_SOURCE = `
       
       diffuseAccum += (surfaceColor * nDotLs * 0.7) * finalSpotEffect;
       // specAccum += (u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0)) * finalSpotEffect;
-      specAccum += (u_specStrength * pow(max(dot(V, reflect(-Ls, N)), 0.0), 64.0)) * finalSpotEffect;
+      specAccum += (u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0)) * finalSpotEffect;
       
     }
 
