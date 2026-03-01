@@ -798,21 +798,7 @@ function renderAllShapes() {
   // gl.depthMask(true);ww
 
   //teapot obj
-  if (g_teapot && g_teapot.isFullLoaded) {
-    gl.useProgram(gl.program); 
-    g_teapot.color = [1, 0, 1, 1]; // magenta
-    g_teapot.textureNum = -2;
-    gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
-    gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
 
-    var globalRotMat = new Matrix4().rotate(g_globalAngle,0,1,0);
-    gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
-
-    gl.enableVertexAttribArray(a_Position);
-    gl.enableVertexAttribArray(a_Normal);
-    g_teapot.render();
-
-  }
  
   // drawMap();
   for (let i = 0; i < walls.length; i++) {
@@ -879,7 +865,22 @@ function renderAllShapes() {
   magenta.normalMatrix.setInverseOf(magenta.matrix).transpose();
 
   magenta.render();
+  
+  if (g_teapot && g_teapot.isFullLoaded) {
+    gl.useProgram(gl.program); 
+    g_teapot.color = [1, 0, 1, 1]; // magenta
+    g_teapot.textureNum = -2;
+    gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
+    gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
 
+    var globalRotMat = new Matrix4().rotate(g_globalAngle,0,1,0);
+    gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
+
+    gl.enableVertexAttribArray(a_Position);
+    gl.enableVertexAttribArray(a_Normal);
+    g_teapot.render();
+
+  }
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
   sendTextToHTML(" ms: " + Math.floor(duration) + " fps: " + g_fps, "numdot");
