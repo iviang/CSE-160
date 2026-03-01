@@ -560,6 +560,7 @@ function main() {
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
   window.gl = gl;
   window.a_Position = a_Position;
+  window.a_UV = a_UV;
   window.a_Normal = a_Normal;
   window.u_ModelMatrix = u_ModelMatrix;
   window.u_NormalMatrix = u_NormalMatrix;
