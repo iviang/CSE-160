@@ -85,14 +85,14 @@ var FSHADER_SOURCE = `
     }
 
     float spill = 0.12; 
-    vec3 outColor = surfaceColor * spill;
+    vec3 Color = surfaceColor * spill;
 
     //N dot L
     // vec3 L = normalize(lightVector);
     vec3 N = normalize(v_Normal);
 
     vec3 V = normalize(u_cameraPos - vec3(v_VertPos));
-    vec3 Color = vec3(0.0);
+    // vec3 Color = vec3(0.0);
 
     if (u_lightOn) {
       vec3 L = normalize(u_lightPos - vec3(v_VertPos));
@@ -133,7 +133,7 @@ var FSHADER_SOURCE = `
       Color += (diffuseS + ambientS + vec3(specularS)) * spotFactor;
     }
 
-    gl_FragColor = vec4(outColor + Color, 1.0);
+    gl_FragColor = vec4(Color, 1.0);
 
     // float nDotL = max(dot(N,L), 0.0);
 
