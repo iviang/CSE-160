@@ -116,6 +116,8 @@ var FSHADER_SOURCE = `
         spotFactor = pow(spotCos, u_spotlightExpo);
       }
 
+      float spill = 0.15;
+
       float nDotLs = max(dot(N, Ls), 0.0);
 
       vec3 Rs = reflect(-Ls, N);
@@ -123,6 +125,7 @@ var FSHADER_SOURCE = `
 
       vec3 diffuseS = surfaceColor * nDotLs * 0.7;
       vec3 ambientS = surfaceColor * 0.2;
+      Color += ambientS * spill;
       Color += (diffuseS + ambientS + vec3(specularS)) * spotFactor;
     }
 
