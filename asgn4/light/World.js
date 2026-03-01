@@ -406,6 +406,7 @@ let g_spotlightPos = [1.2, 1.6, -1.2];
 let g_spotlightDir = [0, -1, 0];
 let g_spotlightDeg = 30;
 let g_spotlightExpo = 10;
+let Model;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -555,6 +556,7 @@ function main() {
 
   setupWebGL(); //set up canvas and gl variables
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
+  Model = new Model(gl, '../textures/teapot.obj');
   camera = new Camera(canvas); // set up camera
   g_rat = new Rat(); //set up rat
   g_rat.position = [1.2, -.4, -1.2];

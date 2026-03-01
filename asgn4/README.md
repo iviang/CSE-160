@@ -33,11 +33,16 @@ refrenced asgn2 construction
 refrenced asgn3 construction
 - camera class reused
 - textures reused
+referenced OBJ lab Model.js
+- using teapot.obj
 used youtube playlist for guidance
 used the WebGL textbook for guidance (8. Lighting and Heirarchical Objects)
 used gpt for debug support
+http://www.lighthouse3d.com/tutorials/glsl-12-tutorial/the-normal-matrix/ 
 https://en.wikipedia.org/wiki/Spherical_coordinate_system
 https://asawicki.info/news_1301_reflect_and_refract_functions.html
 http://math.hws.edu/graphicsbook/c7/s2.html
 https://math.hws.edu/graphicsbook/source/webgl/spotlights.html 
 https://www.geeksforgeeks.org/java/javafx-light-spot-class/
+http://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/code/WebGLShaderLightMat/ShaderLightMat.html
+http://www.cs.toronto.edu/~jacobson/phong-demo/
