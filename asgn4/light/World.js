@@ -68,7 +68,7 @@ var FSHADER_SOURCE = `
     }
     vec3 surfaceColor = gl_FragColor.rgb;
 
-    vec3 lightVector = u_lightPos - vec3(v_VertPos) ;
+    // vec3 lightVector = u_lightPos - vec3(v_VertPos) ;
     // float r=length(lightVector);
 
     //R/G visualization
@@ -87,7 +87,7 @@ var FSHADER_SOURCE = `
     }
     
     //N dot L
-    vec3 L = normalize(lightVector);
+    // vec3 L = normalize(lightVector);
     vec3 N = normalize(v_Normal);
 
     vec3 V = normalize(u_cameraPos - vec3(v_VertPos)); //
