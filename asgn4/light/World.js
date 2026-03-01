@@ -84,15 +84,14 @@ var FSHADER_SOURCE = `
       return;
     }
 
-    float spill = 0.12; 
-    vec3 Color = surfaceColor * spill;
+    float spill = 0.35; 
+    // vec3 Color = surfaceColor * spill;
 
     //N dot L
     // vec3 L = normalize(lightVector);
     vec3 N = normalize(v_Normal);
-
     vec3 V = normalize(u_cameraPos - vec3(v_VertPos));
-    // vec3 Color = vec3(0.0);
+    vec3 Color = vec3(0.0);
 
     if (u_lightOn) {
       vec3 L = normalize(u_lightPos - vec3(v_VertPos));
@@ -787,10 +786,8 @@ function renderAllShapes() {
   sky.matrix.scale(-5, -5, -5);
   sky.matrix.translate(-0.5, -0.5, -0.5);
   gl.uniform1f(u_specStrength, 0.0);
-
   sky.render();
-  gl.uniform1i(u_lightOn, g_lightOn);
-  gl.uniform1i(u_spotlightOn, g_spotlightOn);
+
   // drawMap();
   for (let i = 0; i < walls.length; i++) {
     walls[i].renderfast();
