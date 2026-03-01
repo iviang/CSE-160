@@ -48,8 +48,6 @@ var FSHADER_SOURCE = `
   void main() {
     if (u_whichTexture == -3) {
       gl_FragColor = vec4((v_Normal+1.0)/2.0, 1.0);     //use normal
-      return;
-
     } else if (u_whichTexture == -2) {
       gl_FragColor = u_FragColor;                       //use color
 
