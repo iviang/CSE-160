@@ -112,10 +112,10 @@ var FSHADER_SOURCE = `
       vec3 D = -normalize(u_spotlightDir);
       float spotCos = dot(D, Ls);
 
-      // float spotFactor = smoothstep(u_spotlightOut, u_spotlightCos, spotCos);
-      // spotFactor *= pow(spotCos, u_spotlightExpo);
+      float spotFactor = smoothstep(u_spotlightOut, u_spotlightCos, spotCos);
+      spotFactor *= pow(spotCos, u_spotlightExpo);
 
-      float spotFactor = 0.0;
+      // float spotFactor = 0.0;
       if (spotCos >= u_spotlightCos) {
         spotFactor = pow(spotCos, u_spotlightExpo);
       }
