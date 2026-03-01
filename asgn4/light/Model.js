@@ -49,8 +49,8 @@ class Model {
                     // const normalIndex = (parseInt(indices[1]) - 1) * 3;
 
                     let normalIndex = null;
-                    if (indices.length > 2 && parts[2] !== "") {
-                        normalIndex = (parseInt(parts[2]) - 1) * 3;
+                    if (indices.length > 2 && indices[2] !== "") {
+                        normalIndex = (parseInt(indices[2]) - 1) * 3;
                     }
 
                     unpackedVerts.push(
