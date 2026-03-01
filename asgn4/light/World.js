@@ -39,6 +39,7 @@ var FSHADER_SOURCE = `
   varying vec4 v_VertPos;
   uniform float u_specStrength;
   uniform bool u_lightOn;
+  uniform bool u_spotlightOn;
 
   void main() {
     if (u_whichTexture == -3) {
@@ -96,8 +97,11 @@ var FSHADER_SOURCE = `
       // } else {
       //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
       // }
+    } 
+    
+    if (u_spotlightOn) {
+      gl_FragColor = vec4(diffuse + ambient + vec3(specular), 1.0);
     }
-
   }`
 
 
@@ -118,7 +122,10 @@ let u_ProjectionMatrix;
 let u_ViewMatrix;
 let u_GlobalRotateMatrix;
 let u_specStrength; //added
-let u_lightOn;
+let u_lightOn; //
+let u_spotlightOn; //
+
+
 let u_Sampler0;
 let u_Sampler1;
 let u_Sampler2;
@@ -241,6 +248,11 @@ function connectVariablesToGLSL(){
     return;
   }
 
+  u_spotlightOn = gl.getUniformLocation(gl.program, 'u_spotlightOn');
+  if (!u_spotlightOn) {
+    console.log('Failed to get the storage location of u_spotlightOn');
+    return;
+  }
   
   u_ViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
   if (!u_ViewMatrix) {
@@ -308,6 +320,7 @@ let g_magentaAnimation=false;
 let g_normalOn=false;
 let g_lightOn=true;
 let g_lightPos=[0,1.5,0.75]; //added
+let g_spotlightOn=true;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -316,8 +329,13 @@ function addActionsForHtmlUI(){
 
   document.getElementById('lightOn').onclick = function() {g_lightOn=true};
   document.getElementById('lightOff').onclick = function() {g_lightOn=false};
+
+  document.getElementById('spotlightOn').onclick = function() {g_spotlightOn=true};
+  document.getElementById('spotlightOff').onclick = function() {g_spotlightOn=false};
+
   document.getElementById('normalOn').onclick = function() {g_normalOn=true};
   document.getElementById('normalOff').onclick = function() {g_normalOn=false};
+
   document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
   document.getElementById('animationYellowOnButton').onclick = function() {g_yellowAnimation=true;};
 
