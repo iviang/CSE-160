@@ -715,10 +715,8 @@ function renderAllShapes() {
   light.render();
 
   //draw the spotlight
-  var spotlight = new Cone();
+  var spotlight = new Cube();
   spotlight.color = [2,2,0,1];
-  spotlight.matrix.translate(-1,-1,-1);
-
   spotlight.matrix.translate(g_spotlightPos[0], g_spotlightPos[1], g_spotlightPos[2]);
   spotlight.matrix.scale(-.1,-.1,-.1);
   spotlight.matrix.translate(-.5,-.5,-.5);
