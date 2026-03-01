@@ -88,7 +88,7 @@ var FSHADER_SOURCE = `
     vec3 diffuseAccum = vec3(0.0);
     vec3 specAccum = vec3(0.0);
 
-    float spill = 0.35; 
+    float spill = 0.15; 
     // vec3 outColor = surfaceColor * spill;
 
     //N dot L
