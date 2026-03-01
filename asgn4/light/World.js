@@ -88,7 +88,7 @@ var FSHADER_SOURCE = `
     vec3 V = normalize(u_cameraPos - vec3(v_VertPos));
 
     float ambientFill = dot(N, vec3(0, 1, 0)) * 0.05 + 0.15;
-    vec3 ambient = surfaceColor * ambientStrength;
+    vec3 ambient = surfaceColor * ambientFill;
     vec3 diffuseAccum = vec3(0.0);
     vec3 specAccum = vec3(0.0);
 
