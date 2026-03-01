@@ -104,8 +104,8 @@ var FSHADER_SOURCE = `
       //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
       // }
     } 
-    vec3 baseColor = surfaceColor;
-    
+    vec3 baseColor = gl_FragColor.rgb;
+
     // float spotlightFactor = 1.0;
   
     if (u_spotlightOn) {
