@@ -65,8 +65,6 @@ var FSHADER_SOURCE = `
       gl_FragColor = vec4(1,.2,.2,1);
     }
     vec3 surfaceColor = gl_FragColor.rgb;
-    vec3 baseColor = 0.2 * surfaceColor;
-    gl_FragColor = vec4(baseColor, 1.0);
     vec3 lightVector = u_lightPos - vec3(v_VertPos) ;
     float r=length(lightVector);
 
@@ -104,7 +102,7 @@ var FSHADER_SOURCE = `
       //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
       // }
     } 
-    // vec3 baseColor = vec3(gl_FragColor);
+    vec3 baseColor = gl_FragColor.rgb;
     // float spotlightFactor = 1.0;
   
     if (u_spotlightOn) {
@@ -134,7 +132,7 @@ var FSHADER_SOURCE = `
       // vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor;
       vec3 spotlightAdd = (diffuseS + ambientS + vec3(specularS)) * spotlightFactor;
       // gl_FragColor = vec4((diffuse + ambient + vec3(specular)) * spotlightFactor, 1.0);
-      gl_FragColor = vec4(gl_FragColor.rgb + spotlightAdd, 1.0);
+      gl_FragColor = vec4(baseColor + spotlightAdd, 1.0);
 
     }
   }`
