@@ -200,6 +200,8 @@ let u_whichTexture;
 let g_mouseRotX = 0;
 let g_mouseRotY = 0;
 
+let g_teapot = null;
+
  
 function setupWebGL(){
   // Retrieve <canvas> element
@@ -556,7 +558,7 @@ function main() {
 
   setupWebGL(); //set up canvas and gl variables
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
-  Model = new Model(gl, '../textures/teapot.obj');
+  g_teapot = new Model(gl, '../textures/teapot.obj');
   camera = new Camera(canvas); // set up camera
   g_rat = new Rat(); //set up rat
   g_rat.position = [1.2, -.4, -1.2];
@@ -781,6 +783,19 @@ function renderAllShapes() {
   sky.matrix.translate(-0.5, -0.5, -0.5);
   gl.uniform1f(u_specStrength, 0.0);
   sky.render();
+
+  //teapot obj
+  if (g_teapot && g_teapot.isFullLoaded) {
+    g_teapot.textureNum = -2;
+    g_teapot.color = [0.0, 0.8, 0.8, 1.0];
+    
+    g_teapot.matrix.setTranslate(0, -0.2, 1);
+    g_teapot.matrix.scale(0.3, 0.3, 0.3);
+    g_teapot.matrix.rotate(g_seconds * 30, 0, 1, 0);
+    
+    gl.uniform1f(u_specStrength, 1.0);
+    g_teapot.render();
+  }
 
   // drawMap();
   for (let i = 0; i < walls.length; i++) {
