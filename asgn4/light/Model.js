@@ -36,7 +36,7 @@ class Model {
 
         for (let i=0; i < lines.length; i++) {
             const line = lines[i];
-            const tokens = line.split("/");
+            const tokens = line.split(/\s+/);
 
             if (tokens[0] == 'v') {
                 allVertices.push(parseFloat(tokens[1]), parseFloat(tokens[2]), parseFloat(tokens[3]));
@@ -44,21 +44,31 @@ class Model {
                 allNormals.push(parseFloat(tokens[1]), parseFloat(tokens[2]), parseFloat(tokens[3]));
             } else if (tokens[0] == 'f') {
                 for (const face of [tokens[1], tokens[2], tokens[3]]) {
-                    const indices = face.split("//");
+                    const indices = face.split("/");
                     const vertexIndex = (parseInt(indices[0]) - 1) * 3;
-                    const normalIndex = (parseInt(indices[1]) - 1) * 3;
+                    // const normalIndex = (parseInt(indices[1]) - 1) * 3;
+
+                    let normalIndex = null;
+                    if (parts.length > 2 && parts[2] !== "") {
+                        normalIndex = (parseInt(parts[2]) - 1) * 3;
+                    }
 
                     unpackedVerts.push(
                         allVertices[vertexIndex],
                         allVertices[vertexIndex + 1],
                         allVertices[vertexIndex + 2]
                     );
-
+                    
+                    if (normalIndex !== null && allNormals.length > 0) {
                     unpackedNormals.push(
                         allNormals[normalIndex],
                         allNormals[normalIndex + 1],
                         allNormals[normalIndex + 2]
                     );
+                    
+                    } else {
+                        unpackedNormals.push(0, 1, 0);
+                    }
                 }
             }
         }
