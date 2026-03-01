@@ -212,7 +212,7 @@ function setupWebGL(){
 
   // Get the rendering context for WebGL
   // gl = getWebGLContext(canvas);
-  gl.disable(gl.CULL_FACE);
+  
   gl = canvas.getContext("webgl", { preserveDrawingBuffer: true});
 
   if (!gl) {
@@ -221,7 +221,7 @@ function setupWebGL(){
   }
 
   gl.enable(gl.DEPTH_TEST);
-
+  gl.disable(gl.CULL_FACE);
 }
 
 function connectVariablesToGLSL(){
