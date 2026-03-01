@@ -116,7 +116,7 @@ var FSHADER_SOURCE = `
       // } else {
       //   spotlightFactor = 0.0;
       // }
-      vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor
+      vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor;
       // gl_FragColor = vec4((diffuse + ambient + vec3(specular)) * spotlightFactor, 1.0);
       gl_FragColor = vec4(baseColor + spotlightAdd, 1.0);
 
