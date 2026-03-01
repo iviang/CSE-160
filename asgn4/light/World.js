@@ -103,7 +103,7 @@ var FSHADER_SOURCE = `
       // }
     } 
     vec3 baseColor = vec3(gl_FragColor);
-    float spotlightFactor = 1.0;
+    // float spotlightFactor = 1.0;
   
     if (u_spotlightOn) {
       vec3 Ls = normalize(u_spotlightPos - vec3(v_VertPos));
