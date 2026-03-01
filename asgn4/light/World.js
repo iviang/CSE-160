@@ -87,10 +87,10 @@ var FSHADER_SOURCE = `
     vec3 N = normalize(v_Normal);
     vec3 V = normalize(u_cameraPos - vec3(v_VertPos));
 
-    float ambientFill = dot(N, vec3(0, 1, 0)) * 0.05 + 0.15;
-    vec3 ambient = surfaceColor * ambientFill;
-    vec3 diffuseAccum = vec3(0.0);
-    vec3 specAccum = vec3(0.0);
+    float ambFill = dot(N, vec3(0, 1, 0)) * 0.05 + 0.15;
+    vec3 ambient = surfaceColor * ambFill;
+    vec3 diffuse = vec3(0.0);
+    vec3 specular = vec3(0.0);
 
     // float spill = 0.15; 
     // vec3 outColor = surfaceColor * spill;
@@ -103,10 +103,10 @@ var FSHADER_SOURCE = `
     if (u_lightOn) {
       vec3 L = normalize(u_lightPos - vec3(v_VertPos));
       float nDotL = max(dot(N, L), 0.0);
-      diffuseAccum += surfaceColor * nDotL * 0.7;
+      diffuse += surfaceColor * nDotL * 0.7;
 
       vec3 R = reflect(-L, N);
-      specAccum += u_specStrength * pow(max(dot(V, R), 0.0), 64.0);
+      specular += u_specStrength * pow(max(dot(V, R), 0.0), 64.0);
     }
 
     if (u_spotlightOn) {
@@ -117,17 +117,17 @@ var FSHADER_SOURCE = `
       // Soft edges using smoothstep
       float spotFactor = smoothstep(u_spotlightOut, u_spotlightCos, spotCos);
       float concentration = pow(max(spotCos, 0.0), u_spotlightExpo); 
-      float finalSpotEffect = spotFactor * concentration;
+      float finalSpot = spotFactor * concentration;
 
       float nDotLs = max(dot(N, Ls), 0.0);
       vec3 Rs = reflect(-Ls, N);
       
-      diffuseAccum += (surfaceColor * nDotLs * 0.7) * finalSpotEffect;
-      specAccum += (u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0)) * finalSpotEffect;
+      diffuse += (surfaceColor * nDotLs * 0.7) * finalSpot;
+      specular += (u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0)) * finalSpot;
       
     }
 
-    gl_FragColor = vec4(ambient + diffuseAccum + specAccum, 1.0);
+    gl_FragColor = vec4(ambient + diffuse + specular, 1.0);
 
     // if (u_lightOn) {
     //   vec3 L = normalize(u_lightPos - vec3(v_VertPos));
@@ -768,7 +768,7 @@ function renderAllShapes() {
   gl.uniform3f(u_spotlightDir, g_spotlightDir[0], g_spotlightDir[1], g_spotlightDir[2]);
 
   let cutoffRad = g_spotlightDeg * Math.PI / 180;
-  let outRad = (g_spotlightDeg + 10) * Math.PI / 180;
+  let outRad = (g_spotlightDeg + 5) * Math.PI / 180;
 
   gl.uniform1f(u_spotlightCos, Math.cos(cutoffRad));
   gl.uniform1f(u_spotlightOut, Math.cos(outRad));
