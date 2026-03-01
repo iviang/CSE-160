@@ -119,7 +119,7 @@ class Model {
         normalMatrix.setInverseOf(this.matrix);
         normalMatrix.transpose();
         gl.uniformMatrix4fv(u_NormalMatrix, false, normalMatrix.elements);
-
+        console.log("DRAW", this.modelData.vertices.length / 3);
         gl.drawArrays(gl.TRIANGLES, 0, this.modelData.vertices.length / 3);
     }
 
