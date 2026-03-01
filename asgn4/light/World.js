@@ -92,9 +92,6 @@ var FSHADER_SOURCE = `
     vec3 diffuse = vec3(0.0);
     vec3 specular = vec3(0.0);
 
-    // float spill = 0.15; 
-    // vec3 outColor = surfaceColor * spill;
-
     //N dot L
     // vec3 L = normalize(lightVector);
 
@@ -129,47 +126,6 @@ var FSHADER_SOURCE = `
 
     gl_FragColor = vec4(ambient + diffuse + specular, 1.0);
 
-    // if (u_lightOn) {
-    //   vec3 L = normalize(u_lightPos - vec3(v_VertPos));
-    //   float nDotL = max(dot(N, L), 0.0);
-
-    //   vec3 R = reflect(-L, N);
-    //   float specular = u_specStrength * pow(max(dot(V, R), 0.0), 64.0);
-
-    //   vec3 diffuse  = surfaceColor * nDotL * 0.7;
-    //   vec3 ambient  = surfaceColor * 0.2;
-
-    //   Color += diffuse + ambient + vec3(specular);
-    // } 
-
-    // if (u_spotlightOn) {
-    //   vec3 Ls = normalize(u_spotlightPos - vec3(v_VertPos));
-    //   vec3 D = -normalize(u_spotlightDir);
-    //   float spotCos = dot(D, Ls);
-
-    //   float spotFactor = smoothstep(u_spotlightOut, u_spotlightCos, spotCos);
-    //   spotFactor *= pow(spotCos, u_spotlightExpo);
-
-    //   // float spotFactor = 0.0;
-    //   // if (spotCos >= u_spotlightCos) {
-    //   //   spotFactor = pow(spotCos, u_spotlightExpo);
-    //   // }
-
-    //   // float spill = 0.35; //surrounded lighting
-
-    //   float nDotLs = max(dot(N, Ls), 0.0);
-
-    //   vec3 Rs = reflect(-Ls, N);
-    //   float specularS = u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0);
-
-    //   vec3 diffuseS = surfaceColor * nDotLs * 0.7;
-    //   vec3 ambientS = surfaceColor * 0.2;
-    //   // Color += ambientS * spill;
-    //   Color += (diffuseS + ambientS + vec3(specularS)) * spotFactor;
-    // }
-
-    // gl_FragColor = vec4(Color, 1.0);
-// ===
     // float nDotL = max(dot(N,L), 0.0);
 
     //reflection
