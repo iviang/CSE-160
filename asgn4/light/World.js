@@ -444,7 +444,7 @@ function addActionsForHtmlUI(){
   document.getElementById('lightSlideX').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[0] = this.value/100; renderAllShapes(); }});
   document.getElementById('lightSlideY').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[1] = this.value/100; renderAllShapes(); }});
   document.getElementById('lightSlideZ').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[2] = this.value/100; renderAllShapes(); }});
-  document.getElementById('lightColor').addEventListener('mousemove', function() { g_lightColor[0] = this.value / 100; });
+  document.getElementById('lightColor').addEventListener('mousemove', function() { const t = this.value / 100;; g_lightColor[1] = 1.0 - t; g_lightColor[2] = 1.0 - t;});
 
   canvas.onmousemove = function(ev) {if (ev.buttons == 1) { click(ev) }};
 
