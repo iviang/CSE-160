@@ -93,6 +93,9 @@ class Model {
         gl.vertexAttribPointer(a_Normal, 3, gl.FLOAT, false, 0, 0);
         gl.enableVertexAttribArray(a_Normal);
 
+        gl.disableVertexAttribArray(a_UV);
+        gl.vertexAttrib2f(a_UV, 0.0, 0.0);
+
         // set Uniforms
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
         gl.uniform4fv(u_FragColor, this.color);
