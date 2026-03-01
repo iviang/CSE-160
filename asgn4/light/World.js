@@ -790,8 +790,7 @@ function renderAllShapes() {
   gl.uniform1i(u_lightOn, 0);
   gl.uniform1i(u_spotlightOn, 0);
   sky.render();
-  gl.uniform1i(u_lightOn, g_lightOn);
-  gl.uniform1i(u_spotlightOn, g_spotlightOn);
+
   // drawMap();
   for (let i = 0; i < walls.length; i++) {
     walls[i].renderfast();
