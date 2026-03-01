@@ -83,12 +83,12 @@ var FSHADER_SOURCE = `
       gl_FragColor = vec4(surfaceColor, 1.0);
       return;
     }
-
-    vec3 ambient = surfaceColor * 0.2;
+    float ambientFill = dot(N, vec3(0, 1, 0)) * 0.05 + 0.15;
+    vec3 ambient = surfaceColor * ambientStrength;
     vec3 diffuseAccum = vec3(0.0);
     vec3 specAccum = vec3(0.0);
 
-    float spill = 0.15; 
+    // float spill = 0.15; 
     // vec3 outColor = surfaceColor * spill;
 
     //N dot L
@@ -96,7 +96,7 @@ var FSHADER_SOURCE = `
     vec3 N = normalize(v_Normal);
     vec3 V = normalize(u_cameraPos - vec3(v_VertPos));
     vec3 Color = vec3(0.0);
-    if (u_lightOn) {
+    if (u_lightOn) {s
       vec3 L = normalize(u_lightPos - vec3(v_VertPos));
       float nDotL = max(dot(N, L), 0.0);
       diffuseAccum += surfaceColor * nDotL * 0.7;
@@ -119,7 +119,9 @@ var FSHADER_SOURCE = `
       vec3 Rs = reflect(-Ls, N);
       
       diffuseAccum += (surfaceColor * nDotLs * 0.7) * finalSpotEffect;
-      specAccum += (u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0)) * finalSpotEffect;
+      // specAccum += (u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0)) * finalSpotEffect;
+      specAccum += (u_specStrength * pow(max(dot(V, reflect(-Ls, N)), 0.0), 64.0)) * finalSpotEffect;
+      
     }
 
     gl_FragColor = vec4(ambient + diffuseAccum + specAccum, 1.0);
