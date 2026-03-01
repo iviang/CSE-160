@@ -48,6 +48,8 @@ var FSHADER_SOURCE = `
   void main() {
     if (u_whichTexture == -3) {
       gl_FragColor = vec4((v_Normal+1.0)/2.0, 1.0);     //use normal
+      return;
+
     } else if (u_whichTexture == -2) {
       gl_FragColor = u_FragColor;                       //use color
 
@@ -102,7 +104,7 @@ var FSHADER_SOURCE = `
       //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
       // }
     } 
-    vec3 baseColor = gl_FragColor.rgb;
+    vec3 baseColor = surfaceColor;
     // float spotlightFactor = 1.0;
   
     if (u_spotlightOn) {
@@ -136,7 +138,7 @@ var FSHADER_SOURCE = `
       // vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor;
 
       vec3 spotlightAdd = (diffuseS + ambientS + vec3(specularS)) * spotlightFactor;
-      
+
       // gl_FragColor = vec4((diffuse + ambient + vec3(specular)) * spotlightFactor, 1.0);
       gl_FragColor = vec4(baseColor + spotlightAdd, 1.0);
 
