@@ -868,17 +868,24 @@ function renderAllShapes() {
   magenta.render();
   
   if (g_teapot && g_teapot.isFullLoaded) {
-    gl.useProgram(gl.program); 
+    const I = new Matrix4();
+    gl.uniformMatrix4fv(u_ViewMatrix, false, I.elements);
+    gl.uniformMatrix4fv(u_ProjectionMatrix, false, I.elements);
+    gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, I.elements);
+    g_teapot.matrix.setIdentity();
+    g_teapot.matrix.scale(0.2, 0.2, 0.2);
     g_teapot.color = [1, 0, 1, 1]; // magenta
     g_teapot.textureNum = -2;
-    gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
-    gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
+    gl.uniform1i(u_lightOn, 0);
+    gl.uniform1i(u_spotlightOn, 0);
+    // gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMatrix.elements);
+    // gl.uniformMatrix4fv(u_ProjectionMatrix, false, camera.projectionMatrix.elements);
 
-    var globalRotMat = new Matrix4().rotate(g_globalAngle,0,1,0);
-    gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
+    // var globalRotMat = new Matrix4().rotate(g_globalAngle,0,1,0);
+    // gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
-    gl.enableVertexAttribArray(a_Position);
-    gl.enableVertexAttribArray(a_Normal);
+    // gl.enableVertexAttribArray(a_Position);
+    // gl.enableVertexAttribArray(a_Normal);
     g_teapot.render();
 
   }
