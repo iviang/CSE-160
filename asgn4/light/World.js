@@ -789,7 +789,7 @@ function renderAllShapes() {
     g_teapot.textureNum = -2;
     g_teapot.color = [0.0, 0.8, 0.8, 1.0];
     
-    g_teapot.matrix.setTranslate(0, -0.2, 1);
+    g_teapot.matrix.setTranslate(1, 1, 1);
     g_teapot.matrix.scale(0.3, 0.3, 0.3);
     g_teapot.matrix.rotate(g_seconds * 30, 0, 1, 0);
     
