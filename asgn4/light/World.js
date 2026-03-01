@@ -775,6 +775,7 @@ function renderAllShapes() {
   gl.uniform1f(u_specStrength, 0.0);
   body.render();
 
+  gl.depthMask(false);
   //draw the SKY BOX ==========
   var sky = new Cube();
   sky.color = [0.5, 0.75, 1, 1.0]; // blue color
@@ -783,7 +784,8 @@ function renderAllShapes() {
   sky.matrix.translate(-0.5, -0.5, -0.5);
   gl.uniform1f(u_specStrength, 0.0);
   sky.render();
-
+  gl.depthMask(true);
+  
   //teapot obj
   if (g_teapot && g_teapot.isFullLoaded) {
     g_teapot.textureNum = -2;
