@@ -807,9 +807,8 @@ function renderAllShapes() {
     var globalRotMat = new Matrix4().rotate(g_globalAngle,0,1,0);
     gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
-    gl.uniform3f(u_cameraPos, camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]);
-    gl.uniform1i(u_lightOn, 0);
-    gl.uniform1i(u_spotlightOn, 0);
+    gl.enableVertexAttribArray(a_Position);
+    gl.enableVertexAttribArray(a_Normal);
     g_teapot.render();
 
   }
