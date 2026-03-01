@@ -871,12 +871,12 @@ function renderAllShapes() {
     g_teapot.matrix.setTranslate(-1.5, -0.75, -1.75);
     g_teapot.matrix.scale(0.2, 0.2, 0.2);
     g_teapot.matrix.rotate(g_seconds * 30, 0, 1, 0);
-    g_teapot.color = [1, 0, 1, 1];
+    g_teapot.color = [1, 0, 0.5, 1];
     g_teapot.textureNum = -2;   
     gl.uniform1f(u_specStrength, 1.0);
     g_teapot.render();
   }
-  
+
   //check the time at the end of the funciton, and show on web pg
   var duration = performance.now() - startTime;
   sendTextToHTML(" ms: " + Math.floor(duration) + " fps: " + g_fps, "numdot");
