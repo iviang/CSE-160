@@ -84,9 +84,9 @@ var FSHADER_SOURCE = `
       return;
     }
 
-    vec3 amb = surfaceColor * 0.2;
-    vec3 diff = vec3(0.0);
-    vec3 spec = vec3(0.0);
+    vec3 ambient = surfaceColor * 0.2;
+    vec3 diffuseAccum = vec3(0.0);
+    vec3 specAccum = vec3(0.0);
 
     float spill = 0.35; 
     // vec3 outColor = surfaceColor * spill;
