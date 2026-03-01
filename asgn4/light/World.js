@@ -136,7 +136,10 @@ let u_GlobalRotateMatrix;
 let u_specStrength; //added
 let u_lightOn; //
 let u_spotlightOn; //
-
+let u_spotlightPos;
+let u_spotlightDir;
+let u_spotlightCos;
+let u_spotlightExpo;
 
 let u_Sampler0;
 let u_Sampler1;
@@ -242,6 +245,30 @@ function connectVariablesToGLSL(){
     return;
   }
 
+  u_spotlightPos = gl.getUniformLocation(gl.program, 'u_spotlightPos');
+  if (!u_spotlightPos) {
+    console.log('Failed to get the storage location of u_spotlightPos');
+    return;
+  }
+
+  u_spotlightDir = gl.getUniformLocation(gl.program, 'u_spotlightDir');
+  if (!u_spotlightDir) {
+    console.log('Failed to get the storage location of u_spotlightDir');
+    return;
+  }
+
+  u_spotlightCos = gl.getUniformLocation(gl.program, 'u_spotlightCos');
+  if (!u_spotlightCos) {
+    console.log('Failed to get the storage location of u_spotlightCos');
+    return;
+  }
+
+  u_spotlightExpo = gl.getUniformLocation(gl.program, 'u_spotlightExpo');
+  if (!u_spotlightExpo) {
+    console.log('Failed to get the storage location of u_spotlightExpo');
+    return;
+  }
+
   u_specStrength = gl.getUniformLocation(gl.program, 'u_specStrength');
   if (!u_specStrength) {
     console.log('Failed to get the storage location of u_specStrength');
@@ -333,6 +360,10 @@ let g_normalOn=false;
 let g_lightOn=true;
 let g_lightPos=[0,1.5,0.75]; //added
 let g_spotlightOn=true;
+let g_spotlightPos = [1.2, 1.6, -1.2]; 
+let g_spotlightDir = [0, -1, 0];
+let g_spotlightDeg = 30;
+let g_spotlightExpo = 10;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -646,6 +677,13 @@ function renderAllShapes() {
 
   gl.uniform1i(u_lightOn, g_lightOn);
   gl.uniform1i(u_spotlightOn, g_spotlightOn);
+
+  gl.uniform3f(u_spotlightPos, g_spotlightPos[0], g_spotlightPos[1], g_spotlightPos[2]);
+  gl.uniform3f(u_spotlightDir, g_spotlightDir[0], g_spotlightDir[1], g_spotlightDir[2]);
+
+  let cutoffRad = g_spotlightDeg * Math.PI / 180;
+  gl.uniform1f(u_spotlightCos, Math.cos(cutoffRad));
+  gl.uniform1f(u_spotlightExpo, g_spotlightExpo);
 
   //Draw the light
   var light = new Cube();
