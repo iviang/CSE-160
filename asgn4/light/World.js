@@ -558,6 +558,15 @@ function main() {
 
   setupWebGL(); //set up canvas and gl variables
   connectVariablesToGLSL(); //set up GLSL shader prgms and connect GLSL variables
+  window.gl = gl;
+  window.a_Position = a_Position;
+  window.a_Normal = a_Normal;
+  window.u_ModelMatrix = u_ModelMatrix;
+  window.u_NormalMatrix = u_NormalMatrix;
+  window.u_FragColor = u_FragColor;
+  window.u_whichTexture = u_whichTexture;
+
+
   g_teapot = new Model(gl, '../textures/teapot.obj');
   camera = new Camera(canvas); // set up camera
   g_rat = new Rat(); //set up rat
