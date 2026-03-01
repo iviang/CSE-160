@@ -212,7 +212,7 @@ function setupWebGL(){
 
   // Get the rendering context for WebGL
   // gl = getWebGLContext(canvas);
-
+  gl.disable(gl.CULL_FACE);
   gl = canvas.getContext("webgl", { preserveDrawingBuffer: true});
 
   if (!gl) {
@@ -786,7 +786,7 @@ function renderAllShapes() {
   gl.uniform1f(u_specStrength, 0.0);
   body.render();
 
-  // gl.depthMask(false);
+  gl.depthMask(false);
   //draw the SKY BOX ==========
   var sky = new Cube();
   sky.color = [0.5, 0.75, 1, 1.0]; // blue color
@@ -795,7 +795,7 @@ function renderAllShapes() {
   sky.matrix.translate(-0.5, -0.5, -0.5);
   gl.uniform1f(u_specStrength, 0.0);
   sky.render();
-  // gl.depthMask(true);
+  gl.depthMask(true);
 
   //teapot obj
   if (g_teapot && g_teapot.isFullLoaded) {
