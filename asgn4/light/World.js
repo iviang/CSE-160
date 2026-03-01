@@ -116,7 +116,7 @@ var FSHADER_SOURCE = `
         spotFactor = pow(spotCos, u_spotlightExpo);
       }
 
-      float spill = 0.15;
+      float spill = 0.25;
 
       float nDotLs = max(dot(N, Ls), 0.0);
 
