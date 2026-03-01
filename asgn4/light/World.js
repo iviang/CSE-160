@@ -759,7 +759,7 @@ function renderAllShapes() {
   for (let i = 0; i < walls.length; i++) {
     walls[i].renderfast();
   }
-
+  gl.uniform1f(u_specStrength, 0.8);
   //draw the RAT ==========
   g_rat.render();
 
