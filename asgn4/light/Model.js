@@ -21,7 +21,7 @@ export default class Model {
     }
 
     async parseModel(fileContent) {
-        const lines = fileContent.split("\n");
+        const lines = fileContent.split(/\r?\n/);
         const allVertices = [];
         const allNormals = [];
 
