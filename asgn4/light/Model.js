@@ -1,5 +1,5 @@
 // prettier-ignore
-export default class Model {
+class Model {
     constructor(gl, filePath) {
         this.filePath = filePath;
         this.color = [1.0, 1.0, 1.0, 1.0];
