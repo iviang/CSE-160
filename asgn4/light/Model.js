@@ -7,33 +7,23 @@ class Model {
         this.isFullLoaded = false;
         this.textureNum = -2;
         
-        this.getFileContent().then(() => {
-            this.vertexBuffer = gl.createBuffer();
-            this.normalBuffer = gl.createBuffer();
-
-            if (!this.vertexBuffer || !this.normalBuffer) {
-                console.log("Failed to create buffers for", this.filePath);
-                return;
-            }            
-        })
+        this.vertexBuffer = gl.createBuffer();
+        this.normalBuffer = gl.createBuffer();
+        
+        this.getFileContent();
     }
 
     async parseModel(fileContent) {
-        this.vertexBuffer = gl.createBuffer();
-        this.normalBuffer = gl.createBuffer();
 
-        if (!this.vertexBuffer || !this.normalBuffer) {
-            console.error("Failed to create buffers");
-            return;
-        }
 
         const lines = fileContent.split(/\r?\n/);
+
         const allVertices = [];
         const allNormals = [];
 
         const unpackedVerts = [];
         const unpackedNormals = [];
-
+        
         for (let i=0; i < lines.length; i++) {
             const line = lines[i];
             const tokens = line.split(/\s+/);
@@ -83,10 +73,7 @@ class Model {
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, this.modelData.normals, gl.STATIC_DRAW);
-        console.log("OBJ loaded:", this.filePath);
-        console.log("verts:", unpackedVerts.length / 3, "normals:", unpackedNormals.length / 3);
-        console.log("first vert:", unpackedVerts.slice(0, 3));
-        console.log("first norm:", unpackedNormals.slice(0, 3));
+        
         this.isFullLoaded = true;
         // console.log("all vertices:", allVertices);
         // console.log("all normals:", allNormals);
