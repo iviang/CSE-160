@@ -810,7 +810,10 @@ function renderAllShapes() {
 
     gl.uniform1i(u_lightOn, 0);
     gl.uniform1i(u_spotlightOn, 0);
+    gl.disable(gl.DEPTH_TEST);
+
     g_teapot.render();
+    gl.enable(gl.DEPTH_TEST);
   }
     gl.uniform1i(u_lightOn, g_lightOn);
     gl.uniform1i(u_spotlightOn, g_spotlightOn);
