@@ -83,7 +83,10 @@ class Model {
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, this.modelData.normals, gl.STATIC_DRAW);
-
+        console.log("OBJ loaded:", this.filePath);
+        console.log("verts:", unpackedVerts.length / 3, "normals:", unpackedNormals.length / 3);
+        console.log("first vert:", unpackedVerts.slice(0, 3));
+        console.log("first norm:", unpackedNormals.slice(0, 3));
         this.isFullLoaded = true;
         // console.log("all vertices:", allVertices);
         // console.log("all normals:", allNormals);

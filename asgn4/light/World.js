@@ -35,6 +35,8 @@ var FSHADER_SOURCE = `
 
   uniform int u_whichTexture;
   uniform vec3 u_lightPos;
+  uniform vec3 u_lightColor;
+
   uniform vec3 u_spotlightPos;
   uniform vec3 u_spotlightDir;
   uniform float u_spotlightCos;
@@ -100,10 +102,10 @@ var FSHADER_SOURCE = `
     if (u_lightOn) {
       vec3 L = normalize(u_lightPos - vec3(v_VertPos));
       float nDotL = max(dot(N, L), 0.0);
-      diffuse += surfaceColor * nDotL * 0.7;
+      diffuse += surfaceColor * u_lightColor * nDotL * 0.7;
 
       vec3 R = reflect(-L, N);
-      specular += u_specStrength * pow(max(dot(V, R), 0.0), 64.0);
+      specular += u_lightColor * u_specStrength * pow(max(dot(V, R), 0.0), 64.0);
     }
 
     if (u_spotlightOn) {
@@ -160,6 +162,7 @@ let a_Position;
 let a_UV; 
 let a_Normal; //added
 let u_lightPos; //added
+let u_lightColor; //
 let u_cameraPos; //added
 let u_FragColor;
 let u_Size;
@@ -280,6 +283,12 @@ function connectVariablesToGLSL(){
   u_lightPos = gl.getUniformLocation(gl.program, 'u_lightPos');
   if (!u_lightPos) {
     console.log('Failed to get the storage location of u_lightPos');
+    return;
+  }
+
+  u_lightColor = gl.getUniformLocation(gl.program, 'u_lightColor');
+  if (!u_lightColor) {
+    console.log('Failed to get the storage location of u_lightColor');
     return;
   }
 
@@ -408,6 +417,7 @@ let g_spotlightPos = [1.2, 1.6, -1.2];
 let g_spotlightDir = [0, -1, 0];
 let g_spotlightDeg = 30;
 let g_spotlightExpo = 10;
+let g_lightColor= [1.0, 1.0, 1.0];
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
@@ -434,6 +444,10 @@ function addActionsForHtmlUI(){
   document.getElementById('lightSlideX').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[0] = this.value/100; renderAllShapes(); }});
   document.getElementById('lightSlideY').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[1] = this.value/100; renderAllShapes(); }});
   document.getElementById('lightSlideZ').addEventListener('mousemove', function(ev) { if(ev.buttons ==1) { g_lightPos[2] = this.value/100; renderAllShapes(); }});
+  document.getElementById('lightColor').addEventListener('mousemove', function() {
+    const val = this.value / 100; 
+    g_lightColor = [val, val, val];
+  });
 
   canvas.onmousemove = function(ev) {if (ev.buttons == 1) { click(ev) }};
 
@@ -717,7 +731,7 @@ function renderAllShapes() {
 
   //Pass the light pos to GLSL
   gl.uniform3f(u_lightPos, g_lightPos[0], g_lightPos[1], g_lightPos[2]);
-
+  gl.uniform3f(u_lightColor, g_lightColor[0], g_lightColor[1], g_lightColor[2]);
   //pass the camera pos to GLSL
   gl.uniform3f(u_cameraPos,camera.eye.elements[0], camera.eye.elements[1], camera.eye.elements[2]);
 
@@ -796,9 +810,13 @@ function renderAllShapes() {
     g_teapot.matrix.rotate(g_seconds * 30, 0, 1, 0);
     
     gl.uniform1f(u_specStrength, 1.0);
+
+    gl.uniform1i(u_lightOn, 0);
+    gl.uniform1i(u_spotlightOn, 0);
     g_teapot.render();
   }
-
+    gl.uniform1i(u_lightOn, g_lightOn);
+    gl.uniform1i(u_spotlightOn, g_spotlightOn);
   // drawMap();
   for (let i = 0; i < walls.length; i++) {
     walls[i].renderfast();
