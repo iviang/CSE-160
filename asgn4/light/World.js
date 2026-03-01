@@ -38,6 +38,7 @@ var FSHADER_SOURCE = `
   uniform vec3 u_spotlightPos;
   uniform vec3 u_spotlightDir;
   uniform float u_spotlightCos;
+  uniform float u_spotlightOut;
   uniform float u_spotlightExpo;
   uniform vec3 u_cameraPos;
   varying vec4 v_VertPos;
@@ -68,9 +69,6 @@ var FSHADER_SOURCE = `
     }
     vec3 surfaceColor = gl_FragColor.rgb;
 
-    // vec3 lightVector = u_lightPos - vec3(v_VertPos) ;
-    // float r=length(lightVector);
-
     //R/G visualization
     // if (r<1.0) {
     //   gl_FragColor= vec4(1,0,0,1);
@@ -90,7 +88,7 @@ var FSHADER_SOURCE = `
     // vec3 L = normalize(lightVector);
     vec3 N = normalize(v_Normal);
 
-    vec3 V = normalize(u_cameraPos - vec3(v_VertPos)); //
+    vec3 V = normalize(u_cameraPos - vec3(v_VertPos));
     vec3 Color = vec3(0.0);
 
     if (u_lightOn) {
@@ -111,7 +109,10 @@ var FSHADER_SOURCE = `
       vec3 D = -normalize(u_spotlightDir);
       float spotCos = dot(D, Ls);
 
-      float spotFactor = 0.0;
+      float spotFactor = smoothstep(u_spotlightOut, u_spotlightCos, spotCos);
+      spotFactor *= pow(spotCos, u_spotlightExpo);
+
+      // float spotFactor = 0.0;
       if (spotCos >= u_spotlightCos) {
         spotFactor = pow(spotCos, u_spotlightExpo);
       }
@@ -133,13 +134,13 @@ var FSHADER_SOURCE = `
 
     // float nDotL = max(dot(N,L), 0.0);
 
-    // //reflection
+    //reflection
     // vec3 R = reflect(-L,N);
 
-    // //eye
+    //eye
     // vec3 E = normalize(u_cameraPos - vec3 (v_VertPos));
 
-    // //specular
+    //specular
     // float specular = u_specStrength * pow(max(dot(E,R), 0.0), 64.0);
   
     // vec3 diffuse = vec3(gl_FragColor) * nDotL *0.7;
@@ -153,48 +154,7 @@ var FSHADER_SOURCE = `
     //   //   gl_FragColor = vec4(diffuse+ambient, 1.0);  
     //   // }
     // } 
-    // vec3 baseColor = gl_FragColor.rgb;
 
-    // float spotlightFactor = 1.0;
-  
-    // if (u_spotlightOn) {
-    //   vec3 baseColor = gl_FragColor.rgb;
-
-    //   vec3 lightVectorS = u_spotlightPos - vec3(v_VertPos);
-    //   vec3 Ls = normalize(lightVectorS);
-    //   vec3 N = normalize(v_Normal);
-    //   vec3 D = -normalize(u_spotlightDir);
-
-    //   float spotlightCos= dot(D, Ls);
-
-    //   float spotlightFactor = 0.0;
-    //   if (spotlightCos >= u_spotlightCos) {
-    //     spotlightFactor = pow(spotlightCos, u_spotlightExpo);
-    //   }
-
-    //   // } else {
-    //   //   spotlightFactor = 0.0;
-    //   // }
-
-    //   float nDotLS = max(dot(N,Ls), 0.0);
-    //   vec3 diffuseS = surfaceColor * nDotLS * 0.7;
-    //   vec3 ambientS = surfaceColor * 0.2;
-
-    //   vec3 Rs = reflect(-Ls, N);
-    //   vec3 Es = normalize(u_cameraPos - vec3(v_VertPos));
-
-    //   float specularS = u_specStrength * pow(max(dot(Es, Rs), 0.0), 64.0);
-
-    //   // vec3 diffuseS = vec3(u_FragColor) * nDotLS * 0.7;
-    //   // vec3 ambientS = vec3(u_FragColor) * 0.2;
-    //   // vec3 spotlightAdd = (diffuse + ambient + vec3(specular)) * spotlightFactor;
-
-    //   vec3 spotlightAdd = (diffuseS + ambientS + vec3(specularS)) * spotlightFactor;
-
-    //   // gl_FragColor = vec4((diffuse + ambient + vec3(specular)) * spotlightFactor, 1.0);
-    //   gl_FragColor = vec4(baseColor + spotlightAdd, 1.0);
-
-    // }
   }`
 
 
@@ -220,6 +180,7 @@ let u_spotlightOn; //
 let u_spotlightPos;
 let u_spotlightDir;
 let u_spotlightCos;
+let u_spotlightOut;
 let u_spotlightExpo;
 
 let u_Sampler0;
@@ -341,6 +302,12 @@ function connectVariablesToGLSL(){
   u_spotlightCos = gl.getUniformLocation(gl.program, 'u_spotlightCos');
   if (!u_spotlightCos) {
     console.log('Failed to get the storage location of u_spotlightCos');
+    return;
+  }
+
+  u_spotlightOut = gl.getUniformLocation(gl.program, 'u_spotlightOut');
+  if (!u_spotlightOut) {
+    console.log('Failed to get the storage location of u_spotlightOut');
     return;
   }
 
@@ -763,7 +730,11 @@ function renderAllShapes() {
   gl.uniform3f(u_spotlightDir, g_spotlightDir[0], g_spotlightDir[1], g_spotlightDir[2]);
 
   let cutoffRad = g_spotlightDeg * Math.PI / 180;
+  let outRad = (g_spotlightDeg + 10) * Math.PI / 180;
+
   gl.uniform1f(u_spotlightCos, Math.cos(cutoffRad));
+  gl.uniform1f(u_spotlightOut, Math.cos(outRad));
+
   gl.uniform1f(u_spotlightExpo, g_spotlightExpo);
 
   //Draw the light
