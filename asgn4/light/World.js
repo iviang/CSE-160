@@ -83,6 +83,10 @@ var FSHADER_SOURCE = `
       gl_FragColor = vec4(surfaceColor, 1.0);
       return;
     }
+
+    vec3 N = normalize(v_Normal);
+    vec3 V = normalize(u_cameraPos - vec3(v_VertPos));
+
     float ambientFill = dot(N, vec3(0, 1, 0)) * 0.05 + 0.15;
     vec3 ambient = surfaceColor * ambientStrength;
     vec3 diffuseAccum = vec3(0.0);
@@ -93,9 +97,9 @@ var FSHADER_SOURCE = `
 
     //N dot L
     // vec3 L = normalize(lightVector);
-    vec3 N = normalize(v_Normal);
-    vec3 V = normalize(u_cameraPos - vec3(v_VertPos));
+
     vec3 Color = vec3(0.0);
+
     if (u_lightOn) {
       vec3 L = normalize(u_lightPos - vec3(v_VertPos));
       float nDotL = max(dot(N, L), 0.0);
