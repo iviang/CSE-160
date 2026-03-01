@@ -112,12 +112,14 @@ var FSHADER_SOURCE = `
 
       // Soft edges using smoothstep
       float spotFactor = smoothstep(u_spotlightOut, u_spotlightCos, spotCos);
-      
+      float concentration = pow(max(spotCos, 0.0), u_spotlightExpo); 
+      float finalSpotEffect = spotFactor * concentration;
+
       float nDotLs = max(dot(N, Ls), 0.0);
       vec3 Rs = reflect(-Ls, N);
       
-      diffuseAccum += (surfaceColor * nDotLs * 0.7) * spotFactor;
-      specAccum += (u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0)) * spotFactor;
+      diffuseAccum += (surfaceColor * nDotLs * 0.7) * finalSpotEffect;
+      specAccum += (u_specStrength * pow(max(dot(V, Rs), 0.0), 64.0)) * finalSpotEffect;
     }
 
     gl_FragColor = vec4(ambient + diffuseAccum + specAccum, 1.0);
