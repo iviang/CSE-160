@@ -768,7 +768,7 @@ function renderAllShapes() {
   gl.uniform3f(u_spotlightDir, g_spotlightDir[0], g_spotlightDir[1], g_spotlightDir[2]);
 
   let cutoffRad = g_spotlightDeg * Math.PI / 180;
-  let outRad = (g_spotlightDeg + 2) * Math.PI / 180;
+  let outRad = (g_spotlightDeg + 5) * Math.PI / 180;
 
   gl.uniform1f(u_spotlightCos, Math.cos(cutoffRad));
   gl.uniform1f(u_spotlightOut, Math.cos(outRad));
