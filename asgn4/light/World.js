@@ -915,3 +915,5 @@ function convertCoordinatesEventToGL(ev){
   return([x,y]);
 }
 
+window.main = main;
+
