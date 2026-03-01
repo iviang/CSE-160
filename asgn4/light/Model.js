@@ -49,7 +49,7 @@ class Model {
                     // const normalIndex = (parseInt(indices[1]) - 1) * 3;
 
                     let normalIndex = null;
-                    if (parts.length > 2 && parts[2] !== "") {
+                    if (indices.length > 2 && parts[2] !== "") {
                         normalIndex = (parseInt(parts[2]) - 1) * 3;
                     }
 
