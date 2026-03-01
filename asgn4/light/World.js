@@ -408,7 +408,6 @@ let g_spotlightPos = [1.2, 1.6, -1.2];
 let g_spotlightDir = [0, -1, 0];
 let g_spotlightDeg = 30;
 let g_spotlightExpo = 10;
-let Model;
 
 //set up actions for the HTML UI elements
 function addActionsForHtmlUI(){
