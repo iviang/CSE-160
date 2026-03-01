@@ -1,5 +1,3 @@
-import { Matrix4 } from "../lib/cuon-matrix";
-
 // prettier-ignore
 export default class Model {
     constructor(gl, filePath) {
