@@ -115,9 +115,9 @@ var FSHADER_SOURCE = `
       spotFactor *= pow(spotCos, u_spotlightExpo);
 
       // float spotFactor = 0.0;
-      if (spotCos >= u_spotlightCos) {
-        spotFactor = pow(spotCos, u_spotlightExpo);
-      }
+      // if (spotCos >= u_spotlightCos) {
+      //   spotFactor = pow(spotCos, u_spotlightExpo);
+      // }
 
       // float spill = 0.35; //surrounded lighting
 
