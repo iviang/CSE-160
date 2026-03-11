@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import {MTLLoader} from 'three/addons/loaders/MTLLoader.js';
 
 function main() {
 
@@ -8,15 +9,20 @@ function main() {
     const renderer = new THREE.WebGLRenderer({antialias: true, canvas});
 
     // PerspectiveCamera
-    const fov = 75;
+    const fov = 45;
     const aspect = 2;  // the canvas default
     const near = 0.1;
-    const far = 5;
+    const far = 100;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.z = 2;
+    // camera.position.z = 2;
+	camera.position.set( 0, 10, 20 );
+	const controls = new OrbitControls( camera, canvas );
+	controls.target.set( 0, 5, 0 );
+	controls.update();
 
     //Scene
     const scene = new THREE.Scene();
+	scene.background = new THREE.Color( 'black' );
 
     //BoxGeometry
     const boxWidth = 1;
@@ -82,58 +88,165 @@ function main() {
     // scene.add(cube); //add to scene
 
     // renderer.render(scene, camera);
+	{
 
-    //animate
-    function render(time) {
-        time *= 0.001;  // convert time to seconds
-        
-        // cubes.forEach((cube, ndx) => {
-        //     const speed = 1 + ndx * .1;
-        //     const rot = time * speed;
-        //     cube.rotation.x = rot;
-        //     cube.rotation.y = rot;
-        // });
-        const rot = time;
-        cubes.forEach((cube) => {
-            cube.rotation.x = rot;
-            cube.rotation.y = rot;
+		const planeSize = 40;
+
+		const loader = new THREE.TextureLoader();
+		const texture = loader.load( 'https://threejs.org/manual/examples/resources/images/checker.png' );
+		texture.colorSpace = THREE.SRGBColorSpace;
+		texture.wrapS = THREE.RepeatWrapping;
+		texture.wrapT = THREE.RepeatWrapping;
+		texture.magFilter = THREE.NearestFilter;
+		const repeats = planeSize / 2;
+		texture.repeat.set( repeats, repeats );
+
+		const planeGeo = new THREE.PlaneGeometry( planeSize, planeSize );
+		const planeMat = new THREE.MeshPhongMaterial( {
+			map: texture,
+			side: THREE.DoubleSide,
+		} );
+		const mesh = new THREE.Mesh( planeGeo, planeMat );
+		mesh.rotation.x = Math.PI * - .5;
+		scene.add( mesh );
+
+	}
+
+	{
+
+		const skyColor = 0xB1E1FF; // light blue
+		const groundColor = 0xB97A20; // brownish orange
+		const intensity = 2;
+		const light = new THREE.HemisphereLight( skyColor, groundColor, intensity );
+		scene.add( light );
+
+	}
+
+	{
+
+		const color = 0xFFFFFF;
+		const intensity = 3;
+		const light = new THREE.DirectionalLight( color, intensity );
+		light.position.set( 5, 10, 2 );
+		scene.add( light );
+		scene.add( light.target );
+	}
+    {
+    const mtlLoader = new MTLLoader();
+    mtlLoader.load('obj/materials.mtl', (mtl) => {
+        mtl.preload();
+
+        const objLoader = new OBJLoader();
+        objLoader.setMaterials(mtl);
+        objLoader.load('obj/model.obj', (root) => {
+        root.position.set(0, 1.6, 0);
+        root.scale.set(1, 1, 1); 
+        scene.add(root);
         });
+    });
 
-        // cube.rotation.x = time;
-        // cube.rotation.y = time;
+	}
+
+	// {
+
+	// 	const objLoader = new OBJLoader();
+	// 	objLoader.load( 'https://threejs.org/manual/examples/resources/models/windmill/windmill.obj', ( root ) => {
+
+	// 		scene.add( root );
+
+	// 	} );
+
+	// }
+
+	function resizeRendererToDisplaySize( renderer ) {
+
+		const canvas = renderer.domElement;
+		const width = canvas.clientWidth;
+		const height = canvas.clientHeight;
+		const needResize = canvas.width !== width || canvas.height !== height;
+		if ( needResize ) {
+
+			renderer.setSize( width, height, false );
+
+		}
+
+		return needResize;
+
+	}
+
+    // //animate
+    // function render(time) {
+    //     time *= 0.001;  // convert time to seconds
         
-        renderer.render(scene, camera);
+    //     // cubes.forEach((cube, ndx) => {
+    //     //     const speed = 1 + ndx * .1;
+    //     //     const rot = time * speed;
+    //     //     cube.rotation.x = rot;
+    //     //     cube.rotation.y = rot;
+    //     // });
+    //     // const rot = time;
+    //     // cubes.forEach((cube) => {
+    //     //     cube.rotation.x = rot;
+    //     //     cube.rotation.y = rot;
+    //     // });
+
+    //     // cube.rotation.x = time;
+    //     // cube.rotation.y = time;
+    //     if ( resizeRendererToDisplaySize( renderer ) ) {
+
+	// 		const canvas = renderer.domElement;
+	// 		camera.aspect = canvas.clientWidth / canvas.clientHeight;
+	// 		camera.updateProjectionMatrix();
+
+	// 	}
+    //     renderer.render(scene, camera);
         
-        requestAnimationFrame(render);
-    }
+    //     requestAnimationFrame(render);
+    // }
 
-    requestAnimationFrame(render);
+    // requestAnimationFrame(render);
 
-    //directional light
-    const color = 0xFFFFFF;
-    const intensity = 3;
-    const light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(-1, 2, 4);
-    scene.add(light);
+    // //directional light
+    // const color = 0xFFFFFF;
+    // const intensity = 3;
+    // const light = new THREE.DirectionalLight(color, intensity);
+    // light.position.set(-1, 2, 4);
+    // scene.add(light);
 
-    //create new material
-    function makeInstance(geometry, color, x) {
-        const material = new THREE.MeshPhongMaterial({color});
+    // //create new material
+    // function makeInstance(geometry, color, x) {
+    //     const material = new THREE.MeshPhongMaterial({color});
         
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
+    //     const cube = new THREE.Mesh(geometry, material);
+    //     scene.add(cube);
         
-        cube.position.x = x;
+    //     cube.position.x = x;
         
-        return cube;
-    }
+    //     return cube;
+    // }
 
-    // const cubes = [
-    //     makeInstance(geometry, 0x44aa88,  0),
-    //     makeInstance(geometry, 0x8844aa, -2),
-    //     makeInstance(geometry, 0xaa8844,  2),
-    // ];
+    // // const cubes = [
+    // //     makeInstance(geometry, 0x44aa88,  0),
+    // //     makeInstance(geometry, 0x8844aa, -2),
+    // //     makeInstance(geometry, 0xaa8844,  2),
+    // // ];
+    function render() {
 
+		if ( resizeRendererToDisplaySize( renderer ) ) {
+
+			const canvas = renderer.domElement;
+			camera.aspect = canvas.clientWidth / canvas.clientHeight;
+			camera.updateProjectionMatrix();
+
+		}
+
+		renderer.render( scene, camera );
+
+		requestAnimationFrame( render );
+
+	}
+
+	requestAnimationFrame( render );
 }
 
 main();
