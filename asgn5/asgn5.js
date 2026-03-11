@@ -303,22 +303,19 @@ function main() {
 
     
     {
+
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/brick.jpg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+
 		const cubeSize = 2;
 		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
-		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(70, 51, 13)' } );
+		const cubeMat = new THREE.MeshPhongMaterial( {map: texture} );
 		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
 		mesh.position.set( -7, cubeSize / 2, -7 );
 		scene.add( mesh );
 
 	}
-
-        //     const loader = new THREE.TextureLoader();
-    //     const texture = loader.load('textures/cheese.jpg');
-    //     texture.colorSpace = THREE.SRGBColorSpace;
-    //     const material = new THREE.MeshPhongMaterial({
-    //         map: texture,
-    //     });
-    //     makeInstance(geometry, material, 2, 1, 0);
 
     {
 		const cubeSize = .8;

@@ -16,7 +16,7 @@ CC-BY-NC 3.0 windmill 3D model by ahedov.
 
 textures:
 https://polyhaven.com/a/citrus_orchard_puresky
-
+https://unsplash.com/photos/red-bricks-wall-XEsx2NVpqWY 
 
 review of asgn 1-4
 https://ucsc-cse-160.github.io/docs/setup/threejs.html 
