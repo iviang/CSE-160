@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
 function main() {
 
@@ -22,11 +23,63 @@ function main() {
     const boxHeight = 1;
     const boxDepth = 1;
     const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
-    const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
 
-    //Mesh
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube); //add to scene
+    // solid color:
+    // const loader = new THREE.TextureLoader();
+    // const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
+    // const cube = new THREE.Mesh(geometry, material);
+    const cubes = [];
+
+    // //Texture Loader
+    // const loader = new THREE.TextureLoader();
+    // loader.load('textures/cheese.jpg', (texture) => {
+    //     texture.colorSpace = THREE.SRGBColorSpace;
+    //     const material = new THREE.MeshBasicMaterial({
+    //         map: texture,
+    //     });
+    //     const cube = new THREE.Mesh(geometry, material);
+    //     scene.add(cube);
+    //     cubes.push(cube);  // add to our list of cubes to rotate
+    // });
+
+    //MULTI TEXTURE FACES:
+    const loadManager = new THREE.LoadingManager();
+    const loader = new THREE.TextureLoader(loadManager);
+
+    const materials = [
+        new THREE.MeshBasicMaterial({map: loader.load('textures/flower-1.jpg')}),
+        new THREE.MeshBasicMaterial({map: loader.load('textures/flower-2.jpg')}),
+        new THREE.MeshBasicMaterial({map: loader.load('textures/flower-3.jpg')}),
+        new THREE.MeshBasicMaterial({map: loader.load('textures/flower-4.jpg')}),
+        new THREE.MeshBasicMaterial({map: loader.load('textures/flower-5.jpg')}),
+        new THREE.MeshBasicMaterial({map: loader.load('textures/flower-6.jpg')}),
+    ];
+
+    const loadingElem = document.querySelector('#loading');
+    const progressBarElem = loadingElem.querySelector('.progressbar');
+
+    loadManager.onLoad = () => {
+        loadingElem.style.display = 'none';
+        const cube = new THREE.Mesh(geometry, materials);
+        scene.add(cube);
+        cubes.push(cube);  // add to our list of cubes to rotate
+    };
+
+    loadManager.onProgress = (urlOfLastItemLoaded, itemsLoaded, itemsTotal) => {
+        const progress = itemsLoaded / itemsTotal;
+        progressBarElem.style.transform = `scaleX(${progress})`;
+    };
+
+    // const cube = new THREE.Mesh(geometry, materials);
+
+    // function loadColorTexture( path ) {
+    //     const texture = loader.load( path );
+    //     texture.colorSpace = THREE.SRGBColorSpace;
+    //     return texture;
+    // }
+
+    
+    // scene.add(cube); //add to scene
 
     // renderer.render(scene, camera);
 
@@ -34,15 +87,20 @@ function main() {
     function render(time) {
         time *= 0.001;  // convert time to seconds
         
-        cubes.forEach((cube, ndx) => {
-            const speed = 1 + ndx * .1;
-            const rot = time * speed;
+        // cubes.forEach((cube, ndx) => {
+        //     const speed = 1 + ndx * .1;
+        //     const rot = time * speed;
+        //     cube.rotation.x = rot;
+        //     cube.rotation.y = rot;
+        // });
+        const rot = time;
+        cubes.forEach((cube) => {
             cube.rotation.x = rot;
             cube.rotation.y = rot;
         });
 
-        cube.rotation.x = time;
-        cube.rotation.y = time;
+        // cube.rotation.x = time;
+        // cube.rotation.y = time;
         
         renderer.render(scene, camera);
         
@@ -70,11 +128,11 @@ function main() {
         return cube;
     }
 
-    const cubes = [
-    makeInstance(geometry, 0x44aa88,  0),
-    makeInstance(geometry, 0x8844aa, -2),
-    makeInstance(geometry, 0xaa8844,  2),
-    ];
+    // const cubes = [
+    //     makeInstance(geometry, 0x44aa88,  0),
+    //     makeInstance(geometry, 0x8844aa, -2),
+    //     makeInstance(geometry, 0xaa8844,  2),
+    // ];
 
 }
 
