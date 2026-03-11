@@ -18,6 +18,7 @@ VR-Mobil by Vladimir Ilic [CC-BY] (https://creativecommons.org/licenses/by/3.0/)
 Golf cart by Michael Ruddy [CC-BY] via Poly Pizza
 CC-BY-NC 3.0 windmill 3D model by ahedov.
 Bridge by Poly by Google [CC-BY] via Poly Pizza
+Golfer guy by Benjamin Farrell [CC-BY] via Poly Pizza
 
 textures:
 https://polyhaven.com/a/citrus_orchard_puresky

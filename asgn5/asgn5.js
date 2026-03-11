@@ -810,13 +810,14 @@ function main() {
             objLoader.setMaterials(mtl);
             objLoader.load('obj/moped/model.obj', (root) => {
             root.position.set(-2, 1.6, 5);
-            root.scale.set(1, 1, 1); 
+            root.scale.set(1, 1, 1);
+            root.rotation.y = Math.PI / 4;
             scene.add(root);
             });
         });
 	}
 
-    // cart
+    // golfcart
     {
         const mtlLoader = new MTLLoader();
         mtlLoader.load('obj/golfcart/materials.mtl', (mtl) => {
@@ -848,6 +849,22 @@ function main() {
         });
 	}
     
+    // guy
+    {
+        const mtlLoader = new MTLLoader();
+        mtlLoader.load('obj/guy/materials.mtl', (mtl) => {
+            mtl.preload();
+
+            const objLoader = new OBJLoader();
+            objLoader.setMaterials(mtl);
+            objLoader.load('obj/guy/model.obj', (root) => {
+            root.position.set(14, 2.5, 0);
+            root.scale.set(3, 5, 3); 
+            root.rotation.y = Math.PI / 2;
+            scene.add(root);
+            });
+        });
+	}
     
     //SKYBOX - EQUIRECTANGULAR METHOD
 	{
