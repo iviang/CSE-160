@@ -7,10 +7,11 @@ https://iviang.github.io/CSE-160/asgn5/asgn5.html
 
 Notes:
 Used VS Code Live Preview extension
-4 OBJs: golf cart, moped, windmill, bridge
+5 OBJs: golf cart, moped, windmill, bridge. golfer guy
 3 textures: brick, flowers, golf balls
 total 3D primary shapes: 40
 epirectangular skybox
+wow attempt: a visually recognizeable golf course
 
 Resources:
 obj credits:
