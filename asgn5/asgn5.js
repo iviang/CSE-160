@@ -9,7 +9,13 @@ function main() {
     const canvas = document.querySelector('#c');
     // const view1Elem = document.querySelector('#view1');
     // const view2Elem = document.querySelector('#view2');
-    const renderer = new THREE.WebGLRenderer({antialias: true, canvas});
+    const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+    });
+
+
 
     // PerspectiveCamera
     const fov = 45;
@@ -78,7 +84,7 @@ function main() {
 
     //Scene
     const scene = new THREE.Scene();
-	scene.background = new THREE.Color( 'black' );
+	// scene.background = new THREE.Color( 'black' );
     // scene.add(cameraHelper);
 
     
@@ -271,7 +277,6 @@ function main() {
         directionalFolder.add(light.target.position, 'x', -10, 10);
         directionalFolder.add(light.target.position, 'z', -10, 10);
         directionalFolder.add(light.target.position, 'y', 0, 10);
-
 	}
 
     //OBJ MTL 
