@@ -50,11 +50,15 @@ function main() {
     }
     
     const gui = new GUI();
-    gui.add(camera, 'fov', 1, 180).onChange(updateCamera);
+
+    const cameraFolder = gui.addFolder('Camera');
+    cameraFolder.add(camera, 'fov', 1, 180).onChange(updateCamera);
 
     const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
-    gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
-    gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
+    cameraFolder.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
+    cameraFolder.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
+    
+    //ORBIT CONTROLS
     const controls = new OrbitControls( camera, canvas );
     controls.target.set( 0, 5, 0 );
     controls.update();
@@ -211,15 +215,47 @@ function main() {
 
     //LIGHTS
     
+    class ColorGUIHelper {
+        constructor(object, prop) {
+            this.object = object;
+            this.prop = prop;
+        }
+        get value() {
+            return '#' + this.object[this.prop].getHexString();
+        }
+        set value(hexString) {
+            this.object[this.prop].set(hexString);
+        }
+    }
+
+
+    //AMBIENT LIGHT
+    {
+        const color = 0xFFFFFF;
+        const intensity = 1;
+        const light = new THREE.AmbientLight(color, intensity);
+        scene.add(light);
+
+        const ambientFolder = gui.addFolder('Ambient Light');
+		ambientFolder.addColor( new ColorGUIHelper( light, 'color' ), 'value' ).name( 'color' );
+		ambientFolder.add( light, 'intensity', 0, 5, 0.01 );
+    }
+
+    //HEMISPHERE LIGHT
 	{
 		const skyColor = 0xB1E1FF; // light blue
 		const groundColor = 0xB97A20; // brownish orange
-		const intensity = 2;
+		const intensity = 1;
 		const light = new THREE.HemisphereLight( skyColor, groundColor, intensity );
 		scene.add( light );
+
+        const hemisphereFolder = gui.addFolder('Hemisphere Light');
+        hemisphereFolder.addColor(new ColorGUIHelper(light, 'color'), 'value').name('skyColor');
+        hemisphereFolder.addColor(new ColorGUIHelper(light, 'groundColor'), 'value').name('groundColor');
+		hemisphereFolder.add( light, 'intensity', 0, 5, 0.01 );
 	}
 
-    //directional
+    //DIRECTIONAL LIGHT
 	{
         const color = 0xFFFFFF;
         const intensity = 3;
@@ -228,6 +264,14 @@ function main() {
    		light.target.position.set( - 5, 0, 0 );
         scene.add( light );
         scene.add( light.target );
+
+        const directionalFolder = gui.addFolder('Directional Light');
+        directionalFolder.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+        directionalFolder.add(light, 'intensity', 0, 5, 0.01);
+        directionalFolder.add(light.target.position, 'x', -10, 10);
+        directionalFolder.add(light.target.position, 'z', -10, 10);
+        directionalFolder.add(light.target.position, 'y', 0, 10);
+
 	}
 
     //OBJ MTL 
