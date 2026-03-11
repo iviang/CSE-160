@@ -175,7 +175,9 @@ function main() {
 		const planeSize = 40;
 
 		const loader = new THREE.TextureLoader();
-		const texture = loader.load( 'https://threejs.org/manual/examples/resources/images/checker.png' );
+		// const texture = loader.load( 'https://threejs.org/manual/examples/resources/images/checker.png' );
+		const texture = loader.load( 'textures/grass.png' );
+
 		texture.wrapS = THREE.RepeatWrapping;
 		texture.wrapT = THREE.RepeatWrapping;
 		texture.magFilter = THREE.NearestFilter;
