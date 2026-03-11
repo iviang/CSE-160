@@ -24,4 +24,7 @@ https://threejs.org/docs/#examples/en/controls/FlyControls
 https://threejs.org/docs/?q=controls#examples/en/controls/FirstPersonControls
 https://threejs.org/manual/#en/lights
 https://threejs.org/manual/#en/backgrounds
+https://www.pexels.com/photo/blue-skies-53594/
 Used gpt to support debugging issues
+https://polyhaven.com/ 
+https://polyhaven.com/a/citrus_orchard_puresky 

@@ -9,11 +9,12 @@ function main() {
     const canvas = document.querySelector('#c');
     // const view1Elem = document.querySelector('#view1');
     // const view2Elem = document.querySelector('#view2');
-    const renderer = new THREE.WebGLRenderer({
-        canvas,
-        antialias: true,
-        alpha: true,
-    });
+    // const renderer = new THREE.WebGLRenderer({
+    //     canvas,
+    //     antialias: true,
+    //     alpha: true,
+    // });
+	const renderer = new THREE.WebGLRenderer( { antialias: true, canvas } );
 
 
 
@@ -315,6 +316,22 @@ function main() {
         });
 	}
     
+    //SKYBOX - EQUIRECTANGULAR METHOD
+	{
+
+		const loader = new THREE.TextureLoader();
+		const texture = loader.load(`textures/equisky.jpg`,
+			// 'https://threejs.org/manual/examples/resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg',
+
+			() => {
+
+				texture.mapping = THREE.EquirectangularReflectionMapping;
+				texture.colorSpace = THREE.SRGBColorSpace;
+				scene.background = texture;
+
+			} );
+
+	}
 
 	function resizeRendererToDisplaySize( renderer ) {
 		const canvas = renderer.domElement;
