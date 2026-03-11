@@ -5,7 +5,7 @@ CSE 160
 
 site:
 https://iviang.github.io/CSE-160/asgn4/light/asgn4.html
-http://localhost:8000/asgn4/light/asgn4.html
+http://localhost:8000/asgn4/light/asgn4.html 
 
 Notes:
 I have implemented my rat from the asgn2.
