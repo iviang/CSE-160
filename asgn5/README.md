@@ -7,15 +7,21 @@ https://iviang.github.io/CSE-160/asgn5/asgn5.html
 
 Notes:
 Used VS Code Live Preview extension
+4 OBJs: golf cart, moped, windmill, bridge
+3 textures: brick, flowers, golf balls
+total 3D primary shapes: 40
+epirectangular skybox
 
 Resources:
 obj credits:
 VR-Mobil by Vladimir Ilic [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/6XXj6DSBb08)
 Golf cart by Michael Ruddy [CC-BY] via Poly Pizza
 CC-BY-NC 3.0 windmill 3D model by ahedov.
+Bridge by Poly by Google [CC-BY] via Poly Pizza
 
 textures:
 https://polyhaven.com/a/citrus_orchard_puresky
+https://stock.adobe.com/search?k=golf%2Bball%2Bpattern&asset_id=159213901 
 https://unsplash.com/photos/red-bricks-wall-XEsx2NVpqWY 
 
 review of asgn 1-4

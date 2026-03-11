@@ -198,7 +198,65 @@ function main() {
 	}
 
     //more shapes
-    //CUBES
+    //CUBES =====================================================
+
+    //turf
+    {
+		const cubeSize = 4;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(2, 60, 16)' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 4, -1.9, -9 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 4;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(2, 60, 16)' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 8, -1.8, -9 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 4;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(2, 60, 16)' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 8, -1.9, -5 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 4;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(2, 60, 16)' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 8, -1.9, -1 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 4;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(2, 60, 16)' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 0, -1.9, -9.2 );
+		scene.add( mesh );
+
+	}
+
+    {
+		const cubeSize = 4;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(2, 60, 16)' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( -4, -1.9, -8 );
+		scene.add( mesh );
+
+	}
+    //lane boundaries
     {
 		const cubeSize = 0.5;
 		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
@@ -301,7 +359,7 @@ function main() {
 
 	}
 
-    
+    //"opening" to the windmill where the ball comes out
     {
 
         const loader = new THREE.TextureLoader();
@@ -328,7 +386,9 @@ function main() {
 	}
 
 
-    //CYLINDERS
+    //CYLINDERS ===============================
+
+    //parking bound
     {
     const radiusTop = 0.3;
     const radiusBottom = 0.3;
@@ -351,8 +411,7 @@ function main() {
     scene.add(cylinder);
     }
 
-
-
+    //stem
     {
 
     const radiusTop = 0.1;
@@ -376,7 +435,7 @@ function main() {
     scene.add(cylinder);
     }
 
-
+    //flag pole
     {
     const radiusTop = 0.1;
     const radiusBottom = 0.1;
@@ -416,12 +475,14 @@ function main() {
 
     const cylinder = new THREE.Mesh(cylinderGeo, cylinderMat);
 
-    cylinder.position.set(8, height / 2, -2); // height/2 keeps it on the ground
+    cylinder.position.set(8, .1, -2); // height/2 keeps it on the ground
 
     scene.add(cylinder);
     }
 
-    //SPHERES
+    //SPHERES ===============================================
+
+    //golf balls
 	{
 
         const loader = new THREE.TextureLoader();
@@ -465,7 +526,7 @@ function main() {
 		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
 		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
 		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
-		mesh.position.set( - sphereRadius + 7, sphereRadius, -4 );
+		mesh.position.set( - sphereRadius + 7, sphereRadius+.1, -4 );
 		scene.add( mesh );
 
 	}
@@ -485,11 +546,24 @@ function main() {
 		scene.add( mesh );
 
 	}
-
 	{
         const loader = new THREE.TextureLoader();
         const texture = loader.load('textures/gball.jpeg');
         texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = .2;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( - sphereRadius + 10, sphereRadius+.1, 0 );
+		scene.add( mesh );
+
+	}
+
+    //marker of hole
+	{
+
 		const sphereRadius = .3;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -502,9 +576,7 @@ function main() {
 	}
     //bushes
     {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
+ 
 		const sphereRadius = 1;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -516,9 +588,7 @@ function main() {
 
 	}
     {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
+
 		const sphereRadius = 0.8;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -531,9 +601,7 @@ function main() {
 	}
 
     {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
+ 
 		const sphereRadius = 0.8;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -546,9 +614,7 @@ function main() {
 	}
 
     {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
+
 		const sphereRadius = 0.6;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -561,9 +627,7 @@ function main() {
 	}
 
         {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
+ 
 		const sphereRadius = 1;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -575,9 +639,7 @@ function main() {
 
 	}
     {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
+
 		const sphereRadius = 0.8;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -590,9 +652,7 @@ function main() {
 	}
 
     {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
+
 		const sphereRadius = 0.8;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -605,9 +665,7 @@ function main() {
 	}
 
     {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
+
 		const sphereRadius = 0.6;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
@@ -619,29 +677,14 @@ function main() {
 
 	}
 
-
-	{
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/gball.jpeg');
-        texture.colorSpace = THREE.SRGBColorSpace;
-		const sphereRadius = .2;
-		const sphereWidthDivisions = 32;
-		const sphereHeightDivisions = 16;
-		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
-		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
-		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
-		mesh.position.set( - sphereRadius + 10, sphereRadius, 0 );
-		scene.add( mesh );
-
-	}
-
     //animated spheres
 
     let sphere;
     let rollsphere;
     const rollsphereRad = 0.2;
-    const sphereBaseY = 0.2;
+    const sphereBaseY = 0.3;
 
+    //bounce
 	{
         const loader = new THREE.TextureLoader();
         const texture = loader.load('textures/gball.jpeg');
@@ -659,7 +702,7 @@ function main() {
 		scene.add( sphere );
 
 	}
-
+    //roll
     {
         const loader = new THREE.TextureLoader();
         const texture = loader.load('textures/gball.jpeg');
@@ -737,7 +780,7 @@ function main() {
         directionalFolder.add(light.target.position, 'y', 0, 10);
 	}
 
-    //OBJ MTL 
+    //OBJ MTL =============================================================
 
     //windmill example
     {
@@ -757,7 +800,7 @@ function main() {
         });
 	}
 
-    //my obj: moped
+    // moped
     {
         const mtlLoader = new MTLLoader();
         mtlLoader.load('obj/moped/materials.mtl', (mtl) => {
@@ -773,7 +816,7 @@ function main() {
         });
 	}
 
-    //my obj: golf cart
+    // cart
     {
         const mtlLoader = new MTLLoader();
         mtlLoader.load('obj/golfcart/materials.mtl', (mtl) => {
@@ -784,6 +827,22 @@ function main() {
             objLoader.load('obj/golfcart/model.obj', (root) => {
             root.position.set(-11, 2.2, 10);
             root.scale.set(2.5, 2.5, 2.5); 
+            scene.add(root);
+            });
+        });
+	}
+
+    //bridge
+    {
+        const mtlLoader = new MTLLoader();
+        mtlLoader.load('obj/bridge/Bridge.mtl', (mtl) => {
+            mtl.preload();
+
+            const objLoader = new OBJLoader();
+            objLoader.setMaterials(mtl);
+            objLoader.load('obj/bridge/Bridge.obj', (root) => {
+            root.position.set(-8, 0.3, -8.5);
+            root.scale.set(0.1, 0.1, 0.1); 
             scene.add(root);
             });
         });
