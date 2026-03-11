@@ -108,20 +108,20 @@ function main() {
 
     //rotating cubes
     // fundamentals: 3 rotating solid cubes
-    makeInstance(geometry, new THREE.MeshPhongMaterial({ color: 0x44aa88 }),-4,1,0);
-    makeInstance(geometry, new THREE.MeshPhongMaterial({ color: 0x8844aa }),-2,1,0);
-    makeInstance(geometry, new THREE.MeshPhongMaterial({ color: 0xaa8844 }), 0,1,0);
+    // makeInstance(geometry, new THREE.MeshPhongMaterial({ color: 0x44aa88 }),-4,1,0);
+    // makeInstance(geometry, new THREE.MeshPhongMaterial({ color: 0x8844aa }),-2,1,0);
+    // makeInstance(geometry, new THREE.MeshPhongMaterial({ color: 0xaa8844 }), 0,1,0);
 
     //single Texture Loader
-    {
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('textures/cheese.jpg');
-        texture.colorSpace = THREE.SRGBColorSpace;
-        const material = new THREE.MeshPhongMaterial({
-            map: texture,
-        });
-        makeInstance(geometry, material, 2, 1, 0);
-    }
+    // {
+    //     const loader = new THREE.TextureLoader();
+    //     const texture = loader.load('textures/cheese.jpg');
+    //     texture.colorSpace = THREE.SRGBColorSpace;
+    //     const material = new THREE.MeshPhongMaterial({
+    //         map: texture,
+    //     });
+    //     makeInstance(geometry, material, 2, 1, 0);
+    // }
 
     //MULTI TEXTURE FACES:
     {
@@ -150,7 +150,7 @@ function main() {
         loadManager.onLoad = () => {
             loadingElem.style.display = 'none';
             const cube = new THREE.Mesh(geometry, materials);
-            cube.position.set(8,1,0);
+            cube.position.set(0,4,-14);
             scene.add(cube);
             cubes.push(cube);  // add to our list of cubes to rotate
         };
@@ -200,25 +200,483 @@ function main() {
     //more shapes
     //CUBES
     {
-		const cubeSize = 4;
+		const cubeSize = 0.5;
 		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
 		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
 		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
-		mesh.position.set( cubeSize + 1, cubeSize / 2, 0 );
+		mesh.position.set( 4, cubeSize / 2, -11 );
 		scene.add( mesh );
 
 	}
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 3.5, cubeSize / 2, -11.5 );
+		scene.add( mesh );
+
+	}
+
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( -4, cubeSize / 2, -11 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( -3.5, cubeSize / 2, -11.5 );
+		scene.add( mesh );
+
+	}
+        {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( -3, cubeSize / 2, -11.5 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 1, cubeSize / 2, -6.5 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 1.5, cubeSize / 2, -6.5 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 2, cubeSize / 2, -7 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( 2.5, cubeSize / 2, -6.5 );
+		scene.add( mesh );
+
+	}
+
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( -4, cubeSize / 2, -5 );
+		scene.add( mesh );
+
+	}
+    {
+		const cubeSize = 0.5;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( -3.5, cubeSize / 2, -5.5 );
+		scene.add( mesh );
+
+	}
+
+    
+    {
+		const cubeSize = 2;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(70, 51, 13)' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( -7, cubeSize / 2, -7 );
+		scene.add( mesh );
+
+	}
+
+        //     const loader = new THREE.TextureLoader();
+    //     const texture = loader.load('textures/cheese.jpg');
+    //     texture.colorSpace = THREE.SRGBColorSpace;
+    //     const material = new THREE.MeshPhongMaterial({
+    //         map: texture,
+    //     });
+    //     makeInstance(geometry, material, 2, 1, 0);
+
+    {
+		const cubeSize = .8;
+		const cubeGeo = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: 'rgb(0, 0, 0)' } );
+		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
+		mesh.position.set( -6, cubeSize / 2, -7 );
+		scene.add( mesh );
+
+	}
+
+
+    //CYLINDERS
+    {
+    const radiusTop = 0.3;
+    const radiusBottom = 0.3;
+    const height = 3;
+    const radialSegments = 32;
+
+    const cylinderGeo = new THREE.CylinderGeometry(
+        radiusTop,
+        radiusBottom,
+        height,
+        radialSegments
+    );
+
+    const cylinderMat = new THREE.MeshPhongMaterial( { color: 'rgb(255, 217, 0)' } );
+
+    const cylinder = new THREE.Mesh(cylinderGeo, cylinderMat);
+
+    cylinder.position.set(-11, height / 2, 4); // height/2 keeps it on the ground
+
+    scene.add(cylinder);
+    }
+
+
+
+    {
+
+    const radiusTop = 0.1;
+    const radiusBottom = 0.1;
+    const height = 4;
+    const radialSegments = 32;
+
+    const cylinderGeo = new THREE.CylinderGeometry(
+        radiusTop,
+        radiusBottom,
+        height,
+        radialSegments
+    );
+
+    const cylinderMat = new THREE.MeshPhongMaterial( { color: 'rgb(2, 66, 11)' } );
+
+    const cylinder = new THREE.Mesh(cylinderGeo, cylinderMat);
+
+    cylinder.position.set(0, height / 2, -14); // height/2 keeps it on the ground
+
+    scene.add(cylinder);
+    }
+
+
+    {
+    const radiusTop = 0.1;
+    const radiusBottom = 0.1;
+    const height = 5;
+    const radialSegments = 32;
+
+    const cylinderGeo = new THREE.CylinderGeometry(
+        radiusTop,
+        radiusBottom,
+        height,
+        radialSegments
+    );
+
+    const cylinderMat = new THREE.MeshPhongMaterial( { color: 'rgb(202, 250, 253)' } );
+
+    const cylinder = new THREE.Mesh(cylinderGeo, cylinderMat);
+
+    cylinder.position.set(8, height / 2, -2); // height/2 keeps it on the ground
+
+    scene.add(cylinder);
+    }
+
+    {
+    const radiusTop = 0.4;
+    const radiusBottom = 0.4;
+    const height = 0.1;
+    const radialSegments = 32;
+
+    const cylinderGeo = new THREE.CylinderGeometry(
+        radiusTop,
+        radiusBottom,
+        height,
+        radialSegments
+    );
+
+    const cylinderMat = new THREE.MeshPhongMaterial( { color: 'rgb(0, 0, 0)' } );
+
+    const cylinder = new THREE.Mesh(cylinderGeo, cylinderMat);
+
+    cylinder.position.set(8, height / 2, -2); // height/2 keeps it on the ground
+
+    scene.add(cylinder);
+    }
+
     //SPHERES
 	{
 
-		const sphereRadius = 3;
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = .2;
 		const sphereWidthDivisions = 32;
 		const sphereHeightDivisions = 16;
 		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
-		const sphereMat = new THREE.MeshPhongMaterial( { color: '#CA8' } );
+		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
 		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
-		mesh.position.set( - sphereRadius - 1, sphereRadius + 2, 0 );
+		mesh.position.set( - sphereRadius + 5, sphereRadius, 2 );
 		scene.add( mesh );
+
+	}
+
+    {
+
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = .2;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( - sphereRadius + 6, sphereRadius, 3 );
+		scene.add( mesh );
+
+	}
+
+    {
+
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = .2;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( - sphereRadius + 7, sphereRadius, -4 );
+		scene.add( mesh );
+
+	}
+
+    {
+
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = .2;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( - sphereRadius + 11, sphereRadius, -3 );
+		scene.add( mesh );
+
+	}
+
+	{
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = .3;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(255, 0, 0)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 8, 5, -2);
+		scene.add( mesh );
+
+	}
+    //bushes
+    {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = 1;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(14, 116, 31)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 8, sphereRadius, -14);
+		scene.add( mesh );
+
+	}
+    {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = 0.8;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(14, 116, 31)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 7, sphereRadius, -14);
+		scene.add( mesh );
+
+	}
+
+    {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = 0.8;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(14, 116, 31)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 9, sphereRadius, -14);
+		scene.add( mesh );
+
+	}
+
+    {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = 0.6;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(14, 116, 31)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 7, sphereRadius, -13);
+		scene.add( mesh );
+
+	}
+
+        {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = 1;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(14, 116, 31)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 1, sphereRadius, -14);
+		scene.add( mesh );
+
+	}
+    {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = 0.8;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(14, 116, 31)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 0, sphereRadius, -14);
+		scene.add( mesh );
+
+	}
+
+    {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = 0.8;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(14, 116, 31)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 2, sphereRadius, -14);
+		scene.add( mesh );
+
+	}
+
+    {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = 0.6;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( { color: 'rgb(14, 116, 31)' } );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( 0, sphereRadius, -13);
+		scene.add( mesh );
+
+	}
+
+
+	{
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+		const sphereRadius = .2;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
+		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
+		mesh.position.set( - sphereRadius + 10, sphereRadius, 0 );
+		scene.add( mesh );
+
+	}
+
+    //animated spheres
+
+    let sphere;
+    let rollsphere;
+    const rollsphereRad = 0.2;
+    const sphereBaseY = 0.2;
+
+	{
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+
+		const sphereRadius = .2;
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+        
+		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
+
+		sphere = new THREE.Mesh( sphereGeo, sphereMat );
+		sphere.position.set( - sphereRadius + 7, sphereBaseY, 0 );
+		scene.add( sphere );
+
+	}
+
+    {
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('textures/gball.jpeg');
+        texture.colorSpace = THREE.SRGBColorSpace;
+
+		const sphereWidthDivisions = 32;
+		const sphereHeightDivisions = 16;
+        
+		const sphereGeo = new THREE.SphereGeometry( rollsphereRad, sphereWidthDivisions, sphereHeightDivisions );
+		const sphereMat = new THREE.MeshPhongMaterial( {  map: texture} );
+
+		rollsphere = new THREE.Mesh( sphereGeo, sphereMat );
+		rollsphere.position.set( 8, sphereBaseY, -8);
+		scene.add( rollsphere );
 
 	}
 
@@ -317,6 +775,23 @@ function main() {
             });
         });
 	}
+
+    //my obj: golf cart
+    {
+        const mtlLoader = new MTLLoader();
+        mtlLoader.load('obj/golfcart/materials.mtl', (mtl) => {
+            mtl.preload();
+
+            const objLoader = new OBJLoader();
+            objLoader.setMaterials(mtl);
+            objLoader.load('obj/golfcart/model.obj', (root) => {
+            root.position.set(-11, 2.2, 10);
+            root.scale.set(2.5, 2.5, 2.5); 
+            scene.add(root);
+            });
+        });
+	}
+    
     
     //SKYBOX - EQUIRECTANGULAR METHOD
 	{
@@ -375,12 +850,23 @@ function main() {
     function render(time) {
         time *= 0.001;  // convert time to seconds
         
-        cubes.forEach((cube, ndx) => {
-            const speed = 1 + ndx * .1;
-            const rot = time * speed;
-            cube.rotation.x = rot;
-            cube.rotation.y = rot;
-        });
+        // cubes.forEach((cube, ndx) => {
+        //     const speed = 1 + ndx * .1;
+        //     const rot = time * speed;
+        //     cube.rotation.x = rot;
+        //     cube.rotation.y = rot;
+        // });
+
+        const bounceHeight = 1;
+        const bounceSpeed = 3;
+        
+        sphere.position.y = sphereBaseY + Math.abs(Math.sin(time * bounceSpeed)) * bounceHeight;
+        
+        sphere.rotation.y = -time;
+
+        rollsphere.position.x = Math.sin(time) * 3;
+        rollsphere.position.y = rollsphereRad;
+        rollsphere.rotation.z = -time * 2;
 
         if ( resizeRendererToDisplaySize( renderer ) ) {
 

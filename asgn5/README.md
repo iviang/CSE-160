@@ -11,6 +11,13 @@ Used VS Code Live Preview extension
 Resources:
 obj credits:
 VR-Mobil by Vladimir Ilic [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/6XXj6DSBb08)
+Golf cart by Michael Ruddy [CC-BY] via Poly Pizza
+CC-BY-NC 3.0 windmill 3D model by ahedov.
+
+textures:
+https://polyhaven.com/a/citrus_orchard_puresky
+
+
 review of asgn 1-4
 https://ucsc-cse-160.github.io/docs/setup/threejs.html 
 https://www.npmjs.com/package/three?activeTab=versions 
