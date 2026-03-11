@@ -23,6 +23,11 @@ Github pages link submitted in comments
   </script>
 
   <style>
+    #c {
+    width: 800px;
+    height: 800px;
+    display: block;
+    }
     #loading {
     position: fixed;
     top: 0;
@@ -35,7 +40,7 @@ Github pages link submitted in comments
     }
     #loading .progress {
         margin: 1.5em;
-        border: 1px solid rgb(0, 0, 0);
+        border: 1px solid white;
         width: 50vw;
     }
     #loading .progressbar {
@@ -45,6 +50,18 @@ Github pages link submitted in comments
         transform-origin: top left;
         transform: scaleX(0);
     }
+    /* .split {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    }
+    .split>div {
+      width: 100%;
+      height: 100%;
+    } */
   </style>
 
 
@@ -54,6 +71,10 @@ Github pages link submitted in comments
     <canvas id="c"></canvas>
     <div id="loading">
     <div class="progress"><div class="progressbar"></div></div>
+    </div>
+    <div class="split">
+    <div id="view1" tabindex="1"></div>
+    <div id="view2" tabindex="2"></div>
     </div>
     <script type="module" src="asgn5.js"></script>
 
